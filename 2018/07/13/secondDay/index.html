@@ -87,13 +87,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="萌新前端之旅第二天第二天学习概述：#####第二天早上学了bootstrap,大概了解了其原理及栅栏系统的实现。下午学了flex，知道一些常用的方法，比如垂直居中，平均分布。下午还学了js的冒泡，捕获，和事件委托。晚上有开始接触canvas,学了一些基本操作（打算第三天整体学习canvas，这部分内容将在第三天内展示）。 bootstrap栅栏系统https://v3.bootcss.com/cs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="secondDay">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/secondDay/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="萌新前端之旅第二天第二天学习概述：#####第二天早上学了bootstrap,大概了解了其原理及栅栏系统的实现。下午学了flex，知道一些常用的方法，比如垂直居中，平均分布。下午还学了js的冒泡，捕获，和事件委托。晚上有开始接触canvas,学了一些基本操作（打算第三天整体学习canvas，这部分内容将在第三天内展示）。 bootstrap栅栏系统https://v3.bootcss.com/cs">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-14T12:21:45.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="secondDay">
+<meta name="twitter:description" content="萌新前端之旅第二天第二天学习概述：#####第二天早上学了bootstrap,大概了解了其原理及栅栏系统的实现。下午学了flex，知道一些常用的方法，比如垂直居中，平均分布。下午还学了js的冒泡，捕获，和事件委托。晚上有开始接触canvas,学了一些基本操作（打算第三天整体学习canvas，这部分内容将在第三天内展示）。 bootstrap栅栏系统https://v3.bootcss.com/cs">
 
 
 
@@ -121,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/13/secondDay/"/>
 
 
 
 
 
-  <title> Hexo </title>
+  <title> secondDay | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -152,9 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,9 +239,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -269,10 +271,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2018/07/13/secondDay/" itemprop="url">
-                  secondDay
-                </a>
+                secondDay
               
             
           </h1>
@@ -323,9 +322,7 @@
       
 
       
-        
-          
-            <h2 id="萌新前端之旅第二天"><a href="#萌新前端之旅第二天" class="headerlink" title="萌新前端之旅第二天"></a>萌新前端之旅第二天</h2><h3 id="第二天学习概述："><a href="#第二天学习概述：" class="headerlink" title="第二天学习概述："></a>第二天学习概述：</h3><p>#####第二天早上学了bootstrap,大概了解了其原理及栅栏系统的实现。下午学了flex，知道一些常用的方法，比如垂直居中，平均分布。下午还学了js的冒泡，捕获，和事件委托。晚上有开始接触canvas,学了一些基本操作（打算第三天整体学习canvas，这部分内容将在第三天内展示）。</p>
+        <h2 id="萌新前端之旅第二天"><a href="#萌新前端之旅第二天" class="headerlink" title="萌新前端之旅第二天"></a>萌新前端之旅第二天</h2><h3 id="第二天学习概述："><a href="#第二天学习概述：" class="headerlink" title="第二天学习概述："></a>第二天学习概述：</h3><p>#####第二天早上学了bootstrap,大概了解了其原理及栅栏系统的实现。下午学了flex，知道一些常用的方法，比如垂直居中，平均分布。下午还学了js的冒泡，捕获，和事件委托。晚上有开始接触canvas,学了一些基本操作（打算第三天整体学习canvas，这部分内容将在第三天内展示）。</p>
 <h3 id="bootstrap栅栏系统"><a href="#bootstrap栅栏系统" class="headerlink" title="bootstrap栅栏系统"></a>bootstrap栅栏系统</h3><p><a href="https://v3.bootcss.com/css/" target="_blank" rel="noopener">https://v3.bootcss.com/css/</a></p>
 <p>栅栏系统主要是将网页宽度分为12份，由开发人员通过class分配元素宽度占比，根据用户不同的屏幕分辨率，从而自行调节元素排版达到响应式布局的效果。</p>
 <h4 id="基本实现前提"><a href="#基本实现前提" class="headerlink" title="基本实现前提"></a>基本实现前提</h4><p>Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
@@ -352,20 +349,27 @@
 <p>事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。（例如指定grandfather处理程序，则father和son的事件都可以通过冒泡传递到grandfather，让grandfather统一处理，即子元素可能有很多，很难区分，那我可以通过管理他们的父元素来处理程序，而父元素只有一个）。<br>核心代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">            var oBtn = document.getElementById(&quot;btn&quot;);</span><br><span class="line">            var oUl = document.getElementById(&quot;ul1&quot;);</span><br><span class="line">            var aLi = oUl.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">            </span><br><span class="line">            //事件委托，添加的子元素也有事件</span><br><span class="line">            oUl.onmouseover = function(ev)&#123;</span><br><span class="line">                var ev = ev || window.event;  //考虑兼容性</span><br><span class="line">                var target = ev.target || ev.srcElement;   //target返回目标的dom节点</span><br><span class="line">                if(target.nodeName.toLowerCase() == &apos;li&apos;)&#123;  //nodeName返回目标节点的大写字母名称，故用tolowerElement将其变小写。</span><br><span class="line">                    target.style.background = &quot;red&quot;;        </span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;;</span><br><span class="line">            oUl.onmouseout = function(ev)&#123;</span><br><span class="line">                var ev = ev || window.event;</span><br><span class="line">                var target = ev.target || ev.srcElement;</span><br><span class="line">                if(target.nodeName.toLowerCase() == &apos;li&apos;)&#123;</span><br><span class="line">                    target.style.background = &quot;#fff&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;;</span><br><span class="line">            </span><br><span class="line">            //添加新节点</span><br><span class="line">            oBtn.onclick = function()&#123;</span><br><span class="line">                num++;</span><br><span class="line">                var oLi = document.createElement(&apos;li&apos;);   //创建新元素</span><br><span class="line">                oLi.innerHTML = 111*aLi.length;                 </span><br><span class="line">                oUl.appendChild(oLi);         </span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
 <p>事件委托是个很有意思的东西，自己学的还不够多，希望以后可以写出个专门关于事件委托的博客。第二天，学到的东西更多，效率更高了，也感受到了压力，希望自己能快点成长起来吧。最后，再分享一段话。</p>
 <h4 id="有时你会不自觉的在想，如果能回到过去，如果没有遇到她，如果没有跟她经历那一段路，如果是另外一个人，会不会更好一些。可是即便再给你一次机会，哪怕遇见一个非常完美的人，如果你不知道怎样去爱，依然不会有好的结局，正是因为这些遗憾，所以你明白了，这世界上，最难走的路，是回头路。所以你明白了，没有任何一次遇见，是可以重新开始的。所以你明白了，遇见的，其实就是最好的。"><a href="#有时你会不自觉的在想，如果能回到过去，如果没有遇到她，如果没有跟她经历那一段路，如果是另外一个人，会不会更好一些。可是即便再给你一次机会，哪怕遇见一个非常完美的人，如果你不知道怎样去爱，依然不会有好的结局，正是因为这些遗憾，所以你明白了，这世界上，最难走的路，是回头路。所以你明白了，没有任何一次遇见，是可以重新开始的。所以你明白了，遇见的，其实就是最好的。" class="headerlink" title="有时你会不自觉的在想，如果能回到过去，如果没有遇到她，如果没有跟她经历那一段路，如果是另外一个人，会不会更好一些。可是即便再给你一次机会，哪怕遇见一个非常完美的人，如果你不知道怎样去爱，依然不会有好的结局，正是因为这些遗憾，所以你明白了，这世界上，最难走的路，是回头路。所以你明白了，没有任何一次遇见，是可以重新开始的。所以你明白了，遇见的，其实就是最好的。"></a>有时你会不自觉的在想，如果能回到过去，如果没有遇到她，如果没有跟她经历那一段路，如果是另外一个人，会不会更好一些。可是即便再给你一次机会，哪怕遇见一个非常完美的人，如果你不知道怎样去爱，依然不会有好的结局，正是因为这些遗憾，所以你明白了，这世界上，最难走的路，是回头路。所以你明白了，没有任何一次遇见，是可以重新开始的。所以你明白了，遇见的，其实就是最好的。</h4>
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -373,144 +377,38 @@
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/firstDay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/07/12/firstDay/" rel="next" title="firstDay">
+                <i class="fa fa-chevron-left"></i> firstDay
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2018/07/12/firstDay/" itemprop="url">
-                  firstDay
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T21:33:43+08:00">
-                2018-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="萌新前端之旅第一天"><a href="#萌新前端之旅第一天" class="headerlink" title="萌新前端之旅第一天"></a>萌新前端之旅第一天</h1><h3 id="第一天学习概述："><a href="#第一天学习概述：" class="headerlink" title="第一天学习概述："></a>第一天学习概述：</h3><h5 id="第一天早上下载安装了node-js-在git上创建了自己的个人博客。然后直到晚上都在看javaScript高级程序设计看了前四章，也稍微看了下慕课http原理的视频，晚上的时候学了git合作，学到了一些git分工合作的基本操作。"><a href="#第一天早上下载安装了node-js-在git上创建了自己的个人博客。然后直到晚上都在看javaScript高级程序设计看了前四章，也稍微看了下慕课http原理的视频，晚上的时候学了git合作，学到了一些git分工合作的基本操作。" class="headerlink" title="第一天早上下载安装了node.js,在git上创建了自己的个人博客。然后直到晚上都在看javaScript高级程序设计看了前四章，也稍微看了下慕课http原理的视频，晚上的时候学了git合作，学到了一些git分工合作的基本操作。"></a>第一天早上下载安装了node.js,在git上创建了自己的个人博客。然后直到晚上都在看javaScript高级程序设计看了前四章，也稍微看了下慕课http原理的视频，晚上的时候学了git合作，学到了一些git分工合作的基本操作。</h5><h5 id="以下就说说本萌新菜鸟今天学到的（copy下来的）东西吧。"><a href="#以下就说说本萌新菜鸟今天学到的（copy下来的）东西吧。" class="headerlink" title="以下就说说本萌新菜鸟今天学到的（copy下来的）东西吧。"></a>以下就说说本萌新菜鸟今天学到的（copy下来的）东西吧。</h5><h3 id="git分为四个部分"><a href="#git分为四个部分" class="headerlink" title="git分为四个部分"></a>git分为四个部分</h3><h4 id="Workspace：工作区"><a href="#Workspace：工作区" class="headerlink" title="Workspace：工作区"></a>Workspace：工作区</h4><h5 id="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）"><a href="#平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）" class="headerlink" title="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）"></a>平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 <code>$ git cd XX</code> 进入XX文件，也可以右键文件夹选择 <code>git bash here</code> ，然后 <code>$ git clone URL(仓库地址)</code> ，之后再 <code>$ git init</code> (初始化)）</h5><h4 id="Index-Stage：暂存区"><a href="#Index-Stage：暂存区" class="headerlink" title="Index / Stage：暂存区"></a>Index / Stage：暂存区</h4><h5 id="git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"><a href="#git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。" class="headerlink" title=".git目录下的index文件（要用 $ git -ls 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"></a>.git目录下的index文件（要用 <code>$ git -ls</code> 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。</h5><h4 id="Repository：仓库区（或本地仓库）"><a href="#Repository：仓库区（或本地仓库）" class="headerlink" title="Repository：仓库区（或本地仓库）"></a>Repository：仓库区（或本地仓库）</h4><p>保存了被提交过的旧版本</p>
-<h4 id="Remote：远程仓库"><a href="#Remote：远程仓库" class="headerlink" title="Remote：远程仓库"></a>Remote：远程仓库</h4><p>远程仓库的内容被多个协作关系的本地仓库所修改，所共用，是本地仓库的交集处，是团队合作的地方。</p>
-<h3 id="下面是几个区的联系"><a href="#下面是几个区的联系" class="headerlink" title="下面是几个区的联系"></a>下面是几个区的联系</h3><p><strong>工作区</strong>通过 <code>$ git add</code> 操作将修改提交到,<strong>暂存区</strong> 通过 <code>$ git commit</code> 操作将修改提交到<strong>本地仓库</strong>， <strong>本地仓库</strong>通过 <code>$ git push</code> 将修改同步到<strong>远程仓库</strong> ，而<strong>远程仓库</strong>可以通过 <code>$ git pull</code> 把内容拖到<strong>工作区</strong>，也可以通过 <code>$ git fetch</code> 将<strong>远程仓库</strong>内容拖到<strong>本地仓库</strong>（想得到别人代码的时候常常这样做）</p>
-<h4 id="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"><a href="#下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）" class="headerlink" title="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"></a>下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）</h4><h5 id="git-clone-仓库地址"><a href="#git-clone-仓库地址" class="headerlink" title="$ git clone 仓库地址"></a>$ git clone 仓库地址<url></url></h5><h5 id="git-init-初始化本地仓库"><a href="#git-init-初始化本地仓库" class="headerlink" title="$ git init 初始化本地仓库"></a>$ git init 初始化本地仓库</h5><h5 id="git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库"><a href="#git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库" class="headerlink" title="$ git remote -v (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)"></a>$ git remote -v (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)</h5><h5 id="git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy"><a href="#git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy" class="headerlink" title="$ git checkout -b Crazy (创建分支Crazy 并且切换到新建分支Crazy)"></a>$ git checkout -b Crazy (创建分支Crazy 并且切换到新建分支Crazy)</h5><h5 id="git-branch-（查看所有本地分支，现在的分支为绿色）"><a href="#git-branch-（查看所有本地分支，现在的分支为绿色）" class="headerlink" title="$ git branch （查看所有本地分支，现在的分支为绿色）"></a>$ git branch （查看所有本地分支，现在的分支为绿色）</h5><h5 id="git-status-察看暂存区文件是否修改（若修改了为红色）"><a href="#git-status-察看暂存区文件是否修改（若修改了为红色）" class="headerlink" title="$ git status (察看暂存区文件是否修改（若修改了为红色）)"></a>$ git status (察看暂存区文件是否修改（若修改了为红色）)</h5><h5 id="git-add-abc-txt-添加文件-（-git-add-是指全部添加文件）"><a href="#git-add-abc-txt-添加文件-（-git-add-是指全部添加文件）" class="headerlink" title="$ git add abc.txt (添加文件)  （$ git add . 是指全部添加文件）"></a>$ git add abc.txt (添加文件)  （$ git add . 是指全部添加文件）</h5><h5 id="git-status-添加成功则变绿色"><a href="#git-status-添加成功则变绿色" class="headerlink" title="$ git status (添加成功则变绿色)"></a>$ git status (添加成功则变绿色)</h5><h5 id="git-commit-m-“注释”（提交修改-到自己的本地仓库）"><a href="#git-commit-m-“注释”（提交修改-到自己的本地仓库）" class="headerlink" title="$ git commit -m “注释”（提交修改 到自己的本地仓库）"></a>$ git commit -m “注释”（提交修改 到自己的本地仓库）</h5><h5 id="git-push-origin-Crazy-把本地仓库内容提交到Crazy分支"><a href="#git-push-origin-Crazy-把本地仓库内容提交到Crazy分支" class="headerlink" title="$ git push origin Crazy (把本地仓库内容提交到Crazy分支)"></a>$ git push origin Crazy (把本地仓库内容提交到Crazy分支)</h5><h5 id="git-checkout-master-切换到分支master"><a href="#git-checkout-master-切换到分支master" class="headerlink" title="$ git checkout master  (切换到分支master)"></a>$ git checkout master  (切换到分支master)</h5><h5 id="git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变"><a href="#git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变" class="headerlink" title="$ git merge Crazy (把Crazy分支内容搬到master分支，但Crazy分支内容不变)"></a>$ git merge Crazy (把Crazy分支内容搬到master分支，但Crazy分支内容不变)</h5><h5 id="git-pull-origin-master-把master分支内容克隆到本地仓库"><a href="#git-pull-origin-master-把master分支内容克隆到本地仓库" class="headerlink" title="$ git pull origin master (把master分支内容克隆到本地仓库)"></a>$ git pull origin master (把master分支内容克隆到本地仓库)</h5><h5 id="git-checkout-Crazy-切换分支"><a href="#git-checkout-Crazy-切换分支" class="headerlink" title="$ git checkout Crazy  (切换分支)"></a>$ git checkout Crazy  (切换分支)</h5><h5 id="git-merge-master-把master内容搬到Crazy分支上"><a href="#git-merge-master-把master内容搬到Crazy分支上" class="headerlink" title="$ git merge master (把master内容搬到Crazy分支上)"></a>$ git merge master (把master内容搬到Crazy分支上)</h5><h5 id="当然-git的内容远不止这些，自己要学的还很多，前端之旅才刚开始，路还长。最后，分享一句话。"><a href="#当然-git的内容远不止这些，自己要学的还很多，前端之旅才刚开始，路还长。最后，分享一句话。" class="headerlink" title="当然 git的内容远不止这些，自己要学的还很多，前端之旅才刚开始，路还长。最后，分享一句话。"></a>当然 git的内容远不止这些，自己要学的还很多，前端之旅才刚开始，路还长。最后，分享一句话。</h5><h4 id="时间并不会真的帮我们解决什么问题，它只是把原来怎么也想不通的问题，变得不再重要了。"><a href="#时间并不会真的帮我们解决什么问题，它只是把原来怎么也想不通的问题，变得不再重要了。" class="headerlink" title="时间并不会真的帮我们解决什么问题，它只是把原来怎么也想不通的问题，变得不再重要了。"></a>时间并不会真的帮我们解决什么问题，它只是把原来怎么也想不通的问题，变得不再重要了。</h4>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -518,6 +416,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -537,8 +439,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -582,6 +493,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#萌新前端之旅第二天"><span class="nav-number">1.</span> <span class="nav-text">萌新前端之旅第二天</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第二天学习概述："><span class="nav-number">1.1.</span> <span class="nav-text">第二天学习概述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bootstrap栅栏系统"><span class="nav-number">1.2.</span> <span class="nav-text">bootstrap栅栏系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本实现前提"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本实现前提</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.2.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex布局"><span class="nav-number">1.3.</span> <span class="nav-text">flex布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现水平垂直居中"><span class="nav-number">1.3.1.</span> <span class="nav-text">实现水平垂直居中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件冒泡，捕获，委托。"><span class="nav-number">1.4.</span> <span class="nav-text">事件冒泡，捕获，委托。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.4.1.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件冒泡的阻止"><span class="nav-number">1.4.2.</span> <span class="nav-text">事件冒泡的阻止</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法一"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法二"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">方法二</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法三"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">方法三</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件捕获"><span class="nav-number">1.4.3.</span> <span class="nav-text">事件捕获</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#事件捕获的阻止"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">事件捕获的阻止</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法一-1"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法二-1"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件委托"><span class="nav-number">1.4.4.</span> <span class="nav-text">事件委托</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有时你会不自觉的在想，如果能回到过去，如果没有遇到她，如果没有跟她经历那一段路，如果是另外一个人，会不会更好一些。可是即便再给你一次机会，哪怕遇见一个非常完美的人，如果你不知道怎样去爱，依然不会有好的结局，正是因为这些遗憾，所以你明白了，这世界上，最难走的路，是回头路。所以你明白了，没有任何一次遇见，是可以重新开始的。所以你明白了，遇见的，其实就是最好的。"><span class="nav-number">1.4.5.</span> <span class="nav-text">有时你会不自觉的在想，如果能回到过去，如果没有遇到她，如果没有跟她经历那一段路，如果是另外一个人，会不会更好一些。可是即便再给你一次机会，哪怕遇见一个非常完美的人，如果你不知道怎样去爱，依然不会有好的结局，正是因为这些遗憾，所以你明白了，这世界上，最难走的路，是回头路。所以你明白了，没有任何一次遇见，是可以重新开始的。所以你明白了，遇见的，其实就是最好的。</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -689,6 +616,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
