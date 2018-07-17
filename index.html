@@ -248,6 +248,151 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/fifthDay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/17/fifthDay/" itemprop="url">
+                  fifththDay
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-17T21:33:43+08:00">
+                2018-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="萌新前端之旅第五天"><a href="#萌新前端之旅第五天" class="headerlink" title="萌新前端之旅第五天"></a>萌新前端之旅第五天</h1><h3 id="第五天学习概述："><a href="#第五天学习概述：" class="headerlink" title="第五天学习概述："></a>第五天学习概述：</h3><h5 id="第五天学了javaScript原型以及一点点的闭包。"><a href="#第五天学了javaScript原型以及一点点的闭包。" class="headerlink" title="第五天学了javaScript原型以及一点点的闭包。"></a>第五天学了javaScript原型以及一点点的闭包。</h5><h3 id="javaScript原型"><a href="#javaScript原型" class="headerlink" title="javaScript原型"></a>javaScript原型</h3><p><a href="http://www.cnblogs.com/wangfupeng1988/p/3977987.html" target="_blank" rel="noopener">http://www.cnblogs.com/wangfupeng1988/p/3977987.html</a></p>
+<h4 id="对象属性函数"><a href="#对象属性函数" class="headerlink" title="对象属性函数"></a>对象属性函数</h4><h6 id="一切（引用类型）都是对象，对象是属性的集合"><a href="#一切（引用类型）都是对象，对象是属性的集合" class="headerlink" title="一切（引用类型）都是对象，对象是属性的集合"></a>一切（引用类型）都是对象，对象是属性的集合</h6><p>基础类型的类型判断用typeof，引用类型的类型判断用instanceof。而基础包装类型也是对象。</p>
+<p>对象里面只有属性，没有方法。在对象里面的方法，实际上会和属性配对。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a : <span class="number">10</span> ;</span><br><span class="line">    b : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="对象都是通过函数创建的"><a href="#对象都是通过函数创建的" class="headerlink" title="对象都是通过函数创建的"></a>对象都是通过函数创建的</h6><p>通过语法糖创建的对象或数组等，实际上都是通过Object(),Array()等函数创建的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//var obj = &#123; a: 1, b: 2 &#125;;  和下面代码等效</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">obj.a = <span class="number">1</span>;</span><br><span class="line">obj.b = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//var arr = [1, '1', true];  和下面代码等效</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">'1'</span>;</span><br><span class="line">arr[<span class="number">2</span>] = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<p>函数是对象，但是函数不能算是对象的子集，因为对象是由函数创建的。</p>
+<h4 id="prototype原型"><a href="#prototype原型" class="headerlink" title="prototype原型"></a>prototype原型</h4><h5 id="每个函数都有一个属性叫做prototype"><a href="#每个函数都有一个属性叫做prototype" class="headerlink" title="每个函数都有一个属性叫做prototype"></a>每个函数都有一个属性叫做prototype</h5><p>这个prototype的属性值是一个对象(属性的集合),而这个对象里面有constructor的属性，指向这个函数本身。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            a: xxx</span><br><span class="line">            b: xxx</span><br><span class="line">    prototype:&#123;</span><br><span class="line">                <span class="keyword">constructor</span>: Fn()</span><br><span class="line">                a : xxx</span><br><span class="line">                b : xxx</span><br><span class="line">              &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="每个对象都有一个proto属性"><a href="#每个对象都有一个proto属性" class="headerlink" title="每个对象都有一个proto属性"></a>每个对象都有一个<strong>proto</strong>属性</h5><ol>
+<li><p>每个对象都有一个<strong>proto</strong>属性，指向创建该对象的函数的prototype。</p>
+</li>
+<li><p>obj.<strong>proto</strong> === Object.prototype</p>
+</li>
+<li><p>Object.prototype是一个特例，它的<strong>proto</strong>指向的是null。</p>
+</li>
+<li><p>A Instanceof B .Instanceof的判断规则：</p>
+</li>
+</ol>
+<p>沿着A的<strong>proto</strong>这条线来找，同时沿着B的prototype这条线来找，如果两条线能找到同一个引用，即同一个对象，那么就返回true。如果找到终点还未重合，则返回false。</p>
+<p><img src="/../img/proto.png" alt=""></p>
+<p><strong>instanceof表示的就是一种继承关系，或者原型链的结构</strong></p>
+<h4 id="原型链-继承"><a href="#原型链-继承" class="headerlink" title="原型链(继承)"></a>原型链(继承)</h4><p>访问一个对象的属性时，先在基本属性中查找，如果没有，再沿着<strong>proto</strong>这条链向上找，这就是原型链。</p>
+<h5 id="javascript中的继承是通过原型链来体现的"><a href="#javascript中的继承是通过原型链来体现的" class="headerlink" title="javascript中的继承是通过原型链来体现的"></a>javascript中的继承是通过原型链来体现的</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">var</span> f = <span class="keyword">new</span> Fn();</span><br><span class="line">    f.a = <span class="number">1</span>;    <span class="comment">//  继承等级为1</span></span><br><span class="line"></span><br><span class="line">    Fn.prototype.a = <span class="number">2</span>;   <span class="comment">//继承等级为2</span></span><br><span class="line">    Fn.prototype.b = <span class="number">1</span>;   <span class="comment">//继承等级为2</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个是Function.prototype  不能通过原型链到达f </span></span><br><span class="line">    Fn.__proto__.b = <span class="number">2</span> ;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个是给Object.prototype添加属性C f可通过原形链访问 继承等级为3</span></span><br><span class="line">    Fn.__proto__.__proto__.b = <span class="number">2</span> ;  </span><br><span class="line">    <span class="comment">// 这个是给Object.prototype添加属性C f可通过原形链访问 继承等级为3</span></span><br><span class="line">    Fn.__proto__.__proto__.c = <span class="number">1</span> ;  </span><br><span class="line">    <span class="comment">//  这个是给Object.prototype添加属性C f可通过原形链访问 继承等级为3</span></span><br><span class="line">    Fn.prototype.__proto__.d = <span class="number">1</span>;   </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(f.a);   <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(f.b);   <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(f.c);   <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(f.d);   <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(Fn.__proto__ === <span class="built_in">Function</span>.prototype);  <span class="comment">//true</span></span><br><span class="line">    <span class="built_in">console</span>.log(Fn.__proto__.__proto__ === <span class="built_in">Object</span>.prototype);  <span class="comment">//true</span></span><br><span class="line">    <span class="built_in">console</span>.log(Fn.prototype.__proto__ === <span class="built_in">Object</span>.prototype);  <span class="comment">// true</span></span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+<p>继承等级 1&gt;2&gt;3 </p>
+<h4 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty()"></a>hasOwnProperty()</h4><p>hasOwnProperty()来自Object.prototype，是区分一个属性到底是基本的还是从原型中找到的方法<br>在for…in…循环中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Fn();</span><br><span class="line"><span class="keyword">var</span> i ;</span><br><span class="line"><span class="keyword">for</span>( i <span class="keyword">in</span> f)&#123;</span><br><span class="line">    <span class="keyword">if</span>(f.hasOwnProperty(i))&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);  <span class="comment">// 这里的属性都是f自己的，而不是继承来的</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="原型及原型链，继承大概就这些内容，给内置对象设置属性时候最好先判断一下是否已经存在改属性。最后分享一句话。"><a href="#原型及原型链，继承大概就这些内容，给内置对象设置属性时候最好先判断一下是否已经存在改属性。最后分享一句话。" class="headerlink" title="原型及原型链，继承大概就这些内容，给内置对象设置属性时候最好先判断一下是否已经存在改属性。最后分享一句话。"></a>原型及原型链，继承大概就这些内容，给内置对象设置属性时候最好先判断一下是否已经存在改属性。最后分享一句话。</h5><h4 id="叶子的离开，是因为风的追求，还是树的不挽留"><a href="#叶子的离开，是因为风的追求，还是树的不挽留" class="headerlink" title="叶子的离开，是因为风的追求，还是树的不挽留?"></a>叶子的离开，是因为风的追求，还是树的不挽留?</h4>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/fourthDay/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -845,7 +990,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -858,7 +1003,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
