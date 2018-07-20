@@ -248,6 +248,208 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/seventhDay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/19/seventhDay/" itemprop="url">
+                  seventhDay
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-19T21:33:43+08:00">
+                2018-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="萌新前端之旅第七天"><a href="#萌新前端之旅第七天" class="headerlink" title="萌新前端之旅第七天"></a>萌新前端之旅第七天</h1><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>当代码 new Fn(…) 执行时，会发生以下事情：</p>
+<ol>
+<li>一个继承自 Fn.prototype 的新对象被创建。</li>
+<li>使用指定的参数调用构造函数 Fn ，并将 this 绑定到新创建的对象。new Fn 等同于 new Fn()，也就是没有指定参数列表，Foo 不带任何参数调用的情况。</li>
+<li>由构造函数返回的对象就是 new 表达式的结果。如果构造函数没有显式返回(return)一个对象，则使用步骤1创建的对象。（一般情况下，构造函数不返回值，但是用户可以选择主动返回对象，来覆盖正常的对象创建步骤）</li>
+</ol>
+<p>new的操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Fn();</span><br></pre></td></tr></table></figure></p>
+<p>一条代码等价于以下四步</p>
+<ol>
+<li>创建空对象(名称和函数名一样)</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　  <span class="keyword">var</span> Fn = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>设置新对象的constructor属性为构造函数的名称，设置新对象的<strong>proto</strong>属性指向构造函数的prototype对象</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　 Fn.__proto__ = Fn.prototype;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>使用新对象调用函数，函数中的this被指向新实例对象。{}.构造函数(); Fn对象调用了含this的构造函数，故函数this指向Fn对象  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fn.call(Fn);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将初始化完毕的新对象地址，保存到等号左边的变量中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = Fn;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>综合四步得出过程代码为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">this</span>.b = <span class="number">1</span> ;</span><br><span class="line">     <span class="keyword">var</span> obj = <span class="keyword">this</span>   <span class="comment">// this === 函数名同名的空对象 Fn&#123;&#125;</span></span><br><span class="line"> &#125;</span><br><span class="line"> obj.__proto__ = Fn.prototype ;</span><br><span class="line"> Fn.call(obj);</span><br><span class="line"> <span class="keyword">var</span> a = obj ;</span><br><span class="line"> <span class="built_in">console</span>.log(a.b);   <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></p>
+<p>构造函数如存在返回值，要分三种情况 </p>
+<ol>
+<li>如果返回值是一个对象，那么this指向的就是那个返回的对象。如return {} 或 return function(){} 则this指向返回值</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span>;  </span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Fn();  </span><br><span class="line"><span class="built_in">console</span>.log(f.a); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>如果返回值不是一个对象那么this还是指向函数的实例。如 return undefined 或者return 1 ,return ‘string’</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Fn();  </span><br><span class="line"><span class="built_in">console</span>.log(f.a); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>null是对象，但this还是指向那个函数的实例。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Fn();  </span><br><span class="line"><span class="built_in">console</span>.log(f.a); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>ps： 箭头函数不能进行new操作</p>
+<h3 id="call-apply和bind"><a href="#call-apply和bind" class="headerlink" title="call,apply和bind"></a>call,apply和bind</h3><p>call()方法和apply()方法相似，第一个参数都是this值，区别在于第二个参数，call()为指定的参数列表,而apply()为参数的数组。</p>
+<p>call()和apply()能够扩充函数赖以运行的作用域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.num = <span class="number">1</span> ;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    num : <span class="number">2</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> num = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.num);    <span class="comment">// 1   默认window</span></span><br><span class="line">&#125;</span><br><span class="line">Fn();  </span><br><span class="line">Fn.call(obj) ;                <span class="comment">// 2</span></span><br><span class="line">Fn.call(<span class="built_in">window</span>);              <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>bind()方法会创建一个函数的实例，其this值会被绑定传给bind()的第一个参数，且该参数不能被重写。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.num = <span class="number">1</span> ;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    num : <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> num = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> oFn = Fn.bind(obj);</span><br><span class="line">oFn();    <span class="comment">//  2</span></span><br></pre></td></tr></table></figure>
+<p>用bind()方法，不管oFn函数在哪个环境下执行，其this都被绑定到obj上。</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>this指的是函数运行时所在的环境，而非函数定义时的环境，其this值在函数运行的时候才确定，并且可以更据运行环境的改变而改变。</p>
+<p><a href="https://www.cnblogs.com/pssp/p/5216085.html" target="_blank" rel="noopener">https://www.cnblogs.com/pssp/p/5216085.html</a></p>
+<h4 id="几个this指向的实例-以下代码都在非严格模式下运行"><a href="#几个this指向的实例-以下代码都在非严格模式下运行" class="headerlink" title="几个this指向的实例(以下代码都在非严格模式下运行)"></a>几个this指向的实例(以下代码都在非严格模式下运行)</h4><ol>
+<li>this最终指向的是调用它的对象，这里的函数Fn实际是被Window对象所点出来的</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.a = <span class="number">2</span> ;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); <span class="comment">//2</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">//Window</span></span><br><span class="line">&#125;</span><br><span class="line">Fn();  <span class="comment">// 全等于 window.Fn(); </span></span><br><span class="line"><span class="built_in">console</span>.log(Fn === <span class="built_in">window</span>.Fn;   <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>在全局定义的变量和函数其实都是给window对象创建属性。</p>
+<ol start="2">
+<li>这里的函数Fn实际上是被obj对象所调用的，this在函数运行的时候才确定，而非定义的时候。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.a = <span class="number">2</span> ;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a : <span class="number">1</span> ,</span><br><span class="line">    Fn : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line">obj.Fn();   <span class="comment">//    1   等效于window.obj.Fn()   </span></span><br><span class="line"><span class="built_in">console</span>.log(obj.Fn === <span class="built_in">window</span>.obj.Fn) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>window对象通过调用obj对象来调用Fn函数，但Fn()里面的this不指向window，原因请看第三个实例。</p>
+<p>3.多重调用的情况</p>
+<ol>
+<li><p>如果一个函数中有this，但是它没有被上一级的对象所调用，那么this指向的就是window。如实例1.</p>
+</li>
+<li><p>如果一个函数中有this，这个函数有被上一级的对象所调用，那么this指向的就是上一级的对象。如实例2.</p>
+</li>
+<li><p>果一个函数中有this，这个函数中包含多个对象，尽管这个函数是被最外层的对象所调用，this指向的也只是它上一级的对象。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a : <span class="number">1</span>,</span><br><span class="line">    b : &#123;</span><br><span class="line">        <span class="comment">// a : 2,</span></span><br><span class="line">        Fn:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    obj.b.Fn();   <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>不管上一级对象(b对象)中有没有a属性，this指向的也是对象b，因为this只会指向它的上一级对象，不管这个对象中有没有this要的东西。</p>
+<p>4.在下面这个特殊情况下，Fn并没有被b调用，只是把obj.b.Fn的地址赋值给了f，而f()才是调用了该函数，此时相当于window.f(),故this为window。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="built_in">window</span>.a = <span class="number">3</span></span><br><span class="line">    <span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a : <span class="number">1</span>,</span><br><span class="line">    b : &#123;</span><br><span class="line">        a : <span class="number">2</span>,</span><br><span class="line">        Fn:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">var</span> f = obj.b.Fn;</span><br><span class="line">    f();    <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="this存在的原因"><a href="#this存在的原因" class="headerlink" title="this存在的原因"></a>this存在的原因</h3><p><a href="http://www.ruanyifeng.com/blog/2018/06/javascript-this.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/06/javascript-this.html</a></p>
+<h4 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h4><p>对象是属性的集合，而属性又拥有特性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">a</span> : <span class="number">1</span> &#125;;</span><br></pre></td></tr></table></figure>
+<p>实际上是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  obj =&#123;</span><br><span class="line">    a: &#123;    </span><br><span class="line">        [[value]]: <span class="number">1</span></span><br><span class="line">        [[writable]]: <span class="literal">true</span></span><br><span class="line">        [[enumerable]]: <span class="literal">true</span></span><br><span class="line">        [[configurable]]: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若一个属性存着一个函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    Fn :&#123;  </span><br><span class="line">        [[value]]: 函数的地址</span><br><span class="line">        [[writable]]: <span class="literal">true</span></span><br><span class="line">        [[enumerable]]: <span class="literal">true</span></span><br><span class="line">        [[configurable]]: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为函数是单独的值可以在不同(上下文)环境运行(变量有作用域)</p>
+<p>而javaScript允许在函数体内部，引用当前环境的其他变量,而函数又可以在不同环境下运行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);  <span class="comment">//若不加this 默认为window.a</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj =&#123;</span><br><span class="line">    a : <span class="number">1</span> ,</span><br><span class="line">    Fn : Fn</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">Fn();        <span class="comment">// 2</span></span><br><span class="line">obj.Fn();    <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>所以需要有一种机制，能够在函数体内部获得当前的运行环境。所以，this就出现了，它的设计目的就是在函数体内部，指代函数当前的运行环境。</p>
+<h5 id="new-和call，apply，bind都是为了this做铺垫，也许明天写Ajax，谁知道呢？最后，再次分享一句话。"><a href="#new-和call，apply，bind都是为了this做铺垫，也许明天写Ajax，谁知道呢？最后，再次分享一句话。" class="headerlink" title="new 和call，apply，bind都是为了this做铺垫，也许明天写Ajax，谁知道呢？最后，再次分享一句话。"></a>new 和call，apply，bind都是为了this做铺垫，也许明天写Ajax，谁知道呢？最后，再次分享一句话。</h5><p><strong>因为无能为力,所以顺其自然。</strong><br><strong>因为心无所恃,所以随遇而安。</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/sixthDay/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1165,7 +1367,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1178,7 +1380,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
