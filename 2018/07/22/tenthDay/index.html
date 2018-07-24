@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="jQuery遍历方法祖先（向上遍历 DOM 树） parent() , 返回被选元素的直接父元素  parents(可选参数) , 返回被选元素的所有祖先元素，它一路向上直到文档的根元素(html)   parentsUntil(参数)   祖先部分html代码:1234567891011&amp;lt;html&amp;gt;    &amp;lt;body&amp;gt; body (曾曾祖父元素)        &amp;lt;d">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery(part3)">
+<meta property="og:url" content="http://yoursite.com/2018/07/22/tenthDay/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="jQuery遍历方法祖先（向上遍历 DOM 树） parent() , 返回被选元素的直接父元素  parents(可选参数) , 返回被选元素的所有祖先元素，它一路向上直到文档的根元素(html)   parentsUntil(参数)   祖先部分html代码:1234567891011&amp;lt;html&amp;gt;    &amp;lt;body&amp;gt; body (曾曾祖父元素)        &amp;lt;d">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-24T02:01:08.949Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery(part3)">
+<meta name="twitter:description" content="jQuery遍历方法祖先（向上遍历 DOM 树） parent() , 返回被选元素的直接父元素  parents(可选参数) , 返回被选元素的所有祖先元素，它一路向上直到文档的根元素(html)   parentsUntil(参数)   祖先部分html代码:1234567891011&amp;lt;html&amp;gt;    &amp;lt;body&amp;gt; body (曾曾祖父元素)        &amp;lt;d">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/22/tenthDay/"/>
+
+
+
+
+
+  <title> jQuery(part3) | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/tenthDay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jQuery(part3)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-22T20:21:43+08:00">
+                2018-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="jQuery遍历方法"><a href="#jQuery遍历方法" class="headerlink" title="jQuery遍历方法"></a>jQuery遍历方法</h2><h4 id="祖先（向上遍历-DOM-树）"><a href="#祖先（向上遍历-DOM-树）" class="headerlink" title="祖先（向上遍历 DOM 树）"></a>祖先（向上遍历 DOM 树）</h4><ol>
+<li><p>parent() , 返回被选元素的直接父元素</p>
+</li>
+<li><p>parents(可选参数) , 返回被选元素的所有祖先元素，它一路向上直到文档的根元素(html) </p>
+</li>
+<li><p>parentsUntil(参数)</p>
+</li>
+</ol>
+<p>祖先部分html代码:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span> body (曾曾祖父元素)</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>div (曾祖父元素)</span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ul1"</span>&gt;</span>ul (祖父元素)  </span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span>li (父元素)</span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>   </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>parent():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parent()  <span class="comment">//  返回&lt;li&gt;</span></span><br></pre></td></tr></table></figure>
+<p>parents():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parents() ;<span class="comment">// 返回所有是&lt;span&gt;的祖先</span></span><br></pre></td></tr></table></figure>
+<p><strong>可选参数来过滤对祖先元素的搜索</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parents(<span class="string">'div'</span>) ;<span class="comment">// 返回所有是&lt;div&gt;的&lt;spa&gt;n的祖先</span></span><br></pre></td></tr></table></figure>
+<p>parentsUntil():要带参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parentsUntil(<span class="string">'div'</span>);<span class="comment">// 返回&lt;li&gt; &lt;ul&gt; ,不包括&lt;div&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="后代-向下遍历dom树"><a href="#后代-向下遍历dom树" class="headerlink" title="后代(向下遍历dom树)"></a>后代(向下遍历dom树)</h4><ol>
+<li>children(可选参数) ，返回被选元素的所有直接子元素</li>
+<li>find(参数) ， 被选元素的后代元素，一路向下直到最后一个后代</li>
+</ol>
+<p>后代部分html代码:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ul1"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>children():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).children()  <span class="comment">// 返回所有&lt;div&gt;的所有直接子元素 &lt;ul&gt; &lt;span&gt; &lt;ul&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>可选参数来过滤对子元素的搜索</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).children(<span class="string">'.ul1'</span>)  <span class="comment">// 返回所有类名为 .ul的,&lt;div&gt;的直接子元素</span></span><br></pre></td></tr></table></figure>
+<p>find(): 要带参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).find(<span class="string">'span'</span>)  <span class="comment">// 返回所有为&lt;span&gt;标签的,&lt;div&gt;的子元素</span></span><br></pre></td></tr></table></figure>
+<p>若要全选div所有子元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).find(<span class="string">'*'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="同胞siblings-DOM-树中水平遍历"><a href="#同胞siblings-DOM-树中水平遍历" class="headerlink" title="同胞siblings(DOM 树中水平遍历)"></a>同胞siblings(DOM 树中水平遍历)</h4><ol>
+<li><p>siblings(可选参数),返回被选元素的所有同胞元素</p>
+</li>
+<li><p>next(),返回被选元素的下一个同胞元素</p>
+</li>
+<li><p>nextAll(),返回被选元素的所有跟随(next)的同胞元素</p>
+</li>
+<li><p>nextUntil(参数),返回介于两个给定参数之间的所有跟随(next)的同胞元素</p>
+</li>
+<li><p>prev()</p>
+</li>
+<li><p>prevAll()</p>
+</li>
+<li><p>prevUntil()</p>
+</li>
+</ol>
+<p><strong>prev(), prevAll() 以及 prevUntil() 方法的工作方式与上面的方法类似，只不过方向相反而已：它们返回的是前面的同胞元素（在 DOM 树中沿着同胞之前元素遍历，而不是之后元素遍历)</strong></p>
+<p>以next（在 DOM 树中沿着同胞之后元素遍历）为例<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div (父元素)</span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>p<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>h3<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>p<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h4</span>&gt;</span>h4<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>siblings():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).siblings();  <span class="comment">//返回 &lt;h2&gt; 的所有同胞元素 &lt;p&gt; &lt;span&gt; &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>可选参数来过滤对同胞元素的搜索</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).siblings(<span class="string">'p'</span>);  <span class="comment">//返回 &lt;h2&gt; 的所有同胞 &lt;p&gt;元素 &lt;p&gt; &lt;p&gt;</span></span><br></pre></td></tr></table></figure>
+<p>next():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"h2"</span>).next(); <span class="comment">//返回 &lt;h3&gt;</span></span><br></pre></td></tr></table></figure>
+<p>nextAll():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).nextAll(); <span class="comment">//返回 &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
+<p>nextUntil():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).nextUntil(<span class="string">'h4'</span>);<span class="comment">//返回 &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h4><p>下面这三个最基本的过滤方法允许基于其在一组元素中的位置来选择一个特定的元素</p>
+<ol>
+<li><p>first(),返回被选元素的首个元素</p>
+</li>
+<li><p>last(),返回被选元素的最后一个元素</p>
+</li>
+<li><p>eq()，返回被选元素中带有指定索引号的元素</p>
+</li>
+</ol>
+<p>下面这两个选取匹配或不匹配某项指定标准的元素</p>
+<ol start="4">
+<li><p>filter()，允许规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回</p>
+</li>
+<li><p>not()，返回不匹配标准的所有元素</p>
+</li>
+</ol>
+<p>过滤部分的html代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"pp"</span>&gt;</span>p1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>p2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>p3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>first():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div p'</span>).first() <span class="comment">//返回首个 &lt;div&gt; 元素内部的第一个 &lt;p&gt; 元素  p1</span></span><br></pre></td></tr></table></figure>
+<p>last():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div p"</span>).last() <span class="comment">//返回最后一个 &lt;div&gt; 元素中的最后一个 &lt;p&gt; 元素  p2</span></span><br></pre></td></tr></table></figure>
+<p>eq() : 索引号从 0 开始，因此首个元素的索引号是 0 而不是 1。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'p'</span>).eq(<span class="number">0</span>)  <span class="comment">// 返回 p1</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).eq(<span class="number">2</span>)  <span class="comment">// 返回 p3</span></span><br></pre></td></tr></table></figure>
+<p>filter():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).filter(<span class="string">"pp"</span>)  <span class="comment">//返回所有&lt;p&gt;元素中类名为pp的&lt;p&gt;元素  p1</span></span><br></pre></td></tr></table></figure>
+<p>not() : 与 filter() 相反</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).not(<span class="string">"pp"</span>)  <span class="comment">//返回所有&lt;p&gt;元素中类名不为pp的&lt;p&gt;元素  p2 p3</span></span><br></pre></td></tr></table></figure>
+<p><strong>如果有来生，</strong><br><strong>要做一棵树，</strong><br><strong>站成永恒，</strong><br><strong>没有悲欢的姿势。</strong><br><strong>一半在土里安详，</strong><br><strong>一半在风里飞扬，</strong><br><strong>一半洒落阴凉，</strong><br><strong>一半沐浴阳光，</strong><br><strong>非常沉默非常骄傲，</strong><br><strong>从不依靠，从不寻找</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/21/ninthDay/" rel="next" title="jQuery(part2)">
+                <i class="fa fa-chevron-left"></i> jQuery(part2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery遍历方法"><span class="nav-number">1.</span> <span class="nav-text">jQuery遍历方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#祖先（向上遍历-DOM-树）"><span class="nav-number">1.0.1.</span> <span class="nav-text">祖先（向上遍历 DOM 树）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后代-向下遍历dom树"><span class="nav-number">1.0.2.</span> <span class="nav-text">后代(向下遍历dom树)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同胞siblings-DOM-树中水平遍历"><span class="nav-number">1.0.3.</span> <span class="nav-text">同胞siblings(DOM 树中水平遍历)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤"><span class="nav-number">1.0.4.</span> <span class="nav-text">过滤</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="bootstrap栅栏系统,flex布局," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,18 +87,13 @@
 
 
 
-<meta name="description" content="bootstrap栅栏系统https://v3.bootcss.com/css/ 栅栏系统主要是将网页宽度分为12份，由开发人员通过class分配元素宽度占比，根据用户不同的屏幕分辨率，从而自行调节元素排版达到响应式布局的效果。 基本实现前提Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。1234&amp;lt;div class=&quot;container&quot;&amp;gt;  ...">
-<meta name="keywords" content="bootstrap栅栏系统,flex布局">
-<meta property="og:type" content="article">
-<meta property="og:title" content="bootstrap栅栏系统  flex布局">
-<meta property="og:url" content="http://yoursite.com/2018/07/13/secondDay/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="bootstrap栅栏系统https://v3.bootcss.com/css/ 栅栏系统主要是将网页宽度分为12份，由开发人员通过class分配元素宽度占比，根据用户不同的屏幕分辨率，从而自行调节元素排版达到响应式布局的效果。 基本实现前提Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。1234&amp;lt;div class=&quot;container&quot;&amp;gt;  ...">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-24T02:04:35.067Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bootstrap栅栏系统  flex布局">
-<meta name="twitter:description" content="bootstrap栅栏系统https://v3.bootcss.com/css/ 栅栏系统主要是将网页宽度分为12份，由开发人员通过class分配元素宽度占比，根据用户不同的屏幕分辨率，从而自行调节元素排版达到响应式布局的效果。 基本实现前提Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。1234&amp;lt;div class=&quot;container&quot;&amp;gt;  ...">
+<meta name="twitter:title" content="Hexo">
 
 
 
@@ -126,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/13/secondDay/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
 
 
-  <title> bootstrap栅栏系统  flex布局 | Hexo </title>
+  <title> Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -157,7 +152,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -240,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -272,7 +269,10 @@
             
             
               
-                bootstrap栅栏系统  flex布局
+                
+                <a class="post-title-link" href="/2018/07/13/secondDay/" itemprop="url">
+                  bootstrap栅栏系统  flex布局
+                </a>
               
             
           </h1>
@@ -323,7 +323,9 @@
       
 
       
-        <h2 id="bootstrap栅栏系统"><a href="#bootstrap栅栏系统" class="headerlink" title="bootstrap栅栏系统"></a>bootstrap栅栏系统</h2><p><a href="https://v3.bootcss.com/css/" target="_blank" rel="noopener">https://v3.bootcss.com/css/</a></p>
+        
+          
+            <h2 id="bootstrap栅栏系统"><a href="#bootstrap栅栏系统" class="headerlink" title="bootstrap栅栏系统"></a>bootstrap栅栏系统</h2><p><a href="https://v3.bootcss.com/css/" target="_blank" rel="noopener">https://v3.bootcss.com/css/</a></p>
 <p>栅栏系统主要是将网页宽度分为12份，由开发人员通过class分配元素宽度占比，根据用户不同的屏幕分辨率，从而自行调节元素排版达到响应式布局的效果。</p>
 <h4 id="基本实现前提"><a href="#基本实现前提" class="headerlink" title="基本实现前提"></a>基本实现前提</h4><p>Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>或者占据全部视口（viewport）的容器(宽度百分百)</p>
@@ -339,78 +341,170 @@
 <h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>flex适合比较简单的布局，在水平垂直居中上很方便，主要用来水平垂直居中。flex最重要的两个属性是justify-content（主轴排列方式）和align-items（交叉轴排列方式），学好这两个，基本的flex布局都没有问题。</p>
 <p><strong>有时你会不自觉的在想，如果能回到过去，如果没有遇到她，如果没有跟她经历那一段路，如果是另外一个人，会不会更好一些。可是即便再给你一次机会，哪怕遇见一个非常完美的人，如果你不知道怎样去爱，依然不会有好的结局，正是因为这些遗憾，所以你明白了，这世界上，最难走的路，是回头路。所以你明白了，没有任何一次遇见，是可以重新开始的。所以你明白了，遇见的，其实就是最好的。</strong></p>
 
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/bootstrap栅栏系统/" rel="tag"># bootstrap栅栏系统</a>
-          
-            <a href="/tags/flex布局/" rel="tag"># flex布局</a>
-          
-        </div>
+
       
 
       
-        
-      
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/12/firstDay/" rel="next" title="git操作">
-                <i class="fa fa-chevron-left"></i> git操作
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/14/3th/" rel="prev" title="事件冒泡，捕获，委托">
-                事件冒泡，捕获，委托 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+      
 
-    <div class="post-spread">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/firstDay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/12/firstDay/" itemprop="url">
+                  git操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T21:33:43+08:00">
+                2018-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="git四个区域"><a href="#git四个区域" class="headerlink" title="git四个区域"></a>git四个区域</h2><h4 id="Workspace：工作区"><a href="#Workspace：工作区" class="headerlink" title="Workspace：工作区"></a>Workspace：工作区</h4><h5 id="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）"><a href="#平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）" class="headerlink" title="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）"></a>平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 <code>$ git cd XX</code> 进入XX文件，也可以右键文件夹选择 <code>git bash here</code> ，然后 <code>$ git clone URL(仓库地址)</code> ，之后再 <code>$ git init</code> (初始化)）</h5><h4 id="Index-Stage：暂存区"><a href="#Index-Stage：暂存区" class="headerlink" title="Index / Stage：暂存区"></a>Index / Stage：暂存区</h4><h5 id="git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"><a href="#git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。" class="headerlink" title=".git目录下的index文件（要用 $ git -ls 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"></a>.git目录下的index文件（要用 <code>$ git -ls</code> 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。</h5><h4 id="Repository：仓库区（或本地仓库）"><a href="#Repository：仓库区（或本地仓库）" class="headerlink" title="Repository：仓库区（或本地仓库）"></a>Repository：仓库区（或本地仓库）</h4><p>保存了被提交过的旧版本</p>
+<h4 id="Remote：远程仓库"><a href="#Remote：远程仓库" class="headerlink" title="Remote：远程仓库"></a>Remote：远程仓库</h4><p>远程仓库的内容被多个协作关系的本地仓库所修改，所共用，是本地仓库的交集处，是团队合作的地方。</p>
+<h3 id="下面是几个区的联系"><a href="#下面是几个区的联系" class="headerlink" title="下面是几个区的联系"></a>下面是几个区的联系</h3><p><strong>工作区</strong>通过 <code>$ git add</code> 操作将修改提交到,<strong>暂存区</strong> 通过 <code>$ git commit</code> 操作将修改提交到<strong>本地仓库</strong>， <strong>本地仓库</strong>通过 <code>$ git push</code> 将修改同步到<strong>远程仓库</strong> ，而<strong>远程仓库</strong>可以通过 <code>$ git pull</code> 把内容拖到<strong>工作区</strong>，也可以通过 <code>$ git fetch</code> 将<strong>远程仓库</strong>内容拖到<strong>本地仓库</strong>（想得到别人代码的时候常常这样做）</p>
+<h4 id="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"><a href="#下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）" class="headerlink" title="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"></a>下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）</h4><h5 id="git-clone-仓库地址"><a href="#git-clone-仓库地址" class="headerlink" title="$ git clone 仓库地址"></a><code>$ git clone</code> 仓库地址<url></url></h5><h5 id="git-init-初始化本地仓库"><a href="#git-init-初始化本地仓库" class="headerlink" title="$ git init 初始化本地仓库"></a><code>$ git init</code> 初始化本地仓库</h5><h5 id="git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库"><a href="#git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库" class="headerlink" title="$ git remote -v (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)"></a><code>$ git remote -v</code> (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)</h5><h5 id="git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy"><a href="#git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy" class="headerlink" title="$ git checkout -b Crazy (创建分支Crazy 并且切换到新建分支Crazy)"></a><code>$ git checkout -b Crazy</code> (创建分支Crazy 并且切换到新建分支Crazy)</h5><h5 id="git-branch-（查看所有本地分支，现在的分支为绿色）"><a href="#git-branch-（查看所有本地分支，现在的分支为绿色）" class="headerlink" title="$ git branch （查看所有本地分支，现在的分支为绿色）"></a><code>$ git branch</code> （查看所有本地分支，现在的分支为绿色）</h5><h5 id="git-status-察看暂存区文件是否修改（若修改了为红色）"><a href="#git-status-察看暂存区文件是否修改（若修改了为红色）" class="headerlink" title="$ git status (察看暂存区文件是否修改（若修改了为红色）"></a><code>$ git status</code> (察看暂存区文件是否修改（若修改了为红色）</h5><h5 id="git-add-abc-txt-添加文件-git-add-是指全部添加文件"><a href="#git-add-abc-txt-添加文件-git-add-是指全部添加文件" class="headerlink" title="$ git add abc.txt (添加文件)  ($ git add . 是指全部添加文件)"></a><code>$ git add abc.txt</code> (添加文件)  ($ git add . 是指全部添加文件)</h5><h5 id="git-status-添加成功则变绿色"><a href="#git-status-添加成功则变绿色" class="headerlink" title="$ git status (添加成功则变绿色)"></a><code>$ git status</code> (添加成功则变绿色)</h5><h5 id="git-commit-m-“注释”（提交修改-到自己的本地仓库）"><a href="#git-commit-m-“注释”（提交修改-到自己的本地仓库）" class="headerlink" title="$ git commit -m “注释”（提交修改 到自己的本地仓库）"></a><code>$ git commit -m</code> “注释”（提交修改 到自己的本地仓库）</h5><h5 id="git-push-origin-Crazy-把本地仓库内容提交到Crazy分支"><a href="#git-push-origin-Crazy-把本地仓库内容提交到Crazy分支" class="headerlink" title="$ git push origin Crazy (把本地仓库内容提交到Crazy分支)"></a><code>$ git push origin Crazy</code> (把本地仓库内容提交到Crazy分支)</h5><h5 id="git-checkout-master-切换到分支master"><a href="#git-checkout-master-切换到分支master" class="headerlink" title="$ git checkout master  (切换到分支master)"></a><code>$ git checkout master</code>  (切换到分支master)</h5><h5 id="git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变"><a href="#git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变" class="headerlink" title="$ git merge Crazy (把Crazy分支内容搬到master分支，但Crazy分支内容不变)"></a><code>$ git merge Crazy</code> (把Crazy分支内容搬到master分支，但Crazy分支内容不变)</h5><h5 id="git-pull-origin-master-把master分支内容克隆到本地仓库"><a href="#git-pull-origin-master-把master分支内容克隆到本地仓库" class="headerlink" title="$ git pull origin master (把master分支内容克隆到本地仓库)"></a><code>$ git pull origin master</code> (把master分支内容克隆到本地仓库)</h5><h5 id="git-checkout-Crazy-切换分支"><a href="#git-checkout-Crazy-切换分支" class="headerlink" title="$ git checkout Crazy  (切换分支)"></a><code>$ git checkout Crazy</code>  (切换分支)</h5><h5 id="git-merge-master-把master内容搬到Crazy分支上"><a href="#git-merge-master-把master内容搬到Crazy分支上" class="headerlink" title="$ git merge master (把master内容搬到Crazy分支上)"></a><code>$ git merge master</code> (把master内容搬到Crazy分支上)</h5><p><strong>时间并不会真的帮我们解决什么问题，它只是把原来怎么也想不通的问题，变得不再重要了。</strong></p>
+
+          
+        
       
     </div>
-  </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -418,10 +512,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -441,17 +531,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -504,22 +585,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bootstrap栅栏系统"><span class="nav-number">1.</span> <span class="nav-text">bootstrap栅栏系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本实现前提"><span class="nav-number">1.0.1.</span> <span class="nav-text">基本实现前提</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#媒体查询"><span class="nav-number">1.0.2.</span> <span class="nav-text">媒体查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.0.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex布局"><span class="nav-number">2.</span> <span class="nav-text">flex布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现水平垂直居中"><span class="nav-number">2.0.1.</span> <span class="nav-text">实现水平垂直居中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -627,10 +692,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
 
   
 
