@@ -248,6 +248,273 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/thirdDay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/15/thirdDay/" itemprop="url">
+                  canvas 2d
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-15T21:33:43+08:00">
+                2018-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>canvas参考手册 <a href="http://www.runoob.com/tags/ref-canvas.html" target="_blank" rel="noopener">http://www.runoob.com/tags/ref-canvas.html</a></p>
+<h3 id="canvas钟的制作"><a href="#canvas钟的制作" class="headerlink" title="canvas钟的制作"></a>canvas钟的制作</h3><h4 id="钟的静态样式"><a href="#钟的静态样式" class="headerlink" title="钟的静态样式"></a>钟的静态样式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawBackground</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    context.save();  <span class="comment">//保存初始状态的幕布环境</span></span><br><span class="line">    context.beginPath();  <span class="comment">//重新开始一条路径</span></span><br><span class="line">    context.arc(<span class="number">200</span>,<span class="number">200</span>,r,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,<span class="literal">true</span>); <span class="comment">//画大圆 圆心(200,200)，半径为r，从0到2pi，true表示逆时针 </span></span><br><span class="line">    context.moveTo(<span class="number">295</span>,<span class="number">200</span>);</span><br><span class="line">    context.arc(<span class="number">200</span>,<span class="number">200</span>,r<span class="number">-5</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,<span class="literal">false</span>);<span class="comment">//画小圆 圆心(200,200)，半径为r-5，从0到2pi，false表示顺时针 </span></span><br><span class="line">    context.translate(<span class="number">200</span>,<span class="number">200</span>); <span class="comment">//重新定义画布原点为（200，200）</span></span><br><span class="line">    context.stroke();           <span class="comment">//画路径（路径为非填充）</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> aNumbers = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">2</span>]; <span class="comment">//以x正半轴为起点，顺时针旋转</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//文本字体信息 居中</span></span><br><span class="line">    context.font = <span class="string">'18px Arial'</span>;   </span><br><span class="line">    context.textAlign = <span class="string">'center'</span>;   </span><br><span class="line">    context.textBaseline = <span class="string">'middle'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//画12个数字</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ; i&lt;aNumbers.length ; i++)&#123;</span><br><span class="line">        <span class="keyword">var</span> rad = <span class="number">2</span>*<span class="built_in">Math</span>.PI /<span class="number">12</span> *( aNumbers[i]<span class="number">-3</span>);</span><br><span class="line">        <span class="keyword">var</span> x = <span class="built_in">Math</span>.cos(rad) * (r<span class="number">-20</span>);</span><br><span class="line">        <span class="keyword">var</span> y = <span class="built_in">Math</span>.sin(rad) * (r<span class="number">-20</span>);</span><br><span class="line"></span><br><span class="line">        context.fillText(aNumbers[i],x,y);<span class="comment">//给坐标（x,y）添加文本aNumbers[i]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="钟的秒针"><a href="#钟的秒针" class="headerlink" title="钟的秒针"></a>钟的秒针</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawSecond</span>(<span class="params">second</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> rad = <span class="number">2</span>*<span class="built_in">Math</span>.PI / <span class="number">60</span> *second ;</span><br><span class="line"></span><br><span class="line">    context.save();</span><br><span class="line">    context.beginPath();</span><br><span class="line">    context.rotate(rad);</span><br><span class="line">    context.moveTo(<span class="number">2</span>,<span class="number">20</span>);</span><br><span class="line">    context.lineTo(<span class="number">-2</span>,<span class="number">20</span>);</span><br><span class="line">    context.lineTo(<span class="number">-1</span>,-r+<span class="number">18</span>)</span><br><span class="line">    context.lineTo(<span class="number">1</span>,-r+<span class="number">18</span>);</span><br><span class="line">    context.fillStyle=<span class="string">"red"</span>;</span><br><span class="line">    context.fill();</span><br><span class="line">    context.restore();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="秒针转动"><a href="#秒针转动" class="headerlink" title="秒针转动"></a>秒针转动</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> width = context.canvas.width;</span><br><span class="line">    <span class="keyword">var</span> height = context.canvas.height;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> hour = now.getHours();</span><br><span class="line">    <span class="keyword">var</span> minute = now.getMinutes();</span><br><span class="line">    <span class="keyword">var</span> second = now.getSeconds();</span><br><span class="line"></span><br><span class="line">    context.clearRect(<span class="number">0</span>,<span class="number">0</span>,width,height); <span class="comment">//清除画布 从（0，0）开始的矩形</span></span><br><span class="line">    drawBackground();                <span class="comment">//画静态钟</span></span><br><span class="line">    drawSecond(second);               <span class="comment">//画秒针</span></span><br><span class="line">    context.restore();                </span><br><span class="line">&#125;</span><br><span class="line">    draw();</span><br><span class="line">    <span class="keyword">var</span> timer = setInterval(draw,<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="canvas的一些方法"><a href="#canvas的一些方法" class="headerlink" title="canvas的一些方法"></a>canvas的一些方法</h2><h5 id="save-和restore"><a href="#save-和restore" class="headerlink" title="save()和restore()"></a>save()和restore()</h5><p>save():    保存当前环境的状态。<br>restore():    返回之前保存过的路径状态和属性。<br>这两个经常搭配起来用，适合只想对画布某些方面做出修改的情况。</p>
+<h5 id="clearRect"><a href="#clearRect" class="headerlink" title="clearRect()"></a>clearRect()</h5><p>给定矩形清除像素，通常用于图形变换（删了重画）</p>
+<h5 id="drawImage-和createPattern"><a href="#drawImage-和createPattern" class="headerlink" title="drawImage()和createPattern()"></a>drawImage()和createPattern()</h5><p>html为canvas内嵌img标签<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> image = <span class="built_in">document</span>.images[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>); </span><br><span class="line"></span><br><span class="line">ctx.drawImage(image,<span class="number">0</span>,<span class="number">10</span>,<span class="number">50</span>,<span class="number">50</span>,<span class="number">0</span>,<span class="number">100</span>,<span class="number">40</span>,<span class="number">40</span>);</span><br></pre></td></tr></table></figure></p>
+<p>模式，即所谓图片的重复<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern = ctx.createPattern(image,<span class="string">"repeat"</span>);</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = pattern ;</span><br><span class="line">ctx.fillRect(<span class="number">10</span>,<span class="number">10</span>,<span class="number">500</span>,<span class="number">500</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置阴影</span></span><br><span class="line">ctx.shadowOffsetX = <span class="number">5</span>;</span><br><span class="line">ctx.shadowOffsetY = <span class="number">5</span>;</span><br><span class="line">ctx.shadowBlur = <span class="number">4</span>;   <span class="comment">//模糊度,0为不模糊</span></span><br><span class="line">ctx.shadowColor = <span class="string">'rgba(0,0,0,0.5)'</span></span><br><span class="line"></span><br><span class="line">ctx.fillStyle =<span class="string">'red'</span>;</span><br><span class="line">ctx.fillRect(<span class="number">100</span>,<span class="number">100</span>,<span class="number">300</span>,<span class="number">300</span>);</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">'blue'</span>;</span><br><span class="line">ctx.fillRect(<span class="number">200</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">300</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="gradient"><a href="#gradient" class="headerlink" title="gradient"></a>gradient</h5><p>水平渐变<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用函数来确保起点到终点的渐变</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createRectLinearGradient</span>(<span class="params">ctx,x,y,width,height</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ctx.createLinearGradient(x,y,x+width,y+height);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> grd = createRectLinearGradient(ctx,<span class="number">100</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="number">200</span>);  <span class="comment">// (100,100)到（300，300）的渐变</span></span><br><span class="line">grd.addColorStop(<span class="number">0</span>,<span class="string">'blue'</span>);  <span class="comment">//起点</span></span><br><span class="line">grd.addColorStop(<span class="number">0.5</span>,<span class="string">'green'</span>);</span><br><span class="line">grd.addColorStop(<span class="number">1</span>,<span class="string">'red'</span>);  <span class="comment">//终点</span></span><br><span class="line"></span><br><span class="line">ctx.fillStyle = grd;</span><br><span class="line">ctx.fillRect(<span class="number">100</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="number">200</span>)   <span class="comment">//起点（100，100） 长宽 50px</span></span><br></pre></td></tr></table></figure></p>
+<p>径向渐变<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//同心圆</span></span><br><span class="line"><span class="keyword">var</span> grd = ctx.createRadialGradient(<span class="number">150</span>,<span class="number">150</span>,<span class="number">100</span>,<span class="number">150</span>,<span class="number">150</span>,<span class="number">150</span>);</span><br><span class="line"></span><br><span class="line">grd.addColorStop(<span class="number">0</span>,<span class="string">'blue'</span>);  <span class="comment">//起点</span></span><br><span class="line">grd.addColorStop(<span class="number">0.5</span>,<span class="string">'green'</span>);</span><br><span class="line">grd.addColorStop(<span class="number">1</span>,<span class="string">'red'</span>);  <span class="comment">//终点</span></span><br><span class="line"></span><br><span class="line">ctx.fillStyle = grd ;</span><br><span class="line">ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">300</span>,<span class="number">300</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>如果事与愿违，请相信另有安排。</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/3th/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/14/3th/" itemprop="url">
+                  事件冒泡，捕获，委托
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-14T21:33:43+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><p>事件冒泡：事件到达事件目标之后不会结束，会逐层向上冒泡，直至document对象。<br>简单来说就是给子级的一个事件触发后，该事件也会先后作用于其父级。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"grandfather"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> grandfather = <span class="built_in">document</span>.getElementById(<span class="string">'grandfather'</span>);</span><br><span class="line">        <span class="keyword">var</span> father = <span class="built_in">document</span>.getElementById(<span class="string">'father'</span>);</span><br><span class="line">        <span class="keyword">var</span> son = <span class="built_in">document</span>.getElementById(<span class="string">'son'</span>);</span><br><span class="line">        </span><br><span class="line">        grandfather.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">'this is grandfather!'</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        father.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">'this is father!'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        son.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">'this is son!'</span>);</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个例子中，点击son，将依次弹出son father grandfather。<br>事件冒泡有时候很麻烦，需要阻止。</p>
+<h4 id="事件冒泡的阻止"><a href="#事件冒泡的阻止" class="headerlink" title="事件冒泡的阻止"></a>事件冒泡的阻止</h4><h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><p>事件冒泡，重写onlick会覆盖之前属性(只能将冒泡事件一个一个处理)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grandfather.onclik = <span class="literal">null</span> ;</span><br></pre></td></tr></table></figure></p>
+<h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h5><p>addEventListener(event.type, function, boolean)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">son.addEventListener(<span class="string">'click'</span>,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         grandfather.onclick = <span class="literal">null</span>；</span><br><span class="line">         father.onclick = <span class="literal">null</span>;</span><br><span class="line">    &#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure></p>
+<p>click表示事件，要去掉on ，function里面可以写多个要求（同时处理多个冒泡事件），false表示在冒泡阶段作用。<br>整体表示 在冒泡阶段，给son的点击事件添加一个效果函数。</p>
+<h5 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h5><p> event.stopPropagation()和 event.cancelBubble = true<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">son.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">'this is son!'</span>);</span><br><span class="line">            event.stopPropagation();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">son.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="string">'this is son!'</span>);</span><br><span class="line">            event.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h2><p>事件捕获就是事件发生时首先发生在document（html）上，然后依次传递给body、grandfather,father,最后到达目的节点son（即事件目标）。事件捕获的过程和事件冒泡刚好相反。</p>
+<h4 id="事件捕获的阻止"><a href="#事件捕获的阻止" class="headerlink" title="事件捕获的阻止"></a>事件捕获的阻止</h4><h5 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h5><p>addEventListener(event.type, function, true);</p>
+<h5 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h5><p>event.stopPropagation();</p>
+<h2 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h2><p><a href="https://www.cnblogs.com/liugang-vip/p/5616484.html" target="_blank" rel="noopener">https://www.cnblogs.com/liugang-vip/p/5616484.html</a></p>
+<p>事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。（例如指定grandfather处理程序，则father和son的事件都可以通过冒泡传递到grandfather，让grandfather统一处理，即子元素可能有很多，很难区分，那我可以通过管理他们的父元素来处理程序，而父元素只有一个）。<br>核心代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> oBtn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span><br><span class="line">            <span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">"ul1"</span>);</span><br><span class="line">            <span class="keyword">var</span> aLi = oUl.getElementsByTagName(<span class="string">'li'</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//事件委托，添加的子元素也有事件</span></span><br><span class="line">            oUl.onmouseover = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event;  <span class="comment">//考虑兼容性</span></span><br><span class="line">                <span class="keyword">var</span> target = ev.target || ev.srcElement;   <span class="comment">//target返回目标的dom节点</span></span><br><span class="line">                <span class="keyword">if</span>(target.nodeName.toLowerCase() == <span class="string">'li'</span>)&#123;  <span class="comment">//nodeName返回目标节点的大写字母名称，故用tolowerElement将其变小写。</span></span><br><span class="line">                    target.style.background = <span class="string">"red"</span>;        </span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;;</span><br><span class="line">            oUl.onmouseout = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event;</span><br><span class="line">                <span class="keyword">var</span> target = ev.target || ev.srcElement;</span><br><span class="line">                <span class="keyword">if</span>(target.nodeName.toLowerCase() == <span class="string">'li'</span>)&#123;</span><br><span class="line">                    target.style.background = <span class="string">"#fff"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//添加新节点</span></span><br><span class="line">            oBtn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                num++;</span><br><span class="line">                <span class="keyword">var</span> oLi = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);   <span class="comment">//创建新元素</span></span><br><span class="line">                oLi.innerHTML = <span class="number">111</span>*aLi.length;                 </span><br><span class="line">                oUl.appendChild(oLi);         </span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>哪里会有人喜欢孤独，不过是不喜欢失望罢了。</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/secondDay/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -547,7 +814,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -560,7 +827,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
