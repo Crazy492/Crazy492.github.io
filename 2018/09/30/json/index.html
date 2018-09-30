@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="文        章        内        容                 1 JSON简介                     1.1 JSON与JavaScript             1.2 JSON与XML                 2 JSON语法                     2.1 简单值             2.2">
+<meta name="description" content="文    章    目    录                           1 JSON简介                             1.1 JSON与JavaScript                 1.2 JSON与XML                                         2 JSON语法">
 <meta name="keywords" content="JSON">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSON">
 <meta property="og:url" content="http://yoursite.com/2018/09/30/json/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="文        章        内        容                 1 JSON简介                     1.1 JSON与JavaScript             1.2 JSON与XML                 2 JSON语法                     2.1 简单值             2.2">
+<meta property="og:description" content="文    章    目    录                           1 JSON简介                             1.1 JSON与JavaScript                 1.2 JSON与XML                                         2 JSON语法">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-30T15:57:01.852Z">
+<meta property="og:updated_time" content="2018-09-30T16:36:30.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSON">
-<meta name="twitter:description" content="文        章        内        容                 1 JSON简介                     1.1 JSON与JavaScript             1.2 JSON与XML                 2 JSON语法                     2.1 简单值             2.2">
+<meta name="twitter:description" content="文    章    目    录                           1 JSON简介                             1.1 JSON与JavaScript                 1.2 JSON与XML                                         2 JSON语法">
 
 
 
@@ -324,10 +324,13 @@
 
       
         <hr>
-<div style="display:flex;align-items:center; "><br>    <p style="display:inline-block; float:left ;font-size:2rem; border: grey 2px solid ; border-radius:10px;"><br>        文<br><br>        章<br><br>        内<br><br>        容<br>    </p><br>    <ul style="display:inline-block"><br>        <li><a href="#1"> 1 JSON简介</a></li><br>        <ul><br>            <li><a href="#1.1"> 1.1 JSON与JavaScript</a></li><br>            <li><a href="#1.2"> 1.2 JSON与XML</a></li><br>        </ul><br>        <li><a href="#2"> 2 JSON语法</a></li><br>        <ul><br>            <li><a href="#2.1"> 2.1 简单值</a></li><br>            <li><a href="#2.2"> 2.2 对象</a></li><br>            <li><a href="#2.3"> 2.3 数组</a></li><br>            <li><a href="#2.4"> 2.4 JSON样例代码</a></li><br>        </ul><br>        <li><a href="#3"> 3 JSON解析与序列化</a></li><br>            <ul><br>                <li><a href="#3.1"> 3.1 stringify()</a></li><br>                <li><a href="#3.2"> 3.2 parse()</a></li><br>                <li><a href="#3.3"> 3.3 toJSON()</a></li><br>                <li><a href="#3.4"> 3.4 JSON.stringify()序列化对象的顺序</a></li><br>            </ul><br>    </ul><br></div>
+<p id="head" style="display:inline-block; float:left ;font-size:1rem;line-height:1rem;"><br>    <b>文<br><br>    章<br><br>    目<br><br>    录</b><br></p>
+
+<div style="display:flex;align-items:center;justify-content:center; "><br>    <div style="display:flex ;justify-content:space-around;align-items:center; font-size:0.8rem; width:100%;line-height:0.8rem;"><br>        <div><br>            <li><a href="#1"> 1 JSON简介</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#1.1"> 1.1 JSON与JavaScript</a></li><br>                <li><a href="#1.2"> 1.2 JSON与XML</a></li><br>            </ul><br>        </div><br>        <div><br>            <li><a href="#2"> 2 JSON语法</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#2.1"> 2.1 简单值</a></li><br>                <li><a href="#2.2"> 2.2 对象</a></li><br>                <li><a href="#2.3"> 2.3 数组</a></li><br>                <li><a href="#2.4"> 2.4 JSON样例代码</a></li><br>            </ul><br>        </div><br>        <div><br>            <li><a href="#3"> 3 JSON解析与序列化</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#3.1"> 3.1 stringify()</a></li><br>                <li><a href="#3.2"> 3.2 parse()</a></li><br>                <li><a href="#3.3"> 3.3 toJSON()</a></li><br>                <li><a href="#3.4"> 3.4 JSON.stringify()序列化对象的顺序</a></li><br>            </ul><br>        </div><br>    </div><br></div>
+
 
 <hr>
-<h2 id="1">JSON简介</h2>
+<h1 id="1">JSON简介</h1>
 
 <p>&nbsp;&nbsp;JSON：JavaScript对象表示法(<span style="color:red">J</span>ava<span style="color:red">S</span>cript <span style="color:red">O</span>bject <span style="color:red">N</span>oatation)</p>
 <p>&nbsp;&nbsp;根据MDN的说法:</p>
@@ -336,19 +339,19 @@
 </blockquote>
 <p>&nbsp;&nbsp;JSON基于JavaScript语法，类似XML，但却和它们有区别</p>
 <ul>
-<li><p></p><h4 id="1.1"> JSON与JavaScript </h4><br>JSON是一种数据格式，不是一种编程语言，JSON也不从属于JavaScript<p></p>
+<li><p></p><h2 id="1.1"> JSON与JavaScript </h2><br>JSON是一种数据格式，不是一种编程语言，JSON也不从属于JavaScript<p></p>
 </li>
-<li><h4 id="1.2"> JSON与XML </h4>
+<li><h2 id="1.2"> JSON与XML </h2>
 
 <p>JSON能够使用 <a href="&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval&quot;">eval()</a> 方法进行解析，不必创建DOM对象</p>
 </li>
 </ul>
 <hr>
-<h2 id="2">JSON语法</h2>
+<h1 id="2">JSON语法</h1>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;JSON的语法可以表示以下三种类型的值：</p>
 <ul>
-<li><h4 id="2.1">简单值</h4>
+<li><h2 id="2.1">简单值</h2>
 
 <p>  JSON与JavaScript简单值最大区别是：<br><br></p>
 <blockquote>
@@ -358,7 +361,7 @@
 </ol>
 </blockquote>
 </li>
-<li><h4 id="2.2">对象</h4>
+<li><h2 id="2.2">对象</h2>
 
 <p>  JSON对象与JavaScript对象两个不同点：<br><br></p>
 <blockquote>
@@ -368,26 +371,26 @@
 </ol>
 </blockquote>
 </li>
-<li><h4 id="2.3">数组</h4>
+<li><h2 id="2.3">数组</h2>
 
 <p>  JSON数组采用的就是JavaScript的数组字面量形式，但没有变量和分号<br>  <br></p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"Hello World!"</span>,<span class="number">3</span>,<span class="literal">true</span>,<span class="literal">null</span>,&#123;&#125;]</span><br></pre></td></tr></table></figure>
 </li>
-<li><h4 id="2.4">JSON样例代码</h4>
+<li><h2 id="2.4">JSON样例代码</h2>
 
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- <span class="built_in">JSON</span>样例 --&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"String"</span>:<span class="string">"Hello World!"</span>,   &lt;!-- 字符串--&gt;</span><br><span class="line">    <span class="string">"Number"</span>:<span class="number">3</span>,                &lt;!-- 数值--&gt;</span><br><span class="line">    <span class="string">"Boolean"</span>:<span class="literal">true</span>,            &lt;!-- 布尔值--&gt;</span><br><span class="line">    <span class="string">"Null"</span>:<span class="literal">null</span>,               &lt;!-- <span class="literal">null</span>--&gt;</span><br><span class="line">    <span class="string">"_1Bin"</span>:&#123;                  &lt;!-- 对象--&gt;</span><br><span class="line">        <span class="string">"Name"</span>:<span class="string">"1bin"</span>,</span><br><span class="line">        <span class="string">"Age"</span>:<span class="number">18</span>,</span><br><span class="line">        <span class="string">"Tag"</span>:[</span><br><span class="line">            <span class="string">"Lonely patient"</span>,<span class="string">"Crazy"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"Sex"</span>:&#123;</span><br><span class="line">            <span class="string">"IsBoy"</span>:<span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="3">JSON解析与序列化</h2>
+<h1 id="3">JSON解析与序列化</h1>
 
 <p>&nbsp;&nbsp;JSON对象可以直接解析为JavaScript对象</p>
 <p>&nbsp;&nbsp;早期JSON解析器基本上就是使用JavaScript的eval()函数，但eval()存在风险，现在已经摒弃。</p>
 <p>&nbsp;&nbsp;现在基本上都是用JSON对象的两个方法进行解析与序列化</p>
 <ul>
-<li><h4 id="3.1">stringify()</h4>
+<li><h2 id="3.1">stringify()</h2>
 
 <p>  stringify()把JavaScript对象序列化为JSON字符串,有三个参数</p>
-  <h5>JSON.stringify(value,replacer,space)</h5>
+  <h4>JSON.stringify(value,replacer,space)</h4>
 
 <blockquote>
 <ol>
@@ -402,10 +405,10 @@
 </ul>
 <pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">                title:<span class="string">"Hello World!"</span>,</span><br><span class="line">                author:&#123;</span><br><span class="line">                          name:<span class="string">"1 bin"</span></span><br><span class="line">                       &#125;</span><br><span class="line">           &#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"></span><br><span class="line">&lt;!-- jsonText的值为：<span class="string">"&#123;"</span>title<span class="string">":"</span>Hello World<span class="string">","</span>author<span class="string">":&#123;"</span>name<span class="string">":"</span><span class="number">1</span> bin<span class="string">"&#125;"</span>&#125; --&gt;</span><br></pre></td></tr></table></figure>
 </code></pre><ul>
-<li><h4 id="3.2">parse()</h4>
+<li><h2 id="3.2">parse()</h2>
 
 <p>  parse()把JSON字符串解析为原生JavaScript值</p>
-  <h5>parse(text,reviver)</h5>
+  <h4>parse(text,reviver)</h4>
 
 <blockquote>
 <ol>
@@ -413,7 +416,7 @@
 <li>reviver(可选)<br>   还原函数：规定了原始值如何被解析改造，在被返回之前</li>
 </ol>
 </blockquote>
-  <h5>reviver函数</h5>
+  <h4>reviver函数</h4>
 
 <p>  根据MDN：</p>
 <blockquote>
@@ -427,12 +430,12 @@
 <p>  <em>值得注意的是，这里的jsonText的值为：”xxx”,要用双引号，对于一些代码块，需要用反逗号</em></p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book2 = <span class="string">`&#123;</span></span><br><span class="line"><span class="string">                "a":"Hello Wolrd!",</span></span><br><span class="line"><span class="string">                "b":2</span></span><br><span class="line"><span class="string">             &#125;`</span>;</span><br><span class="line"><span class="keyword">var</span> Copy = <span class="built_in">JSON</span>.parse(book2);</span><br></pre></td></tr></table></figure>
 </li>
-<li><h4 id="3.3">toJSON()</h4>
+<li><h2 id="3.3">toJSON()</h2>
 
 <p>  用于补充JSON.stringify()所不能满足的自定义序列化需求。可以直接给对象定义toJSON()方法，返回其自身的JSON数据格式(如原生Date对象的toJSON方法)</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">                title:<span class="string">"Hello World!"</span>,</span><br><span class="line">                year:<span class="number">2018</span>,</span><br><span class="line">                toJSON: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">this</span>.title;</span><br><span class="line">                &#125;</span><br><span class="line">           &#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonText)     &lt;!-- <span class="string">"Hello World!"</span> --&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><h4 id="3.4">JSON.stringify()序列化对象的顺序</h4>
+<li><h2 id="3.4">JSON.stringify()序列化对象的顺序</h2>
 
 
 
@@ -445,7 +448,13 @@
 (3)对第(2)步返回的每个值进行相应的序列化
 
 (4)如提供了第三个参数，执行相应的格式化
-</code></pre>
+</code></pre><div style="color:black;diplay:flex;justify-content:center;align-items:center;"><div><a href="#head">回到目录</a></div></div>
+
+
+
+
+
+
       
     </div>
 
@@ -615,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">JSON简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1.1"><span class="nav-number">1.0.1.</span> <span class="nav-text"> JSON与JavaScript </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1.2"><span class="nav-number">1.0.2.</span> <span class="nav-text"> JSON与XML </span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">JSON语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2.1"><span class="nav-number">2.0.1.</span> <span class="nav-text">简单值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2.2"><span class="nav-number">2.0.2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2.3"><span class="nav-number">2.0.3.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2.4"><span class="nav-number">2.0.4.</span> <span class="nav-text">JSON样例代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">JSON解析与序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3.1"><span class="nav-number">3.0.1.</span> <span class="nav-text">stringify()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">JSON.stringify(value,replacer,space)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3.2"><span class="nav-number">3.0.2.</span> <span class="nav-text">parse()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">parse(text,reviver)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">reviver函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3.3"><span class="nav-number">3.0.3.</span> <span class="nav-text">toJSON()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3.4"><span class="nav-number">3.0.4.</span> <span class="nav-text">JSON.stringify()序列化对象的顺序</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">JSON简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1.1"><span class="nav-number">1.1.</span> <span class="nav-text"> JSON与JavaScript </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1.2"><span class="nav-number">1.2.</span> <span class="nav-text"> JSON与XML </span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">JSON语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2.1"><span class="nav-number">2.1.</span> <span class="nav-text">简单值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2.2"><span class="nav-number">2.2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2.3"><span class="nav-number">2.3.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2.4"><span class="nav-number">2.4.</span> <span class="nav-text">JSON样例代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">JSON解析与序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3.1"><span class="nav-number">3.1.</span> <span class="nav-text">stringify()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">JSON.stringify(value,replacer,space)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3.2"><span class="nav-number">3.2.</span> <span class="nav-text">parse()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.0.1.</span> <span class="nav-text">parse(text,reviver)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.0.2.</span> <span class="nav-text">reviver函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3.3"><span class="nav-number">3.3.</span> <span class="nav-text">toJSON()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3.4"><span class="nav-number">3.4.</span> <span class="nav-text">JSON.stringify()序列化对象的顺序</span></a></li></ol></li></ol></div>
             
 
           </div>
