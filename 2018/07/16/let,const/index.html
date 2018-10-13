@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="let,const," />
+  <meta name="keywords" content="let,const,ES6," />
 
 
 
@@ -88,14 +88,14 @@
 
 
 <meta name="description" content="let命令http://es6.ruanyifeng.com/#docs/let let基本用法用let声明的变量，只会在其所在代码块内有效，例如 123456var i =1 ;&amp;#123;    let i =2 ;    console.log(i);    // 2&amp;#125;console.log(i)         // 1 var声明的i和let声明的i实际上的储存地址是不一样的，">
-<meta name="keywords" content="let,const">
+<meta name="keywords" content="let,const,ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="let,const">
 <meta property="og:url" content="http://yoursite.com/2018/07/16/let,const/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="let命令http://es6.ruanyifeng.com/#docs/let let基本用法用let声明的变量，只会在其所在代码块内有效，例如 123456var i =1 ;&amp;#123;    let i =2 ;    console.log(i);    // 2&amp;#125;console.log(i)         // 1 var声明的i和let声明的i实际上的储存地址是不一样的，">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-12T11:05:44.474Z">
+<meta property="og:updated_time" content="2018-10-13T11:18:23.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="let,const">
 <meta name="twitter:description" content="let命令http://es6.ruanyifeng.com/#docs/let let基本用法用let声明的变量，只会在其所在代码块内有效，例如 123456var i =1 ;&amp;#123;    let i =2 ;    console.log(i);    // 2&amp;#125;console.log(i)         // 1 var声明的i和let声明的i实际上的储存地址是不一样的，">
@@ -334,7 +334,12 @@
 <h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><p>如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  a = <span class="number">1</span>; <span class="comment">// ReferenceError</span></span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">// ReferenceError</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> a; <span class="comment">// 在此之上全为暂时性死区</span></span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="不存在变量提升也不能重复声明"><a href="#不存在变量提升也不能重复声明" class="headerlink" title="不存在变量提升也不能重复声明"></a>不存在变量提升也不能重复声明</h4><p>因为暂时性死去的存在，let和const都是没有变量提升的，而var存在变量提升，即变量可以在声明之前使用，值为undefined。</p>
-<p>不能重复声明是指不能在同一个块级作用域内对同一个变量声明两次<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">2</span> ; <span class="comment">// ReferenceError</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不能重复声明是指不能在同一个块级作用域内对同一个变量声明两次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">2</span> ; <span class="comment">// ReferenceError</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>顶层对象，在浏览器环境指的是window对象，在 Node 指的是global对象。ES5 之中，顶层对象的属性与全局变量是等价的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.a = <span class="number">2</span>;</span><br><span class="line">a  <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">1</span> ;</span><br><span class="line"><span class="built_in">window</span>.a <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>而ES6规定，let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">window</span>.a <span class="comment">//1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span> ;</span><br><span class="line">widndow.b <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 <h4 id="let的主要应用"><a href="#let的主要应用" class="headerlink" title="let的主要应用"></a>let的主要应用</h4><h5 id="应用1"><a href="#应用1" class="headerlink" title="应用1"></a>应用1</h5><p>let声明的变量具有不可被外界所干扰的特点，故适合用于循环变量,这样将不会造成变量泄露<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>( <span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; <span class="number">6</span> ; i++)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);    <span class="comment">// ReferenceError</span></span><br></pre></td></tr></table></figure></p>
 <h5 id="应用2"><a href="#应用2" class="headerlink" title="应用2"></a>应用2</h5><p>let造成的块级作用域取代了立即执行函数表达式（IIFE）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IIFE 写法</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a= <span class="number">1</span>;</span><br><span class="line">  ...</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 块级作用域写法</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="const命令"><a href="#const命令" class="headerlink" title="const命令"></a>const命令</h2><h4 id="const实质"><a href="#const实质" class="headerlink" title="const实质"></a>const实质</h4><p>const实质是指变量指向的那个内存地址不得改动。对于简单类型的数据，值就保存在变量指向的那个内存地址，因此等同于常量。但对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指针，const只能保证这个指针是固定的，至于它指向的数据结构是不是可变的，就完全不能控制了。</p>
@@ -344,7 +349,7 @@
 <li>存在暂时性死区</li>
 <li>不能重复声明（同一个块级作用域内）</li>
 <li>不存在变量提升</li>
-<li>声明后必须赋初值（与let的不同点）</li>
+<li>声明后必须赋初值（与let的不同点）   </li>
 </ol>
 <p><strong>别人稍一注意你，你就敞开心扉。你以为这是坦率，其实这是孤独。</strong></p>
 
@@ -379,6 +384,8 @@
             <a href="/tags/let/" rel="tag"># let</a>
           
             <a href="/tags/const/" rel="tag"># const</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -475,7 +482,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -488,7 +495,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
