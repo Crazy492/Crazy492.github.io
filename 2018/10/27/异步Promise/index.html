@@ -1,0 +1,701 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Promise," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="ES6提供了Promise对象，用来实现异步编程。   传统的异步编程解决方案是回调函数和事件，通过不断嵌套回调函数实现逻辑上的异步，而这样的写法无疑是很复杂的，代码也很难维护。  基础语法一个 Promise 有以下几种状态：(1) pending：初始状态，既不是成功，也不是失败状态。(2) fulfilled：意味着操作成功完成。(3) rejected：意味着操作失败。Promise">
+<meta name="keywords" content="Promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise">
+<meta property="og:url" content="http://yoursite.com/2018/10/27/异步Promise/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ES6提供了Promise对象，用来实现异步编程。   传统的异步编程解决方案是回调函数和事件，通过不断嵌套回调函数实现逻辑上的异步，而这样的写法无疑是很复杂的，代码也很难维护。  基础语法一个 Promise 有以下几种状态：(1) pending：初始状态，既不是成功，也不是失败状态。(2) fulfilled：意味着操作成功完成。(3) rejected：意味着操作失败。Promise">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-28T12:58:53.617Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise">
+<meta name="twitter:description" content="ES6提供了Promise对象，用来实现异步编程。   传统的异步编程解决方案是回调函数和事件，通过不断嵌套回调函数实现逻辑上的异步，而这样的写法无疑是很复杂的，代码也很难维护。  基础语法一个 Promise 有以下几种状态：(1) pending：初始状态，既不是成功，也不是失败状态。(2) fulfilled：意味着操作成功完成。(3) rejected：意味着操作失败。Promise">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/27/异步Promise/"/>
+
+
+
+
+
+  <title> Promise | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/27/异步Promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Promise
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-27T12:00:00+08:00">
+                2018-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>  ES6提供了Promise对象，用来实现异步编程。</p>
+<p>  传统的异步编程解决方案是<strong>回调函数和事件</strong>，通过不断嵌套回调函数实现逻辑上的异步，而这样的写法无疑是很复杂的，代码也很难维护。</p>
+<hr>
+<h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><h4 id="一个-Promise-有以下几种状态："><a href="#一个-Promise-有以下几种状态：" class="headerlink" title="一个 Promise 有以下几种状态："></a>一个 Promise 有以下几种状态：</h4><h5 id="1-pending：初始状态，既不是成功，也不是失败状态。"><a href="#1-pending：初始状态，既不是成功，也不是失败状态。" class="headerlink" title="(1) pending：初始状态，既不是成功，也不是失败状态。"></a>(1) pending：初始状态，既不是成功，也不是失败状态。</h5><h5 id="2-fulfilled：意味着操作成功完成。"><a href="#2-fulfilled：意味着操作成功完成。" class="headerlink" title="(2) fulfilled：意味着操作成功完成。"></a>(2) fulfilled：意味着操作成功完成。</h5><h5 id="3-rejected：意味着操作失败。"><a href="#3-rejected：意味着操作失败。" class="headerlink" title="(3) rejected：意味着操作失败。"></a>(3) rejected：意味着操作失败。</h5><h4 id="Promise-对象的-then-方法包含两个参数："><a href="#Promise-对象的-then-方法包含两个参数：" class="headerlink" title="Promise 对象的 then 方法包含两个参数："></a>Promise 对象的 then 方法包含两个参数：</h4><h5 id="onfulfilled-和-onrejected，它们都是-Function-类型"><a href="#onfulfilled-和-onrejected，它们都是-Function-类型" class="headerlink" title="onfulfilled 和 onrejected，它们都是 Function 类型"></a>onfulfilled 和 onrejected，它们都是 Function 类型</h5><h5 id="Promise-对象的参数函数是两个由-JavaScript-引擎提供的函数-resolve-和-reject"><a href="#Promise-对象的参数函数是两个由-JavaScript-引擎提供的函数-resolve-和-reject" class="headerlink" title="Promise 对象的参数函数是两个由 JavaScript 引擎提供的函数 resolve 和 reject"></a>Promise 对象的参数函数是两个由 JavaScript 引擎提供的函数 resolve 和 reject</h5><h5 id="resolve-和-reject-函数被调用时，分别将-Promise-的状态改为-fulfilled（完成）或-rejected（失败）"><a href="#resolve-和-reject-函数被调用时，分别将-Promise-的状态改为-fulfilled（完成）或-rejected（失败）" class="headerlink" title="resolve 和 reject 函数被调用时，分别将 Promise 的状态改为 fulfilled（完成）或 rejected（失败）"></a>resolve 和 reject 函数被调用时，分别将 Promise 的状态改为 fulfilled（完成）或 rejected（失败）</h5><h5 id="当-Promise-状态为-fulfilled-时，调用-then-的-onfulfilled方法，当-Promise-状态为-rejected-时，调用-then-的-onrejected-方法"><a href="#当-Promise-状态为-fulfilled-时，调用-then-的-onfulfilled方法，当-Promise-状态为-rejected-时，调用-then-的-onrejected-方法" class="headerlink" title="当 Promise 状态为 fulfilled 时，调用 then 的 onfulfilled方法，当 Promise 状态为 rejected 时，调用 then 的 onrejected 方法"></a>当 Promise 状态为 fulfilled 时，调用 then 的 onfulfilled方法，当 Promise 状态为 rejected 时，调用 then 的 onrejected 方法</h5>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ...一些立即执行的代码</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="comment">/*异步操作成功*/</span>)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//success code resolve</span></span><br><span class="line">&#125;,err =&gt; &#123;</span><br><span class="line">  <span class="comment">// failure code reject</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><h4 id="ES6-规定，Promise-对象是一个构造函数，用来生成Promise-实例。"><a href="#ES6-规定，Promise-对象是一个构造函数，用来生成Promise-实例。" class="headerlink" title="ES6 规定，Promise 对象是一个构造函数，用来生成Promise 实例。"></a>ES6 规定，Promise 对象是一个构造函数，用来生成Promise 实例。</h4>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promise</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise'</span>); <span class="comment">//立即执行</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> resolve(<span class="string">'resolve'</span>);</span><br><span class="line">     &#125;,<span class="number">1000</span>)</span><br><span class="line">  &#125;); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">  promise().then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);  </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Hey'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Console</span></span><br><span class="line"><span class="comment">  promise</span></span><br><span class="line"><span class="comment">  Hey</span></span><br><span class="line"><span class="comment">  resolve</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h5 id="Promise-新建后就会立即执行，故先输出-promise"><a href="#Promise-新建后就会立即执行，故先输出-promise" class="headerlink" title="Promise 新建后就会立即执行，故先输出 promise"></a>Promise 新建后就会立即执行，故先输出 promise</h5><h5 id="then-方法指定的回调函数，就在当前所有同步任务执行完才会执行，所以最后输出-resolve"><a href="#then-方法指定的回调函数，就在当前所有同步任务执行完才会执行，所以最后输出-resolve" class="headerlink" title="then 方法指定的回调函数，就在当前所有同步任务执行完才会执行，所以最后输出 resolve"></a>then 方法指定的回调函数，就在当前所有同步任务执行完才会执行，所以最后输出 resolve</h5><hr>
+<h1 id="Promise-prototype-then"><a href="#Promise-prototype-then" class="headerlink" title="Promise.prototype.then()"></a>Promise.prototype.then()</h1><h4 id="then-方法的第一个参数是-resolved-状态的回调函数，第二个参数（可选）是-rejected-状态的回调函数"><a href="#then-方法的第一个参数是-resolved-状态的回调函数，第二个参数（可选）是-rejected-状态的回调函数" class="headerlink" title="then 方法的第一个参数是 resolved 状态的回调函数，第二个参数（可选）是 rejected 状态的回调函数"></a>then 方法的第一个参数是 resolved 状态的回调函数，第二个参数（可选）是 rejected 状态的回调函数</h4><h4 id="then-方法返回的是一个新的-Promise-实例（注意，不是原来那个-Promise-实例）。因此可以采用链式写法，即-then-方法后面再调用另一个-then-方法。"><a href="#then-方法返回的是一个新的-Promise-实例（注意，不是原来那个-Promise-实例）。因此可以采用链式写法，即-then-方法后面再调用另一个-then-方法。" class="headerlink" title="then 方法返回的是一个新的 Promise 实例（注意，不是原来那个 Promise 实例）。因此可以采用链式写法，即 then 方法后面再调用另一个 then 方法。"></a>then 方法返回的是一个新的 Promise 实例（注意，不是原来那个 Promise 实例）。因此可以采用链式写法，即 then 方法后面再调用另一个 then 方法。</h4>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promise</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> resolve(<span class="number">2</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">promise()</span><br><span class="line">.then(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val);</span><br><span class="line">  &#125;,<span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> val; </span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    val++;</span><br><span class="line">    <span class="built_in">console</span>.log(val);</span><br><span class="line">  &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Console</span></span><br><span class="line"><span class="comment">  1</span></span><br><span class="line"><span class="comment">  2</span></span><br><span class="line"><span class="comment">  3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h5 id="在-then-方法中的返回值作为参数，传入下一个回调函数。"><a href="#在-then-方法中的返回值作为参数，传入下一个回调函数。" class="headerlink" title="在 then 方法中的返回值作为参数，传入下一个回调函数。"></a>在 then 方法中的返回值作为参数，传入下一个回调函数。</h5><h5 id="如果-then-回调函数返回一个值，那么-then-返回的-Promise-对象将会成为接受状态，并接受该值作为接受状态的回调函数的参数值。"><a href="#如果-then-回调函数返回一个值，那么-then-返回的-Promise-对象将会成为接受状态，并接受该值作为接受状态的回调函数的参数值。" class="headerlink" title="如果 then 回调函数返回一个值，那么 then 返回的 Promise 对象将会成为接受状态，并接受该值作为接受状态的回调函数的参数值。"></a>如果 then 回调函数返回一个值，那么 then 返回的 Promise 对象将会成为接受状态，并接受该值作为接受状态的回调函数的参数值。</h5><h5 id="同理-then-回调函数抛出一个错误，那么-then-返回的Promise-对象将成为接受状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。"><a href="#同理-then-回调函数抛出一个错误，那么-then-返回的Promise-对象将成为接受状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。" class="headerlink" title="同理 then 回调函数抛出一个错误，那么 then 返回的Promise 对象将成为接受状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。"></a>同理 then 回调函数抛出一个错误，那么 then 返回的Promise 对象将成为接受状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。</h5><hr>
+<h1 id="Promise-prototype-catch"><a href="#Promise-prototype-catch" class="headerlink" title="Promise.prototype.catch()"></a>Promise.prototype.catch()</h1><h4 id="catch-方法返回一个Promise，并且处理拒绝的情况。"><a href="#catch-方法返回一个Promise，并且处理拒绝的情况。" class="headerlink" title="catch 方法返回一个Promise，并且处理拒绝的情况。"></a>catch 方法返回一个Promise，并且处理拒绝的情况。</h4><h6 id="它的行为与调用Promise-prototype-then-undefined-onRejected-相同。"><a href="#它的行为与调用Promise-prototype-then-undefined-onRejected-相同。" class="headerlink" title="它的行为与调用Promise.prototype.then(undefined, onRejected) 相同。"></a>它的行为与调用Promise.prototype.then(undefined, onRejected) 相同。</h6><h6 id="Promise-对象的状态一旦变为-rejected-，便不可以再改变，此时便会调用-catch-方法指定的回调函数，此外，-then-方法指定的回调函数若在运行中抛出错误，也会被-catch-方法捕获"><a href="#Promise-对象的状态一旦变为-rejected-，便不可以再改变，此时便会调用-catch-方法指定的回调函数，此外，-then-方法指定的回调函数若在运行中抛出错误，也会被-catch-方法捕获" class="headerlink" title="Promise 对象的状态一旦变为 rejected ，便不可以再改变，此时便会调用 catch 方法指定的回调函数，此外， then 方法指定的回调函数若在运行中抛出错误，也会被 catch 方法捕获"></a>Promise 对象的状态一旦变为 rejected ，便不可以再改变，此时便会调用 catch 方法指定的回调函数，此外， then 方法指定的回调函数若在运行中抛出错误，也会被 catch 方法捕获</h6>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">promise</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="comment">/*success*/</span>)&#123;</span><br><span class="line">        resolve(<span class="string">'success'</span>);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        reject(<span class="string">'error'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  promise()</span><br><span class="line">  .then( <span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//success</span></span><br><span class="line">      <span class="built_in">console</span>.log(val);</span><br><span class="line">      <span class="keyword">if</span>(<span class="comment">/*error*/</span>)&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'error'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">##### Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个 catch 语句捕获。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">##### Promise 对象抛出的错误不会传递到外层代码，故要使用 catch 方法来捕获 Promise 对象内部抛出的错误。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Promise.prototype.finally()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">####  finally 方法返回一个 Promise，在执行 then 和catch 后，都会执行finally指定的回调函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#####  实际上，finally 与 .then(onFinally, onFinally) 类似，但也有一些区别。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#####  finally 不接受任何参数。并且 finally 方法总是会返回原来的值。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  `</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="comment">// resolve 的值是 undefined</span></span><br><span class="line">  <span class="built_in">Promise</span>.resolve(<span class="number">2</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;, () =&gt; &#123;&#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// resolve 的值是 2</span></span><br><span class="line">  <span class="built_in">Promise</span>.resolve(<span class="number">2</span>).finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// reject 的值是 undefined</span></span><br><span class="line">  <span class="built_in">Promise</span>.reject(<span class="number">3</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;, () =&gt; &#123;&#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// reject 的值是 3</span></span><br><span class="line">  <span class="built_in">Promise</span>.reject(<span class="number">3</span>).finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Promise-resolve"><a href="#Promise-resolve" class="headerlink" title="Promise.resolve()"></a>Promise.resolve()</h1><h4 id="将现有对象转为-Promise-对象"><a href="#将现有对象转为-Promise-对象" class="headerlink" title="将现有对象转为 Promise 对象"></a>将现有对象转为 Promise 对象</h4>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="built_in">Promise</span>.resolve(<span class="number">1</span>);</span><br><span class="line"><span class="comment">//等价为</span></span><br><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="其参数有四种情况："><a href="#其参数有四种情况：" class="headerlink" title="其参数有四种情况："></a>其参数有四种情况：</h4><h5 id="1-不带任何参数"><a href="#1-不带任何参数" class="headerlink" title="(1) 不带任何参数"></a>(1) 不带任何参数</h5><h5 id="直接返回一个-resolved-状态的-Promise-对象"><a href="#直接返回一个-resolved-状态的-Promise-对象" class="headerlink" title="直接返回一个 resolved 状态的 Promise 对象"></a>直接返回一个 resolved 状态的 Promise 对象</h5><h4 id="2-参数不为对象，或者是不具有-then-方法的对象"><a href="#2-参数不为对象，或者是不具有-then-方法的对象" class="headerlink" title="(2) 参数不为对象，或者是不具有 then 方法的对象"></a>(2) 参数不为对象，或者是不具有 then 方法的对象</h4><h5 id="返回一个新的状态为-resolved-的-Promise-对象，此时会立即执行回调函数。"><a href="#返回一个新的状态为-resolved-的-Promise-对象，此时会立即执行回调函数。" class="headerlink" title="返回一个新的状态为 resolved 的 Promise 对象，此时会立即执行回调函数。"></a>返回一个新的状态为 resolved 的 Promise 对象，此时会立即执行回调函数。</h5>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="built_in">Promise</span>.resolve(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">p1</span><br><span class="line">.then(<span class="function"><span class="params">val</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(val) ;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//会立刻弹出 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-参数是一个thenable对象"><a href="#3-参数是一个thenable对象" class="headerlink" title="(3) 参数是一个thenable对象"></a>(3) 参数是一个thenable对象</h4><h5 id="thenable-对象指的是具有-then-方法的对象，Promise-resolve-方法会将这个对象转为-Promise-对象，然后就立即执行-thenable-对象的-then-方法。"><a href="#thenable-对象指的是具有-then-方法的对象，Promise-resolve-方法会将这个对象转为-Promise-对象，然后就立即执行-thenable-对象的-then-方法。" class="headerlink" title="thenable 对象指的是具有 then 方法的对象，Promise.resolve 方法会将这个对象转为 Promise 对象，然后就立即执行 thenable 对象的 then 方法。"></a>thenable 对象指的是具有 then 方法的对象，Promise.resolve 方法会将这个对象转为 Promise 对象，然后就立即执行 thenable 对象的 then 方法。</h5><h4 id="4-参数是一个-Promise-实例"><a href="#4-参数是一个-Promise-实例" class="headerlink" title="(4) 参数是一个 Promise 实例"></a>(4) 参数是一个 Promise 实例</h4><h5 id="不做任何修改，原封不动的返回这个实例。"><a href="#不做任何修改，原封不动的返回这个实例。" class="headerlink" title="不做任何修改，原封不动的返回这个实例。"></a>不做任何修改，原封不动的返回这个实例。</h5><hr>
+<h1 id="Promise-reject"><a href="#Promise-reject" class="headerlink" title="Promise.reject()"></a>Promise.reject()</h1><p>  Promise.reject(reason)方法也会返回一个新的 Promise 实例，该实例的状态为rejected。</p>
+<p>  该方法和 Promise.resolve 方法类似，但 Promise.reject() 方法的参数，会原封不动的作为reject 的理由，变为后续方法的参数。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> thenable = &#123;</span><br><span class="line">  then(resolve,reject)&#123;</span><br><span class="line">    reject(<span class="string">'error'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.reject(thenable)</span><br><span class="line">.catch( <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err === thenable); <span class="comment">// true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  上面代码中，Promise.reject 方法的参数是一个 thenable 对象，执行以后，后面 catch 方法的参数不是 reject 抛出的 ‘error’ 这个字符串，而是 thenable 对象</p>
+<hr>
+<h1 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h1><p>  Promise.all 方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
+<p>  Promise.all 方法接受一个数组作为参数，p1、p2、p3都是 Promise 实例，如果不是，就会先调用Promise.resolve 方法，将参数转为 Promise 实例，再进一步处理。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="built_in">Promise</span>.resolve(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">const</span> p2 = <span class="number">2</span>; <span class="comment">//Promise.all 里面将调用 Promise.resolve</span></span><br><span class="line"><span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(resolve(<span class="number">3</span>), <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> p = [p1, p2, p3];</span><br><span class="line"><span class="built_in">Promise</span>.all(p)</span><br><span class="line">.then(<span class="function"><span class="params">values</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(values);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">/*Console</span></span><br><span class="line"><span class="comment">  [1,2,3]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>  上面代码中，p的状态有两种情况：</p>
+<p>  (1) 只有p1、p2、p3 的状态都变成 fulfilled，p的状态才会变成 fulfilled，此时 p1、p2、p3 的返回值组成一个数组，传递给p的回调函数。</p>
+<p>  (2) 只要p1、p2、p3之中有一个被 rejected，p的状态就变成 rejected，此时第一个被 reject 的实例的返回值，会传递给p的回调函数。</p>
+<p>  如果作为参数的 Promise 实例，自己定义了 catch 方法，那么它一旦被 rejected，并不会触发 Promise.all() 的 catch 方法。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">  reject(<span class="string">'p1 error!'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'p2 error!'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'p2 catch '</span> + err);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([p1,p2])</span><br><span class="line">.catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'all catch '</span> + err);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Console</span></span><br><span class="line"><span class="comment">p2 catch Error: p2 error!</span></span><br><span class="line"><span class="comment">all catch p1 error!</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h1 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a>Promise.race()</h1><p>  Promise.race方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [p1, p2, p3] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.race([p1,p2,p3]);</span><br></pre></td></tr></table></figure>
+<p>  上面代码中，只要 p1, p2, p3 之中有一个实例率先改变状态， p的状态就跟着改变，并将率先改变的 Promise 实例作为返回值， 传递给p的回调函数。</p>
+<p>  同样，若参数不是 Promise 实例，则将先调用 Promise.resolve 方法。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Promise/" rel="tag"># Promise</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/13/解构赋值/" rel="next" title="解构赋值">
+                <i class="fa fa-chevron-left"></i> 解构赋值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础语法"><span class="nav-number">1.</span> <span class="nav-text">基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个-Promise-有以下几种状态："><span class="nav-number">1.0.0.1.</span> <span class="nav-text">一个 Promise 有以下几种状态：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-pending：初始状态，既不是成功，也不是失败状态。"><span class="nav-number">1.0.0.1.1.</span> <span class="nav-text">(1) pending：初始状态，既不是成功，也不是失败状态。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-fulfilled：意味着操作成功完成。"><span class="nav-number">1.0.0.1.2.</span> <span class="nav-text">(2) fulfilled：意味着操作成功完成。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-rejected：意味着操作失败。"><span class="nav-number">1.0.0.1.3.</span> <span class="nav-text">(3) rejected：意味着操作失败。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise-对象的-then-方法包含两个参数："><span class="nav-number">1.0.0.2.</span> <span class="nav-text">Promise 对象的 then 方法包含两个参数：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#onfulfilled-和-onrejected，它们都是-Function-类型"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">onfulfilled 和 onrejected，它们都是 Function 类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Promise-对象的参数函数是两个由-JavaScript-引擎提供的函数-resolve-和-reject"><span class="nav-number">1.0.0.2.2.</span> <span class="nav-text">Promise 对象的参数函数是两个由 JavaScript 引擎提供的函数 resolve 和 reject</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#resolve-和-reject-函数被调用时，分别将-Promise-的状态改为-fulfilled（完成）或-rejected（失败）"><span class="nav-number">1.0.0.2.3.</span> <span class="nav-text">resolve 和 reject 函数被调用时，分别将 Promise 的状态改为 fulfilled（完成）或 rejected（失败）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#当-Promise-状态为-fulfilled-时，调用-then-的-onfulfilled方法，当-Promise-状态为-rejected-时，调用-then-的-onrejected-方法"><span class="nav-number">1.0.0.2.4.</span> <span class="nav-text">当 Promise 状态为 fulfilled 时，调用 then 的 onfulfilled方法，当 Promise 状态为 rejected 时，调用 then 的 onrejected 方法</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本用法"><span class="nav-number">2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6-规定，Promise-对象是一个构造函数，用来生成Promise-实例。"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">ES6 规定，Promise 对象是一个构造函数，用来生成Promise 实例。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Promise-新建后就会立即执行，故先输出-promise"><span class="nav-number">2.0.0.1.1.</span> <span class="nav-text">Promise 新建后就会立即执行，故先输出 promise</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#then-方法指定的回调函数，就在当前所有同步任务执行完才会执行，所以最后输出-resolve"><span class="nav-number">2.0.0.1.2.</span> <span class="nav-text">then 方法指定的回调函数，就在当前所有同步任务执行完才会执行，所以最后输出 resolve</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-prototype-then"><span class="nav-number">3.</span> <span class="nav-text">Promise.prototype.then()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#then-方法的第一个参数是-resolved-状态的回调函数，第二个参数（可选）是-rejected-状态的回调函数"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">then 方法的第一个参数是 resolved 状态的回调函数，第二个参数（可选）是 rejected 状态的回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#then-方法返回的是一个新的-Promise-实例（注意，不是原来那个-Promise-实例）。因此可以采用链式写法，即-then-方法后面再调用另一个-then-方法。"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">then 方法返回的是一个新的 Promise 实例（注意，不是原来那个 Promise 实例）。因此可以采用链式写法，即 then 方法后面再调用另一个 then 方法。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在-then-方法中的返回值作为参数，传入下一个回调函数。"><span class="nav-number">3.0.0.2.1.</span> <span class="nav-text">在 then 方法中的返回值作为参数，传入下一个回调函数。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果-then-回调函数返回一个值，那么-then-返回的-Promise-对象将会成为接受状态，并接受该值作为接受状态的回调函数的参数值。"><span class="nav-number">3.0.0.2.2.</span> <span class="nav-text">如果 then 回调函数返回一个值，那么 then 返回的 Promise 对象将会成为接受状态，并接受该值作为接受状态的回调函数的参数值。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#同理-then-回调函数抛出一个错误，那么-then-返回的Promise-对象将成为接受状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。"><span class="nav-number">3.0.0.2.3.</span> <span class="nav-text">同理 then 回调函数抛出一个错误，那么 then 返回的Promise 对象将成为接受状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-prototype-catch"><span class="nav-number">4.</span> <span class="nav-text">Promise.prototype.catch()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#catch-方法返回一个Promise，并且处理拒绝的情况。"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">catch 方法返回一个Promise，并且处理拒绝的情况。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#它的行为与调用Promise-prototype-then-undefined-onRejected-相同。"><span class="nav-number">4.0.0.1.0.1.</span> <span class="nav-text">它的行为与调用Promise.prototype.then(undefined, onRejected) 相同。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Promise-对象的状态一旦变为-rejected-，便不可以再改变，此时便会调用-catch-方法指定的回调函数，此外，-then-方法指定的回调函数若在运行中抛出错误，也会被-catch-方法捕获"><span class="nav-number">4.0.0.1.0.2.</span> <span class="nav-text">Promise 对象的状态一旦变为 rejected ，便不可以再改变，此时便会调用 catch 方法指定的回调函数，此外， then 方法指定的回调函数若在运行中抛出错误，也会被 catch 方法捕获</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-resolve"><span class="nav-number">5.</span> <span class="nav-text">Promise.resolve()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将现有对象转为-Promise-对象"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">将现有对象转为 Promise 对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其参数有四种情况："><span class="nav-number">5.0.0.2.</span> <span class="nav-text">其参数有四种情况：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-不带任何参数"><span class="nav-number">5.0.0.2.1.</span> <span class="nav-text">(1) 不带任何参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#直接返回一个-resolved-状态的-Promise-对象"><span class="nav-number">5.0.0.2.2.</span> <span class="nav-text">直接返回一个 resolved 状态的 Promise 对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-参数不为对象，或者是不具有-then-方法的对象"><span class="nav-number">5.0.0.3.</span> <span class="nav-text">(2) 参数不为对象，或者是不具有 then 方法的对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#返回一个新的状态为-resolved-的-Promise-对象，此时会立即执行回调函数。"><span class="nav-number">5.0.0.3.1.</span> <span class="nav-text">返回一个新的状态为 resolved 的 Promise 对象，此时会立即执行回调函数。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-参数是一个thenable对象"><span class="nav-number">5.0.0.4.</span> <span class="nav-text">(3) 参数是一个thenable对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#thenable-对象指的是具有-then-方法的对象，Promise-resolve-方法会将这个对象转为-Promise-对象，然后就立即执行-thenable-对象的-then-方法。"><span class="nav-number">5.0.0.4.1.</span> <span class="nav-text">thenable 对象指的是具有 then 方法的对象，Promise.resolve 方法会将这个对象转为 Promise 对象，然后就立即执行 thenable 对象的 then 方法。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-参数是一个-Promise-实例"><span class="nav-number">5.0.0.5.</span> <span class="nav-text">(4) 参数是一个 Promise 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#不做任何修改，原封不动的返回这个实例。"><span class="nav-number">5.0.0.5.1.</span> <span class="nav-text">不做任何修改，原封不动的返回这个实例。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-reject"><span class="nav-number">6.</span> <span class="nav-text">Promise.reject()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-all"><span class="nav-number">7.</span> <span class="nav-text">Promise.all()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-race"><span class="nav-number">8.</span> <span class="nav-text">Promise.race()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
