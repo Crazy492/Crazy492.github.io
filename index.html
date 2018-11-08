@@ -248,6 +248,146 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/08/vue-router/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/11/08/vue-router/" itemprop="url">
+                  Vue-router
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-08T19:00:00+08:00">
+                2018-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>Vue 路由用于网页跳转，相较于 a 标签，路由的优势在于不用网页刷新，不用重新进行网页请求，便可以实现组件间的跳转，从而达到网页无刷新跳转的效果。</p>
+<hr>
+<h1 id="安装-vue-router-模块"><a href="#安装-vue-router-模块" class="headerlink" title="安装 vue-router 模块"></a>安装 vue-router 模块</h1><p>首先默认已经自行安装配置好基本的Vue的webpack打包工具<br>可以在 package.json 文件里面的 dependencies （或 devDependencies） 查看 vue-router 是否安装好，以及安装的版本。</p>
+<p>若无安装可在终端内输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-router --save</span><br></pre></td></tr></table></figure></p>
+<p><strong>tips：简单区别 –save 和 –save-dev</strong></p>
+<p>–save ：将依赖的模块添加到 dependencies 下，这是项目在发布后需要依赖的模块。<br>–save-dev : 将依赖的模块添加到 devDependencies 下，这是项目在开发过程中才需要依赖的模块。</p>
+<hr>
+<h1 id="实例化-VueRouter-对象"><a href="#实例化-VueRouter-对象" class="headerlink" title="实例化 VueRouter 对象"></a>实例化 VueRouter 对象</h1><p>在 main.js 下,首先引入并使用路由模块。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line">Vue.use(VueRouter)</span><br></pre></td></tr></table></figure></p>
+<p>接着便是实例化 VueRouter 对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes:[</span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">"/"</span>,<span class="attr">component</span>:Home&#125;,  <span class="comment">// 默认的首页</span></span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">"/helloworld"</span>,<span class="attr">component</span>:HelloWorld&#125;,</span><br><span class="line">  ],</span><br><span class="line">  mode:<span class="string">"history"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>routes 是路由数组，基本的数组成员就是有 path 和 component 两种属性的对象。值得注意的是，这里需要 import Home 和 HelloWorld 的模板</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'./components/HelloWorld'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./components/Home'</span></span><br></pre></td></tr></table></figure>
+<p>mode:”history” 可将 # 号省略掉，避免造成路径的混乱.</p>
+<p>最后在 Vue 实例对象内使用 router。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  router, <span class="comment">//需要在 Vue 实例中使用 router</span></span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="使用-router-view-，router-link"><a href="#使用-router-view-，router-link" class="headerlink" title="使用 router-view ，router-link"></a>使用 router-view ，router-link</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/helloworld"</span>&gt;</span>HelloWorld<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>router-view 相当于 routers 容器，所有路由跳转的现实都在这个标签内。</p>
+<p>router-link 相当于 a 标签的作用 ，to 后面写相对应路由。</p>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/27/异步Promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -793,7 +933,7 @@
 <h2 id="2-1-插值"><a href="#2-1-插值" class="headerlink" title="2.1 插值"></a>2.1 插值</h2><p>最常见的插值形式为双大括号文本插入</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;My name is &#123;&#123; name &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如要将数据解释为 HTML 代码，则需要配合 v-html 指令</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p v-html = <span class="string">" HtmlCode "</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p v-html = <span class="string">" HtmlCode "</span>&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
 <p>双大括号内可以使用JavaScript表达式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">    &#123;&#123; number + <span class="number">1</span> &#125;&#125;</span><br><span class="line">    &#123;&#123; ok ? <span class="string">'YES'</span> : <span class="string">'NO'</span> &#125;&#125;</span><br><span class="line">    &#123;&#123; message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
 <hr>
@@ -2062,185 +2202,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/ajax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/20/ajax/" itemprop="url">
-                  Ajax
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-20T20:21:43+08:00">
-                2018-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。</p>
-<p>Ajax技术用到了：</p>
-<ol>
-<li><p>XMLHttpRequest 对象 (异步的与服务器交换数据)</p>
-</li>
-<li><p>JavaScript/DOM (信息显示/交互)</p>
-</li>
-<li><p>CSS (给数据定义样式)</p>
-</li>
-<li><p>XML (作为转换数据的格式)</p>
-</li>
-</ol>
-<p>Ajax四部曲：</p>
-<ol>
-<li>创建 XMLHttpRequest 对象</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlHttp ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line">    <span class="comment">// IE 7+ 及主流浏览器</span></span><br><span class="line">    xmlHttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">// IE 6</span></span><br><span class="line">    xmlHttp = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>向服务器发送请求</li>
-</ol>
-<p><strong>open(method,url,async):规定请求的类型</strong></p>
-<p>method：请求的类型；GET 或 POST</p>
-<p>url：文件在服务器上的位置</p>
-<p>async：true（异步）或 false（同步）</p>
-<p><strong>send():将请求发送到服务器</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"ajax_info.txt"</span>,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
-<p><strong>GET与POST</strong></p>
-<p>GET：简单也更快</p>
-<p>这些情况下是使用POST：</p>
-<ol>
-<li>无法使用缓存文件（更新服务器上的文件或数据库）</li>
-<li>向服务器发送大量数据（POST 没有数据量限制）</li>
-<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
-</ol>
-<p>解决缓存问题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"ajax_info.txt?t="</span> + <span class="built_in">Math</span>.random(),<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>获得服务器响应</li>
-</ol>
-<p>responseTest属性：返回字符串形式的响应</p>
-<p>responseXML属性：获得 XML 形式的响应数据</p>
-<p>响应服务器的响应</p>
-<p>onreadystatechange 事件</p>
-<p>XMLHttpRequest 对象的三个重要的属性</p>
-<ol>
-<li><p>onreadystatechange：存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数</p>
-</li>
-<li><p>readyState：    存有 XMLHttpRequest 的状态。从 0 到 4 发生变化</p>
-<p> 0: 请求未初始化<br> 1: 服务器连接已建立<br> 2: 请求已接收<br> 3: 请求处理中<br> 4: 请求已完成，且响应已就绪</p>
-</li>
-<li><p>status：</p>
-<p> 200：服务器响应正常。<br> 304：该资源在上次请求之后没有任何修改（这通常用于浏览器的缓存机制，使用GET请求时尤其需要注意）。<br> 400：无法找到请求的资源。<br> 401：访问资源的权限不够。<br> 403：没有权限访问资源。<br> 404：需要访问的资源不存在。<br> 405：需要访问的资源被禁止。<br> 407：访问的资源需要代理身份验证。<br> 500：服务器内部错误<br> 502：服务器暂时不可用，有时是为了防止发生系统过载</p>
-</li>
-</ol>
-<p>判断是否成功</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AJAx实例：</p>
-<p><a href="http://www.runoob.com/ajax/ajax-examples.html" target="_blank" rel="noopener">http://www.runoob.com/ajax/ajax-examples.html</a></p>
-<p><strong>生如夏花般绚烂，死如秋叶般静美</strong></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2290,7 +2251,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2303,7 +2264,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
