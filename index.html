@@ -331,7 +331,7 @@
 <h1 id="安装-vue-router-模块"><a href="#安装-vue-router-模块" class="headerlink" title="安装 vue-router 模块"></a>安装 vue-router 模块</h1><p>首先默认已经自行安装配置好基本的Vue的webpack打包工具<br>可以在 package.json 文件里面的 dependencies （或 devDependencies） 查看 vue-router 是否安装好，以及安装的版本。</p>
 <p>若无安装可在终端内输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-router --save</span><br></pre></td></tr></table></figure></p>
 <p><strong>tips：简单区别 –save 和 –save-dev</strong></p>
-<p>–save ：将依赖的模块添加到 dependencies 下，这是项目在发布后需要依赖的模块。<br>–save-dev : 将依赖的模块添加到 devDependencies 下，这是项目在开发过程中才需要依赖的模块。</p>
+<p> –save ：将依赖的模块添加到 dependencies 下，这是项目在发布后需要依赖的模块。<br> –save-dev : 将依赖的模块添加到 devDependencies 下，这是项目在开发过程中才需要依赖的模块。</p>
 <hr>
 <h1 id="实例化-VueRouter-对象"><a href="#实例化-VueRouter-对象" class="headerlink" title="实例化 VueRouter 对象"></a>实例化 VueRouter 对象</h1><p>在 main.js 下,首先引入并使用路由模块。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line">Vue.use(VueRouter)</span><br></pre></td></tr></table></figure></p>
 <p>接着便是实例化 VueRouter 对象</p>
@@ -933,7 +933,7 @@
 <h2 id="2-1-插值"><a href="#2-1-插值" class="headerlink" title="2.1 插值"></a>2.1 插值</h2><p>最常见的插值形式为双大括号文本插入</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;My name is &#123;&#123; name &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如要将数据解释为 HTML 代码，则需要配合 v-html 指令</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p v-html = <span class="string">" HtmlCode "</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p v-html = <span class="string">" HtmlCode "</span>&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
 <p>双大括号内可以使用JavaScript表达式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">    &#123;&#123; number + <span class="number">1</span> &#125;&#125;</span><br><span class="line">    &#123;&#123; ok ? <span class="string">'YES'</span> : <span class="string">'NO'</span> &#125;&#125;</span><br><span class="line">    &#123;&#123; message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
 <hr>
