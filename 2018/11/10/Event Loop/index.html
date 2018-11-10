@@ -1,0 +1,710 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="事件循环,任务队列,宏任务与微任务," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言  从 JavaScript 诞生以来，JavaScript 就被设计为单线程且永不阻塞的脚本语言。 单线程  JavaScript 代码在任何时候都只有一个主线程处理所有的任务。   设计为单线程的原因主要是 JavaScript 是与浏览器交互的语言，需要完成一些 DOM 操作。若将 JavaScript 设计为多线程，则可能发生下面这种情况：   第一个线程创造了 DOM 结点，并进行">
+<meta name="keywords" content="事件循环,任务队列,宏任务与微任务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件循环">
+<meta property="og:url" content="http://yoursite.com/2018/11/10/Event Loop/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言  从 JavaScript 诞生以来，JavaScript 就被设计为单线程且永不阻塞的脚本语言。 单线程  JavaScript 代码在任何时候都只有一个主线程处理所有的任务。   设计为单线程的原因主要是 JavaScript 是与浏览器交互的语言，需要完成一些 DOM 操作。若将 JavaScript 设计为多线程，则可能发生下面这种情况：   第一个线程创造了 DOM 结点，并进行">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-10T08:11:30.689Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件循环">
+<meta name="twitter:description" content="前言  从 JavaScript 诞生以来，JavaScript 就被设计为单线程且永不阻塞的脚本语言。 单线程  JavaScript 代码在任何时候都只有一个主线程处理所有的任务。   设计为单线程的原因主要是 JavaScript 是与浏览器交互的语言，需要完成一些 DOM 操作。若将 JavaScript 设计为多线程，则可能发生下面这种情况：   第一个线程创造了 DOM 结点，并进行">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/10/Event Loop/"/>
+
+
+
+
+
+  <title> 事件循环 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/10/Event Loop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                事件循环
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-10T11:30:00+08:00">
+                2018-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  从 JavaScript 诞生以来，JavaScript 就被设计为<strong>单线程</strong>且<strong>永不阻塞</strong>的脚本语言。</p>
+<h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><p>  JavaScript 代码在任何时候都只有一个主线程处理所有的任务。</p>
+<p>  设计为单线程的原因主要是 JavaScript 是与浏览器交互的语言，需要完成一些 DOM 操作。若将 JavaScript 设计为多线程，则可能发生下面这种情况：</p>
+<p>  第一个线程创造了 DOM 结点，并进行了相应的 DOM 操作。<br>  第二个线程删除了该 DOM 结点。<br>  此时就遇到问题了，该 DOM 结点该如何存在？毁灭还是新生？</p>
+<p>  因此 JavaScript 要设计成单线程。</p>
+<p>  可是，单线程注定会限制 JavaScript 的效率，因此开发了 <strong>Web Worker</strong> 技术，该技术号称能将 JavaScript 变为多线程的语言。</p>
+<p>  然而，该技术所开发的多线程有很多限制，例如所有新线程必须在主线程的完全控制下，不能独立执行，对于 I/O 操作，新线程更是没有这个权限进行。严格来说，<strong>Web Worker</strong> 技术并没有改变 JavaScript 是单线程的语言的实质。可以预见，JavaScript 在未来也只能是单线程的。</p>
+<h2 id="永不阻塞"><a href="#永不阻塞" class="headerlink" title="永不阻塞"></a>永不阻塞</h2><p>  当代码中有异步任务(无法立刻返回结果的任务，如 I/O 事件),主线程可以暂时挂起该任务,然后在异步任务返回结果后再执行相应回调函数。</p>
+<hr>
+<h1 id="任务队列-task-queue"><a href="#任务队列-task-queue" class="headerlink" title="任务队列(task queue)"></a>任务队列(task queue)</h1><p>单线程的 JavaScript 意味着任务需要一个个来实现，若前一个任务耗时很长，后面的任务就不得不等待。</p>
+<p>于是乎，JavaScript 的设计者意识到，如果将 I/O 操作等耗时长的任务先挂起，先运行后面的任务，等 I/O 操作等耗时长的任务返回了结果，再回头把挂起的任务完成，岂不美哉？</p>
+<p>因此，所有任务可以分为两种，一是<strong>同步任务</strong>，另一种是<strong>异步任务</strong>。</p>
+<p><strong>同步任务</strong>指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务。</p>
+<p><strong>异步任务</strong>指的是，不进入主线程、而进入<strong>任务队列</strong>的任务，只有任务队列通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
+<p>异步任务必须指定<strong>回调函数</strong>，所谓回调函数，就是会被主线程挂起来的那些代码。所谓执行异步任务。就是执行其对应的回调函数。</p>
+<p>任务队列是个 FIFO 的数据结构，一旦主线程的任务栈中所有同步任务执行完成，任务队列中的第一个任务就会被添加到主线程。</p>
+<hr>
+<h1 id="事件循环-Event-Loop"><a href="#事件循环-Event-Loop" class="headerlink" title="事件循环(Event Loop)"></a>事件循环(Event Loop)</h1><p>主线程从”任务队列”中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为 Event Loop。</p>
+<p>加入到任务队列的异步任务其实分为两种，一是宏任务，二是微任务。</p>
+<h2 id="宏任务-macro-task-amp-微任务-micro-task"><a href="#宏任务-macro-task-amp-微任务-micro-task" class="headerlink" title="宏任务(macro task) &amp; 微任务(micro task)"></a>宏任务(macro task) &amp; 微任务(micro task)</h2><p>异步任务也有优先级，微任务高于宏任务。</p>
+<p>以下事件属于宏任务：</p>
+<ul>
+<li>setTimeout()</li>
+<li>setInterval()</li>
+</ul>
+<p>以下事件属于微任务：</p>
+<ul>
+<li>new Promise()</li>
+</ul>
+<p>当主线程任务栈为空时，主线程会先处理微任务队列，当微任务队列也为空时，主线程再去处理宏任务队列。</p>
+<p>而 setTimeout 第二个延迟参数的意义，是指主线程所有同步任务，以及微任务队列所有异步任务都完成后，再生效的延迟时间。</p>
+<p>最后附上一道题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">6</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  resolve()</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>按照上面的理解，setTimeout 就是作为宏任务来存在的，而 Promise.then 则是具有代表性的微任务，上述代码的执行顺序就是按照序号来输出的。</p>
+<p>就是说 new Promise 在实例化的过程中所执行的代码都是同步进行的，而then中注册的回调才是异步执行的。回调函数，才能进入异步。</p>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/事件循环/" rel="tag"># 事件循环</a>
+          
+            <a href="/tags/任务队列/" rel="tag"># 任务队列</a>
+          
+            <a href="/tags/宏任务与微任务/" rel="tag"># 宏任务与微任务</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/08/vue-router/" rel="next" title="Vue-router">
+                <i class="fa fa-chevron-left"></i> Vue-router
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单线程"><span class="nav-number">1.1.</span> <span class="nav-text">单线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#永不阻塞"><span class="nav-number">1.2.</span> <span class="nav-text">永不阻塞</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任务队列-task-queue"><span class="nav-number">2.</span> <span class="nav-text">任务队列(task queue)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件循环-Event-Loop"><span class="nav-number">3.</span> <span class="nav-text">事件循环(Event Loop)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#宏任务-macro-task-amp-微任务-micro-task"><span class="nav-number">3.1.</span> <span class="nav-text">宏任务(macro task) &amp; 微任务(micro task)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

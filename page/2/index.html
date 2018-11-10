@@ -248,6 +248,162 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/eighthDay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/21/eighthDay/" itemprop="url">
+                  jQuery(part1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T20:21:43+08:00">
+                2018-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="jQuery效果"><a href="#jQuery效果" class="headerlink" title="jQuery效果"></a>jQuery效果</h2><h4 id="入口函数"><a href="#入口函数" class="headerlink" title="入口函数"></a>入口函数</h4><p>jQuery 入口函数:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 执行代码</span></span><br><span class="line">&#125;);</span><br><span class="line">或者</span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 执行代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>javscript入口函数:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 执行代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>两者区别：<br>jQuery 的入口函数是在 html 所有标签(DOM)都加载之后，就会去执行。<br>JavaScript 的 window.onload 事件是等到所有内容，包括外部图片之类的文件加载完后，才会执行。</p>
+<h4 id="jQuery选择器-杂记"><a href="#jQuery选择器-杂记" class="headerlink" title="jQuery选择器(杂记)"></a>jQuery选择器(杂记)</h4><p>1.通过<figure class="highlight javascript"><figcaption><span>$(":button")``` 可以选取所有 type</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">2.</span>关于 **:** 和 [ ] 这两个符号的理解</span><br><span class="line">**:** 可以理解为种类的意思，如：p:first，p 的种类为第一个。</span><br><span class="line">[ ] 很自然的可以理解为属性的意思，如：[href] 选取带有 href 属性的元素。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>**:** 即为 jQuery 的过滤选择器，语法类似于 css 中的伪类选择器；其过滤选择器大概可以分为基本过滤（p:first 之类）、内容过滤（:empty）、子元素过滤(:first-child)和属性过滤 [href] 选择器。</span><br><span class="line"></span><br><span class="line">#### 隐藏和显示</span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">`javascript</span></span><br><span class="line"><span class="string">$(selector).hide(speed,callback);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$(selector).show(speed,callback);</span></span><br></pre></td></tr></table></figure></p>
+<p>可选的 speed 参数规定隐藏/显示的速度，可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是隐藏或显示完成后所执行的函数名称。</p>
+<p>上面代码等效于toggle() 方法</p>
+<p>示被隐藏的元素，并隐藏已显示的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).toggle(speed,callback);</span><br></pre></td></tr></table></figure>
+<p>对于可选的 callback 参数，有以下两点说明：<br>1.$(selector)选中的元素的个数为n个，则callback函数会执行n次；<br>2.callback函数名后加括号，会立刻执行函数体,且只会执行一次，而不是等到显示/隐藏完成后才执行；<br>3.callback既可以是函数名，也可以是匿名函数</p>
+<h4 id="淡入淡出"><a href="#淡入淡出" class="headerlink" title="淡入淡出"></a>淡入淡出</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(selector).fadeIn(speed,callback);</span><br><span class="line"></span><br><span class="line">$(selector).fadeOut(speed,callback);</span><br></pre></td></tr></table></figure>
+<p>等效于fadeToggle()方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).fadeToggle(speed,callback);</span><br></pre></td></tr></table></figure>
+<p>fadeTo() 方法允许渐变为给定的不透明度（值介于 0 与 1 之间）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).fadeTo(speed,opacity,callback);</span><br></pre></td></tr></table></figure>
+<h4 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(selector).slideDown(speed,callback);</span><br><span class="line"></span><br><span class="line">$(selector).slideUp(speed,callback);</span><br></pre></td></tr></table></figure>
+<p>等效于slideToogle()方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(selector).slideToggle(speed,callback);</span><br></pre></td></tr></table></figure>
+<h4 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).animate(&#123;params&#125;,speed,callback);</span><br></pre></td></tr></table></figure>
+<p>必需的 params 参数定义形成动画的 CSS 属性。<br>可选的 speed 参数规定效果的时长。它可以取以下值：”slow”、”fast” 或毫秒。<br>可选的 callback 参数是动画完成后所执行的函数名称。</p>
+<p>{params}参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div"</span>).animate(&#123;</span><br><span class="line">     left:<span class="string">'250px'</span>,     <span class="comment">// 向右移动250px</span></span><br><span class="line">     top:<span class="string">'250px'</span>,      <span class="comment">// 向下移动250px</span></span><br><span class="line">     paddingLeft:<span class="string">'50px'</span>,</span><br><span class="line">     marginRight:<span class="string">'50px'</span>,      </span><br><span class="line">     opacity:<span class="string">'0.5'</span>,    <span class="comment">// 透明度变为0.5</span></span><br><span class="line">     height:<span class="string">'150px'</span>,   <span class="comment">// 高度变为150px</span></span><br><span class="line">     width:<span class="string">'150px'</span>     <span class="comment">// 宽度变为150px</span></span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>也可以定义相对值（该值相对于元素的当前值）。需要在值的前面加上 += 或 -=：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div"</span>).animate(&#123;</span><br><span class="line">    left:<span class="string">'+=250px'</span>,</span><br><span class="line">    height:<span class="string">'+=150px'</span>,</span><br><span class="line">    width:<span class="string">'+=150px'</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>还可以把属性的动画值设置为 “show”、”hide” 或 “toggle”</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div"</span>).animate(&#123;</span><br><span class="line">    height:<span class="string">'toggle'</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>编写多个 animate() 调用，jQuery 会创建包含这些方法调用的”内部”队列。然后逐一运行这些 animate 调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> div=$(<span class="string">"div"</span>);</span><br><span class="line">div.animate(&#123;<span class="attr">height</span>:<span class="string">'300px'</span>,<span class="attr">opacity</span>:<span class="string">'0.4'</span>,<span class="attr">fontSize</span>:<span class="string">'1em'</span>&#125;,<span class="string">"slow"</span>);</span><br><span class="line">div.animate(&#123;<span class="attr">width</span>:<span class="string">'300px'</span>,<span class="attr">opacity</span>:<span class="string">'0.8,'</span>fontSize:<span class="string">'2em'</span>&#125;,<span class="string">"slow"</span>);</span><br><span class="line">div.animate(&#123;<span class="attr">height</span>:<span class="string">'100px'</span>,<span class="attr">opacity</span>:<span class="string">'0.4'</span>,<span class="attr">fontSize</span>:<span class="string">'1em'</span>&#125;,<span class="string">"slow"</span>);</span><br><span class="line">div.animate(&#123;<span class="attr">width</span>:<span class="string">'100px'</span>,<span class="attr">opacity</span>:<span class="string">'0.8'</span>,<span class="attr">fontSize</span>:<span class="string">'2em'</span>&#125;,<span class="string">"slow"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="停止动画"><a href="#停止动画" class="headerlink" title="停止动画"></a>停止动画</h4><p>jQuery stop() 方法用于停止动画或效果，在它们完成之前。<br>stop() 方法适用于所有 jQuery 效果函数，包括滑动、淡入淡出和自定义动画。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).stop(stopAll,goToEnd);</span><br></pre></td></tr></table></figure>
+<p>可选的 stopAll 参数规定是否应该清除动画队列。默认是 false，即仅停止活动的动画，允许任何排入队列的动画向后执行。<br>可选的 goToEnd 参数规定是否立即完成当前动画。默认是 false。<br>因此，默认地，stop() 会清除在被选元素上指定的当前动画。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#start"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">"div"</span>).animate(&#123;<span class="attr">left</span>:<span class="string">'100px'</span>&#125;,<span class="number">5000</span>);</span><br><span class="line">   $(<span class="string">"div"</span>).animate(&#123;<span class="attr">fontSize</span>:<span class="string">'3em'</span>&#125;,<span class="number">5000</span>);</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"> $(<span class="string">"#stop"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">"div"</span>).stop();</span><br><span class="line"> &#125;);<span class="comment">//停止当前激活的动画，但之后能在动画队列中激活下一个动画。</span></span><br><span class="line"></span><br><span class="line"> $(<span class="string">"#stop2"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">"div"</span>).stop(<span class="literal">true</span>);</span><br><span class="line"> &#125;);<span class="comment">//停止当前动画，并清除动画队列，所以元素的所有动画都会停止。</span></span><br><span class="line"></span><br><span class="line"> $(<span class="string">"#stop3"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">"div"</span>).stop(<span class="literal">true</span>,<span class="literal">true</span>);</span><br><span class="line"> &#125;);<span class="comment">//快速完成当前动作，并停止所有动画。</span></span><br></pre></td></tr></table></figure>
+<h4 id="链-Chaining"><a href="#链-Chaining" class="headerlink" title="链(Chaining)"></a>链(Chaining)</h4><p>链允许我们在一条语句中运行多个 jQuery 方法（在相同的元素上）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#p1"</span>).css(<span class="string">"color"</span>,<span class="string">"red"</span>).slideUp(<span class="number">2000</span>).slideDown(<span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+<p>“p1” 元素首先会变为红色，然后向上滑动，再然后向下滑动</p>
+<p><strong>你不愿意种花。你说，你不愿意看到它一点点凋落。是的，为了避免失败，你避免了一切开始。</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/ajax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1638,135 +1794,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/firstDay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/12/firstDay/" itemprop="url">
-                  git操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T21:33:43+08:00">
-                2018-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="git四个区域"><a href="#git四个区域" class="headerlink" title="git四个区域"></a>git四个区域</h2><h4 id="Workspace：工作区"><a href="#Workspace：工作区" class="headerlink" title="Workspace：工作区"></a>Workspace：工作区</h4><h5 id="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）"><a href="#平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）" class="headerlink" title="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）"></a>平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 <code>$ git cd XX</code> 进入XX文件，也可以右键文件夹选择 <code>git bash here</code> ，然后 <code>$ git clone URL(仓库地址)</code> ，之后再 <code>$ git init</code> (初始化)）</h5><h4 id="Index-Stage：暂存区"><a href="#Index-Stage：暂存区" class="headerlink" title="Index / Stage：暂存区"></a>Index / Stage：暂存区</h4><h5 id="git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"><a href="#git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。" class="headerlink" title=".git目录下的index文件（要用 $ git -ls 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"></a>.git目录下的index文件（要用 <code>$ git -ls</code> 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。</h5><h4 id="Repository：仓库区（或本地仓库）"><a href="#Repository：仓库区（或本地仓库）" class="headerlink" title="Repository：仓库区（或本地仓库）"></a>Repository：仓库区（或本地仓库）</h4><p>保存了被提交过的旧版本</p>
-<h4 id="Remote：远程仓库"><a href="#Remote：远程仓库" class="headerlink" title="Remote：远程仓库"></a>Remote：远程仓库</h4><p>远程仓库的内容被多个协作关系的本地仓库所修改，所共用，是本地仓库的交集处，是团队合作的地方。</p>
-<h3 id="下面是几个区的联系"><a href="#下面是几个区的联系" class="headerlink" title="下面是几个区的联系"></a>下面是几个区的联系</h3><p><strong>工作区</strong>通过 <code>$ git add</code> 操作将修改提交到,<strong>暂存区</strong> 通过 <code>$ git commit</code> 操作将修改提交到<strong>本地仓库</strong>， <strong>本地仓库</strong>通过 <code>$ git push</code> 将修改同步到<strong>远程仓库</strong> ，而<strong>远程仓库</strong>可以通过 <code>$ git pull</code> 把内容拖到<strong>工作区</strong>，也可以通过 <code>$ git fetch</code> 将<strong>远程仓库</strong>内容拖到<strong>本地仓库</strong>（想得到别人代码的时候常常这样做）</p>
-<h4 id="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"><a href="#下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）" class="headerlink" title="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"></a>下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）</h4><h5 id="git-clone-仓库地址"><a href="#git-clone-仓库地址" class="headerlink" title="$ git clone 仓库地址"></a><code>$ git clone</code> 仓库地址<url></url></h5><h5 id="git-init-初始化本地仓库"><a href="#git-init-初始化本地仓库" class="headerlink" title="$ git init 初始化本地仓库"></a><code>$ git init</code> 初始化本地仓库</h5><h5 id="git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库"><a href="#git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库" class="headerlink" title="$ git remote -v (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)"></a><code>$ git remote -v</code> (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)</h5><h5 id="git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy"><a href="#git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy" class="headerlink" title="$ git checkout -b Crazy (创建分支Crazy 并且切换到新建分支Crazy)"></a><code>$ git checkout -b Crazy</code> (创建分支Crazy 并且切换到新建分支Crazy)</h5><h5 id="git-branch-（查看所有本地分支，现在的分支为绿色）"><a href="#git-branch-（查看所有本地分支，现在的分支为绿色）" class="headerlink" title="$ git branch （查看所有本地分支，现在的分支为绿色）"></a><code>$ git branch</code> （查看所有本地分支，现在的分支为绿色）</h5><h5 id="git-status-察看暂存区文件是否修改（若修改了为红色）"><a href="#git-status-察看暂存区文件是否修改（若修改了为红色）" class="headerlink" title="$ git status (察看暂存区文件是否修改（若修改了为红色）"></a><code>$ git status</code> (察看暂存区文件是否修改（若修改了为红色）</h5><h5 id="git-add-abc-txt-添加文件-git-add-是指全部添加文件"><a href="#git-add-abc-txt-添加文件-git-add-是指全部添加文件" class="headerlink" title="$ git add abc.txt (添加文件)  ($ git add . 是指全部添加文件)"></a><code>$ git add abc.txt</code> (添加文件)  ($ git add . 是指全部添加文件)</h5><h5 id="git-status-添加成功则变绿色"><a href="#git-status-添加成功则变绿色" class="headerlink" title="$ git status (添加成功则变绿色)"></a><code>$ git status</code> (添加成功则变绿色)</h5><h5 id="git-commit-m-“注释”（提交修改-到自己的本地仓库）"><a href="#git-commit-m-“注释”（提交修改-到自己的本地仓库）" class="headerlink" title="$ git commit -m “注释”（提交修改 到自己的本地仓库）"></a><code>$ git commit -m</code> “注释”（提交修改 到自己的本地仓库）</h5><h5 id="git-push-origin-Crazy-把本地仓库内容提交到Crazy分支"><a href="#git-push-origin-Crazy-把本地仓库内容提交到Crazy分支" class="headerlink" title="$ git push origin Crazy (把本地仓库内容提交到Crazy分支)"></a><code>$ git push origin Crazy</code> (把本地仓库内容提交到Crazy分支)</h5><h5 id="git-checkout-master-切换到分支master"><a href="#git-checkout-master-切换到分支master" class="headerlink" title="$ git checkout master  (切换到分支master)"></a><code>$ git checkout master</code>  (切换到分支master)</h5><h5 id="git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变"><a href="#git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变" class="headerlink" title="$ git merge Crazy (把Crazy分支内容搬到master分支，但Crazy分支内容不变)"></a><code>$ git merge Crazy</code> (把Crazy分支内容搬到master分支，但Crazy分支内容不变)</h5><h5 id="git-pull-origin-master-把master分支内容克隆到本地仓库"><a href="#git-pull-origin-master-把master分支内容克隆到本地仓库" class="headerlink" title="$ git pull origin master (把master分支内容克隆到本地仓库)"></a><code>$ git pull origin master</code> (把master分支内容克隆到本地仓库)</h5><h5 id="git-checkout-Crazy-切换分支"><a href="#git-checkout-Crazy-切换分支" class="headerlink" title="$ git checkout Crazy  (切换分支)"></a><code>$ git checkout Crazy</code>  (切换分支)</h5><h5 id="git-merge-master-把master内容搬到Crazy分支上"><a href="#git-merge-master-把master内容搬到Crazy分支上" class="headerlink" title="$ git merge master (把master内容搬到Crazy分支上)"></a><code>$ git merge master</code> (把master内容搬到Crazy分支上)</h5><p><strong>时间并不会真的帮我们解决什么问题，它只是把原来怎么也想不通的问题，变得不再重要了。</strong></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1811,7 +1843,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1824,7 +1856,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
