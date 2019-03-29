@@ -1,0 +1,709 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="NodeJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1. http模块    2. fs模块    3. querystring模块    4. url模块    5. 接口应用 学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起，并且相互配合实现GET/POST，读取文件的功能  http模块    http模块是实现原生NodeJS服务器链接的一个模块，">
+<meta name="keywords" content="NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS-原生篇1">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/NodeJS-原生篇/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. http模块    2. fs模块    3. querystring模块    4. url模块    5. 接口应用 学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起，并且相互配合实现GET/POST，读取文件的功能  http模块    http模块是实现原生NodeJS服务器链接的一个模块，">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-29T12:28:01.995Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJS-原生篇1">
+<meta name="twitter:description" content="1. http模块    2. fs模块    3. querystring模块    4. url模块    5. 接口应用 学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起，并且相互配合实现GET/POST，读取文件的功能  http模块    http模块是实现原生NodeJS服务器链接的一个模块，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/29/NodeJS-原生篇/"/>
+
+
+
+
+
+  <title> NodeJS-原生篇1 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/NodeJS-原生篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NodeJS-原生篇1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T12:00:00+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><div style="width:100%;padding:10px 20px ;margin:0 auto;color:white"><br>    <a style="color:skyblue ;display:block;text-decoration:none;border:none" href="#http">1. http模块</a><br>    <a style="color:skyblue;display:block;text-decoratifson:none;border:none" href="#fs">2. fs模块</a><br>    <a style="color:skyblue;display:block;text-decoratifson:none;border:none" href="#querystring">3. querystring模块</a><br>    <a style="color:skyblue;display:block;text-decoratifson:none;border:none" href="#url">4. url模块</a><br>    <a style="color:skyblue;display:block;text-decoratifson:none;border:none" href="#interface">5. 接口应用</a></div></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起，并且相互配合实现GET/POST，读取文件的功能</p>
+<hr>
+<h2 id="http">http模块</h2>
+
+<p>  http模块是实现原生NodeJS服务器链接的一个模块，主要使用方式为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'request:'</span>,req);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'response:'</span>,res);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>  上面的代码，实现了在本机8080端口创立服务器的功能，其中createServer方法有两个参数req，res</p>
+<p>  把这两个参数打印出来，会发现是一个有一大堆属性的对象，在这里，我们看看一些比较重要的属性方法</p>
+<ul>
+<li>res.write()可以把字符串或者buffer(不能发json,可用JSON.stringify())发给服务器</li>
+<li>res.end()是结束此次与服务器的请求，值得一提的是，write后必须要end，否则浏览器不会断开请求链接，你将接受不到服务器的响应，在浏览器界面上显示为左上角刷新圈圈一直在转。</li>
+</ul>
+<h2 id="fs">fs模块</h2>
+
+<p>fs模块可以实现文件的操作，在这里，我们主要了解一下fs的两个方法</p>
+<ul>
+<li>fs.writeFile(path,data,callback(err))，该方法实现文件内容的写入，其回调函数有个err错误对象参数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">fs.writeFile('</span>./a.txt, <span class="string">'crazy492 is 1bin'</span>, err =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'失败'</span>,err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'成功'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fs.readFile(path,callback(err,buffer))，该方法是读取文件，其回调函数不仅有个err错误对象参数，还有个buffer数据(二进制数据)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">fs.readFile('</span>./a.txt, (err, buffer) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'失败'</span>,err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'成功'</span>,data);</span><br><span class="line">    <span class="comment">//data打印出来是一堆buffer数据</span></span><br><span class="line">    <span class="comment">//若该文件只是一些简单的字符串，可以data.toString()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>fs和http搭配的一种应用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//req.url 是请求的地址</span></span><br><span class="line">  fs.readFile(req.url, (err, buffer)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">      <span class="comment">//发送状态码给浏览器</span></span><br><span class="line">      res.writeHeader(<span class="number">404</span>);</span><br><span class="line">      res.write(<span class="string">'Not Found'</span>);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      res.writeHeader(<span class="number">200</span>);</span><br><span class="line">      res.write(buffer);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="querystring">querystring模块</h2>
+
+<p>get请求数据在url里面，获取url里面的数据可以用querystring</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring);</span></span><br><span class="line"><span class="string">//假设get请求为 localhost:8080/a?username=1bin&amp;password=123456</span></span><br><span class="line"><span class="string">let [url, query] = req.url.split('</span>?<span class="string">');</span></span><br><span class="line"><span class="string">let get = querystring.parse(query);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">console.log(url, get);</span></span><br><span class="line"><span class="string">//url : /a</span></span><br><span class="line"><span class="string">//get : &#123;uername:'</span><span class="number">1</span>bin<span class="string">',password:'</span><span class="number">123456</span><span class="string">'&#125;</span></span><br></pre></td></tr></table></figure>
+<p>get数据都在url里面，可以一次送达服务器，但对于post请求来说，数据都是分批送达的，此时需要将所有buffer整合为一个整体，post的body部分只有数据，可以用querystring模块解决，另外，利用req自带的两个事件，req.on(‘data’)和req.on(‘end),可以解决buffer分批接收整合的问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring=<span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr=[];</span><br><span class="line">req.on(<span class="string">'data'</span>, buffer=&gt;&#123;</span><br><span class="line">  arr.push(buffer);</span><br><span class="line">&#125;);</span><br><span class="line">req.on(<span class="string">'end'</span>, ()=&gt;&#123;</span><br><span class="line">  <span class="keyword">let</span> buffer=Buffer.concat(arr);</span><br><span class="line">  <span class="keyword">let</span> post=querystring.parse(buffer.toString());</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(post);</span><br><span class="line">  <span class="comment">//post : &#123;uername:'1bin',password:'123456'&#125;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="url">url模块</h2>
+
+<p>url模块比querystring模块更方便解析get数据，只需要url.parse(***,true)</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url=<span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> &#123;pathname, query&#125;=url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line">  <span class="comment">//url.parse()第二个参数是true是会自动解析url</span></span><br><span class="line">  </span><br><span class="line">  <span class="built_in">console</span>.log(pathname, query);</span><br><span class="line">  <span class="comment">//pathname : /a</span></span><br><span class="line">  <span class="comment">//query : &#123;uername:'1bin',password:'123456'&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="interface">接口应用</h2>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> path =<span class="string">''</span> , get =&#123;&#125;, post =&#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(req.method == <span class="string">'GET'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> &#123;pathname, query&#125; = url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    path = pathname;</span><br><span class="line">    get = query;</span><br><span class="line">    afterGetData()</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(req.method == <span class="string">'POST'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> arr =[];</span><br><span class="line"></span><br><span class="line">    req.on(<span class="string">'data'</span>, buffer =&gt;&#123;</span><br><span class="line">      arr.push(buffer);</span><br><span class="line">    &#125;);</span><br><span class="line">    req.on(<span class="string">'end'</span>, () =&gt;&#123;</span><br><span class="line">      <span class="keyword">let</span> buffer = Buffer.concat(arr);</span><br><span class="line">      </span><br><span class="line">      post = querystring.parse(buffer.toString());</span><br><span class="line">      path = req.url;</span><br><span class="line">      <span class="comment">//post的url就是地址</span></span><br><span class="line">      afterGetData();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">//设置拿到数据后的回调函数，在这里只区分了两个接口/reg和/login，以及文件请求</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">afterGetData</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(path == <span class="string">'/reg'</span>)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(path == <span class="string">'/login'</span>)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">//www 为默认文件请求文件夹</span></span><br><span class="line">      fs.readFile(<span class="string">`www<span class="subst">$&#123;path&#125;</span>`</span>, (err, buffer) =&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">          res.writeHeader(<span class="number">404</span>);</span><br><span class="line">          res.write(<span class="string">'NOT FOUND'</span>);</span><br><span class="line">          res.end();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          res.write(buffer);</span><br><span class="line">          res.end();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>以上用NodeJS原生自带的模块实现了get/post请求以及文件操作，此外有个favicon.ico请求经常出现，此为goole浏览器申请网页图标的请求</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/10/Event Loop/" rel="next" title="事件循环">
+                <i class="fa fa-chevron-left"></i> 事件循环
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">2.</span> <span class="nav-text">http模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fs"><span class="nav-number">3.</span> <span class="nav-text">fs模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#querystring"><span class="nav-number">4.</span> <span class="nav-text">querystring模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#url"><span class="nav-number">5.</span> <span class="nav-text">url模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interface"><span class="nav-number">6.</span> <span class="nav-text">接口应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

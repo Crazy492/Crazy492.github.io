@@ -323,6 +323,9 @@ dd {
 h1 {
   font-size: 2em;
 }
+h2 {
+  font-size: 28px;
+}
 .text-left {
   text-align: left;
 }
@@ -551,6 +554,7 @@ pre code {
   padding-left: 10px;
   padding-right: 10px;
   background-color: #f7f7f7;
+  font-size: 18px;
 }
 .highlight .line {
   height: 20px;
@@ -1688,7 +1692,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #40e3ff;
+  background: #18a2cf;
 }
 .links-of-blogroll {
   font-size: 13px;
