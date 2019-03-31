@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-light.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">Copy</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">Copy</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "Copied";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "Copy";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>NodeJS-原生篇2 | Crazy</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="en"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Crazy</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
+        
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/NodeJS-原生篇2/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Mr.bin">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Crazy">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">NodeJS-原生篇2</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-03-30T12:00:00+08:00">2019-03-30 12:00:00</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <ol style="background: #bdc3c7;
+    border-radius: 5px;
+    color: #2980b9;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration:none;
+    line-height:1"><br>  <li style="list-decoration:none"><a href="#2-1" style="color: #4682BE;text-decoration:none">fs模块</a></li><br>  <li><a href="#2-2" style="color: #4682BE;text-decoration:none">querystring模块</a></li><br>  <li><a href="#2-3" style="color: #4682BE;text-decoration:none">url模块</a></li><br>  <li><a href="#2-4" style="color: #4682BE;text-decoration:none">multiparty</a></li><br>  <li><a href="#2-5" style="color: #4682BE;text-decoration:none">接口应用</a></li><br></ol>
+
+<h2 id="2-1">fs模块</h2>
+
+<p>fs模块可以实现文件的操作，在这里，我们主要了解一下fs的两个方法<br><br><br>1.fs.writeFile(path,data,callback(err))，该方法实现文件内容的写入，其回调函数有个err错误对象参数</p>
+<figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript">const fs = require('fs);<br><br>fs.writeFile('./a.txt, 'crazy492 is 1bin', err =&gt; &#123;<br> if(err)&#123;<br>    console.log('失败',err);<br>  &#125;else&#123;<br>    console.log('成功');<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>2.fs.readFile(path,callback(err,buffer))，该方法是读取文件，其回调函数不仅有个err错误对象参数，还有个buffer数据(二进制数据)</p>
+<figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript">const fs = require('fs);<br>fs.readFile('./a.txt, (err, buffer) =&gt; &#123;<br>  if(err)&#123;<br>    console.log('失败',err);<br>  &#125;else&#123;<br>    console.log('成功',data);<br>    //data打印出来是一堆buffer数据<br>    //若该文件只是一些简单的字符串，可以data.toString()<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>fs和http搭配的一种应用</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> http=<span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);<br><span class="hljs-keyword">const</span> fs=<span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);<br><br><span class="hljs-keyword">let</span> server=http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>)</span>&#123;<br>  <span class="hljs-comment">//req.url 是请求的地址</span><br>  fs.readFile(req.url, (err, buffer)=&gt;&#123;<br>    <span class="hljs-keyword">if</span>(err)&#123;<br>      <span class="hljs-comment">//发送状态码给浏览器</span><br>      res.writeHeader(<span class="hljs-number">404</span>);<br>      res.write(<span class="hljs-string">'Not Found'</span>);<br>      res.end();<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>      res.writeHeader(<span class="hljs-number">200</span>);<br>      res.write(buffer);<br>      res.end();<br>    &#125;<br>  &#125;);<br>&#125;).listen(<span class="hljs-number">8080</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="2-2">querystring模块</h2>
+
+<p>get请求数据在url里面，获取url里面的数据可以用querystring</p>
+<figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript">const querystring = require('querystring);<br>//假设get请求为 localhost:8080/a?username=1bin&amp;password=123456<br>let [url, query] = req.url.split('?');<br>let get = querystring.parse(query);<br><br>console.log(url, get);<br>//url : /a<br>//get : &#123;uername:'1bin',password:'123456'&#125;<br></code></pre></td></tr></table></figure>
+<p>get数据都在url里面，可以一次送达服务器，但对于post请求来说，数据都是分批送达的，此时需要将所有buffer整合为一个整体，post的body部分只有数据，可以用querystring模块解决，另外，利用req自带的两个事件，req.on(‘data’)和req.on(‘end),可以解决buffer分批接收整合的问题</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> querystring=<span class="hljs-built_in">require</span>(<span class="hljs-string">'querystring'</span>);<br><br><span class="hljs-keyword">let</span> arr=[];<br>req.on(<span class="hljs-string">'data'</span>, buffer=&gt;&#123;<br>  arr.push(buffer);<br>&#125;);<br>req.on(<span class="hljs-string">'end'</span>, ()=&gt;&#123;<br>  <span class="hljs-keyword">let</span> buffer=Buffer.concat(arr);<br>  <span class="hljs-keyword">let</span> post=querystring.parse(buffer.toString());<br><br>  <span class="hljs-built_in">console</span>.log(post);<br>  <span class="hljs-comment">//post : &#123;uername:'1bin',password:'123456'&#125;</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+<h2 id="2-3">url模块</h2>
+
+<p>url模块比querystring模块更方便解析get数据，只需要url.parse(***,true)</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> url=<span class="hljs-built_in">require</span>(<span class="hljs-string">'url'</span>);<br><br><span class="hljs-keyword">let</span> &#123;pathname, query&#125;=url.parse(req.url, <span class="hljs-literal">true</span>);<br><span class="hljs-comment">//url.parse()第二个参数是true是会自动解析url</span><br>    <br><span class="hljs-built_in">console</span>.log(pathname, query);<br><span class="hljs-comment">//pathname : /a</span><br><span class="hljs-comment">//query : &#123;uername:'1bin',password:'123456'&#125;</span><br></code></pre></td></tr></table></figure>
+<h2 id="2-4">multiparty模块</h2><br>multiparty可以一同处理post的文件请求和普通请求，如果用原生写post文件请求则特别恶心,multiparty模块不是系统自带，需要下载<br><br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> multiparty = <span class="hljs-built_in">require</span>(<span class="hljs-string">'multiparty'</span>);<br><br><span class="hljs-keyword">let</span> form=<span class="hljs-keyword">new</span> multiparty.Form(&#123;<br>  <span class="hljs-attr">uploadDir</span>: <span class="hljs-string">'./upload'</span> <span class="hljs-comment">//上传到的地址</span><br>&#125;);<br><span class="hljs-comment">//若上传账号和密码两个字段加一个1.txt文件</span><br>form.parse(req);<span class="hljs-comment">//解析数据</span><br><span class="hljs-comment">//普通字段</span><br>form.on(<span class="hljs-string">'field'</span>, (name, value)=&gt;&#123; <br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'字段：'</span>, name, value);   <br>  <span class="hljs-comment">// 字段： username 1bin</span><br>  <span class="hljs-comment">// 字段： password 123456</span><br>&#125;);<br><span class="hljs-comment">//文件上传</span><br>form.on(<span class="hljs-string">'file'</span>, (name, file)=&gt;&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'文件：'</span>, name, file);<br>  <span class="hljs-comment">// 文件： f1 &#123; fieldName: 'f1',</span><br>  <span class="hljs-comment">//   originalFilename: '1.txt',</span><br>  <span class="hljs-comment">//   path: 'upload\\T8w1Kiny20fNsWDlVPgaJ9iJ.txt',</span><br>  <span class="hljs-comment">//   headers:</span><br>  <span class="hljs-comment">//    &#123; 'content-disposition': 'form-data; name="f1"; filename="1.txt"',</span><br>  <span class="hljs-comment">//      'content-type': 'text/plain' &#125;,</span><br>  <span class="hljs-comment">//   size: 0 &#125;</span><br>&#125;);<br><span class="hljs-comment">//表单解析完成</span><br>form.on(<span class="hljs-string">'close'</span>, ()=&gt;&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'表单解析完成'</span>);<br>&#125;);<br>req.on(<span class="hljs-string">'error'</span>, err =&gt;&#123;<br>  <span class="hljs-built_in">console</span>.log(err);<br>&#125;)<br></code></pre></td></tr></table></figure><br><br>假设post上传文件，前端表单enctype需要设置为”multipart/form-data”，<br><br><h2 id="2-5">接口应用</h2>
+
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);<br><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);<br><span class="hljs-keyword">const</span> querystring = <span class="hljs-built_in">require</span>(<span class="hljs-string">'querystring'</span>);<br><span class="hljs-keyword">const</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">'url'</span>);<br><br><span class="hljs-keyword">let</span> server = http.createServer(<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span>&#123;<br>  <span class="hljs-keyword">let</span> path =<span class="hljs-string">''</span> , get =&#123;&#125;, post =&#123;&#125;;<br><br>  <span class="hljs-keyword">if</span>(req.method == <span class="hljs-string">'GET'</span>)&#123;<br>    <span class="hljs-keyword">let</span> &#123;pathname, query&#125; = url.parse(req.url, <span class="hljs-literal">true</span>);<br><br>    path = pathname;<br>    get = query;<br>    afterGetData()<br>  &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(req.method == <span class="hljs-string">'POST'</span>)&#123;<br>    <span class="hljs-keyword">let</span> arr =[];<br><br>    req.on(<span class="hljs-string">'data'</span>, buffer =&gt;&#123;<br>      arr.push(buffer);<br>    &#125;);<br>    req.on(<span class="hljs-string">'end'</span>, () =&gt;&#123;<br>      <span class="hljs-keyword">let</span> buffer = Buffer.concat(arr);<br>      <br>      post = querystring.parse(buffer.toString());<br>      path = req.url;<br>      <span class="hljs-comment">//post的url就是地址</span><br>      afterGetData();<br>    &#125;);<br>  &#125;;<br>  <span class="hljs-comment">//设置拿到数据后的回调函数，在这里只区分了两个接口/reg和/login，以及文件请求</span><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">afterGetData</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">if</span>(path == <span class="hljs-string">'/reg'</span>)&#123;<br><br>    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(path == <span class="hljs-string">'/login'</span>)&#123;<br><br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>      <span class="hljs-comment">//www 为默认文件请求文件夹</span><br>      fs.readFile(<span class="hljs-string">`www<span class="hljs-subst">$&#123;path&#125;</span>`</span>, (err, buffer) =&gt;&#123;<br>        <span class="hljs-keyword">if</span>(err)&#123;<br>          res.writeHeader(<span class="hljs-number">404</span>);<br>          res.write(<span class="hljs-string">'NOT FOUND'</span>);<br>          res.end();<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>          res.write(buffer);<br>          res.end();<br>        &#125;<br>      &#125;)<br>    &#125;<br>  &#125;<br>&#125;).listen(<span class="hljs-number">8080</span>);<br></code></pre></td></tr></table></figure>
+<p>以上用NodeJS原生自带的模块实现了get/post请求以及文件操作，此外有个favicon.ico请求经常出现，此为goole浏览器申请网页图标的请求，而对于post上传文件参考上面的multiparty模块</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/NodeJS/" rel="tag"><i class="fas fa-tags"></i>NodeJS</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/03/29/NodeJS-原生篇1/" rel="next" title="NodeJS-原生篇1"><i class="fas fa-angle-left"></i><span class="nav-title">NodeJS-原生篇1</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.png" alt="Mr.bin">
+  
+  <h1 class="author-name">Mr.bin</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    <div class="archives-count count-block">
+      <div class="site-count-title">Archives</div>
+      <div><a href="/archives/">23</a></div>
+    </div>
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2-1"><span class="toc-text">fs模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2-2"><span class="toc-text">querystring模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2-3"><span class="toc-text">url模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2-4"><span class="toc-text">multiparty模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2-5"><span class="toc-text">接口应用</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Mr.bin</span><span class="year"><i class="far fa-copyright"></i>2019</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

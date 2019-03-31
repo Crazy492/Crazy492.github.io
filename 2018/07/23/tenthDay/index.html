@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-light.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">Copy</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">Copy</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "Copied";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "Copy";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>jQuery(part3) | Crazy</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="en"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Crazy</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
+        
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/tenthDay/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Mr.bin">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Crazy">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">jQuery(part3)</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-23T20:21:43+08:00">2018-07-23 20:21:43</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <h2 id="jQuery遍历方法"><a href="#jQuery遍历方法" class="headerlink" title="jQuery遍历方法"></a>jQuery遍历方法</h2><h4 id="祖先（向上遍历-DOM-树）"><a href="#祖先（向上遍历-DOM-树）" class="headerlink" title="祖先（向上遍历 DOM 树）"></a>祖先（向上遍历 DOM 树）</h4><ol>
+<li><p>parent() , 返回被选元素的直接父元素</p>
+</li>
+<li><p>parents(可选参数) , 返回被选元素的所有祖先元素，它一路向上直到文档的根元素(html) </p>
+</li>
+<li><p>parentsUntil(参数)</p>
+</li>
+</ol>
+<p>祖先部分html代码:<br><figure class="hljs highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span> body (曾曾祖父元素)</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>div (曾祖父元素)</span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ul1"</span>&gt;</span>ul (祖父元素)  </span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span>li (父元素)</span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>   </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>parent():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parent()  <span class="comment">//  返回&lt;li&gt;</span></span><br></pre></td></tr></table></figure>
+<p>parents():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parents() ;<span class="comment">// 返回所有是&lt;span&gt;的祖先</span></span><br></pre></td></tr></table></figure>
+<p><strong>可选参数来过滤对祖先元素的搜索</strong></p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parents(<span class="string">'div'</span>) ;<span class="comment">// 返回所有是&lt;div&gt;的&lt;spa&gt;n的祖先</span></span><br></pre></td></tr></table></figure>
+<p>parentsUntil():要带参数</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parentsUntil(<span class="string">'div'</span>);<span class="comment">// 返回&lt;li&gt; &lt;ul&gt; ,不包括&lt;div&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="后代-向下遍历dom树"><a href="#后代-向下遍历dom树" class="headerlink" title="后代(向下遍历dom树)"></a>后代(向下遍历dom树)</h4><ol>
+<li>children(可选参数) ，返回被选元素的所有直接子元素</li>
+<li>find(参数) ， 被选元素的后代元素，一路向下直到最后一个后代</li>
+</ol>
+<p>后代部分html代码:<br><figure class="hljs highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ul1"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>children():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).children()  <span class="comment">// 返回所有&lt;div&gt;的所有直接子元素 &lt;ul&gt; &lt;span&gt; &lt;ul&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>可选参数来过滤对子元素的搜索</strong></p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).children(<span class="string">'.ul1'</span>)  <span class="comment">// 返回所有类名为 .ul的,&lt;div&gt;的直接子元素</span></span><br></pre></td></tr></table></figure>
+<p>find(): 要带参数</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).find(<span class="string">'span'</span>)  <span class="comment">// 返回所有为&lt;span&gt;标签的,&lt;div&gt;的子元素</span></span><br></pre></td></tr></table></figure>
+<p>若要全选div所有子元素</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).find(<span class="string">'*'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="同胞siblings-DOM-树中水平遍历"><a href="#同胞siblings-DOM-树中水平遍历" class="headerlink" title="同胞siblings(DOM 树中水平遍历)"></a>同胞siblings(DOM 树中水平遍历)</h4><ol>
+<li><p>siblings(可选参数),返回被选元素的所有同胞元素</p>
+</li>
+<li><p>next(),返回被选元素的下一个同胞元素</p>
+</li>
+<li><p>nextAll(),返回被选元素的所有跟随(next)的同胞元素</p>
+</li>
+<li><p>nextUntil(参数),返回介于两个给定参数之间的所有跟随(next)的同胞元素</p>
+</li>
+<li><p>prev()</p>
+</li>
+<li><p>prevAll()</p>
+</li>
+<li><p>prevUntil()</p>
+</li>
+</ol>
+<p><strong>prev(), prevAll() 以及 prevUntil() 方法的工作方式与上面的方法类似，只不过方向相反而已：它们返回的是前面的同胞元素（在 DOM 树中沿着同胞之前元素遍历，而不是之后元素遍历)</strong></p>
+<p>以next（在 DOM 树中沿着同胞之后元素遍历）为例<br><figure class="hljs highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div (父元素)</span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>p<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>h3<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>p<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h4</span>&gt;</span>h4<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>siblings():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).siblings();  <span class="comment">//返回 &lt;h2&gt; 的所有同胞元素 &lt;p&gt; &lt;span&gt; &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>可选参数来过滤对同胞元素的搜索</strong></p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).siblings(<span class="string">'p'</span>);  <span class="comment">//返回 &lt;h2&gt; 的所有同胞 &lt;p&gt;元素 &lt;p&gt; &lt;p&gt;</span></span><br></pre></td></tr></table></figure>
+<p>next():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"h2"</span>).next(); <span class="comment">//返回 &lt;h3&gt;</span></span><br></pre></td></tr></table></figure>
+<p>nextAll():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).nextAll(); <span class="comment">//返回 &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
+<p>nextUntil():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).nextUntil(<span class="string">'h4'</span>);<span class="comment">//返回 &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h4><p>下面这三个最基本的过滤方法允许基于其在一组元素中的位置来选择一个特定的元素</p>
+<ol>
+<li><p>first(),返回被选元素的首个元素</p>
+</li>
+<li><p>last(),返回被选元素的最后一个元素</p>
+</li>
+<li><p>eq()，返回被选元素中带有指定索引号的元素</p>
+</li>
+</ol>
+<p>下面这两个选取匹配或不匹配某项指定标准的元素</p>
+<ol start="4">
+<li><p>filter()，允许规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回</p>
+</li>
+<li><p>not()，返回不匹配标准的所有元素</p>
+</li>
+</ol>
+<p>过滤部分的html代码：</p>
+<figure class="hljs highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"pp"</span>&gt;</span>p1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>p2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>p3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>first():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div p'</span>).first() <span class="comment">//返回首个 &lt;div&gt; 元素内部的第一个 &lt;p&gt; 元素  p1</span></span><br></pre></td></tr></table></figure>
+<p>last():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div p"</span>).last() <span class="comment">//返回最后一个 &lt;div&gt; 元素中的最后一个 &lt;p&gt; 元素  p2</span></span><br></pre></td></tr></table></figure>
+<p>eq() : 索引号从 0 开始，因此首个元素的索引号是 0 而不是 1。</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'p'</span>).eq(<span class="number">0</span>)  <span class="comment">// 返回 p1</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).eq(<span class="number">2</span>)  <span class="comment">// 返回 p3</span></span><br></pre></td></tr></table></figure>
+<p>filter():</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).filter(<span class="string">"pp"</span>)  <span class="comment">//返回所有&lt;p&gt;元素中类名为pp的&lt;p&gt;元素  p1</span></span><br></pre></td></tr></table></figure>
+<p>not() : 与 filter() 相反</p>
+<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).not(<span class="string">"pp"</span>)  <span class="comment">//返回所有&lt;p&gt;元素中类名不为pp的&lt;p&gt;元素  p2 p3</span></span><br></pre></td></tr></table></figure>
+<p><strong>如果有来生，</strong><br><strong>要做一棵树，</strong><br><strong>站成永恒，</strong><br><strong>没有悲欢的姿势。</strong><br><strong>一半在土里安详，</strong><br><strong>一半在风里飞扬，</strong><br><strong>一半洒落阴凉，</strong><br><strong>一半沐浴阳光，</strong><br><strong>非常沉默非常骄傲，</strong><br><strong>从不依靠，从不寻找</strong></p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/jQuery/" rel="tag"><i class="fas fa-tags"></i>jQuery</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/07/22/ninthDay/" rel="next" title="jQuery(part2)"><i class="fas fa-angle-left"></i><span class="nav-title">jQuery(part2)</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2018/07/24/12th/" rel="prev" title="jQuery(part4)"><span class="nav-title">jQuery(part4)</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.png" alt="Mr.bin">
+  
+  <h1 class="author-name">Mr.bin</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    <div class="archives-count count-block">
+      <div class="site-count-title">Archives</div>
+      <div><a href="/archives/">23</a></div>
+    </div>
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#jQuery遍历方法"><span class="toc-text">jQuery遍历方法</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#祖先（向上遍历-DOM-树）"><span class="toc-text">祖先（向上遍历 DOM 树）</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#后代-向下遍历dom树"><span class="toc-text">后代(向下遍历dom树)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#同胞siblings-DOM-树中水平遍历"><span class="toc-text">同胞siblings(DOM 树中水平遍历)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#过滤"><span class="toc-text">过滤</span></a></li></ol></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Mr.bin</span><span class="year"><i class="far fa-copyright"></i>2019</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-light.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">Copy</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">Copy</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "Copied";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "Copy";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>JSON | Crazy</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="en"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Crazy</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
+        
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/json/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Mr.bin">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Crazy">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">JSON</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-30T23:56:43+08:00">2018-09-30 23:56:43</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <hr>
+<p id="head" style="display:inline-block; float:left ;font-size:1rem;line-height:1rem;"><br>    <b>文<br><br>    章<br><br>    目<br><br>    录</b><br></p>
+
+<div style="display:flex;align-items:center;justify-content:center; "><br>    <div style="display:flex ;justify-content:space-around;align-items:center; font-size:0.8rem; width:100%;line-height:0.8rem;"><br>        <div><br>            <li><a href="#1"> 1 JSON简介</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#1.1"> 1.1 JSON与JavaScript</a></li><br>                <li><a href="#1.2"> 1.2 JSON与XML</a></li><br>            </ul><br>        </div><br>        <div><br>            <li><a href="#2"> 2 JSON语法</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#2.1"> 2.1 简单值</a></li><br>                <li><a href="#2.2"> 2.2 对象</a></li><br>                <li><a href="#2.3"> 2.3 数组</a></li><br>                <li><a href="#2.4"> 2.4 JSON样例代码</a></li><br>            </ul><br>        </div><br>        <div><br>            <li><a href="#3"> 3 JSON解析与序列化</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#3.1"> 3.1 stringify()</a></li><br>                <li><a href="#3.2"> 3.2 parse()</a></li><br>                <li><a href="#3.3"> 3.3 toJSON()</a></li><br>                <li><a href="#3.4"> 3.4 JSON.stringify()序列化对象的顺序</a></li><br>            </ul><br>        </div><br>    </div><br></div>
+
+
+<hr>
+<h1 id="1">JSON简介</h1>
+
+<p>&nbsp;&nbsp;JSON：JavaScript对象表示法(<span style="color:red">J</span>ava<span style="color:red">S</span>cript <span style="color:red">O</span>bject <span style="color:red">N</span>oatation)</p>
+<p>&nbsp;&nbsp;根据MDN的说法:</p>
+<blockquote>
+<p><em>JSON是一种用于序列化对象，数组，数字，字符串，布尔值和null的结构化数据的格式</em>  </p>
+</blockquote>
+<p>&nbsp;&nbsp;JSON基于JavaScript语法，类似XML，但却和它们有区别</p>
+<hr>
+<ul>
+<li><h2 id="1.1"> JSON与JavaScript </h2><br>JSON是一种数据格式，不是一种编程语言，JSON也不从属于JavaScript</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="1.2"> JSON与XML </h2>
+
+<p>JSON能够使用 <a href="&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval&quot;">eval()</a> 方法进行解析，不必创建DOM对象</p>
+</li>
+</ul>
+<hr>
+<h1 id="2">JSON语法</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;JSON的语法可以表示以下三种类型的值：</p>
+<hr>
+<ul>
+<li><h2 id="2.1">简单值</h2>
+
+<p>  JSON与JavaScript简单值最大区别是：<br><br></p>
+<blockquote>
+<ol>
+<li>JSON字符串必须使用双引号</li>
+<li>JSON不支持JavaScript中特殊值undefined</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="2.2">对象</h2>
+
+<p>  JSON对象与JavaScript对象两个不同点：<br><br></p>
+<blockquote>
+<ol>
+<li>没有声明变量（JSON中没有变量的概念）</li>
+<li>没有末尾分号（因为这不是JavaScript语句，所以不需要分号）</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="2.3">数组</h2>
+
+<p>  JSON数组采用的就是JavaScript的数组字面量形式，但没有变量和分号<br>  <br></p>
+  <figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"Hello World!"</span>,<span class="number">3</span>,<span class="literal">true</span>,<span class="literal">null</span>,&#123;&#125;]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="2.4">JSON样例代码</h2>
+
+  <figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- <span class="built_in">JSON</span>样例 --&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"String"</span>:<span class="string">"Hello World!"</span>,   &lt;!-- 字符串--&gt;</span><br><span class="line">    <span class="string">"Number"</span>:<span class="number">3</span>,                &lt;!-- 数值--&gt;</span><br><span class="line">    <span class="string">"Boolean"</span>:<span class="literal">true</span>,            &lt;!-- 布尔值--&gt;</span><br><span class="line">    <span class="string">"Null"</span>:<span class="literal">null</span>,               &lt;!-- <span class="literal">null</span>--&gt;</span><br><span class="line">    <span class="string">"_1Bin"</span>:&#123;                  &lt;!-- 对象--&gt;</span><br><span class="line">        <span class="string">"Name"</span>:<span class="string">"1bin"</span>,</span><br><span class="line">        <span class="string">"Age"</span>:<span class="number">18</span>,</span><br><span class="line">        <span class="string">"Tag"</span>:[</span><br><span class="line">            <span class="string">"Lonely patient"</span>,<span class="string">"Crazy"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"Sex"</span>:&#123;</span><br><span class="line">            <span class="string">"IsBoy"</span>:<span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="3">JSON解析与序列化</h1>
+
+<p>&nbsp;&nbsp;JSON对象可以直接解析为JavaScript对象</p>
+<p>&nbsp;&nbsp;早期JSON解析器基本上就是使用JavaScript的eval()函数，但eval()存在风险，现在已经摒弃。</p>
+<p>&nbsp;&nbsp;现在基本上都是用JSON对象的两个方法进行解析与序列化</p>
+<hr>
+<ul>
+<li><h2 id="3.1">stringify()</h2>
+
+<p>  stringify()把JavaScript对象序列化为JSON字符串,有三个参数</p>
+  <h4>JSON.stringify(value,replacer,space)</h4>
+
+<blockquote>
+<ol>
+<li>value<br>   将要序列化成JSON字符串的JavaScript对象</li>
+<li>replacer(可选)<br>   <strong>函数</strong>：则在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理<br>   <strong>数组</strong>：则只有包含在这个数组中的属性名才会被序列化到最终的 JSON 字符串中<br>   <strong>null或者未提供</strong>：则对象所有的属性都会被序列化</li>
+<li>space(可选)<br>   指定缩进用的字符串,可为一般字符串或空格。</li>
+</ol>
+</blockquote>
+<p>  <em>值得注意的是，所有值为undefined的属性都会被stringify()自动忽略，所以也可以用第二个参数作为过滤器(如用switch_case筛选,但一定要记得提供default项)给特定的属性返回undefined让其消失</em><br>  <br></p>
+<p>  <strong>使用stringify()的样例：</strong></p>
+</li>
+</ul>
+<pre><code><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">                title:<span class="string">"Hello World!"</span>,</span><br><span class="line">                author:&#123;</span><br><span class="line">                          name:<span class="string">"1 bin"</span></span><br><span class="line">                       &#125;</span><br><span class="line">           &#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"></span><br><span class="line">&lt;!-- jsonText的值为：<span class="string">"&#123;"</span>title<span class="string">":"</span>Hello World<span class="string">","</span>author<span class="string">":&#123;"</span>name<span class="string">":"</span><span class="number">1</span> bin<span class="string">"&#125;"</span>&#125; --&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><hr>
+<ul>
+<li><h2 id="3.2">parse()</h2>
+
+<p>  parse()把JSON字符串解析为原生JavaScript值</p>
+  <h4>parse(text,reviver)</h4>
+
+<blockquote>
+<ol>
+<li>text<br>   将要被解析成JavaScript值的字符串</li>
+<li>reviver(可选)<br>   还原函数：规定了原始值如何被解析改造，在被返回之前</li>
+</ol>
+</blockquote>
+  <h4>reviver函数</h4>
+
+<p>  根据MDN：</p>
+<blockquote>
+<p>如果指定了 reviver 函数，则解析出的 JavaScript 值（解析值）会经过一次转换后才将被最终返回（返回值）。更具体点讲就是：解析值本身以及它所包含的所有属性，会按照一定的顺序（从最最里层的属性开始，一级级往外，最终到达顶层，也就是解析值本身）分别的去调用 reviver 函数，在调用过程中，当前属性所属的对象会作为 this 值，当前属性名和属性值会分别作为第一个和第二个参数传入 reviver 中。如果 reviver 返回 undefined，则当前属性会从所属对象中删除，如果返回了其他值，则返回的值会成为当前属性新的属性值。</p>
+</blockquote>
+<blockquote>
+<p>当遍历到最顶层的值（解析值）时，传入 reviver 函数的参数会是空字符串 “”（因为此时已经没有真正的属性）和当前的解析值（有可能已经被修改过了），当前的 this 值会是 {“”: 修改过的解析值}，在编写 reviver 函数时，要注意到这个特例。（这个函数的遍历顺序依照：从最内层开始，按照层级顺序，依次向外遍历）</p>
+</blockquote>
+<p>   <strong>使用parse()的样例：</strong></p>
+  <figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bookCopy = <span class="built_in">JSON</span>.parse(jsonText);</span><br></pre></td></tr></table></figure>
+<p>  <em>值得注意的是，这里的jsonText的值为：”xxx”,要用双引号，对于一些代码块，需要用反逗号</em></p>
+  <figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book2 = <span class="string">`&#123;</span></span><br><span class="line"><span class="string">                "a":"Hello Wolrd!",</span></span><br><span class="line"><span class="string">                "b":2</span></span><br><span class="line"><span class="string">             &#125;`</span>;</span><br><span class="line"><span class="keyword">var</span> Copy = <span class="built_in">JSON</span>.parse(book2);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="3.3">toJSON()</h2>
+
+<p>  用于补充JSON.stringify()所不能满足的自定义序列化需求。可以直接给对象定义toJSON()方法，返回其自身的JSON数据格式(如原生Date对象的toJSON方法)</p>
+  <figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">                title:<span class="string">"Hello World!"</span>,</span><br><span class="line">                year:<span class="number">2018</span>,</span><br><span class="line">                toJSON: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">this</span>.title;</span><br><span class="line">                &#125;</span><br><span class="line">           &#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonText)     &lt;!-- <span class="string">"Hello World!"</span> --&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="3.4">JSON.stringify()序列化对象的顺序</h2>
+
+
+
+</li>
+</ul>
+<pre><code>(1)调用toJSON()方法(如果存在，若不存在，则返回对象本身)
+
+(2)应用过滤器(如存在第二个参数，传入过滤器的值是第(1)步返回的值)
+
+(3)对第(2)步返回的每个值进行相应的序列化
+
+(4)如提供了第三个参数，执行相应的格式化
+</code></pre><div style="color:black;diplay:flex;justify-content:center;align-items:center;"><div><a href="#head">回到目录</a></div></div>
+
+
+
+
+
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/JSON/" rel="tag"><i class="fas fa-tags"></i>JSON</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/08/25/summer/" rel="next" title="暑假培训总结 (7.12 - 8.4)"><i class="fas fa-angle-left"></i><span class="nav-title">暑假培训总结 (7.12 - 8.4)</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2018/10/06/Vue.js/" rel="prev" title="Vue.js"><span class="nav-title">Vue.js</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.png" alt="Mr.bin">
+  
+  <h1 class="author-name">Mr.bin</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    <div class="archives-count count-block">
+      <div class="site-count-title">Archives</div>
+      <div><a href="/archives/">23</a></div>
+    </div>
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#1"><span class="toc-text">JSON简介</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1.1"><span class="toc-text"> JSON与JavaScript </span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1.2"><span class="toc-text"> JSON与XML </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#2"><span class="toc-text">JSON语法</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2.1"><span class="toc-text">简单值</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2.2"><span class="toc-text">对象</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2.3"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2.4"><span class="toc-text">JSON样例代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#3"><span class="toc-text">JSON解析与序列化</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#3.1"><span class="toc-text">stringify()</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#undefined"><span class="toc-text">JSON.stringify(value,replacer,space)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#3.2"><span class="toc-text">parse()</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#undefined"><span class="toc-text">parse(text,reviver)</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#undefined"><span class="toc-text">reviver函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#3.3"><span class="toc-text">toJSON()</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#3.4"><span class="toc-text">JSON.stringify()序列化对象的顺序</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Mr.bin</span><span class="year"><i class="far fa-copyright"></i>2019</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-light.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">Copy</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">Copy</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "Copied";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "Copy";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>canvas 2d | Crazy</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="en"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Crazy</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
+        
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/thirdDay/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Mr.bin">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Crazy">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">canvas 2d</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-15T21:33:43+08:00">2018-07-15 21:33:43</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>canvas参考手册 <a href="http://www.runoob.com/tags/ref-canvas.html" target="_blank" rel="noopener">http://www.runoob.com/tags/ref-canvas.html</a></p>
+<h3 id="canvas钟的制作"><a href="#canvas钟的制作" class="headerlink" title="canvas钟的制作"></a>canvas钟的制作</h3><h4 id="钟的静态样式"><a href="#钟的静态样式" class="headerlink" title="钟的静态样式"></a>钟的静态样式</h4><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawBackground</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    context.save();  <span class="comment">//保存初始状态的幕布环境</span></span><br><span class="line">    context.beginPath();  <span class="comment">//重新开始一条路径</span></span><br><span class="line">    context.arc(<span class="number">200</span>,<span class="number">200</span>,r,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,<span class="literal">true</span>); <span class="comment">//画大圆 圆心(200,200)，半径为r，从0到2pi，true表示逆时针 </span></span><br><span class="line">    context.moveTo(<span class="number">295</span>,<span class="number">200</span>);</span><br><span class="line">    context.arc(<span class="number">200</span>,<span class="number">200</span>,r<span class="number">-5</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,<span class="literal">false</span>);<span class="comment">//画小圆 圆心(200,200)，半径为r-5，从0到2pi，false表示顺时针 </span></span><br><span class="line">    context.translate(<span class="number">200</span>,<span class="number">200</span>); <span class="comment">//重新定义画布原点为（200，200）</span></span><br><span class="line">    context.stroke();           <span class="comment">//画路径（路径为非填充）</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> aNumbers = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">1</span>,<span class="number">2</span>]; <span class="comment">//以x正半轴为起点，顺时针旋转</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//文本字体信息 居中</span></span><br><span class="line">    context.font = <span class="string">'18px Arial'</span>;   </span><br><span class="line">    context.textAlign = <span class="string">'center'</span>;   </span><br><span class="line">    context.textBaseline = <span class="string">'middle'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//画12个数字</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ; i&lt;aNumbers.length ; i++)&#123;</span><br><span class="line">        <span class="keyword">var</span> rad = <span class="number">2</span>*<span class="built_in">Math</span>.PI /<span class="number">12</span> *( aNumbers[i]<span class="number">-3</span>);</span><br><span class="line">        <span class="keyword">var</span> x = <span class="built_in">Math</span>.cos(rad) * (r<span class="number">-20</span>);</span><br><span class="line">        <span class="keyword">var</span> y = <span class="built_in">Math</span>.sin(rad) * (r<span class="number">-20</span>);</span><br><span class="line"></span><br><span class="line">        context.fillText(aNumbers[i],x,y);<span class="comment">//给坐标（x,y）添加文本aNumbers[i]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="钟的秒针"><a href="#钟的秒针" class="headerlink" title="钟的秒针"></a>钟的秒针</h4><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawSecond</span>(<span class="params">second</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> rad = <span class="number">2</span>*<span class="built_in">Math</span>.PI / <span class="number">60</span> *second ;</span><br><span class="line"></span><br><span class="line">    context.save();</span><br><span class="line">    context.beginPath();</span><br><span class="line">    context.rotate(rad);</span><br><span class="line">    context.moveTo(<span class="number">2</span>,<span class="number">20</span>);</span><br><span class="line">    context.lineTo(<span class="number">-2</span>,<span class="number">20</span>);</span><br><span class="line">    context.lineTo(<span class="number">-1</span>,-r+<span class="number">18</span>)</span><br><span class="line">    context.lineTo(<span class="number">1</span>,-r+<span class="number">18</span>);</span><br><span class="line">    context.fillStyle=<span class="string">"red"</span>;</span><br><span class="line">    context.fill();</span><br><span class="line">    context.restore();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="秒针转动"><a href="#秒针转动" class="headerlink" title="秒针转动"></a>秒针转动</h4><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> width = context.canvas.width;</span><br><span class="line">    <span class="keyword">var</span> height = context.canvas.height;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> hour = now.getHours();</span><br><span class="line">    <span class="keyword">var</span> minute = now.getMinutes();</span><br><span class="line">    <span class="keyword">var</span> second = now.getSeconds();</span><br><span class="line"></span><br><span class="line">    context.clearRect(<span class="number">0</span>,<span class="number">0</span>,width,height); <span class="comment">//清除画布 从（0，0）开始的矩形</span></span><br><span class="line">    drawBackground();                <span class="comment">//画静态钟</span></span><br><span class="line">    drawSecond(second);               <span class="comment">//画秒针</span></span><br><span class="line">    context.restore();                </span><br><span class="line">&#125;</span><br><span class="line">    draw();</span><br><span class="line">    <span class="keyword">var</span> timer = setInterval(draw,<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="canvas的一些方法"><a href="#canvas的一些方法" class="headerlink" title="canvas的一些方法"></a>canvas的一些方法</h2><h5 id="save-和restore"><a href="#save-和restore" class="headerlink" title="save()和restore()"></a>save()和restore()</h5><p>save():    保存当前环境的状态。<br>restore():    返回之前保存过的路径状态和属性。<br>这两个经常搭配起来用，适合只想对画布某些方面做出修改的情况。</p>
+<h5 id="clearRect"><a href="#clearRect" class="headerlink" title="clearRect()"></a>clearRect()</h5><p>给定矩形清除像素，通常用于图形变换（删了重画）</p>
+<h5 id="drawImage-和createPattern"><a href="#drawImage-和createPattern" class="headerlink" title="drawImage()和createPattern()"></a>drawImage()和createPattern()</h5><p>html为canvas内嵌img标签<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> image = <span class="built_in">document</span>.images[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>); </span><br><span class="line"></span><br><span class="line">ctx.drawImage(image,<span class="number">0</span>,<span class="number">10</span>,<span class="number">50</span>,<span class="number">50</span>,<span class="number">0</span>,<span class="number">100</span>,<span class="number">40</span>,<span class="number">40</span>);</span><br></pre></td></tr></table></figure></p>
+<p>模式，即所谓图片的重复<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern = ctx.createPattern(image,<span class="string">"repeat"</span>);</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = pattern ;</span><br><span class="line">ctx.fillRect(<span class="number">10</span>,<span class="number">10</span>,<span class="number">500</span>,<span class="number">500</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h5><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置阴影</span></span><br><span class="line">ctx.shadowOffsetX = <span class="number">5</span>;</span><br><span class="line">ctx.shadowOffsetY = <span class="number">5</span>;</span><br><span class="line">ctx.shadowBlur = <span class="number">4</span>;   <span class="comment">//模糊度,0为不模糊</span></span><br><span class="line">ctx.shadowColor = <span class="string">'rgba(0,0,0,0.5)'</span></span><br><span class="line"></span><br><span class="line">ctx.fillStyle =<span class="string">'red'</span>;</span><br><span class="line">ctx.fillRect(<span class="number">100</span>,<span class="number">100</span>,<span class="number">300</span>,<span class="number">300</span>);</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">'blue'</span>;</span><br><span class="line">ctx.fillRect(<span class="number">200</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">300</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="gradient"><a href="#gradient" class="headerlink" title="gradient"></a>gradient</h5><p>水平渐变<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用函数来确保起点到终点的渐变</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createRectLinearGradient</span>(<span class="params">ctx,x,y,width,height</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ctx.createLinearGradient(x,y,x+width,y+height);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> grd = createRectLinearGradient(ctx,<span class="number">100</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="number">200</span>);  <span class="comment">// (100,100)到（300，300）的渐变</span></span><br><span class="line">grd.addColorStop(<span class="number">0</span>,<span class="string">'blue'</span>);  <span class="comment">//起点</span></span><br><span class="line">grd.addColorStop(<span class="number">0.5</span>,<span class="string">'green'</span>);</span><br><span class="line">grd.addColorStop(<span class="number">1</span>,<span class="string">'red'</span>);  <span class="comment">//终点</span></span><br><span class="line"></span><br><span class="line">ctx.fillStyle = grd;</span><br><span class="line">ctx.fillRect(<span class="number">100</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="number">200</span>)   <span class="comment">//起点（100，100） 长宽 50px</span></span><br></pre></td></tr></table></figure></p>
+<p>径向渐变<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//同心圆</span></span><br><span class="line"><span class="keyword">var</span> grd = ctx.createRadialGradient(<span class="number">150</span>,<span class="number">150</span>,<span class="number">100</span>,<span class="number">150</span>,<span class="number">150</span>,<span class="number">150</span>);</span><br><span class="line"></span><br><span class="line">grd.addColorStop(<span class="number">0</span>,<span class="string">'blue'</span>);  <span class="comment">//起点</span></span><br><span class="line">grd.addColorStop(<span class="number">0.5</span>,<span class="string">'green'</span>);</span><br><span class="line">grd.addColorStop(<span class="number">1</span>,<span class="string">'red'</span>);  <span class="comment">//终点</span></span><br><span class="line"></span><br><span class="line">ctx.fillStyle = grd ;</span><br><span class="line">ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">300</span>,<span class="number">300</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>如果事与愿违，请相信另有安排。</strong></p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/canvas-2d/" rel="tag"><i class="fas fa-tags"></i>canvas 2d</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/07/14/3th/" rel="next" title="事件冒泡，捕获，委托"><i class="fas fa-angle-left"></i><span class="nav-title">事件冒泡，捕获，委托</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2018/07/16/let,const/" rel="prev" title="let,const"><span class="nav-title">let,const</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.png" alt="Mr.bin">
+  
+  <h1 class="author-name">Mr.bin</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    <div class="archives-count count-block">
+      <div class="site-count-title">Archives</div>
+      <div><a href="/archives/">23</a></div>
+    </div>
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#canvas钟的制作"><span class="toc-text">canvas钟的制作</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#钟的静态样式"><span class="toc-text">钟的静态样式</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#钟的秒针"><span class="toc-text">钟的秒针</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#秒针转动"><span class="toc-text">秒针转动</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#canvas的一些方法"><span class="toc-text">canvas的一些方法</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#save-和restore"><span class="toc-text">save()和restore()</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#clearRect"><span class="toc-text">clearRect()</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#drawImage-和createPattern"><span class="toc-text">drawImage()和createPattern()</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#shadow"><span class="toc-text">shadow</span></a></li><li class="toc-item toc-level-5"><a class="list-group-item toc-link" href="#gradient"><span class="toc-text">gradient</span></a></li></ol></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Mr.bin</span><span class="year"><i class="far fa-copyright"></i>2019</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
