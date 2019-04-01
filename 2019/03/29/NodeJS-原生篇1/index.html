@@ -1,198 +1,122 @@
 <!DOCTYPE html>
 <html>
+  <!-- Html Head Tag-->
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, ARIA, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
-    
-    
-    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mr.bin">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="NodeJS-原生篇1"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Crazy"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-light.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">Copy</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">Copy</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "Copied";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "Copy";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>NodeJS-原生篇1 | Crazy</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="en"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
+  <!-- Site Title -->
+  <title>Crazy</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/home.jpg)">
   <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">Crazy</a></h1>
-        <h2 class="subtitle"></h2>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">NodeJS-原生篇1</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/crazy492">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:abcqweewq@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
       </div>
-      
     </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
-        
-        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
-        
-      </ul>
-    </nav>
   </div>
 </header>
 
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Mr.bin</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-03-29</span>
+            <span class="time">14:34:24</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
-    <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/NodeJS-原生篇1/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Mr.bin">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="Crazy">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">NodeJS-原生篇1</h1>
-      <div class="post-meta">
+<a class="tag" href="/tags/NodeJS/">#NodeJS</a>
+
+
+          </div>
         
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-03-29T20:00:00+08:00">2019-03-29 20:00:00</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      <ol style="background: #bdc3c7;
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <ol style="background: #bdc3c7;
     border-radius: 5px;
     color: #2980b9;
     font-size: 20px;
@@ -201,31 +125,34 @@
     padding-top: 10px;
     padding-bottom: 10px;
     text-decoration:none;
-    line-height:1"><br>  <li style="list-decoration:none"><a href="#1-1" style="color: #4682BE;text-decoration:none">assert模块</a></li><br>  <li style="list-decoration:none"><a href="#1-2" style="color: #4682BE;text-decoration:none">path模块</a></li><br>  <li style="list-decoration:none"><a href="#1-3" style="color: #4682BE;text-decoration:none">url模块</a></li><br>  <li style="list-decoration:none"><a href="#1-4" style="color: #4682BE;text-decoration:none">querystring模块</a></li><br>  <li style="list-decoration:none"><a href="#1-5" style="color: #4682BE;text-decoration:none">net模块</a></li><br>  <li style="list-decoration:none"><a href="#1-6" style="color: #4682BE;text-decoration:none">http模块</a></li><br></ol>
+    line-height:1;
+    width:100%;
+    margin:0;
+    list-style:none"><br>  <li style="list-decoration:none"><a href="#1-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. assert模块</a></li><br>  <li style="list-decoration:none"><a href="#1-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. path模块</a></li><br>  <li style="list-decoration:none"><a href="#1-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. url模块</a></li><br>  <li style="list-decoration:none"><a href="#1-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. querystring模块</a></li><br>  <li style="list-decoration:none"><a href="#1-5" style="color: #4682BE;text-decoration:none;margin-left:10px">5. net模块</a></li><br>  <li style="list-decoration:none"><a href="#1-6" style="color: #4682BE;text-decoration:none;margin-left:10px">6. http模块</a></li><br></ol>
 
 <p>  学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起</p>
 <hr>
 <h2 id="1-1">assert模块</h2>
 
 <p>断言，在函数调用前使用，可确保参数如预期</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line">assert(<span class="number">1</span>&gt;<span class="number">2</span>,<span class="string">'no!'</span>); <span class="comment">// no！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//assert.deepEqual(变量，预期值，msg);</span></span><br><span class="line"><span class="comment">//相当于 ==</span></span><br><span class="line"><span class="comment">//assert.deepStrictEqual(变量，预期值，msg);</span></span><br><span class="line"><span class="comment">//相当于 ===</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line">assert(<span class="number">1</span>&gt;<span class="number">2</span>,<span class="string">'no!'</span>); <span class="comment">// no！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//assert.deepEqual(变量，预期值，msg);</span></span><br><span class="line"><span class="comment">//相当于 ==</span></span><br><span class="line"><span class="comment">//assert.deepStrictEqual(变量，预期值，msg);</span></span><br><span class="line"><span class="comment">//相当于 ===</span></span><br></pre></td></tr></table></figure>
 <h2 id="1-2">path模块</h2>
 
 <p>路径，帮助我们做路径拼装</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path =<span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'/root/a/b/c/1.html'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(path.dirname(str)); <span class="comment">//  /root/a/b/c</span></span><br><span class="line"><span class="built_in">console</span>.log(path.extname(str)); <span class="comment">//  .html</span></span><br><span class="line"><span class="built_in">console</span>.log(path.basename(str)); <span class="comment">//  1.txt</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(path.resolve(__dirname,<span class="string">'1.txt'</span>));</span><br><span class="line"><span class="comment">//path.resolve()是做路径拼接处理的， __dirname是魔术变量，值为当前文件绝对路径</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path =<span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'/root/a/b/c/1.html'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(path.dirname(str)); <span class="comment">//  /root/a/b/c</span></span><br><span class="line"><span class="built_in">console</span>.log(path.extname(str)); <span class="comment">//  .html</span></span><br><span class="line"><span class="built_in">console</span>.log(path.basename(str)); <span class="comment">//  1.txt</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(path.resolve(__dirname,<span class="string">'1.txt'</span>));</span><br><span class="line"><span class="comment">//path.resolve()是做路径拼接处理的， __dirname是魔术变量，值为当前文件绝对路径</span></span><br></pre></td></tr></table></figure>
 <h2 id="1-3">url模块</h2>
 
-<p>url的解析和拼接<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str=<span class="string">'http://www.1bin.com:8080/a/b/1.html?a=1&amp;a=2&amp;a=3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(url.parse(str));</span><br><span class="line"><span class="comment">// Url &#123;  protocol: 'http:',</span></span><br><span class="line"><span class="comment">// slashes: true,</span></span><br><span class="line"><span class="comment">// auth: null,</span></span><br><span class="line"><span class="comment">// host: 'www.1bin.com:8080',</span></span><br><span class="line"><span class="comment">// port: '8080',</span></span><br><span class="line"><span class="comment">// hostname: 'www.1bin.com',</span></span><br><span class="line"><span class="comment">// hash: null,</span></span><br><span class="line"><span class="comment">// search: '?a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// query: 'a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// pathname: '/a/b/1.html',</span></span><br><span class="line"><span class="comment">// path: '/a/b/1.html?a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// href: 'http://www.bing.com:8080/a/b/1.html?a=1&amp;a=2&amp;a=3' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(url.parse(str, <span class="literal">true</span>));</span><br><span class="line"><span class="comment">//加了true后会自动帮你把query解析成&#123; a: [ '1', '2', '3' ] &#125;</span></span><br><span class="line"><span class="comment">//这里a为数组的原因是url解析会帮你把重复变量整合成一个数组</span></span><br></pre></td></tr></table></figure></p>
+<p>url的解析和拼接<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str=<span class="string">'http://www.1bin.com:8080/a/b/1.html?a=1&amp;a=2&amp;a=3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(url.parse(str));</span><br><span class="line"><span class="comment">// Url &#123;  protocol: 'http:',</span></span><br><span class="line"><span class="comment">// slashes: true,</span></span><br><span class="line"><span class="comment">// auth: null,</span></span><br><span class="line"><span class="comment">// host: 'www.1bin.com:8080',</span></span><br><span class="line"><span class="comment">// port: '8080',</span></span><br><span class="line"><span class="comment">// hostname: 'www.1bin.com',</span></span><br><span class="line"><span class="comment">// hash: null,</span></span><br><span class="line"><span class="comment">// search: '?a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// query: 'a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// pathname: '/a/b/1.html',</span></span><br><span class="line"><span class="comment">// path: '/a/b/1.html?a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// href: 'http://www.bing.com:8080/a/b/1.html?a=1&amp;a=2&amp;a=3' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(url.parse(str, <span class="literal">true</span>));</span><br><span class="line"><span class="comment">//加了true后会自动帮你把query解析成&#123; a: [ '1', '2', '3' ] &#125;</span></span><br><span class="line"><span class="comment">//这里a为数组的原因是url解析会帮你把重复变量整合成一个数组</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="1-4">querystring模块</h2>
 
-<p>数据解析<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//parse stringify 就是数据解析与反向操作</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.parse(<span class="string">"a=1&amp;b=2&amp;c=3"</span>));</span><br><span class="line"><span class="comment">// &#123; a: '1', b: '2', c: '3' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.stringify(&#123;<span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">1</span>&#125;));</span><br><span class="line"><span class="comment">// a=3&amp;b=2&amp;c=1</span></span><br></pre></td></tr></table></figure></p>
+<p>数据解析<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//parse stringify 就是数据解析与反向操作</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.parse(<span class="string">"a=1&amp;b=2&amp;c=3"</span>));</span><br><span class="line"><span class="comment">// &#123; a: '1', b: '2', c: '3' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.stringify(&#123;<span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">1</span>&#125;));</span><br><span class="line"><span class="comment">// a=3&amp;b=2&amp;c=1</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="1-5">net模块</h2>
 
 <p>相当于tcp协议node的实现，是http模块的超级，应用于websocket，此处暂且不谈</p>
 <h2 id="1-6">http模块</h2>
 
 <p>  http模块是实现原生NodeJS服务器链接的一个模块，主要使用方式为</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'request:'</span>,req);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'response:'</span>,res);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'request:'</span>,req);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'response:'</span>,res);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
 <p>  上面的代码，实现了在本机8080端口创立服务器的功能，其中createServer方法有两个参数req，res</p>
 <p>  把这两个参数打印出来，会发现是一个有一大堆属性的对象，在这里，我们看看一些比较重要的属性方法</p>
 <ul>
@@ -233,129 +160,42 @@
 <li>res.end()是结束此次与服务器的请求，值得一提的是，write后必须要end，否则浏览器不会断开请求链接，你将接受不到服务器的响应，在浏览器界面上显示为左上角刷新圈圈一直在转。</li>
 </ul>
 
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/NodeJS/" rel="tag"><i class="fas fa-tags"></i>NodeJS</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2018/11/10/Event Loop/" rel="next" title="事件循环"><i class="fas fa-angle-left"></i><span class="nav-title">事件循环</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2019/03/30/NodeJS-原生篇2/" rel="prev" title="NodeJS-原生篇2"><span class="nav-title">NodeJS-原生篇2</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Mr.bin">
-  
-  <h1 class="author-name">Mr.bin</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-    
-    
-    
-    <div class="archives-count count-block">
-      <div class="site-count-title">Archives</div>
-      <div><a href="/archives/">23</a></div>
-    </div>
-    
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1-1"><span class="toc-text">assert模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1-2"><span class="toc-text">path模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1-3"><span class="toc-text">url模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1-4"><span class="toc-text">querystring模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1-5"><span class="toc-text">net模块</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1-6"><span class="toc-text">http模块</span></a></li></ol></div>
-    </div>
-    
-    
-    
-    
-  </div>
-</aside>
-
-
-          
         </div>
       </div>
-    </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
   <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Mr.bin</span><span class="year"><i class="far fa-copyright"></i>2019</span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
       </div>
     </div>
   </div>
 </footer>
 
 
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
   </body>
 </html>
+

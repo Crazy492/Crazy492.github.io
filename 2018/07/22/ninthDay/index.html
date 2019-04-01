@@ -1,198 +1,122 @@
 <!DOCTYPE html>
 <html>
+  <!-- Html Head Tag-->
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, ARIA, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
-    
-    
-    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mr.bin">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="jQuery(part2)"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Crazy"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-light.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">Copy</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">Copy</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "Copied";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "Copy";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>jQuery(part2) | Crazy</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="en"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
+  <!-- Site Title -->
+  <title>Crazy</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/home.jpg)">
   <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">Crazy</a></h1>
-        <h2 class="subtitle"></h2>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">jQuery(part2)</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/crazy492">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:abcqweewq@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
       </div>
-      
     </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
-        
-        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
-        
-      </ul>
-    </nav>
   </div>
 </header>
 
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Mr.bin</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-07-22</span>
+            <span class="time">14:34:24</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
-    <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/ninthDay/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Mr.bin">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="Crazy">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">jQuery(part2)</h1>
-      <div class="post-meta">
+<a class="tag" href="/tags/jQuery/">#jQuery</a>
+
+
+          </div>
         
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-22T20:21:43+08:00">2018-07-22 20:21:43</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      <h2 id="jQuery-HTML-CSS操作"><a href="#jQuery-HTML-CSS操作" class="headerlink" title="jQuery HTML/CSS操作"></a>jQuery HTML/CSS操作</h2><h4 id="获得内容-text-、html-以及-val"><a href="#获得内容-text-、html-以及-val" class="headerlink" title="获得内容 - text()、html() 以及 val()"></a>获得内容 - text()、html() 以及 val()</h4><ol>
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="jQuery-HTML-CSS操作"><a href="#jQuery-HTML-CSS操作" class="headerlink" title="jQuery HTML/CSS操作"></a>jQuery HTML/CSS操作</h2><h4 id="获得内容-text-、html-以及-val"><a href="#获得内容-text-、html-以及-val" class="headerlink" title="获得内容 - text()、html() 以及 val()"></a>获得内容 - text()、html() 以及 val()</h4><ol>
 <li><p>text() - 设置或返回所选元素的文本内容（自动解析文本里面的 HTML 标签内容）</p>
 </li>
 <li><p>html() - 设置或返回所选元素的内容（包括 HTML 标签标记）</p>
@@ -200,21 +124,21 @@
 <li><p><strong>val() - 设置或返回表单字段的值</strong></p>
 </li>
 </ol>
-<h4 id="设置内容-text-、html-以及-val"><a href="#设置内容-text-、html-以及-val" class="headerlink" title="设置内容 - text()、html() 以及 val()"></a>设置内容 - text()、html() 以及 val()</h4><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test1"</span>).text(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test2"</span>).html(<span class="string">"&lt;b&gt;Hello world!&lt;/b&gt;"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">"#btn3"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test3"</span>).val(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="设置内容-text-、html-以及-val"><a href="#设置内容-text-、html-以及-val" class="headerlink" title="设置内容 - text()、html() 以及 val()"></a>设置内容 - text()、html() 以及 val()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test1"</span>).text(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test2"</span>).html(<span class="string">"&lt;b&gt;Hello world!&lt;/b&gt;"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">"#btn3"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test3"</span>).val(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>text()、html() 以及 val()，同样拥有回调函数。回调函数有两个参数：<strong>被选元素列表中当前元素的下标</strong>，以及<strong>原始（旧的）值</strong>。然后以<strong>函数新值返回您希望使用的字符串</strong>。</p>
 <p>jQ代码：</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">".test1"</span>).text(<span class="function"><span class="keyword">function</span>(<span class="params">i,origText</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"旧文本: "</span> + origText + <span class="string">" 新文本: Hello world! (index: "</span> + i + <span class="string">")"</span>; </span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">".test1"</span>).text(<span class="function"><span class="keyword">function</span>(<span class="params">i,origText</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"旧文本: "</span> + origText + <span class="string">" 新文本: Hello world! (index: "</span> + i + <span class="string">")"</span>; </span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>html代码：</p>
-<figure class="hljs highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"test1"</span>&gt;</span>这是一个有 <span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span> 字的段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"test1"</span>&gt;</span>这是另外一个有 <span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span> 字的段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>显示 新/旧 文本<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"test1"</span>&gt;</span>这是一个有 <span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span> 字的段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"test1"</span>&gt;</span>这是另外一个有 <span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span> 字的段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>显示 新/旧 文本<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>结果：</p>
 <p>旧文本: 这是一个有 粗体 字的段落。 新文本: Hello world! (index: 0)</p>
 <p>旧文本: 这是另外一个有 粗体 字的段落。 新文本: Hello world! (index: 1)</p>
-<h4 id="获取属性-attr"><a href="#获取属性-attr" class="headerlink" title="获取属性 - attr()"></a>获取属性 - attr()</h4><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="设置属性-attr"><a href="#设置属性-attr" class="headerlink" title="设置属性 - attr()"></a>设置属性 - attr()</h4><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>,<span class="string">'container'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="获取属性-attr"><a href="#获取属性-attr" class="headerlink" title="获取属性 - attr()"></a>获取属性 - attr()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="设置属性-attr"><a href="#设置属性-attr" class="headerlink" title="设置属性 - attr()"></a>设置属性 - attr()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>,<span class="string">'container'</span>)</span><br></pre></td></tr></table></figure>
 <p>attr() 方法也允许同时设置多个属性。</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>.).attr(&#123;</span><br><span class="line">    <span class="string">'class'</span> : <span class="string">'container'</span> ,</span><br><span class="line">    <span class="string">'style'</span> : <span class="string">'background-color:white'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>.).attr(&#123;</span><br><span class="line">    <span class="string">'class'</span> : <span class="string">'container'</span> ,</span><br><span class="line">    <span class="string">'style'</span> : <span class="string">'background-color:white'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>attr()，提供回调函数。回调函数有两个参数：<strong>被选元素列表中当前元素的下标</strong>，以及<strong>原始（旧的）值</strong>。然后以<strong>函数新值返回您希望使用的字符串</strong>。</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"> i , origValue</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> origValue + <span class="string">'/jQ'</span> ;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"> i , origValue</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> origValue + <span class="string">'/jQ'</span> ;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h4 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h4><ol>
 <li><p>append() - 在被选元素的结尾插入内容</p>
 </li>
@@ -226,26 +150,26 @@
 </li>
 </ol>
 <p>append() 方法在被选元素的结尾插入内容（仍然该元素的内部）。</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'p'</span>).append(<span class="string">'追加文本'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'p'</span>).append(<span class="string">'追加文本'</span>);</span><br></pre></td></tr></table></figure>
 <p>prepend() 方法在被选元素的开头插入内容</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// $('p').prepend('在开头追加文本');</span></span><br><span class="line">$(<span class="string">'p'</span>).prepend(<span class="string">'&lt;li&gt;开头插入列表项&lt;/li&gt;'</span>)</span><br></pre></td></tr></table></figure>
-<figure class="hljs highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// $('p').prepend('在开头追加文本');</span></span><br><span class="line">$(<span class="string">'p'</span>).prepend(<span class="string">'&lt;li&gt;开头插入列表项&lt;/li&gt;'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>结果：</p>
 <p>1.列表 1            ===&gt;&gt;&gt;             1.开头插入列表项<br>2.列表 2            ===&gt;&gt;&gt;      2.列表 1<br>3.列表 3            ===&gt;&gt;&gt;             3.列表 2<br>0空空空            ===&gt;&gt;&gt;            4.列表 3</p>
 <p>append()和prepend()可以用来生成文本/html</p>
 <p>三种生成文本的方式：</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt1=<span class="string">"&lt;p&gt;文本。&lt;/p&gt;"</span>;              <span class="comment">// 使用 HTML 标签创建文本</span></span><br><span class="line"><span class="keyword">var</span> txt2=$(<span class="string">"&lt;p&gt;&lt;/p&gt;"</span>).text(<span class="string">"文本。"</span>);  <span class="comment">// 使用 jQuery 创建文本</span></span><br><span class="line"><span class="keyword">var</span> txt3=<span class="built_in">document</span>.createElement(<span class="string">"p"</span>);</span><br><span class="line"></span><br><span class="line">    txt3.innerHTML=<span class="string">"文本。"</span>;               <span class="comment">// 使用 DOM 创建文本 text with DOM</span></span><br><span class="line">    $(<span class="string">"body"</span>).append(txt1,txt2,txt3);        <span class="comment">// 追加新元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt1=<span class="string">"&lt;p&gt;文本。&lt;/p&gt;"</span>;              <span class="comment">// 使用 HTML 标签创建文本</span></span><br><span class="line"><span class="keyword">var</span> txt2=$(<span class="string">"&lt;p&gt;&lt;/p&gt;"</span>).text(<span class="string">"文本。"</span>);  <span class="comment">// 使用 jQuery 创建文本</span></span><br><span class="line"><span class="keyword">var</span> txt3=<span class="built_in">document</span>.createElement(<span class="string">"p"</span>);</span><br><span class="line"></span><br><span class="line">    txt3.innerHTML=<span class="string">"文本。"</span>;               <span class="comment">// 使用 DOM 创建文本 text with DOM</span></span><br><span class="line">    $(<span class="string">"body"</span>).append(txt1,txt2,txt3);        <span class="comment">// 追加新元素</span></span><br></pre></td></tr></table></figure>
 <p>after() 和 before()</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).before(<span class="string">'&lt;b&gt;之前&lt;/b&gt;'</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).after(<span class="string">'&lt;b&gt;之前&lt;/b&gt;'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).before(<span class="string">'&lt;b&gt;之前&lt;/b&gt;'</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).after(<span class="string">'&lt;b&gt;之前&lt;/b&gt;'</span>);</span><br></pre></td></tr></table></figure>
 <p>append()/prepend()和after()/before()的区别</p>
 <p>append():</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="string">"p"</span>).append(<span class="string">'&lt;span class="s2"&gt;s2&lt;/span&gt;'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="string">"p"</span>).append(<span class="string">'&lt;span class="s2"&gt;s2&lt;/span&gt;'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>作用后为</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span class="s2"&gt;s2&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span class="s2"&gt;s2&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
 <p>after():</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    $(<span class="string">"p"</span>).after(<span class="string">'&lt;span class="s2"&gt;s2&lt;/span&gt;'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    $(<span class="string">"p"</span>).after(<span class="string">'&lt;span class="s2"&gt;s2&lt;/span&gt;'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>作用后为</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s2"</span>&gt;s2&lt;<span class="regexp">/span&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s2"</span>&gt;s2&lt;<span class="regexp">/span&gt;</span></span><br></pre></td></tr></table></figure>
 <p>综上：<br>append/prepend 是在选择元素内部嵌入。<br>after/before 是在元素外面追加。</p>
 <h4 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h4><ol>
 <li><p>remove(可选参数) - 删除被选元素（及其子元素）</p>
@@ -253,12 +177,12 @@
 <li><p>empty() - 从被选元素中删除子元素</p>
 </li>
 </ol>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(); <span class="comment">//整个元素删除</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).empty();  <span class="comment">//删除所有选中元素的子元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(); <span class="comment">//整个元素删除</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).empty();  <span class="comment">//删除所有选中元素的子元素</span></span><br></pre></td></tr></table></figure>
 <p>remove() 方法可接受一个参数，允许对被删元素进行过滤</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(<span class="string">'.div1'</span>)  <span class="comment">//删除所有类名为div1的div元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(<span class="string">'.div1'</span>)  <span class="comment">//删除所有类名为div1的div元素</span></span><br></pre></td></tr></table></figure>
 <p> remove() 的过滤器删除时，不能删除带有过滤器的子元素</p>
- <figure class="hljs highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"wwww"</span>&gt;</span>www<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>hhh<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
- <figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(<span class="string">'.www'</span>); <span class="comment">// 错误，不可删除带过滤器的元素div的子元素p</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).remove(<span class="string">'.www'</span>) <span class="comment">// 删除所有类名为www的p元素</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"wwww"</span>&gt;</span>www<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>hhh<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(<span class="string">'.www'</span>); <span class="comment">// 错误，不可删除带过滤器的元素div的子元素p</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).remove(<span class="string">'.www'</span>) <span class="comment">// 删除所有类名为www的p元素</span></span><br></pre></td></tr></table></figure>
 <h4 id="获取并设置-CSS-类"><a href="#获取并设置-CSS-类" class="headerlink" title="获取并设置 CSS 类"></a>获取并设置 CSS 类</h4><ol>
 <li><p>addClass() - 向被选元素添加一个或多个类</p>
 </li>
@@ -269,14 +193,14 @@
 <li><p>css() - 设置或返回被选元素的一个或多个样式属性。</p>
 </li>
 </ol>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).addClass(<span class="string">"div1 div2"</span>) <span class="comment">// 添加div1 div2 类给所有div元素</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).removeClass(<span class="string">"div1 div2"</span>) <span class="comment">// 删除div1 div2 类给所有div元素</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).addClass(<span class="string">"div1 div2"</span>) <span class="comment">// 添加div1 div2 类给所有div元素</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).removeClass(<span class="string">"div1 div2"</span>) <span class="comment">// 删除div1 div2 类给所有div元素</span></span><br></pre></td></tr></table></figure>
 <p>上面代码等效于</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).toggleClass(<span class="string">"div1 div2"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).toggleClass(<span class="string">"div1 div2"</span>);</span><br></pre></td></tr></table></figure>
 <p>css()语法：</p>
 <p>css(“propertyname”); 只会返回首个匹配元素的css样式属性</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div"</span>).css(<span class="string">"background-color"</span>);  <span class="comment">//返回首个匹配元素的div的背景颜色</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div"</span>).css(<span class="string">"background-color"</span>);  <span class="comment">//返回首个匹配元素的div的背景颜色</span></span><br></pre></td></tr></table></figure>
 <p>若需要修改css样式</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).css(<span class="string">'background-color'</span>,<span class="string">'yellow'</span>); <span class="comment">//单个</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">"div"</span>).css(&#123;   <span class="comment">//修改多个</span></span><br><span class="line">    <span class="string">"background-color"</span>:<span class="string">"yellow"</span>,</span><br><span class="line">    <span class="string">"font-size"</span>:<span class="string">"2em"</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).css(<span class="string">'background-color'</span>,<span class="string">'yellow'</span>); <span class="comment">//单个</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">"div"</span>).css(&#123;   <span class="comment">//修改多个</span></span><br><span class="line">    <span class="string">"background-color"</span>:<span class="string">"yellow"</span>,</span><br><span class="line">    <span class="string">"font-size"</span>:<span class="string">"2em"</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 <h4 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h4><ol>
 <li><p>width():设置或返回元素的宽度（不包括内边距、边框或外边距）</p>
 </li>
@@ -292,132 +216,45 @@
 </li>
 </ol>
 <p><img src="/../img/9th.gif" alt=""></p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).width(<span class="string">'100px'</span>)   <span class="comment">//修改宽度为100px;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).width(<span class="string">'100px'</span>)   <span class="comment">//修改宽度为100px;</span></span><br></pre></td></tr></table></figure>
 <p><strong>我明白你会来，所以我等。</strong></p>
 
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/jQuery/" rel="tag"><i class="fas fa-tags"></i>jQuery</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2018/07/21/eighthDay/" rel="next" title="jQuery(part1)"><i class="fas fa-angle-left"></i><span class="nav-title">jQuery(part1)</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2018/07/23/tenthDay/" rel="prev" title="jQuery(part3)"><span class="nav-title">jQuery(part3)</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Mr.bin">
-  
-  <h1 class="author-name">Mr.bin</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-    
-    
-    
-    <div class="archives-count count-block">
-      <div class="site-count-title">Archives</div>
-      <div><a href="/archives/">23</a></div>
-    </div>
-    
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#jQuery-HTML-CSS操作"><span class="toc-text">jQuery HTML/CSS操作</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#获得内容-text-、html-以及-val"><span class="toc-text">获得内容 - text()、html() 以及 val()</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#设置内容-text-、html-以及-val"><span class="toc-text">设置内容 - text()、html() 以及 val()</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#获取属性-attr"><span class="toc-text">获取属性 - attr()</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#设置属性-attr"><span class="toc-text">设置属性 - attr()</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#添加元素"><span class="toc-text">添加元素</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#删除元素"><span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#获取并设置-CSS-类"><span class="toc-text">获取并设置 CSS 类</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#尺寸"><span class="toc-text">尺寸</span></a></li></ol></li></ol></li></ol></div>
-    </div>
-    
-    
-    
-    
-  </div>
-</aside>
-
-
-          
         </div>
       </div>
-    </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
   <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Mr.bin</span><span class="year"><i class="far fa-copyright"></i>2019</span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
       </div>
     </div>
   </div>
 </footer>
 
 
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
   </body>
 </html>
+

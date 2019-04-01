@@ -1,205 +1,129 @@
 <!DOCTYPE html>
 <html>
+  <!-- Html Head Tag-->
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, ARIA, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
-    
-    
-    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mr.bin">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="IIFE 箭头函数"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Crazy"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-light.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">Copy</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">Copy</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "Copied";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "Copy";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>IIFE 箭头函数 | Crazy</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="en"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
+  <!-- Site Title -->
+  <title>Crazy</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/home.jpg)">
   <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">Crazy</a></h1>
-        <h2 class="subtitle"></h2>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">IIFE 箭头函数</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/crazy492">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:abcqweewq@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
       </div>
-      
     </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
-        
-        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
-        
-      </ul>
-    </nav>
   </div>
 </header>
 
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Mr.bin</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-07-19</span>
+            <span class="time">14:34:24</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
-    <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/sixthDay/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Mr.bin">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="Crazy">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">IIFE 箭头函数</h1>
-      <div class="post-meta">
+<a class="tag" href="/tags/IIFE/">#IIFE</a> <a class="tag" href="/tags/箭头函数/">#箭头函数</a>
+
+
+          </div>
         
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-19T21:33:43+08:00">2018-07-19 21:33:43</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      <h2 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Glossary/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F</a></p>
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Glossary/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F</a></p>
 <p>IIFE(立即调用函数表达式)是一个在定义时就会立即执行的JavaScript函数。</p>
 <p>第一部分是包围在圆括号运算符() 里的一个匿名函数，这个匿名函数拥有独立的词法作用域。这不仅避免了外界访问此 IIFE 中的变量，而且又不会污染全局作用域。</p>
 <p>第二部分再一次使用 () 创建了一个立即执行函数表达式，JavaScript 引擎到此将直接执行函数。</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span> ;</span><br><span class="line">    <span class="built_in">console</span>.log(a) ; <span class="comment">// 1</span></span><br><span class="line">&#125;)() ;</span><br><span class="line"><span class="built_in">console</span>.log(a) ;  <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>若是想要创建一个独立的块级作用域，可以用let，不必用IIFE<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span> ;</span><br><span class="line">    <span class="built_in">console</span>.log(a) ; <span class="comment">// 1</span></span><br><span class="line">&#125;)() ;</span><br><span class="line"><span class="built_in">console</span>.log(a) ;  <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>若是想要创建一个独立的块级作用域，可以用let，不必用IIFE<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>将 IIFE 分配给一个变量，不是存储 IIFE 本身，而是存储 IIFE 执行后返回的结果</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> b = <span class="number">1</span> ;</span><br><span class="line"> <span class="built_in">console</span>.log(b);   <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> b +<span class="number">1</span> ;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="built_in">console</span>.log(a);   <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> b = <span class="number">1</span> ;</span><br><span class="line"> <span class="built_in">console</span>.log(b);   <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> b +<span class="number">1</span> ;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="built_in">console</span>.log(a);   <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
 <h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions</a></p>
 <h4 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h4><ol>
 <li><p>(参数1, 参数2, …, 参数N) =&gt; { 函数声明 }</p>
@@ -211,162 +135,73 @@
 <li><p>// 没有参数的函数应该写成一对圆括号。<br>() =&gt; {函数声明}</p>
 </li>
 </ol>
-<h4 id="不绑定this"><a href="#不绑定this" class="headerlink" title="不绑定this"></a>不绑定this</h4><p>一般函数的this指向该函数内部<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">growUp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age++;    <span class="comment">// growUp()函数内部的this.age未定义</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age)   <span class="comment">// NaN</span></span><br><span class="line">    <span class="keyword">this</span>.age = <span class="number">2</span>;  <span class="comment">// 定义growUp()函数内部的this.age</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);  <span class="comment">// 2</span></span><br><span class="line">  &#125;, <span class="number">1000</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
+<h4 id="不绑定this"><a href="#不绑定this" class="headerlink" title="不绑定this"></a>不绑定this</h4><p>一般函数的this指向该函数内部<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">growUp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age++;    <span class="comment">// growUp()函数内部的this.age未定义</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age)   <span class="comment">// NaN</span></span><br><span class="line">    <span class="keyword">this</span>.age = <span class="number">2</span>;  <span class="comment">// 定义growUp()函数内部的this.age</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);  <span class="comment">// 2</span></span><br><span class="line">  &#125;, <span class="number">1000</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
 <p><strong>箭头函数不会创建自己的this,它只会从自己的作用域链的上一层继承this</strong></p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.age++;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age) <span class="comment">// 1</span></span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.age++;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age) <span class="comment">// 1</span></span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
 <p>因为箭头函数没有自己的this指针，通过call()或apply()方法调用一个函数时，只能传递参数(不能绑定this),他们的第一个参数会被忽略。</p>
-<h4 id="不绑定arguments"><a href="#不绑定arguments" class="headerlink" title="不绑定arguments"></a>不绑定arguments</h4><p><strong>一般函数绑定arguments</strong><br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">arguments</span>=[<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]) ;   <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">1</span>]) ;   <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure></p>
-<p><strong>箭头函数没有内置arguments</strong><br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">arguments</span>=[<span class="number">3</span>,<span class="number">4</span>];<span class="comment">//如取消定义arguments，则会报错arguments is not defined</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">x,y</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]) ;   <span class="comment">// 3</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">1</span>]) ;   <span class="comment">// 4</span></span><br><span class="line">&#125;</span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="不绑定arguments"><a href="#不绑定arguments" class="headerlink" title="不绑定arguments"></a>不绑定arguments</h4><p><strong>一般函数绑定arguments</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">arguments</span>=[<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]) ;   <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">1</span>]) ;   <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>箭头函数没有内置arguments</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">arguments</span>=[<span class="number">3</span>,<span class="number">4</span>];<span class="comment">//如取消定义arguments，则会报错arguments is not defined</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">x,y</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]) ;   <span class="comment">// 3</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">1</span>]) ;   <span class="comment">// 4</span></span><br><span class="line">&#125;</span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
 <p><strong>使用剩余参数是相较使用arguments对象的更好选择。 (…arr)</strong></p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr =[<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">...arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arr[<span class="number">0</span>]);          <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(arr[<span class="number">1</span>]);          <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr =[<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">...arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arr[<span class="number">0</span>]);          <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(arr[<span class="number">1</span>]);          <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 <p>剩余参数和 arguments对象之间的区别主要有三个：</p>
 <ol>
 <li>剩余参数只包含那些没有对应形参的实参，而 arguments 对象包含了传给函数的所有实参。</li>
 <li>arguments对象不是一个真正的数组，而剩余参数是真正的 Array实例，也就是说你能够在它上面直接使用所有的数组方法，比如 sort，map，forEach或pop。</li>
 <li>arguments对象还有一些附加的属性 （如callee属性）。</li>
 </ol>
-<h4 id="不能使用new操作符"><a href="#不能使用new操作符" class="headerlink" title="不能使用new操作符"></a>不能使用new操作符</h4><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Foo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(); <span class="comment">// TypeError: Foo is not a constructor</span></span><br></pre></td></tr></table></figure>
-<h4 id="没有prototype属性"><a href="#没有prototype属性" class="headerlink" title="没有prototype属性"></a>没有prototype属性</h4><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Foo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(Foo.prototype); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h4 id="不能使用new操作符"><a href="#不能使用new操作符" class="headerlink" title="不能使用new操作符"></a>不能使用new操作符</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Foo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo(); <span class="comment">// TypeError: Foo is not a constructor</span></span><br></pre></td></tr></table></figure>
+<h4 id="没有prototype属性"><a href="#没有prototype属性" class="headerlink" title="没有prototype属性"></a>没有prototype属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Foo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(Foo.prototype); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 <h4 id="箭头函数注意点"><a href="#箭头函数注意点" class="headerlink" title="箭头函数注意点"></a>箭头函数注意点</h4><p><strong>返回对象字面量</strong></p>
-<p>花括号会被解析为函数执行体，而不是return { foo: 1}，故需要将对象用括号括起来<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="attr">foo</span>: <span class="number">1</span> &#125;;</span><br><span class="line">func()   <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="params">()</span> =&gt;</span> (&#123; <span class="attr">foo</span>: <span class="number">1</span> &#125;);</span><br><span class="line">func()   <span class="comment">//&#123;foo: 1&#125;</span></span><br></pre></td></tr></table></figure>
-<p><strong>不能换行写箭头函数</strong><br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f= ()</span><br><span class="line">           =&gt; <span class="number">1</span>;   <span class="comment">//报错</span></span><br></pre></td></tr></table></figure></p>
+<p>花括号会被解析为函数执行体，而不是return { foo: 1}，故需要将对象用括号括起来<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="attr">foo</span>: <span class="number">1</span> &#125;;</span><br><span class="line">func()   <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="params">()</span> =&gt;</span> (&#123; <span class="attr">foo</span>: <span class="number">1</span> &#125;);</span><br><span class="line">func()   <span class="comment">//&#123;foo: 1&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>不能换行写箭头函数</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f= ()</span><br><span class="line">           =&gt; <span class="number">1</span>;   <span class="comment">//报错</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>解析顺序</strong></p>
 <p>虽然箭头函数中的箭头不是运算符，但箭头函数具有与常规函数不同的特殊运算符优先级解析规则。</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> callback;</span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;; <span class="comment">// ok</span></span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;      </span><br><span class="line"><span class="comment">// SyntaxError: invalid arrow-function arguments</span></span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function">(<span class="params">(</span>) =&gt;</span> &#123;&#125;);    <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
-<h4 id="箭头函数一些实例"><a href="#箭头函数一些实例" class="headerlink" title="箭头函数一些实例"></a>箭头函数一些实例</h4><p>与数组迭代方法的结合<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">13</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">18</span>, <span class="number">23</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = arr.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b);  </span><br><span class="line"><span class="comment">// 66</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> even = arr.filter(<span class="function"><span class="params">v</span> =&gt;</span> v % <span class="number">2</span> == <span class="number">0</span>); </span><br><span class="line"><span class="comment">// [6, 0, 18]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> double = arr.map(<span class="function"><span class="params">v</span> =&gt;</span> v * <span class="number">2</span>);       </span><br><span class="line"><span class="comment">// [10, 12, 26, 0, 2, 36, 46]</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> callback;</span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;; <span class="comment">// ok</span></span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;      </span><br><span class="line"><span class="comment">// SyntaxError: invalid arrow-function arguments</span></span><br><span class="line"></span><br><span class="line">callback = callback || <span class="function">(<span class="params">(</span>) =&gt;</span> &#123;&#125;);    <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
+<h4 id="箭头函数一些实例"><a href="#箭头函数一些实例" class="headerlink" title="箭头函数一些实例"></a>箭头函数一些实例</h4><p>与数组迭代方法的结合<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">13</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">18</span>, <span class="number">23</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = arr.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b);  </span><br><span class="line"><span class="comment">// 66</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> even = arr.filter(<span class="function"><span class="params">v</span> =&gt;</span> v % <span class="number">2</span> == <span class="number">0</span>); </span><br><span class="line"><span class="comment">// [6, 0, 18]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> double = arr.map(<span class="function"><span class="params">v</span> =&gt;</span> v * <span class="number">2</span>);       </span><br><span class="line"><span class="comment">// [10, 12, 26, 0, 2, 36, 46]</span></span><br></pre></td></tr></table></figure></p>
 <p>箭头函数内定义的变量及其作用域</p>
 <p>箭头函数内部var一个变量，外界用不到，因为箭头函数有独立块级作用域</p>
-<figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> a =<span class="number">1</span> ;</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"><span class="built_in">console</span>.log(a);   <span class="comment">//  a is not defined</span></span><br></pre></td></tr></table></figure>
-<p>箭头函数内部不用var，为全局变量<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    a =<span class="number">1</span> ;</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"><span class="built_in">console</span>.log(a);   <span class="comment">//  1</span></span><br></pre></td></tr></table></figure></p>
-<p>箭头函数参数直接声明一个变量，仍为局部变量(实际上即使不用箭头函数，参数直接声明的变量都是局部变量)<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);    <span class="comment">//1</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">a = <span class="number">1</span></span>) =&gt;</span> &#123; </span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"><span class="built_in">console</span>.log(a);  <span class="comment">//a is not defined</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> a =<span class="number">1</span> ;</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"><span class="built_in">console</span>.log(a);   <span class="comment">//  a is not defined</span></span><br></pre></td></tr></table></figure>
+<p>箭头函数内部不用var，为全局变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    a =<span class="number">1</span> ;</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"><span class="built_in">console</span>.log(a);   <span class="comment">//  1</span></span><br></pre></td></tr></table></figure></p>
+<p>箭头函数参数直接声明一个变量，仍为局部变量(实际上即使不用箭头函数，参数直接声明的变量都是局部变量)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);    <span class="comment">//1</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function">(<span class="params">a = <span class="number">1</span></span>) =&gt;</span> &#123; </span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"><span class="built_in">console</span>.log(a);  <span class="comment">//a is not defined</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>天下只有两种人。譬如一串葡萄到手，一种人挑最好的先吃，另一种人把最好的留在最后吃。照例第一种人应该乐观，因为他每吃一颗都是吃剩的葡萄里面最好的;第二种人应该悲观，因为他每吃一颗都是吃剩葡萄里最坏的。不过事实上适得其反，缘故是第二种人还有希望，第一种人只有回忆。</strong></p>
 
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/IIFE/" rel="tag"><i class="fas fa-tags"></i>IIFE</a>
-        
-        <a class="post-tag button" href="/tags/箭头函数/" rel="tag"><i class="fas fa-tags"></i>箭头函数</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2018/07/19/seventhDay/" rel="next" title="this"><i class="fas fa-angle-left"></i><span class="nav-title">this</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2018/07/20/ajax/" rel="prev" title="Ajax"><span class="nav-title">Ajax</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Mr.bin">
-  
-  <h1 class="author-name">Mr.bin</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-    
-    
-    
-    <div class="archives-count count-block">
-      <div class="site-count-title">Archives</div>
-      <div><a href="/archives/">23</a></div>
-    </div>
-    
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#IIFE"><span class="toc-text">IIFE</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#箭头函数"><span class="toc-text">箭头函数</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#基础语法"><span class="toc-text">基础语法</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#不绑定this"><span class="toc-text">不绑定this</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#不绑定arguments"><span class="toc-text">不绑定arguments</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#不能使用new操作符"><span class="toc-text">不能使用new操作符</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#没有prototype属性"><span class="toc-text">没有prototype属性</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#箭头函数注意点"><span class="toc-text">箭头函数注意点</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#箭头函数一些实例"><span class="toc-text">箭头函数一些实例</span></a></li></ol></li></ol></li></ol></div>
-    </div>
-    
-    
-    
-    
-  </div>
-</aside>
-
-
-          
         </div>
       </div>
-    </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
   <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Mr.bin</span><span class="year"><i class="far fa-copyright"></i>2019</span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
       </div>
     </div>
   </div>
 </footer>
 
 
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
   </body>
 </html>
+
