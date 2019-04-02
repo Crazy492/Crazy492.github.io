@@ -1,122 +1,308 @@
 <!DOCTYPE html>
-<html>
-  <!-- Html Head Tag-->
-  <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mr.bin">
-  <!-- Open Graph Data -->
-  <meta property="og:title" content="Vue.js"/>
-  <meta property="og:description" content="" />
-  <meta property="og:site_name" content="Crazy"/>
-  <meta property="og:type" content="article" />
-  <meta property="og:image" content="http://yoursite.com"/>
-  
-    <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
+
+
+
   
 
-  <!-- Site Title -->
-  <title>Crazy</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <!-- Custom CSS -->
-  
-  <link rel="stylesheet" href="/css/style.light.css">
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
-  <!-- Google Analytics -->
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue.js," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。  1. Vue对象     Vue.js是javaScript的框架  1.1 Vue(根)对象中的选项实例化V">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js">
+<meta property="og:url" content="http://yoursite.com/2018/10/06/Vue.js/index.html">
+<meta property="og:site_name" content="Crazy">
+<meta property="og:description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。  1. Vue对象     Vue.js是javaScript的框架  1.1 Vue(根)对象中的选项实例化V">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-28T12:45:00.439Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue.js">
+<meta name="twitter:description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。  1. Vue对象     Vue.js是javaScript的框架  1.1 Vue(根)对象中的选项实例化V">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/06/Vue.js/"/>
+
+
+
+
+
+  <title>Vue.js | Crazy</title>
+  
+
+
+
+
+
+
+
 
 </head>
 
-  <body>
-    <!-- Page Header -->
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
+  
+  
+    
+  
 
-<header class="site-header header-background" style="background-image: url(/img/home.jpg)">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="page-title with-background-image">
-          <p class="title">Vue.js</p>
-          <p class="subtitle"></p>
-        </div>
-        <div class="site-menu with-background-image">
-          <ul>
-            
-              <li>
-                <a href="/">
-                  
-                  Home
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="/archives">
-                  
-                  Archives
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/crazy492">
-                  
-                  Github
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="mailto:abcqweewq@qq.com">
-                  
-                  Email
-                  
-                </a>
-              </li>
-            
-          </ul>
-        </div>
-      </div>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crazy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-</header>
 
-<article>
-  <div class="container typo">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-info text-muted">
-          
-            <!-- Author -->
-            <span class="author info">By Mr.bin</span>
-          
-          <!-- Date -->
-          <span class="date-time info">On
-            <span class="date">2018-10-06</span>
-            <span class="time">14:38:02</span>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/06/Vue.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue.js</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-06T21:56:43+08:00">
+                2018-10-06
+              </time>
+            
+
+            
+
+            
           </span>
+
           
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-        <!-- Tags -->
-        
-          <div class="post-tags text-muted">
-            Tags: 
+      </header>
+    
 
-<a class="tag" href="/tags/Vue-js/">#Vue.js</a>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
+      
+      
 
-          </div>
-        
-        <!-- Post Main Content -->
-        <div class="post-content">
-          <hr>
+      
+        <hr>
 <p>前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。</p>
 <hr>
 <h1>1. Vue对象</h1>  
@@ -149,7 +335,7 @@
 <h2 id="2-1-插值"><a href="#2-1-插值" class="headerlink" title="2.1 插值"></a>2.1 插值</h2><p>最常见的插值形式为双大括号文本插入</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;My name is &#123;&#123; name &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如要将数据解释为 HTML 代码，则需要配合 v-html 指令</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p v-html = <span class="string">" HtmlCode "</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p v-html = <span class="string">" HtmlCode "</span>&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
 <p>双大括号内可以使用JavaScript表达式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">    &#123;&#123; number + <span class="number">1</span> &#125;&#125;</span><br><span class="line">    &#123;&#123; ok ? <span class="string">'YES'</span> : <span class="string">'NO'</span> &#125;&#125;</span><br><span class="line">    &#123;&#123; message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
 <hr>
@@ -239,42 +425,388 @@
 <hr>
 <p>这篇文章关于组件的部分只是基础中的基础，特别是组件注册，插槽，Prop和$emit等都还没写好，下一篇博客再写吧。</p>
 
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
         </div>
-      </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/30/json/" rel="next" title="JSON">
+                <i class="fa fa-chevron-left"></i> JSON
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/13/解构赋值/" rel="prev" title="解构赋值">
+                解构赋值 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
-</article>
+
+
+          </div>
+          
+
+
+          
+
+  
 
 
 
-    <!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <p class="copyright text-muted">
-          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
-          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
-        <p class="copyright text-muted">
-          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
-        </p>
-      </div>
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
-</footer>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mr.bin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1. Vue对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Vue-根-对象中的选项"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Vue(根)对象中的选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">el</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.2.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.3.</span> <span class="nav-text">methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.4.</span> <span class="nav-text">computed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.5.</span> <span class="nav-text">watch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Vue生命周期-钩子函数"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Vue生命周期(钩子函数)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2. Vue模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-插值"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 插值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-指令"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.1.</span> <span class="nav-text">属性绑定指令 v-bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.2.</span> <span class="nav-text">事件绑定指令 v-on</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.3.</span> <span class="nav-text">条件渲染指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.4.</span> <span class="nav-text">列表渲染指令 v-for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.5.</span> <span class="nav-text">表单输入绑定指令 v-model</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3. Vue组件初级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-子组件基本示例"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 子组件基本示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-子组件选项"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 子组件选项</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
 
 
-    <!-- After Footer Scripts -->
-<script src="/js/highlight.pack.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
-    codeBlocks.forEach(function(block, index) {
-      hljs.highlightBlock(block);
-    });
-  });
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.bin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
-  </body>
-</html>
 
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
