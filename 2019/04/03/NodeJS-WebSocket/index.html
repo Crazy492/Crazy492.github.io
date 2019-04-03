@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NodeJS,WebSocket," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="WebSocket是H5提供的一种协议，它具有高效，双向通信的特点 说到WebSocket，先提一下http协议，我们都知道通过http协议和服务器完成数据交换需要三次握手，如果想等服务器一有数据就可以返回给客户端，只能通过Ajax轮询的方式进行，这样做的后果是，服务器会每隔一个固定时间就被请求一次，而http请求又是十分低效的(每次请求都要发送‘我是谁’等等数据给服务器，不能只发送真正要发的数据">
+<meta name="keywords" content="NodeJS,WebSocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket">
+<meta property="og:url" content="http://yoursite.com/2019/04/03/NodeJS-WebSocket/index.html">
+<meta property="og:site_name" content="Crazy">
+<meta property="og:description" content="WebSocket是H5提供的一种协议，它具有高效，双向通信的特点 说到WebSocket，先提一下http协议，我们都知道通过http协议和服务器完成数据交换需要三次握手，如果想等服务器一有数据就可以返回给客户端，只能通过Ajax轮询的方式进行，这样做的后果是，服务器会每隔一个固定时间就被请求一次，而http请求又是十分低效的(每次请求都要发送‘我是谁’等等数据给服务器，不能只发送真正要发的数据">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-04-03T11:34:37.216Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebSocket">
+<meta name="twitter:description" content="WebSocket是H5提供的一种协议，它具有高效，双向通信的特点 说到WebSocket，先提一下http协议，我们都知道通过http协议和服务器完成数据交换需要三次握手，如果想等服务器一有数据就可以返回给客户端，只能通过Ajax轮询的方式进行，这样做的后果是，服务器会每隔一个固定时间就被请求一次，而http请求又是十分低效的(每次请求都要发送‘我是谁’等等数据给服务器，不能只发送真正要发的数据">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/03/NodeJS-WebSocket/"/>
+
+
+
+
+
+  <title>WebSocket | Crazy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crazy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/NodeJS-WebSocket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WebSocket</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-03T10:00:00+08:00">
+                2019-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>WebSocket是H5提供的一种协议，它具有高效，双向通信的特点</p>
+<p>说到WebSocket，先提一下http协议，我们都知道通过http协议和服务器完成数据交换需要三次握手，如果想等服务器一有数据就可以返回给客户端，只能通过Ajax轮询的方式进行，这样做的后果是，服务器会每隔一个固定时间就被请求一次，而http请求又是十分低效的(每次请求都要发送‘我是谁’等等数据给服务器，不能只发送真正要发的数据)，这势必会造成服务器资源浪费，要求服务器处理请求速度很快，这显然是不合适的</p>
+<p>那既然重复请求效率低，我们是不是可以建立一次请求不断开呢？是的，我们有个技术叫long poll(长轮询)，它虽然是基于Ajax轮询的，不过采用的是阻塞式通信，也就是说会一直挂在服务器上不断开，这样确实解决了http请求效率低下的问题，不过也大大增加了服务器的负担，这要求服务器有足够多的空间进行挂载，这显然是不合理的</p>
+<p>为了加快和服务器的通信速度，并且实现双向通信，WebSocket应运而生</p>
+<p>WebSocket只会利用http协议和服务器进行第一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输，此后协议升级为WebSocket，http是超文本传输协议，本质上还是字符串传输，而WebSocket是基于二进制传输的，其效率自然大大提高，而WebSocket和长连接有些类似，但它只会占用很少的服务器资源，不会像long poll那样一直暂居服务器上大量资源</p>
+<p>说了那么多，我们回到NodeJS的世界，来用一下WebSocket</p>
+<p>WebSocket是H5出现的，则势必不兼容低版本浏览器，WebSocket连接也势必会有掉线的问题，这些问题都挺麻烦的，不过，有了socket.io库，这些都不是问题，它可以自动重连，可以兼容到IE5，还可以自动数据解析，最最重要的是，它还十分简单方便。</p>
+<p>服务器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"><span class="comment">//WebSocket协议需要监听http协议，一旦第一次握手后，便会抢夺服务控制权</span></span><br><span class="line"><span class="keyword">let</span> wsServer = io.listen(server);</span><br><span class="line"></span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock =&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据);</span></span><br><span class="line">  <span class="comment">//sock.on('name', function(数据)&#123;&#125;);</span></span><br><span class="line">  <span class="comment">//响应浏览器 a事件</span></span><br><span class="line">  sock.on(<span class="string">'a'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a,b,a+b);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//提交 time事件 到浏览器</span></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'time'</span>,<span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>浏览器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个socket.io.js文件是服务器的socket.io提供的</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">// ws:// 是WebSocket协议的标识，表明将要把协议升级为ws</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> sock = io.connect(<span class="string">'ws://localhost:8080/'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//提交 a事件 到服务器</span></span></span><br><span class="line"><span class="javascript">  sock.emit(<span class="string">'a'</span>,<span class="number">12</span>,<span class="number">5</span>);</span></span><br><span class="line"><span class="javascript">  <span class="comment">//响应服务器 time事件 </span></span></span><br><span class="line"><span class="javascript">  sock.on(<span class="string">'time'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">time</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(time);    </span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>原生WebSocket比较难写，设计到很多二进制的操作，缓存问题，在此只列出一下WebSocket是怎么做到协议升级的</p>
+<p>首先WS请求头会比http请求头多出四个东西</p>
+<p>//扩展<br>Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits<br>//把key发送到服务器，看看服务器能不能支持websocket连接<br>Sec-WebSocket-Key: jfnKy0Z2xEaZ0FyWhqWv7A==<br>//声明websocket连接版本<br>Sec-WebSocket-Version: 13<br>//最最重要的是，告诉浏览器，我要协议升级为websocket<br>Upgrade: websocket</p>
+<p>服务器部分,需要用到 net模块<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = net.createServer(<span class="function"><span class="params">sock</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'有人请求连接'</span>);</span><br><span class="line"></span><br><span class="line">  sock.once(<span class="string">'data'</span>, buffer =&gt; &#123;</span><br><span class="line">    <span class="comment">//once表示只执行一次，第一次执行拿到的buffer全部都是请求头数据</span></span><br><span class="line">    <span class="comment">//这里面只需要解析一下请求头，并且返回一个响应头，ws连接就实现了</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>)</span><br></pre></td></tr></table></figure></p>
+<p>响应头的result值需要经过一些处理，用到crypto模块进行shal编码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>);</span><br><span class="line"><span class="comment">// key=&gt;http的请求头里来</span></span><br><span class="line"><span class="comment">// uuid=&gt;'258EAFA5-E914-47DA-95CA-C5AB0DC85B11'</span></span><br><span class="line"><span class="comment">// result = base64(shal(key+uuid))</span></span><br><span class="line"><span class="keyword">let</span> hash = crypto.createHash(<span class="string">'shal'</span>);</span><br><span class="line"></span><br><span class="line">hash.update(key+uuid);</span><br><span class="line"><span class="keyword">let</span> result = hash.digest(<span class="string">'base64'</span>);</span><br></pre></td></tr></table></figure>
+<p>最后手写一个响应头发送到浏览器,101状态码表示协议切换，\r\s是http请求的分隔符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sock.write(</span><br><span class="line"><span class="string">`HTTP/1.1 101 Switching Protocols\r\n</span></span><br><span class="line"><span class="string">Upgrade:websocket\r\n</span></span><br><span class="line"><span class="string">Connection:upgrade\r\n</span></span><br><span class="line"><span class="string">Sec-Websocket-Accept:<span class="subst">$&#123;result&#125;</span>\r\n\r\n`</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
+          
+            <a href="/tags/WebSocket/" rel="tag"># WebSocket</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/02/NodeJS-数据通信/" rel="next" title="数据通信(前->后)">
+                <i class="fa fa-chevron-left"></i> 数据通信(前->后)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mr.bin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.bin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -231,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/NodeJS-数据通信/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/NodeJS-WebSocket/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.bin">
@@ -250,7 +250,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/30/NodeJS-数据通信/" itemprop="url">数据通信(前->后)</a></h1>
+                <a class="post-title-link" href="/2019/04/03/NodeJS-WebSocket/" itemprop="url">WebSocket</a></h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,144 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-30T12:00:00+08:00">
-                2019-03-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-03T10:00:00+08:00">
+                2019-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>WebSocket是H5提供的一种协议，它具有高效，双向通信的特点</p>
+<p>说到WebSocket，先提一下http协议，我们都知道通过http协议和服务器完成数据交换需要三次握手，如果想等服务器一有数据就可以返回给客户端，只能通过Ajax轮询的方式进行，这样做的后果是，服务器会每隔一个固定时间就被请求一次，而http请求又是十分低效的(每次请求都要发送‘我是谁’等等数据给服务器，不能只发送真正要发的数据)，这势必会造成服务器资源浪费，要求服务器处理请求速度很快，这显然是不合适的</p>
+<p>那既然重复请求效率低，我们是不是可以建立一次请求不断开呢？是的，我们有个技术叫long poll(长轮询)，它虽然是基于Ajax轮询的，不过采用的是阻塞式通信，也就是说会一直挂在服务器上不断开，这样确实解决了http请求效率低下的问题，不过也大大增加了服务器的负担，这要求服务器有足够多的空间进行挂载，这显然是不合理的</p>
+<p>为了加快和服务器的通信速度，并且实现双向通信，WebSocket应运而生</p>
+<p>WebSocket只会利用http协议和服务器进行第一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输，此后协议升级为WebSocket，http是超文本传输协议，本质上还是字符串传输，而WebSocket是基于二进制传输的，其效率自然大大提高，而WebSocket和长连接有些类似，但它只会占用很少的服务器资源，不会像long poll那样一直暂居服务器上大量资源</p>
+<p>说了那么多，我们回到NodeJS的世界，来用一下WebSocket</p>
+<p>WebSocket是H5出现的，则势必不兼容低版本浏览器，WebSocket连接也势必会有掉线的问题，这些问题都挺麻烦的，不过，有了socket.io库，这些都不是问题，它可以自动重连，可以兼容到IE5，还可以自动数据解析，最最重要的是，它还十分简单方便。</p>
+<p>服务器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"><span class="comment">//WebSocket协议需要监听http协议，一旦第一次握手后，便会抢夺服务控制权</span></span><br><span class="line"><span class="keyword">let</span> wsServer = io.listen(server);</span><br><span class="line"></span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock =&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据);</span></span><br><span class="line">  <span class="comment">//sock.on('name', function(数据)&#123;&#125;);</span></span><br><span class="line">  <span class="comment">//响应浏览器 a事件</span></span><br><span class="line">  sock.on(<span class="string">'a'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a,b,a+b);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//提交 time事件 到浏览器</span></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'time'</span>,<span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>浏览器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个socket.io.js文件是服务器的socket.io提供的</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">// ws:// 是WebSocket协议的标识，表明将要把协议升级为ws</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> sock = io.connect(<span class="string">'ws://localhost:8080/'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//提交 a事件 到服务器</span></span></span><br><span class="line"><span class="javascript">  sock.emit(<span class="string">'a'</span>,<span class="number">12</span>,<span class="number">5</span>);</span></span><br><span class="line"><span class="javascript">  <span class="comment">//响应服务器 time事件 </span></span></span><br><span class="line"><span class="javascript">  sock.on(<span class="string">'time'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">time</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(time);    </span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>原生WebSocket比较难写，设计到很多二进制的操作，缓存问题，在此只列出一下WebSocket是怎么做到协议升级的</p>
+<p>首先WS请求头会比http请求头多出四个东西</p>
+<p>//扩展<br>Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits<br>//把key发送到服务器，看看服务器能不能支持websocket连接<br>Sec-WebSocket-Key: jfnKy0Z2xEaZ0FyWhqWv7A==<br>//声明websocket连接版本<br>Sec-WebSocket-Version: 13<br>//最最重要的是，告诉浏览器，我要协议升级为websocket<br>Upgrade: websocket</p>
+<p>服务器部分,需要用到 net模块<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = net.createServer(<span class="function"><span class="params">sock</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'有人请求连接'</span>);</span><br><span class="line"></span><br><span class="line">  sock.once(<span class="string">'data'</span>, buffer =&gt; &#123;</span><br><span class="line">    <span class="comment">//once表示只执行一次，第一次执行拿到的buffer全部都是请求头数据</span></span><br><span class="line">    <span class="comment">//这里面只需要解析一下请求头，并且返回一个响应头，ws连接就实现了</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>)</span><br></pre></td></tr></table></figure></p>
+<p>响应头的result值需要经过一些处理，用到crypto模块进行shal编码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>);</span><br><span class="line"><span class="comment">// key=&gt;http的请求头里来</span></span><br><span class="line"><span class="comment">// uuid=&gt;'258EAFA5-E914-47DA-95CA-C5AB0DC85B11'</span></span><br><span class="line"><span class="comment">// result = base64(shal(key+uuid))</span></span><br><span class="line"><span class="keyword">let</span> hash = crypto.createHash(<span class="string">'shal'</span>);</span><br><span class="line"></span><br><span class="line">hash.update(key+uuid);</span><br><span class="line"><span class="keyword">let</span> result = hash.digest(<span class="string">'base64'</span>);</span><br></pre></td></tr></table></figure>
+<p>最后手写一个响应头发送到浏览器,101状态码表示协议切换，\r\s是http请求的分隔符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sock.write(</span><br><span class="line"><span class="string">`HTTP/1.1 101 Switching Protocols\r\n</span></span><br><span class="line"><span class="string">Upgrade:websocket\r\n</span></span><br><span class="line"><span class="string">Connection:upgrade\r\n</span></span><br><span class="line"><span class="string">Sec-Websocket-Accept:<span class="subst">$&#123;result&#125;</span>\r\n\r\n`</span>);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/NodeJS-数据通信/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/02/NodeJS-数据通信/" itemprop="url">数据通信(前->后)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T19:00:00+08:00">
+                2019-04-02
               </time>
             
 
@@ -1938,140 +2074,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/summer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/25/summer/" itemprop="url">暑假培训总结 (7.12 - 8.4)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T01:33:43+08:00">
-                2018-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="第一个星期"><a href="#第一个星期" class="headerlink" title="第一个星期"></a>第一个星期</h4><h5 id="空调不凉，没有风扇的第一周，想它。"><a href="#空调不凉，没有风扇的第一周，想它。" class="headerlink" title="空调不凉，没有风扇的第一周，想它。"></a>空调不凉，没有风扇的第一周，想它。</h5><p>暑假培训的关键词就是热。刚开始的时候确实热到有点受不了，学东西也有点不够心静。</p>
-<p>刚开始接触github，开始学js，看高程，写博客，算是前端刚刚入门吧。</p>
-<p>自己学前端就是因为兴趣，所以呢学东西是越学越进状态吧，然后学得也挺快的(后来用的时候发现还是没有掌握牢固，这时候博客的作用就体现出来了)</p>
-<p>每次写博客都感觉是自己学东西学的最细，学得最深，最投入的时候，真的是沉迷写博，日常熬夜。</p>
-<p>第一个星期主要在调整状态，静心。</p>
-<h4 id="第二个星期"><a href="#第二个星期" class="headerlink" title="第二个星期"></a>第二个星期</h4><h5 id="空调不凉，但有风扇的第二周，还是想它。"><a href="#空调不凉，但有风扇的第二周，还是想它。" class="headerlink" title="空调不凉，但有风扇的第二周，还是想它。"></a>空调不凉，但有风扇的第二周，还是想它。</h5><p>这个时间点呢，大家都成了老油条，各各都压点到工作室。真是应该批评！一到休息时间就相约打游戏，太可怕了吧！！！别的工作室严肃紧张，我们工作室却是轻松活泼，真的是太，，，好了吧！</p>
-<p>第二周主要在学JQ以及一些交互的知识，为了第三周的开发做准备。</p>
-<p>此时，前端组都还比较轻松，就设计在疯狂抠图，后台在疯狂，，学前端0.0</p>
-<p>第二个星期主要在学习，以及体会前端地位的低下(被设计打压，被后台欺负)</p>
-<h4 id="第三个星期"><a href="#第三个星期" class="headerlink" title="第三个星期"></a>第三个星期</h4><h6 id="空调凉些了，也有风扇的第三周，却还是想它。"><a href="#空调凉些了，也有风扇的第三周，却还是想它。" class="headerlink" title="空调凉些了，也有风扇的第三周，却还是想它。"></a>空调凉些了，也有风扇的第三周，却还是想它。</h6><p>开始做项目了，看着后台愁眉苦脸，一筹莫展，心态奔溃，我觉得还是前端的任务轻松点啊，因为 阿肥项目 没有什么动态，基本是静态，静态的样式还有重复，这对前端er来说确实不难。</p>
-<p>于是我疯狂两天做完自己负责的六七个界面，然后看其他小伙伴都还在疯狂打码呢，再加上我觉得我做太快，做得粗糙，没注意细节，于是我又花了一天，重做了所有界面。</p>
-<p>前端交接的时候，要用到git操作，此时，我留下了不学无术的泪水，疯狂出问题，疯狂出bug，我甚至都怀疑人生了，还好有张老板，周老板，菠萝教我。</p>
-<p>前端交接终于问题不大了，于是就开始和后台交互，然后再次出一堆bug(这就是所谓的攘外必先安内吧)，不过这次前端er不背锅，后台小伙伴接口有问题！</p>
-<p>于是乎，交互尚未完成，出游就已经到来，于是就0.0</p>
-<p>第三个星期主要在前端交接代码，前后端交互，以及体会人生的绝望，不学无术只能默默流泪的无奈。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2122,7 +2124,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2135,7 +2137,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
