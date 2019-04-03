@@ -14,7 +14,8 @@ NexT.utils = NexT.$u = {
         var $imageWrapLink = $image.parent('a');
 
         if ($imageWrapLink.size() < 1) {
-          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+	        var imageLink = ($image.attr('data-original')) ? this.getAttribute('data-original') : this.getAttribute('src');
+          $imageWrapLink = $image.wrap('<a href="' + imageLink + '"></a>').parent('a');
         }
 
         $imageWrapLink.addClass('fancybox fancybox.image');
@@ -39,9 +40,46 @@ NexT.utils = NexT.$u = {
 
   lazyLoadPostsImages: function () {
     $('#posts').find('img').lazyload({
-      placeholder: '/images/loading.gif',
-      effect: 'fadeIn'
+      //placeholder: '/images/loading.gif',
+      effect: 'fadeIn',
+      threshold : 0
     });
+  },
+
+  /**
+   * Tabs tag listener (without twitter bootstrap).
+   */
+  registerTabsTag: function () {
+    var tNav = '.tabs ul.nav-tabs ';
+
+    // Binding `nav-tabs` & `tab-content` by real time permalink changing.
+    $(function() {
+      $(window).bind('hashchange', function() {
+        var tHash = location.hash;
+        if (tHash !== '') {
+          $(tNav + 'li:has(a[href="' + tHash + '"])').addClass('active').siblings().removeClass('active');
+          $(tHash).addClass('active').siblings().removeClass('active');
+        }
+      }).trigger('hashchange');
+    });
+
+    $(tNav + '.tab').on('click', function (href) {
+      href.preventDefault();
+      // Prevent selected tab to select again.
+      if(!$(this).hasClass('active')){
+
+        // Add & Remove active class on `nav-tabs` & `tab-content`.
+        $(this).addClass('active').siblings().removeClass('active');
+        var tActive = $(this).find('a').attr('href');
+        $(tActive).addClass('active').siblings().removeClass('active');
+
+        // Clear location hash in browser if #permalink exists.
+        if (location.hash !== '') {
+          history.pushState('', document.title, window.location.pathname + window.location.search);
+        }
+      }
+    });
+
   },
 
   registerESCKeyEvent: function () {
@@ -64,11 +102,11 @@ NexT.utils = NexT.$u = {
       $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
 
       var scrollTop = $(window).scrollTop();
-      var docHeight = $(document).height();
-      var winHeight = $(window).height();
-      var scrollPercent = (scrollTop) / (docHeight - winHeight);
+      var contentVisibilityHeight = NexT.utils.getContentVisibilityHeight();
+      var scrollPercent = (scrollTop) / (contentVisibilityHeight);
       var scrollPercentRounded = Math.round(scrollPercent*100);
-      $('#scrollpercent>span').html(scrollPercentRounded);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+      $('#scrollpercent>span').html(scrollPercentMaxed);
     });
 
     $top.on('click', function () {
@@ -122,6 +160,8 @@ NexT.utils = NexT.$u = {
         wrap.style.marginBottom = '20px';
         wrap.style.width = '100%';
         wrap.style.paddingTop = videoRatio + '%';
+        // Fix for appear inside tabs tag.
+        (wrap.style.paddingTop === '') && (wrap.style.paddingTop = '50%');
 
         // Add the iframe inside our newly created <div>
         var iframeParent = iframe.parentNode;
@@ -161,7 +201,7 @@ NexT.utils = NexT.$u = {
   addActiveClassToMenuItem: function () {
     var path = window.location.pathname;
     path = path === '/' ? path : path.substring(0, path.length - 1);
-    $('.menu-item a[href="' + path + '"]').parent().addClass('menu-item-active');
+    $('.menu-item a[href^="' + path + '"]:first').parent().addClass('menu-item-active');
   },
 
   hasMobileUA: function () {
@@ -195,7 +235,7 @@ NexT.utils = NexT.$u = {
   },
 
   displaySidebar: function () {
-    if (!this.isDesktop() || this.isPisces()) {
+    if (!this.isDesktop() || this.isPisces() || this.isGemini()) {
       return;
     }
     $('.sidebar-toggle').trigger('click');
@@ -209,6 +249,10 @@ NexT.utils = NexT.$u = {
     return CONFIG.scheme === 'Pisces';
   },
 
+  isGemini: function () {
+    return CONFIG.scheme === 'Gemini';
+  },
+
   getScrollbarWidth: function () {
     var $div = $('<div />').addClass('scrollbar-measure').prependTo('body');
     var div = $div[0];
@@ -219,91 +263,77 @@ NexT.utils = NexT.$u = {
     return scrollbarWidth;
   },
 
+  getContentVisibilityHeight: function () {
+    var docHeight = $('#content').height(),
+        winHeight = $(window).height(),
+        contentVisibilityHeight = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight);
+    return contentVisibilityHeight;
+  },
+
+  getSidebarb2tHeight: function () {
+    //var sidebarb2tHeight = (CONFIG.sidebar.b2t) ? document.getElementsByClassName('back-to-top')[0].clientHeight : 0;
+    var sidebarb2tHeight = (CONFIG.sidebar.b2t) ? $('.back-to-top').height() : 0;
+    //var sidebarb2tHeight = (CONFIG.sidebar.b2t) ? 24 : 0;
+    return sidebarb2tHeight;
+  },
+
+  getSidebarSchemePadding: function () {
+    var sidebarNavHeight = ($('.sidebar-nav').css('display') == 'block') ? $('.sidebar-nav').outerHeight(true) : 0,
+        sidebarInner = $('.sidebar-inner'),
+        sidebarPadding = sidebarInner.innerWidth() - sidebarInner.width(),
+        sidebarSchemePadding = this.isPisces() || this.isGemini() ?
+          ((sidebarPadding * 2) + sidebarNavHeight + (CONFIG.sidebar.offset * 2) + this.getSidebarb2tHeight()) :
+          ((sidebarPadding * 2) + (sidebarNavHeight / 2));
+    return sidebarSchemePadding;
+  }
+
   /**
    * Affix behaviour for Sidebar.
    *
    * @returns {Boolean}
    */
-  needAffix: function () {
-    return this.isPisces();
-  }
+//  needAffix: function () {
+//    return this.isPisces() || this.isGemini();
+//  }
 };
-(function () {
-  function n(n, e, t) {
-      return n.getAttribute(e) || t
-  }
-  function e(n) {
-      return document.getElementsByTagName(n)
-  }
-  function t() {
-      var t = e("script"),
-      o = t.length,
-      i = t[o - 1];
-      return {
-          l: o,
-          z: n(i, "zIndex", -1),
-          o: n(i, "opacity", .5),
-          c: n(i, "color", "0,0,0"),
-          n: n(i, "count", 99)
+
+$(document).ready(function () {
+
+  initSidebarDimension();
+
+  /**
+   * Init Sidebar & TOC inner dimensions on all pages and for all schemes.
+   * Need for Sidebar/TOC inner scrolling if content taller then viewport.
+   */
+  function initSidebarDimension () {
+    var updateSidebarHeightTimer;
+
+    $(window).on('resize', function () {
+      updateSidebarHeightTimer && clearTimeout(updateSidebarHeightTimer);
+
+      updateSidebarHeightTimer = setTimeout(function () {
+        var sidebarWrapperHeight = document.body.clientHeight - NexT.utils.getSidebarSchemePadding();
+
+        updateSidebarHeight(sidebarWrapperHeight);
+      }, 0);
+    });
+
+    // Initialize Sidebar & TOC Width.
+    var scrollbarWidth = NexT.utils.getScrollbarWidth();
+      if ($('.site-overview-wrap').height() > (document.body.clientHeight - NexT.utils.getSidebarSchemePadding())) {
+        $('.site-overview').css('width', 'calc(100% + ' + scrollbarWidth + 'px)');
       }
+      if ($('.post-toc-wrap').height() > (document.body.clientHeight - NexT.utils.getSidebarSchemePadding())) {
+        $('.post-toc').css('width', 'calc(100% + ' + scrollbarWidth + 'px)');
+      }
+
+    // Initialize Sidebar & TOC Height.
+    updateSidebarHeight(document.body.clientHeight - NexT.utils.getSidebarSchemePadding());
   }
-  function o() {
-      a = m.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-      c = m.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+
+  function updateSidebarHeight (height) {
+    height = height || 'auto';
+    $('.site-overview, .post-toc').css('max-height', height);
   }
-  function i() {
-      r.clearRect(0, 0, a, c);
-      var n, e, t, o, m, l;
-      s.forEach(function(i, x) {
-          for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 : 1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1, 1), e = x + 1; e < u.length; e++) n = u[e],
-          null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o, i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t / 2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y), r.lineTo(n.x, n.y), r.stroke()))
-      }),
-      x(i)
-  }
-  var a, c, u, m = document.createElement("canvas"),
-  d = t(),
-  l = "c_n" + d.l,
-  r = m.getContext("2d"),
-  x = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-  function(n) {
-      window.setTimeout(n, 1e3 / 45)
-  },
-  w = Math.random,
-  y = {
-      x: null,
-      y: null,
-      max: 2e4
-  };
-  m.id = l,
-  m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z + ";opacity:" + d.o,
-  e("body")[0].appendChild(m),
-  o(),
-  window.onresize = o,
-  window.onmousemove = function(n) {
-      n = n || window.event,
-      y.x = n.clientX,
-      y.y = n.clientY
-  },
-  window.onmouseout = function() {
-      y.x = null,
-      y.y = null
-  };
-  for (var s = [], f = 0; d.n > f; f++) {
-      var h = w() * a,
-      g = w() * c,
-      v = 2 * w() - 1,
-      p = 2 * w() - 1;
-      s.push({
-          x: h,
-          y: g,
-          xa: v,
-          ya: p,
-          max: 6e3
-      })
-  }
-  u = s.concat([y]),
-  setTimeout(function() {
-      i()
-  },
-  100)
-} ());
+
+});
