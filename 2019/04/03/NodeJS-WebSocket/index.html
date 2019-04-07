@@ -310,7 +310,7 @@
 <p>说了那么多，我们回到NodeJS的世界，来用一下WebSocket</p>
 <p>WebSocket是H5出现的，则势必不兼容低版本浏览器，WebSocket连接也势必会有掉线的问题，这些问题都挺麻烦的，不过，有了socket.io库，这些都不是问题，它可以自动重连，可以兼容到IE5，还可以自动数据解析，最最重要的是，它还十分简单方便。</p>
 <p>服务器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"><span class="comment">//WebSocket协议需要监听http协议，一旦第一次握手后，便会抢夺服务控制权</span></span><br><span class="line"><span class="keyword">let</span> wsServer = io.listen(server);</span><br><span class="line"></span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock =&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据);</span></span><br><span class="line">  <span class="comment">//sock.on('name', function(数据)&#123;&#125;);</span></span><br><span class="line">  <span class="comment">//响应浏览器 a事件</span></span><br><span class="line">  sock.on(<span class="string">'a'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a,b,a+b);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//提交 time事件 到浏览器</span></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'time'</span>,<span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>浏览器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个socket.io.js文件是服务器的socket.io提供的</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">// ws:// 是WebSocket协议的标识，表明将要把协议升级为ws</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> sock = io.connect(<span class="string">'ws://localhost:8080/'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//提交 a事件 到服务器</span></span></span><br><span class="line"><span class="javascript">  sock.emit(<span class="string">'a'</span>,<span class="number">12</span>,<span class="number">5</span>);</span></span><br><span class="line"><span class="javascript">  <span class="comment">//响应服务器 time事件 </span></span></span><br><span class="line"><span class="javascript">  sock.on(<span class="string">'time'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">time</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(time);    </span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>浏览器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个socket.io.js文件是服务器的socket.io提供的</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  <span class="comment">// ws:// 是WebSocket协议的标识，表明将要把协议升级为ws</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> sock = io.connect(<span class="string">'ws://localhost:8080/'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  <span class="comment">//提交 a事件 到服务器</span></span></span><br><span class="line"><span class="actionscript">  sock.emit(<span class="string">'a'</span>,<span class="number">12</span>,<span class="number">5</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//响应服务器 time事件 </span></span></span><br><span class="line"><span class="actionscript">  sock.on(<span class="string">'time'</span>,<span class="function"><span class="keyword">function</span><span class="params">(time)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(time);    </span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>原生WebSocket比较难写，设计到很多二进制的操作，缓存问题，在此只列出一下WebSocket是怎么做到协议升级的</p>
 <p>首先WS请求头会比http请求头多出四个东西</p>
 <p>//扩展<br>Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits<br>//把key发送到服务器，看看服务器能不能支持websocket连接<br>Sec-WebSocket-Key: jfnKy0Z2xEaZ0FyWhqWv7A==<br>//声明websocket连接版本<br>Sec-WebSocket-Version: 13<br>//最最重要的是，告诉浏览器，我要协议升级为websocket<br>Upgrade: websocket</p>
@@ -351,8 +351,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/02/NodeJS-数据通信/" rel="next" title="数据通信(前->后)">
-                <i class="fa fa-chevron-left"></i> 数据通信(前->后)
+              <a href="/2019/04/02/NodeJS-数据通信/" rel="next" title="NodeJS-数据通信">
+                <i class="fa fa-chevron-left"></i> NodeJS-数据通信
               </a>
             
           </div>
@@ -360,6 +360,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/07/NodeJS-数据库/" rel="prev" title="NodeJS-数据库">
+                NodeJS-数据库 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -427,7 +431,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -440,7 +444,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>

@@ -231,6 +231,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/07/NodeJS-数据库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/07/NodeJS-数据库/" itemprop="url">NodeJS-数据库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-07T10:30:00+08:00">
+                2019-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol style="background: #bdc3c7;
+    border-radius: 5px;
+    color: #2980b9;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration:none;
+    line-height:1;
+    width:80%;
+    margin:0;
+    list-style:none"><br>  <li style="list-decoration:none"><a href="#5-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. 数据库类型</a></li><br>  <li style="list-decoration:none"><a href="#5-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. 数据库建表</a></li><br>  <li style="list-decoration:none"><a href="#5-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. 索引值</a></li><br>  <li style="list-decoration:none"><a href="#5-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. SQL四大语句</a></li><br>  <li style="list-decoration:none"><a href="#5-5" style="color: #4682BE;text-decoration:none;margin-left:10px">5. mysql模块</a></li><br>  <li style="list-decoration:none"><a href="#5-6" style="color: #4682BE;text-decoration:none;margin-left:10px">6. co-mysql模块</a></li><br></ol>
+
+<hr>
+<h2 id="5-1">数据库类型</h2>
+
+<p>数据库可以简单的分为四个类型</p>
+<ol>
+<li><p>文件型<br>文件型数据库的特点就是简单，典型代表为access，SQLite(常用)，多用于app数据的本地存储，为单一用户服务</p>
+</li>
+<li><p>关系型<br>关系型数据库可以处理复杂逻辑，典型代表为MySQL，Oracle</p>
+</li>
+<li><p>分布性<br>分布性数据库把数据库分配到很多个服务器上，提高性能效率，典型代表为mongoDB</p>
+</li>
+<li><p>NoSQL<br>NoSQL不是 NO SQL 的意思，它代表 Not Only SQL ，也就是说NoSQL不只是可以提供常规SQL的服务，可以处理高并发，具有高性能的特点，典型代表为memcache，redis(常用)</p>
+</li>
+</ol>
+<h2 id="5-2">数据库建表</h2>
+
+<p>数据库有一些常用管理工具，如navicat(付费)，wamp的phpmyadmin，本篇博客我们用phpmyadmin做示例</p>
+<p>首先进入 127.0.0.1/phpmyadmin/ ,进入MySQL操作界面</p>
+<p>然后我们新建数据库20190407，选择编码类型为utf8_general_ci(若要按中文排序，可以用big5_chinese_ci,支持繁体)</p>
+<p><img src="/../img/dbIMG/1.jpg" alt=""></p>
+<p>创建好库后我们创建新表 user_table ，设置字段</p>
+<p><img src="/../img/dbIMG/2.jpg" alt=""></p>
+<p>值得一提的是，字段类型若为短文本可以用 VARCHAR ，若为长文本要用 TEXT ，A.I 表示自增，PRIMARY 是主键，具有限制作用，还可以提高搜索性能(可快速通过主键找到数据)，UNIQUE 表示不重复</p>
+<h2 id="5-3">索引值</h2><br>1. UNIQUE(唯一),表示该字段的值为唯一不可重复<br><br>2. INDEX(索引)，提高查询性能，但相应的会降低其他操作性能，占用一定空间<br><br>3. PRIMARY(主键)，表示UNIQUE(唯一)加INDEX(索引)<br><br>4. FULLTEXT(全文搜索)，多用于文本搜索，搜索引擎常用，相当于多关键字搜索，INDEX(索引)相当于单关键字搜索<br><br><h2 id="5-4">SQL四大语句</h2>
+
+<ol>
+<li>增: INSERT INTO &lt;表&gt; (字段) VALUES(值,…)<br><code>INSERT INTO user_table (username,password) VALUES(&#39;1bin&#39;,&#39;123456&#39;)</code></li>
+<li>删: DELETE FROM &lt;表&gt; WHERE 条件<br><code>DELETE FROM user_table WHERE ID=1</code></li>
+<li>改: UPDATE &lt;表&gt; SET 字段=新值,… WHERE 条件<br><code>UPDATE user_table SET username=&#39;Crazy&#39;,password=&#39;654321&#39; WHERE ID=2</code></li>
+<li>查: SELECT 字段列表 FROM &lt;表&gt; WHERE 条件 ORDER BY 字段 LIMIT 数据的数量<br><code>SELECT * FROM user_table WHERE ID&lt;5 ORDER BY ID DESC LIMIT 2</code><br>DESC表示降序</li>
+</ol>
+<h2 id="5-5">mysql模块</h2>
+
+<p>mysql不是系统自带的，需要下载，其常规用法为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> db = mysql.createConnection(&#123;</span><br><span class="line">  host:<span class="string">'localhost'</span>,</span><br><span class="line">  port:<span class="number">3306</span>,</span><br><span class="line">  user:<span class="string">'root'</span>,</span><br><span class="line">  password:<span class="string">"123456"</span>,</span><br><span class="line">  database:<span class="string">'20190407'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">db.query(<span class="string">`SELECT * FROM user_table`</span>,(err, data) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>上面代码为建立一个数据库服务连接，实际上我们需要建立连接池，而不只是一个服务器连接，这个时候我们需要用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db = mysql.createPool(&#123;</span><br><span class="line">    connectionLimit:<span class="number">10</span>, <span class="comment">//10为默认连接最大值</span></span><br><span class="line">    host:<span class="string">'localhost'</span>,</span><br><span class="line">    port:<span class="number">3306</span>,</span><br><span class="line">    user:<span class="string">'root'</span>,</span><br><span class="line">    password:<span class="string">"123456"</span>,</span><br><span class="line">    database:<span class="string">'20190407'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然而数据库操作是异步处理，mysql模块需要自己写回调，很麻烦</p>
+<h2 id="5-6">co-mysql模块</h2>
+
+<p>co-mysql模块帮我们封装了mysql的异步操作，其配合http服务的例子如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>);</span><br><span class="line"><span class="keyword">const</span> co = <span class="built_in">require</span>(<span class="string">'co-mysql'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> conn = mysql.createPool(&#123;</span><br><span class="line">  connectionLimit:<span class="number">10</span>,</span><br><span class="line">  host:<span class="string">'localhost'</span>,</span><br><span class="line">  port:<span class="number">3306</span>,</span><br><span class="line">  user:<span class="string">'root'</span>,</span><br><span class="line">  password:<span class="string">'123456'</span>,</span><br><span class="line">  database:<span class="string">'20190407'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> db = co(conn);</span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="keyword">async</span> (req,res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> data = <span class="keyword">await</span> db.query(<span class="string">`SELECT * FROM user_table`</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">        res.write(<span class="string">'hi'</span>);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        res.write(<span class="string">'数据库出错'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    res.end();</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>加上try捕获错误会更好</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/NodeJS-WebSocket/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -310,7 +484,7 @@
 <p>说了那么多，我们回到NodeJS的世界，来用一下WebSocket</p>
 <p>WebSocket是H5出现的，则势必不兼容低版本浏览器，WebSocket连接也势必会有掉线的问题，这些问题都挺麻烦的，不过，有了socket.io库，这些都不是问题，它可以自动重连，可以兼容到IE5，还可以自动数据解析，最最重要的是，它还十分简单方便。</p>
 <p>服务器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"><span class="comment">//WebSocket协议需要监听http协议，一旦第一次握手后，便会抢夺服务控制权</span></span><br><span class="line"><span class="keyword">let</span> wsServer = io.listen(server);</span><br><span class="line"></span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock =&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据);</span></span><br><span class="line">  <span class="comment">//sock.on('name', function(数据)&#123;&#125;);</span></span><br><span class="line">  <span class="comment">//响应浏览器 a事件</span></span><br><span class="line">  sock.on(<span class="string">'a'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a,b,a+b);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//提交 time事件 到浏览器</span></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'time'</span>,<span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>浏览器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个socket.io.js文件是服务器的socket.io提供的</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">// ws:// 是WebSocket协议的标识，表明将要把协议升级为ws</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> sock = io.connect(<span class="string">'ws://localhost:8080/'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//提交 a事件 到服务器</span></span></span><br><span class="line"><span class="javascript">  sock.emit(<span class="string">'a'</span>,<span class="number">12</span>,<span class="number">5</span>);</span></span><br><span class="line"><span class="javascript">  <span class="comment">//响应服务器 time事件 </span></span></span><br><span class="line"><span class="javascript">  sock.on(<span class="string">'time'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">time</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(time);    </span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>浏览器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个socket.io.js文件是服务器的socket.io提供的</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  <span class="comment">// ws:// 是WebSocket协议的标识，表明将要把协议升级为ws</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> sock = io.connect(<span class="string">'ws://localhost:8080/'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  <span class="comment">//提交 a事件 到服务器</span></span></span><br><span class="line"><span class="actionscript">  sock.emit(<span class="string">'a'</span>,<span class="number">12</span>,<span class="number">5</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//响应服务器 time事件 </span></span></span><br><span class="line"><span class="actionscript">  sock.on(<span class="string">'time'</span>,<span class="function"><span class="keyword">function</span><span class="params">(time)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(time);    </span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>原生WebSocket比较难写，设计到很多二进制的操作，缓存问题，在此只列出一下WebSocket是怎么做到协议升级的</p>
 <p>首先WS请求头会比http请求头多出四个东西</p>
 <p>//扩展<br>Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits<br>//把key发送到服务器，看看服务器能不能支持websocket连接<br>Sec-WebSocket-Key: jfnKy0Z2xEaZ0FyWhqWv7A==<br>//声明websocket连接版本<br>Sec-WebSocket-Version: 13<br>//最最重要的是，告诉浏览器，我要协议升级为websocket<br>Upgrade: websocket</p>
@@ -386,7 +560,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/02/NodeJS-数据通信/" itemprop="url">数据通信(前->后)</a></h1>
+                <a class="post-title-link" href="/2019/04/02/NodeJS-数据通信/" itemprop="url">NodeJS-数据通信</a></h1>
         
 
         <div class="post-meta">
@@ -448,7 +622,7 @@
     padding-bottom: 10px;
     text-decoration:none;
     line-height:1;
-    width:100%;
+    width:80%;
     margin:0;
     list-style:none"><br>  <li style="list-decoration:none"><a href="#3-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. Ajax</a></li><br>  <li style="list-decoration:none"><a href="#3-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. fetch</a></li><br>  <li style="list-decoration:none"><a href="#3-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. jsonp</a></li><br>  <li style="list-decoration:none"><a href="#3-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. Ajax2.0</a></li><br></ol>
 
@@ -610,7 +784,7 @@
     padding-bottom: 10px;
     text-decoration:none;
     line-height:1;
-    width:100%;
+    width:80%;
     margin:0;
     list-style:none"><br>  <li style="list-decoration:none"><a href="#2-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. fs模块</a></li><br>  <li><a href="#2-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. querystring模块</a></li><br>  <li><a href="#2-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. url模块</a></li><br>  <li><a href="#2-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. multiparty</a></li><br>  <li><a href="#2-5" style="color: #4682BE;text-decoration:none;margin-left:10px">5. 接口应用</a></li><br></ol>
 
@@ -765,7 +939,7 @@
     padding-bottom: 10px;
     text-decoration:none;
     line-height:1;
-    width:100%;
+    width:80%;
     margin:0;
     list-style:none"><br>  <li style="list-decoration:none"><a href="#1-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. assert模块</a></li><br>  <li style="list-decoration:none"><a href="#1-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. path模块</a></li><br>  <li style="list-decoration:none"><a href="#1-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. url模块</a></li><br>  <li style="list-decoration:none"><a href="#1-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. querystring模块</a></li><br>  <li style="list-decoration:none"><a href="#1-5" style="color: #4682BE;text-decoration:none;margin-left:10px">5. net模块</a></li><br>  <li style="list-decoration:none"><a href="#1-6" style="color: #4682BE;text-decoration:none;margin-left:10px">6. http模块</a></li><br></ol>
 
@@ -1802,278 +1976,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/json/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/30/json/" itemprop="url">JSON</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T23:56:43+08:00">
-                2018-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p id="head" style="display:inline-block; float:left ;font-size:1rem;line-height:1rem;"><br>    <b>文<br><br>    章<br><br>    目<br><br>    录</b><br></p>
-
-<div style="display:flex;align-items:center;justify-content:center; "><br>    <div style="display:flex ;justify-content:space-around;align-items:center; font-size:0.8rem; width:100%;line-height:0.8rem;"><br>        <div><br>            <li><a href="#1"> 1 JSON简介</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#1.1"> 1.1 JSON与JavaScript</a></li><br>                <li><a href="#1.2"> 1.2 JSON与XML</a></li><br>            </ul><br>        </div><br>        <div><br>            <li><a href="#2"> 2 JSON语法</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#2.1"> 2.1 简单值</a></li><br>                <li><a href="#2.2"> 2.2 对象</a></li><br>                <li><a href="#2.3"> 2.3 数组</a></li><br>                <li><a href="#2.4"> 2.4 JSON样例代码</a></li><br>            </ul><br>        </div><br>        <div><br>            <li><a href="#3"> 3 JSON解析与序列化</a></li><br>            <ul style="margin-top:0"><br>                <li><a href="#3.1"> 3.1 stringify()</a></li><br>                <li><a href="#3.2"> 3.2 parse()</a></li><br>                <li><a href="#3.3"> 3.3 toJSON()</a></li><br>                <li><a href="#3.4"> 3.4 JSON.stringify()序列化对象的顺序</a></li><br>            </ul><br>        </div><br>    </div><br></div>
-
-
-<hr>
-<h1 id="1">JSON简介</h1>
-
-<p>&nbsp;&nbsp;JSON：JavaScript对象表示法(<span style="color:red">J</span>ava<span style="color:red">S</span>cript <span style="color:red">O</span>bject <span style="color:red">N</span>oatation)</p>
-<p>&nbsp;&nbsp;根据MDN的说法:</p>
-<blockquote>
-<p><em>JSON是一种用于序列化对象，数组，数字，字符串，布尔值和null的结构化数据的格式</em>  </p>
-</blockquote>
-<p>&nbsp;&nbsp;JSON基于JavaScript语法，类似XML，但却和它们有区别</p>
-<hr>
-<ul>
-<li><h2 id="1.1"> JSON与JavaScript </h2><br>JSON是一种数据格式，不是一种编程语言，JSON也不从属于JavaScript</li>
-</ul>
-<hr>
-<ul>
-<li><h2 id="1.2"> JSON与XML </h2>
-
-<p>JSON能够使用 <a href="&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval&quot;">eval()</a> 方法进行解析，不必创建DOM对象</p>
-</li>
-</ul>
-<hr>
-<h1 id="2">JSON语法</h1>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;JSON的语法可以表示以下三种类型的值：</p>
-<hr>
-<ul>
-<li><h2 id="2.1">简单值</h2>
-
-<p>  JSON与JavaScript简单值最大区别是：<br><br></p>
-<blockquote>
-<ol>
-<li>JSON字符串必须使用双引号</li>
-<li>JSON不支持JavaScript中特殊值undefined</li>
-</ol>
-</blockquote>
-</li>
-</ul>
-<hr>
-<ul>
-<li><h2 id="2.2">对象</h2>
-
-<p>  JSON对象与JavaScript对象两个不同点：<br><br></p>
-<blockquote>
-<ol>
-<li>没有声明变量（JSON中没有变量的概念）</li>
-<li>没有末尾分号（因为这不是JavaScript语句，所以不需要分号）</li>
-</ol>
-</blockquote>
-</li>
-</ul>
-<hr>
-<ul>
-<li><h2 id="2.3">数组</h2>
-
-<p>  JSON数组采用的就是JavaScript的数组字面量形式，但没有变量和分号<br>  <br></p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"Hello World!"</span>,<span class="number">3</span>,<span class="literal">true</span>,<span class="literal">null</span>,&#123;&#125;]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<ul>
-<li><h2 id="2.4">JSON样例代码</h2>
-
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- <span class="built_in">JSON</span>样例 --&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"String"</span>:<span class="string">"Hello World!"</span>,   &lt;!-- 字符串--&gt;</span><br><span class="line">    <span class="string">"Number"</span>:<span class="number">3</span>,                &lt;!-- 数值--&gt;</span><br><span class="line">    <span class="string">"Boolean"</span>:<span class="literal">true</span>,            &lt;!-- 布尔值--&gt;</span><br><span class="line">    <span class="string">"Null"</span>:<span class="literal">null</span>,               &lt;!-- <span class="literal">null</span>--&gt;</span><br><span class="line">    <span class="string">"_1Bin"</span>:&#123;                  &lt;!-- 对象--&gt;</span><br><span class="line">        <span class="string">"Name"</span>:<span class="string">"1bin"</span>,</span><br><span class="line">        <span class="string">"Age"</span>:<span class="number">18</span>,</span><br><span class="line">        <span class="string">"Tag"</span>:[</span><br><span class="line">            <span class="string">"Lonely patient"</span>,<span class="string">"Crazy"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"Sex"</span>:&#123;</span><br><span class="line">            <span class="string">"IsBoy"</span>:<span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h1 id="3">JSON解析与序列化</h1>
-
-<p>&nbsp;&nbsp;JSON对象可以直接解析为JavaScript对象</p>
-<p>&nbsp;&nbsp;早期JSON解析器基本上就是使用JavaScript的eval()函数，但eval()存在风险，现在已经摒弃。</p>
-<p>&nbsp;&nbsp;现在基本上都是用JSON对象的两个方法进行解析与序列化</p>
-<hr>
-<ul>
-<li><h2 id="3.1">stringify()</h2>
-
-<p>  stringify()把JavaScript对象序列化为JSON字符串,有三个参数</p>
-  <h4>JSON.stringify(value,replacer,space)</h4>
-
-<blockquote>
-<ol>
-<li>value<br>   将要序列化成JSON字符串的JavaScript对象</li>
-<li>replacer(可选)<br>   <strong>函数</strong>：则在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理<br>   <strong>数组</strong>：则只有包含在这个数组中的属性名才会被序列化到最终的 JSON 字符串中<br>   <strong>null或者未提供</strong>：则对象所有的属性都会被序列化</li>
-<li>space(可选)<br>   指定缩进用的字符串,可为一般字符串或空格。</li>
-</ol>
-</blockquote>
-<p>  <em>值得注意的是，所有值为undefined的属性都会被stringify()自动忽略，所以也可以用第二个参数作为过滤器(如用switch_case筛选,但一定要记得提供default项)给特定的属性返回undefined让其消失</em><br>  <br></p>
-<p>  <strong>使用stringify()的样例：</strong></p>
-</li>
-</ul>
-<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">                title:<span class="string">"Hello World!"</span>,</span><br><span class="line">                author:&#123;</span><br><span class="line">                          name:<span class="string">"1 bin"</span></span><br><span class="line">                       &#125;</span><br><span class="line">           &#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"></span><br><span class="line">&lt;!-- jsonText的值为：<span class="string">"&#123;"</span>title<span class="string">":"</span>Hello World<span class="string">","</span>author<span class="string">":&#123;"</span>name<span class="string">":"</span><span class="number">1</span> bin<span class="string">"&#125;"</span>&#125; --&gt;</span><br></pre></td></tr></table></figure>
-</code></pre><hr>
-<ul>
-<li><h2 id="3.2">parse()</h2>
-
-<p>  parse()把JSON字符串解析为原生JavaScript值</p>
-  <h4>parse(text,reviver)</h4>
-
-<blockquote>
-<ol>
-<li>text<br>   将要被解析成JavaScript值的字符串</li>
-<li>reviver(可选)<br>   还原函数：规定了原始值如何被解析改造，在被返回之前</li>
-</ol>
-</blockquote>
-  <h4>reviver函数</h4>
-
-<p>  根据MDN：</p>
-<blockquote>
-<p>如果指定了 reviver 函数，则解析出的 JavaScript 值（解析值）会经过一次转换后才将被最终返回（返回值）。更具体点讲就是：解析值本身以及它所包含的所有属性，会按照一定的顺序（从最最里层的属性开始，一级级往外，最终到达顶层，也就是解析值本身）分别的去调用 reviver 函数，在调用过程中，当前属性所属的对象会作为 this 值，当前属性名和属性值会分别作为第一个和第二个参数传入 reviver 中。如果 reviver 返回 undefined，则当前属性会从所属对象中删除，如果返回了其他值，则返回的值会成为当前属性新的属性值。</p>
-</blockquote>
-<blockquote>
-<p>当遍历到最顶层的值（解析值）时，传入 reviver 函数的参数会是空字符串 “”（因为此时已经没有真正的属性）和当前的解析值（有可能已经被修改过了），当前的 this 值会是 {“”: 修改过的解析值}，在编写 reviver 函数时，要注意到这个特例。（这个函数的遍历顺序依照：从最内层开始，按照层级顺序，依次向外遍历）</p>
-</blockquote>
-<p>   <strong>使用parse()的样例：</strong></p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bookCopy = <span class="built_in">JSON</span>.parse(jsonText);</span><br></pre></td></tr></table></figure>
-<p>  <em>值得注意的是，这里的jsonText的值为：”xxx”,要用双引号，对于一些代码块，需要用反逗号</em></p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book2 = <span class="string">`&#123;</span></span><br><span class="line"><span class="string">                "a":"Hello Wolrd!",</span></span><br><span class="line"><span class="string">                "b":2</span></span><br><span class="line"><span class="string">             &#125;`</span>;</span><br><span class="line"><span class="keyword">var</span> Copy = <span class="built_in">JSON</span>.parse(book2);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<ul>
-<li><h2 id="3.3">toJSON()</h2>
-
-<p>  用于补充JSON.stringify()所不能满足的自定义序列化需求。可以直接给对象定义toJSON()方法，返回其自身的JSON数据格式(如原生Date对象的toJSON方法)</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">                title:<span class="string">"Hello World!"</span>,</span><br><span class="line">                year:<span class="number">2018</span>,</span><br><span class="line">                toJSON: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">this</span>.title;</span><br><span class="line">                &#125;</span><br><span class="line">           &#125;;</span><br><span class="line"><span class="keyword">var</span> jsonText = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonText)     &lt;!-- <span class="string">"Hello World!"</span> --&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<ul>
-<li><h2 id="3.4">JSON.stringify()序列化对象的顺序</h2>
-
-
-
-</li>
-</ul>
-<pre><code>(1)调用toJSON()方法(如果存在，若不存在，则返回对象本身)
-
-(2)应用过滤器(如存在第二个参数，传入过滤器的值是第(1)步返回的值)
-
-(3)对第(2)步返回的每个值进行相应的序列化
-
-(4)如提供了第三个参数，执行相应的格式化
-</code></pre><div style="color:black;diplay:flex;justify-content:center;align-items:center;"><div><a href="#head">回到目录</a></div></div>
-
-
-
-
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2124,7 +2026,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2137,7 +2039,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
