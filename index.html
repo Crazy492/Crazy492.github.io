@@ -231,6 +231,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/NodeJS-文件流操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/09/NodeJS-文件流操作/" itemprop="url">NodeJS-文件流操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-09T11:00:00+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol style="background: #bdc3c7;
+    border-radius: 5px;
+    color: #2980b9;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration:none;
+    line-height:1;
+    width:80%;
+    margin:0 auto;
+    list-style:none"><br>  <li style="list-decoration:none"><a href="#6-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. 文件流基本操作</a></li><br>  <li style="list-decoration:none"><a href="#6-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. 文件压缩</a></li><br>  <li style="list-decoration:none"><a href="#6-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. 服务器上应用</a></li><br>  <li style="list-decoration:none"><a href="#6-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. 启动器</a></li><br></ol>
+
+<h2 id="6-1">文件流基本操作</h2>
+
+<p>之前的文件操作是用了fs.readFile()和fs.writeFile(),这两种方式需要把所有文件读取或者写入才能执行下一步，这样做是十分耗资源的，所以我们应该用流的形式，读一块写一块，进行文件读写</p>
+<p>还是用到了fs模块，只不过换成了fs.createReadStream()和fs.createWriteStream()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rs = fs.createReadStream(<span class="string">'1.txt'</span>);</span><br><span class="line"><span class="keyword">let</span> ws = fs.createWriteStream(<span class="string">'2.txt'</span>);</span><br><span class="line"></span><br><span class="line">rs.pipe(ws); <span class="comment">// 顺序不能反 rs==&gt;ws</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读取操作的error事件重要，需要处理，写入操作也有error事件</span></span><br><span class="line">rs.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//写入操作的finish事件才是真正表示文件操作结束</span></span><br><span class="line">ws.on(<span class="string">'finish'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'finish'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>流的形式可以处理文本，二进制文件(图片，音视频等)</p>
+<h2 id="6-2">文件压缩</h2>
+
+<p>文件流操作不止可以读一块写一块，实际上读写流也是可以的，文件的压缩和加密就是把读取到的文件数据直接修改为另外一种形式</p>
+<p>我们需要配合zlib模块创建gzip对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs =<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rs = fs.createReadStream(<span class="string">'2.txt'</span>);</span><br><span class="line"><span class="keyword">let</span> gzip = zlib.createGzip();</span><br><span class="line"><span class="keyword">let</span> ws = fs.createWriteStream(<span class="string">'2.txt.gz'</span>);</span><br><span class="line"></span><br><span class="line">rs.pipe(gzip).pipe(ws);</span><br><span class="line"></span><br><span class="line">rs.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ws.on(<span class="string">'finish'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'finish'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="6-3">服务器上应用</h2>
+
+<p>配合服务器的情况下，req本身就是一种读入流，res本身就是一种写入流</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"><span class="keyword">const</span> fs =<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server =  http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="literal">true</span>);</span><br><span class="line">  <span class="comment">//pathname 会自动带 / 要特别注意,如 /1.txt 会报错没有这个文件</span></span><br><span class="line">  <span class="keyword">let</span> rs = fs.createReadStream(<span class="string">`www<span class="subst">$&#123;pathname&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">let</span> gzip = zlib.createGzip();</span><br><span class="line">  rs.pipe(gzip).pipe(res);</span><br><span class="line"></span><br><span class="line">  rs.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">    res.writeHeader(<span class="number">404</span>);</span><br><span class="line">    res.write(<span class="string">'not found'</span>);</span><br><span class="line">    res.end();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>以上代码，会造成浏览器直接下载文件，因为浏览器不认识gz格式的数据，打开会是一堆乱码</p>
+<p><img src="/../img/fsStream/1.jpg" alt=""></p>
+<p>解决这个问题也很简单，只要加一句</p>
+<p><code>res.setHeader(&#39;content-encoding&#39;, &#39;gzip&#39;);</code></p>
+<p>但如果只是单纯告诉浏览器我要换格式，若请求的是不存在的文件，你发送的’not found’可不是gzip格式，这个时候浏览器也一脸懵逼</p>
+<p>解决这个问题只需要在error事件回调函数中重新修改响应头信息</p>
+<p><code>res.setHeader(&#39;content-encoding&#39;, &#39;&#39;);</code></p>
+<p>为了解决读取文件的错误，最好在最外层就抛出错误，而不是传到一半才发现有问题，我们可以使用fs.stat()</p>
+<p>下面代码是比较合适的一种服务器文件流操作写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server =  http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="literal">true</span>);</span><br><span class="line">  <span class="keyword">let</span> fileName = <span class="string">`www<span class="subst">$&#123;pathname&#125;</span>`</span>;</span><br><span class="line">  </span><br><span class="line">  fs.stat(fileName, (err, stat) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">      res.writeHeader(<span class="number">404</span>);</span><br><span class="line">      res.write(<span class="string">'not found'</span>);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      res.setHeader(<span class="string">'content-encoding'</span>,<span class="string">'gzip'</span>);</span><br><span class="line">      <span class="keyword">let</span> gzip = zlib.createGzip();</span><br><span class="line">      <span class="keyword">let</span> rs = fs.createReadStream(fileName);</span><br><span class="line">      rs.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">      &#125;)</span><br><span class="line">      rs.pipe(gzip).pipe(res);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="6-4">启动器</h2>
+
+<p>在以往开启服务器的过程中，一旦我们关闭了控制台，服务也就中断了，一旦某次请求出了错误，服务器直接崩溃死机，为了解决这个问题，NodeJS提供了很多启动器插件</p>
+<p>在这里，我们就以forever来介绍</p>
+<p><code>forever start xxx.js</code> 以启动器进行服务<br><code>forever list</code>  查看执行了启动器的服务<br><code>forever restart xxx.js</code>  更新服务器代码并重新开启<br><code>forever stop xxx.js</code>  关闭某个服务<br><code>forever stopall</code>  关闭所有服务<br><code>forever start xxx.js -l path1 -e path2 -a</code><br>-l ==&gt; -log 把控制台输出放到path1<br>-e ==&gt; -error 把错误输出到path2<br>-a ==&gt; 不清除日志</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/07/NodeJS-数据库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -325,7 +488,7 @@
 </li>
 <li><p>关系型<br>关系型数据库可以处理复杂逻辑，典型代表为MySQL，Oracle</p>
 </li>
-<li><p>分布性<br>分布性数据库把数据库分配到很多个服务器上，提高性能效率，典型代表为mongoDB</p>
+<li><p>分布型<br>分布型数据库把数据库分配到很多个服务器上，提高性能效率，典型代表为mongoDB</p>
 </li>
 <li><p>NoSQL<br>NoSQL不是 NO SQL 的意思，它代表 Not Only SQL ，也就是说NoSQL不只是可以提供常规SQL的服务，可以处理高并发，具有高性能的特点，典型代表为memcache，redis(常用)</p>
 </li>
@@ -484,7 +647,7 @@
 <p>说了那么多，我们回到NodeJS的世界，来用一下WebSocket</p>
 <p>WebSocket是H5出现的，则势必不兼容低版本浏览器，WebSocket连接也势必会有掉线的问题，这些问题都挺麻烦的，不过，有了socket.io库，这些都不是问题，它可以自动重连，可以兼容到IE5，还可以自动数据解析，最最重要的是，它还十分简单方便。</p>
 <p>服务器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line"><span class="comment">//WebSocket协议需要监听http协议，一旦第一次握手后，便会抢夺服务控制权</span></span><br><span class="line"><span class="keyword">let</span> wsServer = io.listen(server);</span><br><span class="line"></span><br><span class="line">wsServer.on(<span class="string">'connection'</span>, sock =&gt;&#123;</span><br><span class="line">  <span class="comment">//sock.emit('name', 数据);</span></span><br><span class="line">  <span class="comment">//sock.on('name', function(数据)&#123;&#125;);</span></span><br><span class="line">  <span class="comment">//响应浏览器 a事件</span></span><br><span class="line">  sock.on(<span class="string">'a'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a,b,a+b);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//提交 time事件 到浏览器</span></span><br><span class="line">  setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    sock.emit(<span class="string">'time'</span>,<span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>浏览器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个socket.io.js文件是服务器的socket.io提供的</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  <span class="comment">// ws:// 是WebSocket协议的标识，表明将要把协议升级为ws</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> sock = io.connect(<span class="string">'ws://localhost:8080/'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  <span class="comment">//提交 a事件 到服务器</span></span></span><br><span class="line"><span class="actionscript">  sock.emit(<span class="string">'a'</span>,<span class="number">12</span>,<span class="number">5</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//响应服务器 time事件 </span></span></span><br><span class="line"><span class="actionscript">  sock.on(<span class="string">'time'</span>,<span class="function"><span class="keyword">function</span><span class="params">(time)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(time);    </span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>浏览器<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//这个socket.io.js文件是服务器的socket.io提供的</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:8080/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">// ws:// 是WebSocket协议的标识，表明将要把协议升级为ws</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> sock = io.connect(<span class="string">'ws://localhost:8080/'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="comment">//提交 a事件 到服务器</span></span></span><br><span class="line"><span class="javascript">  sock.emit(<span class="string">'a'</span>,<span class="number">12</span>,<span class="number">5</span>);</span></span><br><span class="line"><span class="javascript">  <span class="comment">//响应服务器 time事件 </span></span></span><br><span class="line"><span class="javascript">  sock.on(<span class="string">'time'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">time</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(time);    </span></span><br><span class="line"><span class="undefined">  &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>原生WebSocket比较难写，设计到很多二进制的操作，缓存问题，在此只列出一下WebSocket是怎么做到协议升级的</p>
 <p>首先WS请求头会比http请求头多出四个东西</p>
 <p>//扩展<br>Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits<br>//把key发送到服务器，看看服务器能不能支持websocket连接<br>Sec-WebSocket-Key: jfnKy0Z2xEaZ0FyWhqWv7A==<br>//声明websocket连接版本<br>Sec-WebSocket-Version: 13<br>//最最重要的是，告诉浏览器，我要协议升级为websocket<br>Upgrade: websocket</p>
@@ -961,7 +1124,7 @@
 <p>数据解析<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//parse stringify 就是数据解析与反向操作</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.parse(<span class="string">"a=1&amp;b=2&amp;c=3"</span>));</span><br><span class="line"><span class="comment">// &#123; a: '1', b: '2', c: '3' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.stringify(&#123;<span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">1</span>&#125;));</span><br><span class="line"><span class="comment">// a=3&amp;b=2&amp;c=1</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="1-5">net模块</h2>
 
-<p>相当于tcp协议node的实现，是http模块的超级，应用于websocket，此处暂且不谈</p>
+<p>相当于tcp协议node的实现，是http模块的超集，应用于websocket，此处暂且不谈</p>
 <h2 id="1-6">http模块</h2>
 
 <p>  http模块是实现原生NodeJS服务器链接的一个模块，主要使用方式为</p>
@@ -1735,247 +1898,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/06/Vue.js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/06/Vue.js/" itemprop="url">Vue.js</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-06T21:56:43+08:00">
-                2018-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。</p>
-<hr>
-<h1>1. Vue对象</h1>  
-
-
-<p>Vue.js是javaScript的框架</p>
-<hr>
-<h2 id="1-1-Vue-根-对象中的选项"><a href="#1-1-Vue-根-对象中的选项" class="headerlink" title="1.1 Vue(根)对象中的选项"></a>1.1 Vue(根)对象中的选项</h2><p>实例化Vue根对象时</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue()&#123;</span><br><span class="line">    el:<span class="string">"#app"</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        name:<span class="string">"1 bin"</span></span><br><span class="line">    &#125;,<span class="comment">//name 为可以调用的属性 ，vm.name 调用</span></span><br><span class="line">    methods:&#123;</span><br><span class="line">        greet: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Hello Vue!"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,<span class="comment">//greet() 为方法，调用时要加括号 ，vm.greet() 调用</span></span><br><span class="line">    computed：&#123;</span><br><span class="line">        greetName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Hello"</span>+<span class="keyword">this</span>.name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;，<span class="comment">//greetName 为计算属性，是可以调用的属性 ，vm.greetName 调用</span></span><br><span class="line">    watch:&#123;</span><br><span class="line">        name: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Hello"</span>+<span class="keyword">this</span>.name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  <span class="comment">//监听器不会产生新的属性，只是在原有属性变化时调用方法</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p></p><h3>el</h3><br>  Vue根组件中属性，值为html根容器元素<p></p>
-</li>
-<li><p></p><h3>data</h3><br>  用于各种数据的储存，是键值对对象<p></p>
-</li>
-<li><p></p><h3>methods</h3><br>  用于各种方法的储存，如其中一种方法被调用，则其他方法也会被调用，比较耗费性能，不设置缓存。<p></p>
-</li>
-<li><p></p><h3>computed</h3><br>  计算属性是基于它们的依赖进行缓存的，只有它们的依赖改变了，计算属性才会重新求值，这就意味着若依赖值没有变，计算属性将立刻返回之前的缓存值。<p></p>
-</li>
-<li><p></p><h3>watch</h3><br>  监听器，用来响应数据的变化，当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。<p></p>
-</li>
-</ul>
-<hr>
-<h2 id="1-2-Vue生命周期-钩子函数"><a href="#1-2-Vue生命周期-钩子函数" class="headerlink" title="1.2 Vue生命周期(钩子函数)"></a>1.2 Vue生命周期(钩子函数)</h2><p>钩子函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">""</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    beforeCreate:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"组件实例化之前执行的函数"</span>)；</span><br><span class="line">    &#125;，</span><br><span class="line">    created：<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"组件实例化完毕，但页面还未显示"</span>)；</span><br><span class="line">    &#125;，</span><br><span class="line">    beforeMount：<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"组件挂在前，页面仍未显示，但虚拟Dom已经配置"</span>)；</span><br><span class="line">    &#125;，</span><br><span class="line">    mounted：<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"组件挂在后，此方法执行后，页面显示"</span>)；</span><br><span class="line">    &#125;，</span><br><span class="line">    beforeUpdate:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"组件更新前，页面仍未更新，但虚拟Dom已经配置"</span>)；</span><br><span class="line">    &#125;，</span><br><span class="line">    updated:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"组件更新，页面显示"</span>)；</span><br><span class="line">    &#125;，</span><br><span class="line">    beforeDestory:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"组件销毁前"</span>)；</span><br><span class="line">    &#125;，</span><br><span class="line">    destoryed:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"组件销毁"</span>)；</span><br><span class="line">    &#125;，</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<hr>
-<h1>2. Vue模板</h1>
-
-<p>Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。</p>
-<hr>
-<h2 id="2-1-插值"><a href="#2-1-插值" class="headerlink" title="2.1 插值"></a>2.1 插值</h2><p>最常见的插值形式为双大括号文本插入</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;My name is &#123;&#123; name &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如要将数据解释为 HTML 代码，则需要配合 v-html 指令</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p v-html = <span class="string">" HtmlCode "</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>双大括号内可以使用JavaScript表达式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">    &#123;&#123; number + <span class="number">1</span> &#125;&#125;</span><br><span class="line">    &#123;&#123; ok ? <span class="string">'YES'</span> : <span class="string">'NO'</span> &#125;&#125;</span><br><span class="line">    &#123;&#123; message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="2-2-指令"><a href="#2-2-指令" class="headerlink" title="2.2 指令"></a>2.2 指令</h2><p>指令 (Directives) 是带有 v- 前缀的特殊特性。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM</p>
-<ul>
-<li><h3>属性绑定指令 <b><a href="https://cn.vuejs.org/v2/api/#v-bind" target="_blank" rel="noopener">v-bind</a></b></h3>
-
-<p>  动态地绑定一个或多个特性，或一个组件 prop 到表达式<br></p>
-<p>  示例</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 绑定一个属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"imageSrc"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"imageSrc"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 内联字符串拼接 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"'/path/to/images/' + fileName"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- class 绑定 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"&#123; red: isRed &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA, classB]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA, &#123; classB: isB, classC: isC &#125;]"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- style 绑定 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"&#123; fontSize: size + 'px' &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"[styleObjectA, styleObjectB]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 绑定一个有属性的对象 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind</span>=<span class="string">"&#123; id: someProp, 'other-attr': otherProp &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过 prop 修饰符绑定 DOM 属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:text-content.prop</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- prop 绑定。“prop”必须在 my-component 中声明。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">:prop</span>=<span class="string">"someThing"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过 $props 将父组件的 props 一起传给子组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">child-component</span> <span class="attr">v-bind</span>=<span class="string">"$props"</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h3>事件绑定指令 <b><a href="https://cn.vuejs.org/v2/api/#v-on" target="_blank" rel="noopener">v-on</a></b></h3>
-
-<p>  绑定事件监听器<br></p>
-<p>  示例</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 方法处理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 内联语句 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"doThat('hello', $event)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 停止冒泡 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.stop</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 阻止默认行为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.prevent</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 阻止默认行为，没有表达式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> @<span class="attr">submit.prevent</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--  串联修饰符 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.stop.prevent</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 键修饰符，键别名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.enter</span>=<span class="string">"onEnter"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 键修饰符，键代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.13</span>=<span class="string">"onEnter"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 点击回调只会触发一次 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 对象语法 (2.4.0+) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on</span>=<span class="string">"&#123; mousedown: doThis, mouseup: doThat &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h3><b><a href="https://cn.vuejs.org/v2/guide/conditional.html" target="_blank" rel="noopener">条件渲染</a></b>指令</h3>
-
-<p>  指令：<b>v-if</b> | <b>v-else</b> | <b>v-else-if</b> | <b>v-show</b><br></p>
-<p>  根据表达式的值的真假条件渲染元素<br></p>
-<p>  示例</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"type === 'A'"</span>&gt;</span></span><br><span class="line">    A</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">"type === 'B'"</span>&gt;</span></span><br><span class="line">    B</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">"type === 'C'"</span>&gt;</span></span><br><span class="line">    C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">    Not A/B/C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--带有 v-show 的元素始终会被渲染并保留在 DOM 中。v-show 只是简单地切换元素的 CSS 属性 display --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">"ok"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h3>列表渲染指令<b><a href="https://cn.vuejs.org/v2/api/#v-for" target="_blank" rel="noopener"> v-for</a></b></h3>
-
-<p>  基于源数据多次渲染元素或模板块，v-for 指令需要使用 item in items 形式的特殊语法</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 基础用法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span>&gt;</span></span><br><span class="line">&#123;&#123; item.text &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 值 val , 键 key ，数组索引 index ,数组 items  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in items"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(val, key) in object"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(val, key, index) in object"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">```    </span><br><span class="line">v-for 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素，则需要提供一个 key 的特殊属性</span><br><span class="line"></span><br><span class="line">```javascript</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">    &#123;&#123; item.text &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h3><a href="https://cn.vuejs.org/v2/guide/forms.html" target="_blank" rel="noopener">表单输入绑定</a>指令<b><a href="https://cn.vuejs.org/v2/api/#v-model" target="_blank" rel="noopener"> v-model</a></b></h3>    
-
-<p>  在表单控件或者组件上创建双向绑定。v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值而总是将 Vue 实例的数据作为数据来源。故应该通过 JavaScript 在组件的 data 选项中声明初始值。<br>  <br><br>  有时我们可能想把值绑定到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串。<br><br></p>
-<ul>
-<li><p>文本<br><br>   </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 单行文本 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"message"</span> <span class="attr">placeholder</span>=<span class="string">"edit me"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Message is: &#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 多行文本 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Multiline message is:<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"white-space: pre-line;"</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">v-model</span>=<span class="string">"message"</span> <span class="attr">placeholder</span>=<span class="string">"add multiple lines"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>复选框<br><br>  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 单个复选框 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"checked"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"checkbox"</span>&gt;</span>&#123;&#123; checked &#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 多个复选框 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"jack"</span> <span class="attr">value</span>=<span class="string">"Jack"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"jack"</span>&gt;</span>Jack<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"john"</span> <span class="attr">value</span>=<span class="string">"John"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"john"</span>&gt;</span>John<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"mike"</span> <span class="attr">value</span>=<span class="string">"Mike"</span> <span class="attr">v-model</span>=<span class="string">"checkedNames"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"mike"</span>&gt;</span>Mike<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Checked names: &#123;&#123; checkedNames &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>  可在JS里面Vue对象data选项中设置默认值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">    checkedNames: [<span class="string">'John'</span>] <span class="comment">//默认选择John</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>单选按钮<br><br> </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"one"</span> <span class="attr">value</span>=<span class="string">"One"</span> <span class="attr">v-model</span>=<span class="string">"picked"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"one"</span>&gt;</span>One<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"two"</span> <span class="attr">value</span>=<span class="string">"Two"</span> <span class="attr">v-model</span>=<span class="string">"picked"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"two"</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Picked: &#123;&#123; picked &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>  可在JS里面Vue对象data选项中设置默认值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">'#app'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">        picked: <span class="string">'One'</span> <span class="comment">//默认选择One</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">    - 选择框</span></span><br><span class="line"><span class="string">&lt;br&gt;</span></span><br><span class="line"><span class="string">    `</span><span class="string">``</span>html</span><br><span class="line">    &lt;!-- 单选时 Js Vue对象data选项 selected:<span class="string">''</span> 只需绑定一个值--&gt;</span><br><span class="line">    &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">        &lt;select v-model=<span class="string">"selected"</span>&gt;</span><br><span class="line">            &lt;option disabled value=<span class="string">""</span>&gt;请选择&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">            &lt;option&gt;A&lt;/</span>option&gt;</span><br><span class="line">            &lt;option&gt;B&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">            &lt;option&gt;C&lt;/</span>option&gt;</span><br><span class="line">        &lt;<span class="regexp">/select&gt;</span></span><br><span class="line"><span class="regexp">        &lt;span&gt;Selected: &#123;&#123; selected &#125;&#125;&lt;/</span>span&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;!-- 多选时 Js Vue对象data选项 selected:[] 只需绑定一个数组--&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h1>3. Vue组件初级</h1>
-
-<p>组件是可复用的Vue实例，故其与根组件有相同的选项，如data，methods，computed，watch，以及生命周期钩子函数，但它没有el选项。</p>
-<hr>
-<h2 id="3-1-子组件基本示例"><a href="#3-1-子组件基本示例" class="headerlink" title="3.1 子组件基本示例"></a>3.1 子组件基本示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个名为 button-counter 的新组件</span></span><br><span class="line">Vue.component(<span class="string">'button-counter'</span>, &#123;</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      count: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">'&lt;button v-on:click="count++"&gt;You clicked me &#123;&#123; count &#125;&#125; times.&lt;/button&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">/* 组件是可复用的 Vue 实例，且带有一个名字：在这个例子中是 &lt;button-counter&gt;。我们可以在一个通过 new Vue 创建的 Vue 根实例中，把这个组件作为自定义元素来使用：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;div id="app"&gt;</span></span><br><span class="line"><span class="comment">  &lt;button-counter&gt;&lt;/button-counter&gt;</span></span><br><span class="line"><span class="comment">&lt;/div&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p><b>每个组件必须只有一个根元素</b></p>
-<hr>
-<h2 id="3-2-子组件选项"><a href="#3-2-子组件选项" class="headerlink" title="3.2 子组件选项"></a>3.2 子组件选项</h2><ul>
-<li><p>data </p>
-<p>  data必须为一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝，这样避免了不同实例间的互相影响<br><br></p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        count: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><a href="https://cn.vuejs.org/v2/guide/components-props.html" target="_blank" rel="noopener">Prop</a></p>
-<p>  父组件通过Prop向子组件传递数据(子组件通过$.emit向父组件传值).Prop 是你可以在组件上注册的一些自定义特性。当一个值传递给一个 prop 特性的时候，它就变成了那个组件实例的一个属性。</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'blog-post'</span>, &#123;</span><br><span class="line">    props: [<span class="string">'title'</span>],</span><br><span class="line">    template: <span class="string">'&lt;h3&gt;&#123;&#123; title &#125;&#125;&lt;/h3&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>  一个 prop 被注册之后，你就可以像这样把数据作为一个自定义特性传递进来：</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">blog-post</span> <span class="attr">title</span>=<span class="string">"My journey with Vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blog-post</span> <span class="attr">title</span>=<span class="string">"Blogging with Vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blog-post</span> <span class="attr">title</span>=<span class="string">"Why Vue is so fun"</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>  若要从父组件中取得数据</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        posts: [</span><br><span class="line">        &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">title</span>: <span class="string">'My journey with Vue'</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">title</span>: <span class="string">'Blogging with Vue'</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">title</span>: <span class="string">'Why Vue is so fun'</span> &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>  使用 v-bind 来动态传递 prop</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">blog-post</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">"post in posts"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-bind:key</span>=<span class="string">"post.id"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-bind:title</span>=<span class="string">"post.title"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>  当组件越来越复杂，属性越来越多时，为每个相关的信息定义一个 prop 会变得很麻烦</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;blog-post</span><br><span class="line">    v-<span class="keyword">for</span>=<span class="string">"post in posts"</span></span><br><span class="line">    v-bind:key=<span class="string">"post.id"</span></span><br><span class="line">    v-bind:title=<span class="string">"post.title"</span></span><br><span class="line">    v-bind:content=<span class="string">"post.content"</span></span><br><span class="line">    v-bind:publishedAt=<span class="string">"post.publishedAt"</span></span><br><span class="line">    v-bind:comments=<span class="string">"post.comments"</span></span><br><span class="line">&gt;<span class="xml"><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>  则需要重构一下这个 blog-post 组件了，让它变成接受一个单独的 post prop：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'blog-post'</span>, &#123;</span><br><span class="line">    props: [<span class="string">'post'</span>],</span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div class="blog-post"&gt;</span></span><br><span class="line"><span class="string">        &lt;h3&gt;&#123;&#123; post.title &#125;&#125;&lt;/h3&gt;</span></span><br><span class="line"><span class="string">        &lt;div v-html="post.content"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><a href="https://cn.vuejs.org/v2/api/#template" target="_blank" rel="noopener">template</a></p>
-<p>  在这里是html的字符串模板，会替换挂载的元素</p>
-<p>  我们希望在根组件中直接用 </p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">blog-post</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>  而不必下面这种方式调用该组件 </p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">blog-post</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">"post in posts"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-bind:key</span>=<span class="string">"post.id"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-bind:title</span>=<span class="string">"post.title"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-bind:content</span>=<span class="string">"post.content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-bind:publishedAt</span>=<span class="string">"post.publishedAt"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-bind:comments</span>=<span class="string">"post.comments"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">blog-post</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>  我们需要用到模板template</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Vue.component(<span class="string">'blog-post'</span>, &#123;</span><br><span class="line">    props: [<span class="string">'post'</span>],</span><br><span class="line">    template: <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;div class="blog-post"&gt;</span></span><br><span class="line"><span class="string">        &lt;h3&gt;&#123;&#123; post.title &#125;&#125;&lt;/h3&gt;</span></span><br><span class="line"><span class="string">        &lt;div v-html="post.content"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<p>这篇文章关于组件的部分只是基础中的基础，特别是组件注册，插槽，Prop和$emit等都还没写好，下一篇博客再写吧。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2026,7 +1948,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2039,7 +1961,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>

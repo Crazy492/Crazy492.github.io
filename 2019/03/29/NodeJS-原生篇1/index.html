@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Crazy">
 <meta property="og:description" content="1. assert模块  2. path模块  3. url模块  4. querystring模块  5. net模块  6. http模块    学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起  assert模块  断言，在函数调用前使用，可确保参数如预期 12345678const assert =">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-04-03T11:38:13.915Z">
+<meta property="og:updated_time" content="2019-04-09T02:18:35.042Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NodeJS-原生篇1">
 <meta name="twitter:description" content="1. assert模块  2. path模块  3. url模块  4. querystring模块  5. net模块  6. http模块    学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起  assert模块  断言，在函数调用前使用，可确保参数如预期 12345678const assert =">
@@ -334,7 +334,7 @@
 <p>数据解析<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//parse stringify 就是数据解析与反向操作</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.parse(<span class="string">"a=1&amp;b=2&amp;c=3"</span>));</span><br><span class="line"><span class="comment">// &#123; a: '1', b: '2', c: '3' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.stringify(&#123;<span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">1</span>&#125;));</span><br><span class="line"><span class="comment">// a=3&amp;b=2&amp;c=1</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="1-5">net模块</h2>
 
-<p>相当于tcp协议node的实现，是http模块的超级，应用于websocket，此处暂且不谈</p>
+<p>相当于tcp协议node的实现，是http模块的超集，应用于websocket，此处暂且不谈</p>
 <h2 id="1-6">http模块</h2>
 
 <p>  http模块是实现原生NodeJS服务器链接的一个模块，主要使用方式为</p>
@@ -464,7 +464,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -477,7 +477,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>

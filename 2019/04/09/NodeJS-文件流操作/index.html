@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NodeJS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1. 文件流基本操作  2. 文件压缩  3. 服务器上应用  4. 启动器  文件流基本操作  之前的文件操作是用了fs.readFile()和fs.writeFile(),这两种方式需要把所有文件读取或者写入才能执行下一步，这样做是十分耗资源的，所以我们应该用流的形式，读一块写一块，进行文件读写 还是用到了fs模块，只不过换成了fs.createReadStream()和fs.create">
+<meta name="keywords" content="NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS-文件流操作">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/NodeJS-文件流操作/index.html">
+<meta property="og:site_name" content="Crazy">
+<meta property="og:description" content="1. 文件流基本操作  2. 文件压缩  3. 服务器上应用  4. 启动器  文件流基本操作  之前的文件操作是用了fs.readFile()和fs.writeFile(),这两种方式需要把所有文件读取或者写入才能执行下一步，这样做是十分耗资源的，所以我们应该用流的形式，读一块写一块，进行文件读写 还是用到了fs模块，只不过换成了fs.createReadStream()和fs.create">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/img/fsStream/1.jpg">
+<meta property="og:updated_time" content="2019-04-09T06:10:40.231Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJS-文件流操作">
+<meta name="twitter:description" content="1. 文件流基本操作  2. 文件压缩  3. 服务器上应用  4. 启动器  文件流基本操作  之前的文件操作是用了fs.readFile()和fs.writeFile(),这两种方式需要把所有文件读取或者写入才能执行下一步，这样做是十分耗资源的，所以我们应该用流的形式，读一块写一块，进行文件读写 还是用到了fs模块，只不过换成了fs.createReadStream()和fs.create">
+<meta name="twitter:image" content="http://yoursite.com/img/fsStream/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/NodeJS-文件流操作/"/>
+
+
+
+
+
+  <title>NodeJS-文件流操作 | Crazy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crazy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/NodeJS-文件流操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NodeJS-文件流操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-09T11:00:00+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol style="background: #bdc3c7;
+    border-radius: 5px;
+    color: #2980b9;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration:none;
+    line-height:1;
+    width:80%;
+    margin:0 auto;
+    list-style:none"><br>  <li style="list-decoration:none"><a href="#6-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. 文件流基本操作</a></li><br>  <li style="list-decoration:none"><a href="#6-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. 文件压缩</a></li><br>  <li style="list-decoration:none"><a href="#6-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. 服务器上应用</a></li><br>  <li style="list-decoration:none"><a href="#6-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. 启动器</a></li><br></ol>
+
+<h2 id="6-1">文件流基本操作</h2>
+
+<p>之前的文件操作是用了fs.readFile()和fs.writeFile(),这两种方式需要把所有文件读取或者写入才能执行下一步，这样做是十分耗资源的，所以我们应该用流的形式，读一块写一块，进行文件读写</p>
+<p>还是用到了fs模块，只不过换成了fs.createReadStream()和fs.createWriteStream()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rs = fs.createReadStream(<span class="string">'1.txt'</span>);</span><br><span class="line"><span class="keyword">let</span> ws = fs.createWriteStream(<span class="string">'2.txt'</span>);</span><br><span class="line"></span><br><span class="line">rs.pipe(ws); <span class="comment">// 顺序不能反 rs==&gt;ws</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读取操作的error事件重要，需要处理，写入操作也有error事件</span></span><br><span class="line">rs.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//写入操作的finish事件才是真正表示文件操作结束</span></span><br><span class="line">ws.on(<span class="string">'finish'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'finish'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>流的形式可以处理文本，二进制文件(图片，音视频等)</p>
+<h2 id="6-2">文件压缩</h2>
+
+<p>文件流操作不止可以读一块写一块，实际上读写流也是可以的，文件的压缩和加密就是把读取到的文件数据直接修改为另外一种形式</p>
+<p>我们需要配合zlib模块创建gzip对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs =<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> rs = fs.createReadStream(<span class="string">'2.txt'</span>);</span><br><span class="line"><span class="keyword">let</span> gzip = zlib.createGzip();</span><br><span class="line"><span class="keyword">let</span> ws = fs.createWriteStream(<span class="string">'2.txt.gz'</span>);</span><br><span class="line"></span><br><span class="line">rs.pipe(gzip).pipe(ws);</span><br><span class="line"></span><br><span class="line">rs.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ws.on(<span class="string">'finish'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'finish'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="6-3">服务器上应用</h2>
+
+<p>配合服务器的情况下，req本身就是一种读入流，res本身就是一种写入流</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"><span class="keyword">const</span> fs =<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server =  http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="literal">true</span>);</span><br><span class="line">  <span class="comment">//pathname 会自动带 / 要特别注意,如 /1.txt 会报错没有这个文件</span></span><br><span class="line">  <span class="keyword">let</span> rs = fs.createReadStream(<span class="string">`www<span class="subst">$&#123;pathname&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">let</span> gzip = zlib.createGzip();</span><br><span class="line">  rs.pipe(gzip).pipe(res);</span><br><span class="line"></span><br><span class="line">  rs.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">    res.writeHeader(<span class="number">404</span>);</span><br><span class="line">    res.write(<span class="string">'not found'</span>);</span><br><span class="line">    res.end();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>以上代码，会造成浏览器直接下载文件，因为浏览器不认识gz格式的数据，打开会是一堆乱码</p>
+<p><img src="/../img/fsStream/1.jpg" alt=""></p>
+<p>解决这个问题也很简单，只要加一句</p>
+<p><code>res.setHeader(&#39;content-encoding&#39;, &#39;gzip&#39;);</code></p>
+<p>但如果只是单纯告诉浏览器我要换格式，若请求的是不存在的文件，你发送的’not found’可不是gzip格式，这个时候浏览器也一脸懵逼</p>
+<p>解决这个问题只需要在error事件回调函数中重新修改响应头信息</p>
+<p><code>res.setHeader(&#39;content-encoding&#39;, &#39;&#39;);</code></p>
+<p>为了解决读取文件的错误，最好在最外层就抛出错误，而不是传到一半才发现有问题，我们可以使用fs.stat()</p>
+<p>下面代码是比较合适的一种服务器文件流操作写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">'zlib'</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server =  http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="literal">true</span>);</span><br><span class="line">  <span class="keyword">let</span> fileName = <span class="string">`www<span class="subst">$&#123;pathname&#125;</span>`</span>;</span><br><span class="line">  </span><br><span class="line">  fs.stat(fileName, (err, stat) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">      res.writeHeader(<span class="number">404</span>);</span><br><span class="line">      res.write(<span class="string">'not found'</span>);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      res.setHeader(<span class="string">'content-encoding'</span>,<span class="string">'gzip'</span>);</span><br><span class="line">      <span class="keyword">let</span> gzip = zlib.createGzip();</span><br><span class="line">      <span class="keyword">let</span> rs = fs.createReadStream(fileName);</span><br><span class="line">      rs.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">      &#125;)</span><br><span class="line">      rs.pipe(gzip).pipe(res);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="6-4">启动器</h2>
+
+<p>在以往开启服务器的过程中，一旦我们关闭了控制台，服务也就中断了，一旦某次请求出了错误，服务器直接崩溃死机，为了解决这个问题，NodeJS提供了很多启动器插件</p>
+<p>在这里，我们就以forever来介绍</p>
+<p><code>forever start xxx.js</code> 以启动器进行服务<br><code>forever list</code>  查看执行了启动器的服务<br><code>forever restart xxx.js</code>  更新服务器代码并重新开启<br><code>forever stop xxx.js</code>  关闭某个服务<br><code>forever stopall</code>  关闭所有服务<br><code>forever start xxx.js -l path1 -e path2 -a</code><br>-l ==&gt; -log 把控制台输出放到path1<br>-e ==&gt; -error 把错误输出到path2<br>-a ==&gt; 不清除日志</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/07/NodeJS-数据库/" rel="next" title="NodeJS-数据库">
+                <i class="fa fa-chevron-left"></i> NodeJS-数据库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mr.bin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1"><span class="nav-number">1.</span> <span class="nav-text">文件流基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2"><span class="nav-number">2.</span> <span class="nav-text">文件压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3"><span class="nav-number">3.</span> <span class="nav-text">服务器上应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4"><span class="nav-number">4.</span> <span class="nav-text">启动器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.bin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
