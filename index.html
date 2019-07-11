@@ -231,6 +231,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/WebPack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/11/WebPack/" itemprop="url">WebPack</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-11T13:11:47+08:00">
+                2019-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近学了点webpack，算是入门了，对于webpack的进阶知识没有太多涉猎，对HMR热更新有一点点了解，但没有深入其实现原理，或许未来会去专门深入学习HMR热更新原理</p>
+<p>开始的学习是根据<a href="https://segmentfault.com/a/1190000006178770#articleHeader9" target="_blank" rel="noopener">这篇博客</a>进行搭建的,这篇博客用的webpack版本是3.x，虽然webpack思想没改变，但与现在的webpack4.x版本还是有点区别，自己搭建的时候还是遇到了一些意外的情况</p>
+<ol>
+<li>全局安装webpack的时候npm报错<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\前端\webpack\demo&gt;npm install -g webpack</span><br><span class="line">npm ERR! Maximum call stack size exceeded</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>原因是自己的npm版本过低(5.x)，升级npm后再装webpack，问题解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:\前端\webpack\demo&gt;npm i npm -g</span><br><span class="line">D:\前端\webpack\demo&gt;npm -v</span><br><span class="line">6.10.0</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>webpack命令行现在需要使用webpack-cli，而且webpack-cli需要全局安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">D:\前端\webpack\demo&gt;webpack</span><br><span class="line">One CLI for webpack must be installed. These are recommended choices, delivered as separate packages:</span><br><span class="line">- webpack-cli (https://github.com/webpack/webpack-cli)</span><br><span class="line">  The original webpack full-featured CLI.</span><br><span class="line">We will use &quot;npm&quot; to install the CLI via &quot;npm install -D&quot;.</span><br><span class="line">Do you want to install &apos;webpack-cli&apos; (yes/no): y</span><br><span class="line">Installing &apos;webpack-cli&apos; (running &apos;npm install -D webpack-cli&apos;)...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这里下载的webpack-cli不是全局安装，还是会报错，所以需要使用webpack命令行命令前全局安装webpack-cli，至此，意外的情况解决</p>
+<h2 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h2><p>下面是webpack配制文件的一些基础又重要的选项，在这里只说明这些选项是干什么的，不是api</p>
+<h4 id="devtool"><a href="#devtool" class="headerlink" title="devtool"></a>devtool</h4><p>  <code>devtool: &#39;eval-source-map&#39;</code></p>
+<ol>
+<li>规定打包时候生成的文件的格式，不同值打包速度不同，完整性不同</li>
+<li>在source-map模式，使用babel后，原文件的es6被转成es5在浏览器运行，若不使用devtool，在浏览器看到的js是es5，和自己源码的es6不一样，导致修改麻烦（suorce-map的作用就是在浏览器控制台可以看到原文件出错的地方，而不是经过转译后其他格式的文件）</li>
+<li>在eval模式，在webpack打包生成的文件里面搜索eval，可以看到每个模块的地址</li>
+</ol>
+<h4 id="entry-amp-output"><a href="#entry-amp-output" class="headerlink" title="entry &amp; output"></a>entry &amp; output</h4><ul>
+<li>单入口</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">entry: __dirname + &quot;/app/main.js&quot;,</span><br><span class="line">output: &#123;</span><br><span class="line">  path: __dirname + &quot;/build&quot;,</span><br><span class="line">  filename: &quot;bundle.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>  此时设置的entry为全文唯一入口，output设置打包后的文件名以及存放的地址</p>
+<ul>
+<li>多入口</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">  index: __dirname + &quot;/app/index.js&quot;,</span><br><span class="line">  admin: __dirname + &quot;/app/admin.js&quot;</span><br><span class="line">&#125;</span><br><span class="line">output: &#123;</span><br><span class="line">  path: __dirname + &quot;/build&quot;,</span><br><span class="line">  filename: &quot;[name].min.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>多入口需要配置一个JSON对象，这样会编译出两个打包后的文件 index.min.js 和 admin.min.js</p>
+<h4 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h4>  <figure class="highlight plain"><figcaption><span>'none', 'production', 'development'```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  none:只打包不压缩</span><br><span class="line">  production:压缩到极限（默认值）</span><br><span class="line">  development:保留必要信息，方便调试</span><br><span class="line"></span><br><span class="line">  mode不设置则为默认值，但是会有warn</span><br><span class="line"></span><br><span class="line">#### devServer</span><br><span class="line"></span><br><span class="line">下载 webpack-dev-server之后，浏览器监听你的代码的修改，并自动刷新显示修改后的结果, This should be used for development only.</span><br><span class="line"></span><br><span class="line">```node</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: &quot;./public&quot;,//本地服务器所加载的页面所在的目录</span><br><span class="line">    historyApiFallback: true,//如果设置为true，所有的跳转将指向index.html</span><br><span class="line">    port: 4000,</span><br><span class="line">    hot: true//这个是热替换</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>热替换HMR和自动刷新（live-reload）的区别</strong></p>
+<p>  热替换可以只替换某个组件，自动刷新就是所有组件一起重置，热替换可以保存组件原来的状态信息，不去重新渲染没有修改的组件</p>
+<h4 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h4><p>webpack只认识js，只能打包js，所以需要各种loader来把不同的文件变成字符串等webpack可以认识的东西，从而实现把各种各样的文件打包到一起的效果，可以说，没有loader，webpack什么都不是</p>
+<p>下面介绍接种常见的loader</p>
+<ul>
+<li>css-loader<br>  把css文化变成字符串，让webpack能接受并打包</li>
+<li>style-loader<br>  把打包后的css样式，在head标签内生成style标签</li>
+<li>postcss-loader<br>  依赖于autoprefixer，给样式加前缀</li>
+</ul>
+<p>三个loader配合使用写法如下，use的执行顺序为有后向前，这个三个loader的执行顺序不能乱<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.css$/,</span><br><span class="line">      use: [</span><br><span class="line">        &#123;</span><br><span class="line">          loader: &quot;style-loader&quot;</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          loader: &quot;css-loader&quot;,</span><br><span class="line">          options: &#123;</span><br><span class="line">            modules: true, // 指定启用css modules</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          loader: &quot;postcss-loader&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>file-loader<br>输出成文件，只是改个名（md5规范）</li>
+<li>url-loader<br>读取并输出成base64 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   loader: &apos;url-loader,</span><br><span class="line">   options: &#123;</span><br><span class="line">     outputPath : &apos;images/&apos;,</span><br><span class="line">     limit: 8*1024 //小于这个的打包成base64,大于这个的变成文件</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>bable-loader<br>把es6转成es5，避免某些浏览器不能识别es6，其配置信息可以另外写在 .bablerc 文件里，webpack会自动调用.babelrc里的babel配置选项</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>  以上便是这几天入门webpack学到的一些皮毛，虽然学的很浅，不过自己对于工程化的理解加深了不少，对模块化的理解更深了一点，webpack更深层次的东西，希望以后能够有时间有能力去探秘</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/小程序杂记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1602,145 +1770,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/08/vue-router/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/08/vue-router/" itemprop="url">Vue-router</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-08T19:00:00+08:00">
-                2018-11-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>Vue 路由用于网页跳转，相较于 a 标签，路由的优势在于不用网页刷新，不用重新进行网页请求，便可以实现组件间的跳转，从而达到网页无刷新跳转的效果。</p>
-<hr>
-<h1 id="安装-vue-router-模块"><a href="#安装-vue-router-模块" class="headerlink" title="安装 vue-router 模块"></a>安装 vue-router 模块</h1><p>首先默认已经自行安装配置好基本的Vue的webpack打包工具<br>可以在 package.json 文件里面的 dependencies （或 devDependencies） 查看 vue-router 是否安装好，以及安装的版本。</p>
-<p>若无安装可在终端内输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-router --save</span><br></pre></td></tr></table></figure></p>
-<p><strong>tips：简单区别 –save 和 –save-dev</strong></p>
-<p> –save ：将依赖的模块添加到 dependencies 下，这是项目在发布后需要依赖的模块。<br> –save-dev : 将依赖的模块添加到 devDependencies 下，这是项目在开发过程中才需要依赖的模块。</p>
-<hr>
-<h1 id="实例化-VueRouter-对象"><a href="#实例化-VueRouter-对象" class="headerlink" title="实例化 VueRouter 对象"></a>实例化 VueRouter 对象</h1><p>在 main.js 下,首先引入并使用路由模块。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line">Vue.use(VueRouter)</span><br></pre></td></tr></table></figure></p>
-<p>接着便是实例化 VueRouter 对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes:[</span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">"/"</span>,<span class="attr">component</span>:Home&#125;,  <span class="comment">// 默认的首页</span></span><br><span class="line">    &#123;<span class="attr">path</span>:<span class="string">"/helloworld"</span>,<span class="attr">component</span>:HelloWorld&#125;,</span><br><span class="line">  ],</span><br><span class="line">  mode:<span class="string">"history"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>routes 是路由数组，基本的数组成员就是有 path 和 component 两种属性的对象。值得注意的是，这里需要 import Home 和 HelloWorld 的模板</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'./components/HelloWorld'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./components/Home'</span></span><br></pre></td></tr></table></figure>
-<p>mode:”history” 可将 # 号省略掉，避免造成路径的混乱.</p>
-<p>最后在 Vue 实例对象内使用 router。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  router, <span class="comment">//需要在 Vue 实例中使用 router</span></span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="使用-router-view-，router-link"><a href="#使用-router-view-，router-link" class="headerlink" title="使用 router-view ，router-link"></a>使用 router-view ，router-link</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/helloworld"</span>&gt;</span>HelloWorld<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>router-view 相当于 routers 容器，所有路由跳转的现实都在这个标签内。</p>
-<p>router-link 相当于 a 标签的作用 ，to 后面写相对应路由。</p>
-<hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1795,7 +1824,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1808,7 +1837,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
