@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="Crazy">
 <meta property="og:description" content="最近学了点webpack，算是入门了，对于webpack的进阶知识没有太多涉猎，对HMR热更新有一点点了解，但没有深入其实现原理，或许未来会去专门深入学习HMR热更新原理 开始的学习是根据这篇博客进行搭建的,这篇博客用的webpack版本是3.x，虽然webpack思想没改变，但与现在的webpack4.x版本还是有点区别，自己搭建的时候还是遇到了一些意外的情况  全局安装webpack的时候np">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-11T08:47:29.155Z">
+<meta property="og:updated_time" content="2019-07-16T08:56:32.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebPack">
 <meta name="twitter:description" content="最近学了点webpack，算是入门了，对于webpack的进阶知识没有太多涉猎，对HMR热更新有一点点了解，但没有深入其实现原理，或许未来会去专门深入学习HMR热更新原理 开始的学习是根据这篇博客进行搭建的,这篇博客用的webpack版本是3.x，虽然webpack思想没改变，但与现在的webpack4.x版本还是有点区别，自己搭建的时候还是遇到了一些意外的情况  全局安装webpack的时候np">
@@ -306,15 +306,16 @@
         <p>最近学了点webpack，算是入门了，对于webpack的进阶知识没有太多涉猎，对HMR热更新有一点点了解，但没有深入其实现原理，或许未来会去专门深入学习HMR热更新原理</p>
 <p>开始的学习是根据<a href="https://segmentfault.com/a/1190000006178770#articleHeader9" target="_blank" rel="noopener">这篇博客</a>进行搭建的,这篇博客用的webpack版本是3.x，虽然webpack思想没改变，但与现在的webpack4.x版本还是有点区别，自己搭建的时候还是遇到了一些意外的情况</p>
 <ol>
-<li>全局安装webpack的时候npm报错<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\前端\webpack\demo&gt;npm install -g webpack</span><br><span class="line">npm ERR! Maximum call stack size exceeded</span><br></pre></td></tr></table></figure>
+<li><p>全局安装webpack的时候npm报错</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="symbol">\前</span>端<span class="symbol">\w</span>ebpack<span class="symbol">\d</span>emo&gt;npm install -g webpack</span><br><span class="line">npm ERR! Maximum call stack size exceeded</span><br></pre></td></tr></table></figure>
+<p>原因是自己的npm版本过低(5.x)，升级npm后再装webpack，问题解决</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="symbol">\前</span>端<span class="symbol">\w</span>ebpack<span class="symbol">\d</span>emo&gt;npm i npm -g</span><br><span class="line">D:<span class="symbol">\前</span>端<span class="symbol">\w</span>ebpack<span class="symbol">\d</span>emo&gt;npm -v</span><br><span class="line">6.10.0</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>原因是自己的npm版本过低(5.x)，升级npm后再装webpack，问题解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:\前端\webpack\demo&gt;npm i npm -g</span><br><span class="line">D:\前端\webpack\demo&gt;npm -v</span><br><span class="line">6.10.0</span><br></pre></td></tr></table></figure></p>
-<ol start="2">
-<li>webpack命令行现在需要使用webpack-cli，而且webpack-cli需要全局安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">D:\前端\webpack\demo&gt;webpack</span><br><span class="line">One CLI for webpack must be installed. These are recommended choices, delivered as separate packages:</span><br><span class="line">- webpack-cli (https://github.com/webpack/webpack-cli)</span><br><span class="line">  The original webpack full-featured CLI.</span><br><span class="line">We will use &quot;npm&quot; to install the CLI via &quot;npm install -D&quot;.</span><br><span class="line">Do you want to install &apos;webpack-cli&apos; (yes/no): y</span><br><span class="line">Installing &apos;webpack-cli&apos; (running &apos;npm install -D webpack-cli&apos;)...</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<li><p>webpack命令行现在需要使用webpack-cli，而且webpack-cli需要全局安装</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">D</span>:\前端\webpack\demo&gt;webpack</span><br><span class="line"><span class="keyword">One</span> <span class="keyword">CLI</span> <span class="keyword">for</span> webpack must be installed. These are recommended choices, delivered <span class="keyword">as</span> <span class="keyword">separate</span> packages:</span><br><span class="line">- webpack-<span class="keyword">cli</span> (https:<span class="comment">//github.com/webpack/webpack-cli)</span></span><br><span class="line">  The original webpack full-featured <span class="keyword">CLI</span>.</span><br><span class="line">We will <span class="keyword">use</span> <span class="string">"npm"</span> to install the <span class="keyword">CLI</span> via <span class="string">"npm install -D"</span>.</span><br><span class="line"><span class="keyword">Do</span> you want to install 'webpack-<span class="keyword">cli</span>' (yes/<span class="keyword">no</span>): <span class="built_in">y</span></span><br><span class="line">Installing 'webpack-<span class="keyword">cli</span>' (running 'npm install -<span class="keyword">D</span> webpack-<span class="keyword">cli</span>')...</span><br></pre></td></tr></table></figure>
 <p>这里下载的webpack-cli不是全局安装，还是会报错，所以需要使用webpack命令行命令前全局安装webpack-cli，至此，意外的情况解决</p>
+</li>
+</ol>
 <h2 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h2><p>下面是webpack配制文件的一些基础又重要的选项，在这里只说明这些选项是干什么的，不是api</p>
 <h4 id="devtool"><a href="#devtool" class="headerlink" title="devtool"></a>devtool</h4><p>  <code>devtool: &#39;eval-source-map&#39;</code></p>
 <ol>
@@ -323,31 +324,44 @@
 <li>在eval模式，在webpack打包生成的文件里面搜索eval，可以看到每个模块的地址</li>
 </ol>
 <h4 id="entry-amp-output"><a href="#entry-amp-output" class="headerlink" title="entry &amp; output"></a>entry &amp; output</h4><ul>
-<li>单入口</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">entry: __dirname + &quot;/app/main.js&quot;,</span><br><span class="line">output: &#123;</span><br><span class="line">  path: __dirname + &quot;/build&quot;,</span><br><span class="line">  filename: &quot;bundle.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>  此时设置的entry为全文唯一入口，output设置打包后的文件名以及存放的地址</p>
-<ul>
-<li>多入口</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">  index: __dirname + &quot;/app/index.js&quot;,</span><br><span class="line">  admin: __dirname + &quot;/app/admin.js&quot;</span><br><span class="line">&#125;</span><br><span class="line">output: &#123;</span><br><span class="line">  path: __dirname + &quot;/build&quot;,</span><br><span class="line">  filename: &quot;[name].min.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<li><p>单入口</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">entry:</span> __dirname + <span class="string">"/app/main.js"</span>,</span><br><span class="line"><span class="symbol">output:</span> &#123;</span><br><span class="line"><span class="symbol">  path:</span> __dirname + <span class="string">"/build"</span>,</span><br><span class="line"><span class="symbol">  filename:</span> <span class="string">"bundle.js"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>此时设置的entry为全文唯一入口，output设置打包后的文件名以及存放的地址</p>
+</li>
+<li><p>多入口</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">entry</span>: &#123;</span><br><span class="line">  <span class="attribute">index</span>: __dirname + <span class="string">"/app/index.js"</span>,</span><br><span class="line">  admin: __dirname + <span class="string">"/app/admin.js"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">output</span>: &#123;</span><br><span class="line">  <span class="attribute">path</span>: __dirname + <span class="string">"/build"</span>,</span><br><span class="line">  filename: <span class="string">"[name].min.js"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <p>多入口需要配置一个JSON对象，这样会编译出两个打包后的文件 index.min.js 和 admin.min.js</p>
-<h4 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h4>  <figure class="highlight plain"><figcaption><span>'none', 'production', 'development'```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  none:只打包不压缩</span><br><span class="line">  production:压缩到极限（默认值）</span><br><span class="line">  development:保留必要信息，方便调试</span><br><span class="line"></span><br><span class="line">  mode不设置则为默认值，但是会有warn</span><br><span class="line"></span><br><span class="line">#### devServer</span><br><span class="line"></span><br><span class="line">下载 webpack-dev-server之后，浏览器监听你的代码的修改，并自动刷新显示修改后的结果, This should be used for development only.</span><br><span class="line"></span><br><span class="line">```node</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: &quot;./public&quot;,//本地服务器所加载的页面所在的目录</span><br><span class="line">    historyApiFallback: true,//如果设置为true，所有的跳转将指向index.html</span><br><span class="line">    port: 4000,</span><br><span class="line">    hot: true//这个是热替换</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>热替换HMR和自动刷新（live-reload）的区别</strong></p>
-<p>  热替换可以只替换某个组件，自动刷新就是所有组件一起重置，热替换可以保存组件原来的状态信息，不去重新渲染没有修改的组件</p>
-<h4 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h4><p>webpack只认识js，只能打包js，所以需要各种loader来把不同的文件变成字符串等webpack可以认识的东西，从而实现把各种各样的文件打包到一起的效果，可以说，没有loader，webpack什么都不是</p>
-<p>下面介绍接种常见的loader</p>
-<ul>
-<li>css-loader<br>  把css文化变成字符串，让webpack能接受并打包</li>
-<li>style-loader<br>  把打包后的css样式，在head标签内生成style标签</li>
-<li>postcss-loader<br>  依赖于autoprefixer，给样式加前缀</li>
+</li>
 </ul>
-<p>三个loader配合使用写法如下，use的执行顺序为有后向前，这个三个loader的执行顺序不能乱<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.css$/,</span><br><span class="line">      use: [</span><br><span class="line">        &#123;</span><br><span class="line">          loader: &quot;style-loader&quot;</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          loader: &quot;css-loader&quot;,</span><br><span class="line">          options: &#123;</span><br><span class="line">            modules: true, // 指定启用css modules</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          loader: &quot;postcss-loader&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>file-loader<br>输出成文件，只是改个名（md5规范）</li>
-<li>url-loader<br>读取并输出成base64 </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   loader: &apos;url-loader,</span><br><span class="line">   options: &#123;</span><br><span class="line">     outputPath : &apos;images/&apos;,</span><br><span class="line">     limit: 8*1024 //小于这个的打包成base64,大于这个的变成文件</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h4>  <figure class="highlight plain"><figcaption><span>'none', 'production', 'development'```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    none:只打包不压缩</span><br><span class="line">    production:压缩到极限（默认值）</span><br><span class="line">    development:保留必要信息，方便调试</span><br><span class="line"></span><br><span class="line">    mode不设置则为默认值，但是会有warn</span><br><span class="line"></span><br><span class="line">#### devServer</span><br><span class="line"></span><br><span class="line">  下载 webpack-dev-server之后，浏览器监听你的代码的修改，并自动刷新显示修改后的结果, This should be used for development only.</span><br></pre></td></tr></table></figure>
+<pre><code>devServer: {
+  contentBase: &quot;./public&quot;,//本地服务器所加载的页面所在的目录
+  historyApiFallback: true,//如果设置为true，所有的跳转将指向index.html
+  port: 4000,
+  hot: true//这个是热替换
+}
+</code></pre>  <figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">**热替换HMR和自动刷新（live-reload）的区别**</span><br><span class="line"></span><br><span class="line">  热替换可以只替换某个组件，自动刷新就是所有组件一起重置，热替换可以保存组件原来的状态信息，不去重新渲染没有修改的组件</span><br><span class="line"></span><br><span class="line">#### loader</span><br><span class="line"></span><br><span class="line">  webpack只认识js，只能打包js，所以需要各种loader来把不同的文件变成字符串等webpack可以认识的东西，从而实现把各种各样的文件打包到一起的效果，可以说，没有loader，webpack什么都不是</span><br><span class="line"></span><br><span class="line">  下面介绍接种常见的loader</span><br><span class="line"></span><br><span class="line">   -<span class="ruby"> css-loader</span></span><br><span class="line"><span class="ruby">       把css文化变成字符串，让webpack能接受并打包</span></span><br><span class="line"><span class="ruby">   - style-loader</span></span><br><span class="line"><span class="ruby">       把打包后的css样式，在head标签内生成style标签</span></span><br><span class="line"><span class="ruby">   - postcss-loader</span></span><br><span class="line"><span class="ruby">       依赖于autoprefixer，给样式加前缀</span></span><br><span class="line"><span class="ruby">    </span></span><br><span class="line"><span class="ruby">  三个loader配合使用写法如下，use的执行顺序为有后向前，这个三个loader的执行顺序不能乱</span></span><br></pre></td></tr></table></figure>
+<pre><code>module: {
+  rules: [
+    {
+      test: /\.css$/,
+      use: [
+        {
+          loader: &quot;style-loader&quot;
+        }, {
+          loader: &quot;css-loader&quot;,
+          options: {
+            modules: true, // 指定启用css modules
+          }
+        },{
+          loader: &quot;postcss-loader&quot;
+        }
+      ]
+    }
+  ]
+},
+</code></pre>  <figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"> file-loader</span></span><br><span class="line"><span class="ruby">  输出成文件，只是改个名（md5规范）</span></span><br><span class="line"><span class="ruby">- url-loader</span></span><br><span class="line"><span class="ruby">  读取并输出成base64</span></span><br></pre></td></tr></table></figure>
+<p>  {<br>      loader: ‘url-loader,<br>      options: {<br>        outputPath : ‘images/‘,<br>        limit: 8*1024 //小于这个的打包成base64,大于这个的变成文件<br>      }<br>    }<br>  <code>`</code></p>
 <ul>
 <li>bable-loader<br>把es6转成es5，避免某些浏览器不能识别es6，其配置信息可以另外写在 .bablerc 文件里，webpack会自动调用.babelrc里的babel配置选项</li>
 </ul>
@@ -534,7 +548,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-config-js"><span class="nav-number">1.</span> <span class="nav-text">webpack.config.js</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#devtool"><span class="nav-number">1.0.1.</span> <span class="nav-text">devtool</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#entry-amp-output"><span class="nav-number">1.0.2.</span> <span class="nav-text">entry &amp; output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mode"><span class="nav-number">1.0.3.</span> <span class="nav-text">mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loader"><span class="nav-number">1.0.4.</span> <span class="nav-text">loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-config-js"><span class="nav-number">1.</span> <span class="nav-text">webpack.config.js</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#devtool"><span class="nav-number">1.0.1.</span> <span class="nav-text">devtool</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#entry-amp-output"><span class="nav-number">1.0.2.</span> <span class="nav-text">entry &amp; output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mode"><span class="nav-number">1.0.3.</span> <span class="nav-text">mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
