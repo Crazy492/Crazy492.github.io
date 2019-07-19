@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Ajax," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -81,18 +81,13 @@
 
 
 
-<meta name="description" content="AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 Ajax技术用到了：  XMLHttpRequest 对象 (异步的与服务器交换数据)  JavaScript/DOM (信息显示/交互)  CSS (给数据定义样式)  XML (作为转换数据的格式)   Ajax四部曲：  创建 XMLHttpRequest 对象  12345678910var xmlHttp ;if(">
-<meta name="keywords" content="Ajax">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ajax">
-<meta property="og:url" content="http://yoursite.com/2018/07/20/ajax/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Crazy">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
 <meta property="og:site_name" content="Crazy">
-<meta property="og:description" content="AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 Ajax技术用到了：  XMLHttpRequest 对象 (异步的与服务器交换数据)  JavaScript/DOM (信息显示/交互)  CSS (给数据定义样式)  XML (作为转换数据的格式)   Ajax四部曲：  创建 XMLHttpRequest 对象  12345678910var xmlHttp ;if(">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-24T07:15:53.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ajax">
-<meta name="twitter:description" content="AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 Ajax技术用到了：  XMLHttpRequest 对象 (异步的与服务器交换数据)  JavaScript/DOM (信息显示/交互)  CSS (给数据定义样式)  XML (作为转换数据的格式)   Ajax四部曲：  创建 XMLHttpRequest 对象  12345678910var xmlHttp ;if(">
+<meta name="twitter:title" content="Crazy">
 
 
 
@@ -122,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/20/ajax/"/>
+  <link rel="canonical" href="http://yoursite.com/page/4/"/>
 
 
 
 
 
-  <title>Ajax | Crazy</title>
+  <title>Crazy</title>
   
 
 
@@ -147,7 +142,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,9 +216,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -235,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/ajax/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/firstDay/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.bin">
@@ -252,7 +248,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ajax</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/12/firstDay/" itemprop="url">git操作</a></h1>
         
 
         <div class="post-meta">
@@ -264,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-20T20:21:43+08:00">
-                2018-07-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T21:33:43+08:00">
+                2018-07-12
               </time>
             
 
@@ -302,66 +300,15 @@
       
 
       
-        <p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。</p>
-<p>Ajax技术用到了：</p>
-<ol>
-<li><p>XMLHttpRequest 对象 (异步的与服务器交换数据)</p>
-</li>
-<li><p>JavaScript/DOM (信息显示/交互)</p>
-</li>
-<li><p>CSS (给数据定义样式)</p>
-</li>
-<li><p>XML (作为转换数据的格式)</p>
-</li>
-</ol>
-<p>Ajax四部曲：</p>
-<ol>
-<li>创建 XMLHttpRequest 对象</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlHttp ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line">    <span class="comment">// IE 7+ 及主流浏览器</span></span><br><span class="line">    xmlHttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">// IE 6</span></span><br><span class="line">    xmlHttp = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>向服务器发送请求</li>
-</ol>
-<p><strong>open(method,url,async):规定请求的类型</strong></p>
-<p>method：请求的类型；GET 或 POST</p>
-<p>url：文件在服务器上的位置</p>
-<p>async：true（异步）或 false（同步）</p>
-<p><strong>send():将请求发送到服务器</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"ajax_info.txt"</span>,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
-<p><strong>GET与POST</strong></p>
-<p>GET：简单也更快</p>
-<p>这些情况下是使用POST：</p>
-<ol>
-<li>无法使用缓存文件（更新服务器上的文件或数据库）</li>
-<li>向服务器发送大量数据（POST 没有数据量限制）</li>
-<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
-</ol>
-<p>解决缓存问题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"ajax_info.txt?t="</span> + <span class="built_in">Math</span>.random(),<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>获得服务器响应</li>
-</ol>
-<p>responseTest属性：返回字符串形式的响应</p>
-<p>responseXML属性：获得 XML 形式的响应数据</p>
-<p>响应服务器的响应</p>
-<p>onreadystatechange 事件</p>
-<p>XMLHttpRequest 对象的三个重要的属性</p>
-<ol>
-<li><p>onreadystatechange：存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数</p>
-</li>
-<li><p>readyState：    存有 XMLHttpRequest 的状态。从 0 到 4 发生变化</p>
-<p> 0: 请求未初始化<br> 1: 服务器连接已建立<br> 2: 请求已接收<br> 3: 请求处理中<br> 4: 请求已完成，且响应已就绪</p>
-</li>
-<li><p>status：</p>
-<p> 200：服务器响应正常。<br> 304：该资源在上次请求之后没有任何修改（这通常用于浏览器的缓存机制，使用GET请求时尤其需要注意）。<br> 400：无法找到请求的资源。<br> 401：访问资源的权限不够。<br> 403：没有权限访问资源。<br> 404：需要访问的资源不存在。<br> 405：需要访问的资源被禁止。<br> 407：访问的资源需要代理身份验证。<br> 500：服务器内部错误<br> 502：服务器暂时不可用，有时是为了防止发生系统过载</p>
-</li>
-</ol>
-<p>判断是否成功</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AJAx实例：</p>
-<p><a href="http://www.runoob.com/ajax/ajax-examples.html" target="_blank" rel="noopener">http://www.runoob.com/ajax/ajax-examples.html</a></p>
-<p><strong>生如夏花般绚烂，死如秋叶般静美</strong></p>
+        
+          
+            <h2 id="git四个区域"><a href="#git四个区域" class="headerlink" title="git四个区域"></a>git四个区域</h2><h4 id="Workspace：工作区"><a href="#Workspace：工作区" class="headerlink" title="Workspace：工作区"></a>Workspace：工作区</h4><h5 id="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）"><a href="#平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）" class="headerlink" title="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）"></a>平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 <code>$ git cd XX</code> 进入XX文件，也可以右键文件夹选择 <code>git bash here</code> ，然后 <code>$ git clone URL(仓库地址)</code> ，之后再 <code>$ git init</code> (初始化)）</h5><h4 id="Index-Stage：暂存区"><a href="#Index-Stage：暂存区" class="headerlink" title="Index / Stage：暂存区"></a>Index / Stage：暂存区</h4><h5 id="git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"><a href="#git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。" class="headerlink" title=".git目录下的index文件（要用 $ git -ls 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"></a>.git目录下的index文件（要用 <code>$ git -ls</code> 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。</h5><h4 id="Repository：仓库区（或本地仓库）"><a href="#Repository：仓库区（或本地仓库）" class="headerlink" title="Repository：仓库区（或本地仓库）"></a>Repository：仓库区（或本地仓库）</h4><p>保存了被提交过的旧版本</p>
+<h4 id="Remote：远程仓库"><a href="#Remote：远程仓库" class="headerlink" title="Remote：远程仓库"></a>Remote：远程仓库</h4><p>远程仓库的内容被多个协作关系的本地仓库所修改，所共用，是本地仓库的交集处，是团队合作的地方。</p>
+<h3 id="下面是几个区的联系"><a href="#下面是几个区的联系" class="headerlink" title="下面是几个区的联系"></a>下面是几个区的联系</h3><p><strong>工作区</strong>通过 <code>$ git add</code> 操作将修改提交到,<strong>暂存区</strong> 通过 <code>$ git commit</code> 操作将修改提交到<strong>本地仓库</strong>， <strong>本地仓库</strong>通过 <code>$ git push</code> 将修改同步到<strong>远程仓库</strong> ，而<strong>远程仓库</strong>可以通过 <code>$ git pull</code> 把内容拖到<strong>工作区</strong>，也可以通过 <code>$ git fetch</code> 将<strong>远程仓库</strong>内容拖到<strong>本地仓库</strong>（想得到别人代码的时候常常这样做）</p>
+<h4 id="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"><a href="#下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）" class="headerlink" title="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"></a>下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）</h4><h5 id="git-clone-仓库地址"><a href="#git-clone-仓库地址" class="headerlink" title="$ git clone 仓库地址"></a><code>$ git clone</code> 仓库地址<url></url></h5><h5 id="git-init-初始化本地仓库"><a href="#git-init-初始化本地仓库" class="headerlink" title="$ git init 初始化本地仓库"></a><code>$ git init</code> 初始化本地仓库</h5><h5 id="git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库"><a href="#git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库" class="headerlink" title="$ git remote -v (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)"></a><code>$ git remote -v</code> (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)</h5><h5 id="git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy"><a href="#git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy" class="headerlink" title="$ git checkout -b Crazy (创建分支Crazy 并且切换到新建分支Crazy)"></a><code>$ git checkout -b Crazy</code> (创建分支Crazy 并且切换到新建分支Crazy)</h5><h5 id="git-branch-（查看所有本地分支，现在的分支为绿色）"><a href="#git-branch-（查看所有本地分支，现在的分支为绿色）" class="headerlink" title="$ git branch （查看所有本地分支，现在的分支为绿色）"></a><code>$ git branch</code> （查看所有本地分支，现在的分支为绿色）</h5><h5 id="git-status-察看暂存区文件是否修改（若修改了为红色）"><a href="#git-status-察看暂存区文件是否修改（若修改了为红色）" class="headerlink" title="$ git status (察看暂存区文件是否修改（若修改了为红色）"></a><code>$ git status</code> (察看暂存区文件是否修改（若修改了为红色）</h5><h5 id="git-add-abc-txt-添加文件-git-add-是指全部添加文件"><a href="#git-add-abc-txt-添加文件-git-add-是指全部添加文件" class="headerlink" title="$ git add abc.txt (添加文件)  ($ git add . 是指全部添加文件)"></a><code>$ git add abc.txt</code> (添加文件)  ($ git add . 是指全部添加文件)</h5><h5 id="git-status-添加成功则变绿色"><a href="#git-status-添加成功则变绿色" class="headerlink" title="$ git status (添加成功则变绿色)"></a><code>$ git status</code> (添加成功则变绿色)</h5><h5 id="git-commit-m-“注释”（提交修改-到自己的本地仓库）"><a href="#git-commit-m-“注释”（提交修改-到自己的本地仓库）" class="headerlink" title="$ git commit -m “注释”（提交修改 到自己的本地仓库）"></a><code>$ git commit -m</code> “注释”（提交修改 到自己的本地仓库）</h5><h5 id="git-push-origin-Crazy-把本地仓库内容提交到Crazy分支"><a href="#git-push-origin-Crazy-把本地仓库内容提交到Crazy分支" class="headerlink" title="$ git push origin Crazy (把本地仓库内容提交到Crazy分支)"></a><code>$ git push origin Crazy</code> (把本地仓库内容提交到Crazy分支)</h5><h5 id="git-checkout-master-切换到分支master"><a href="#git-checkout-master-切换到分支master" class="headerlink" title="$ git checkout master  (切换到分支master)"></a><code>$ git checkout master</code>  (切换到分支master)</h5><h5 id="git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变"><a href="#git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变" class="headerlink" title="$ git merge Crazy (把Crazy分支内容搬到master分支，但Crazy分支内容不变)"></a><code>$ git merge Crazy</code> (把Crazy分支内容搬到master分支，但Crazy分支内容不变)</h5><h5 id="git-pull-origin-master-把master分支内容克隆到本地仓库"><a href="#git-pull-origin-master-把master分支内容克隆到本地仓库" class="headerlink" title="$ git pull origin master (把master分支内容克隆到本地仓库)"></a><code>$ git pull origin master</code> (把master分支内容克隆到本地仓库)</h5><h5 id="git-checkout-Crazy-切换分支"><a href="#git-checkout-Crazy-切换分支" class="headerlink" title="$ git checkout Crazy  (切换分支)"></a><code>$ git checkout Crazy</code>  (切换分支)</h5><h5 id="git-merge-master-把master内容搬到Crazy分支上"><a href="#git-merge-master-把master内容搬到Crazy分支上" class="headerlink" title="$ git merge master (把master内容搬到Crazy分支上)"></a><code>$ git merge master</code> (把master内容搬到Crazy分支上)</h5><p><strong>时间并不会真的帮我们解决什么问题，它只是把原来怎么也想不通的问题，变得不再重要了。</strong></p>
 
+          
+        
       
     </div>
     
@@ -376,40 +323,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Ajax/" rel="tag"># Ajax</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/19/sixthDay/" rel="next" title="IIFE 箭头函数">
-                <i class="fa fa-chevron-left"></i> IIFE 箭头函数
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/21/eighthDay/" rel="prev" title="jQuery(part1)">
-                jQuery(part1) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -419,11 +340,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 
 
           </div>
@@ -431,10 +355,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -674,10 +594,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

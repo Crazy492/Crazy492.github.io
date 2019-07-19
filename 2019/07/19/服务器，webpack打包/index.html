@@ -68,10 +68,12 @@
 
 
 
-  <meta name="keywords" content="Ajax," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
@@ -81,18 +83,17 @@
 
 
 
-<meta name="description" content="AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 Ajax技术用到了：  XMLHttpRequest 对象 (异步的与服务器交换数据)  JavaScript/DOM (信息显示/交互)  CSS (给数据定义样式)  XML (作为转换数据的格式)   Ajax四部曲：  创建 XMLHttpRequest 对象  12345678910var xmlHttp ;if(">
-<meta name="keywords" content="Ajax">
+<meta name="description" content="写在前面： 这算是第一次将完整的项目丢到服务器上去，包括后台服务和前端打包好的文件，下面将记录这次操作遇到的一些情况 后台部分后台项目是用express框架，里面的静态文件在放在public文件夹内，只需把前端代码打包后生成的index.html和static文件夹丢到public文件夹内即可，后台代码放在了/home/wwwroot下 Screen用PuTTY命令行工具的时候，会有一个问题，一旦">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ajax">
-<meta property="og:url" content="http://yoursite.com/2018/07/20/ajax/index.html">
+<meta property="og:title" content="服务器，webpack打包">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/服务器，webpack打包/index.html">
 <meta property="og:site_name" content="Crazy">
-<meta property="og:description" content="AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 Ajax技术用到了：  XMLHttpRequest 对象 (异步的与服务器交换数据)  JavaScript/DOM (信息显示/交互)  CSS (给数据定义样式)  XML (作为转换数据的格式)   Ajax四部曲：  创建 XMLHttpRequest 对象  12345678910var xmlHttp ;if(">
+<meta property="og:description" content="写在前面： 这算是第一次将完整的项目丢到服务器上去，包括后台服务和前端打包好的文件，下面将记录这次操作遇到的一些情况 后台部分后台项目是用express框架，里面的静态文件在放在public文件夹内，只需把前端代码打包后生成的index.html和static文件夹丢到public文件夹内即可，后台代码放在了/home/wwwroot下 Screen用PuTTY命令行工具的时候，会有一个问题，一旦">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-24T07:15:53.689Z">
+<meta property="og:updated_time" content="2019-07-19T13:29:47.013Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ajax">
-<meta name="twitter:description" content="AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 Ajax技术用到了：  XMLHttpRequest 对象 (异步的与服务器交换数据)  JavaScript/DOM (信息显示/交互)  CSS (给数据定义样式)  XML (作为转换数据的格式)   Ajax四部曲：  创建 XMLHttpRequest 对象  12345678910var xmlHttp ;if(">
+<meta name="twitter:title" content="服务器，webpack打包">
+<meta name="twitter:description" content="写在前面： 这算是第一次将完整的项目丢到服务器上去，包括后台服务和前端打包好的文件，下面将记录这次操作遇到的一些情况 后台部分后台项目是用express框架，里面的静态文件在放在public文件夹内，只需把前端代码打包后生成的index.html和static文件夹丢到public文件夹内即可，后台代码放在了/home/wwwroot下 Screen用PuTTY命令行工具的时候，会有一个问题，一旦">
 
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/20/ajax/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/07/19/服务器，webpack打包/"/>
 
 
 
 
 
-  <title>Ajax | Crazy</title>
+  <title>服务器，webpack打包 | Crazy</title>
   
 
 
@@ -235,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/ajax/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/服务器，webpack打包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.bin">
@@ -252,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ajax</h1>
+          <h1 class="post-title" itemprop="name headline">服务器，webpack打包</h1>
         
 
         <div class="post-meta">
@@ -264,8 +265,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-20T20:21:43+08:00">
-                2018-07-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-19T21:27:45+08:00">
+                2019-07-19
               </time>
             
 
@@ -302,65 +303,69 @@
       
 
       
-        <p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。</p>
-<p>Ajax技术用到了：</p>
+        <p><strong>写在前面：</strong></p>
+<p>这算是第一次将完整的项目丢到服务器上去，包括后台服务和前端打包好的文件，下面将记录这次操作遇到的一些情况</p>
+<h2 id="后台部分"><a href="#后台部分" class="headerlink" title="后台部分"></a>后台部分</h2><p>后台项目是用express框架，里面的静态文件在放在public文件夹内，只需把前端代码打包后生成的index.html和static文件夹丢到public文件夹内即可，后台代码放在了<code>/home/wwwroot</code>下</p>
+<h3 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h3><p>用PuTTY命令行工具的时候，会有一个问题，一旦启动了其中一个服务，就无法进行其他操作(比如开启另一个服务)，这样还会导致退出PuTTY的时候，刚开启的服务会自己断开</p>
+<p>为解决这个问题，需要用到Screen工具，一般Linux机都会自带</p>
+<p><strong>这里记录几个常用命令</strong></p>
 <ol>
-<li><p>XMLHttpRequest 对象 (异步的与服务器交换数据)</p>
-</li>
-<li><p>JavaScript/DOM (信息显示/交互)</p>
-</li>
-<li><p>CSS (给数据定义样式)</p>
-</li>
-<li><p>XML (作为转换数据的格式)</p>
-</li>
+<li><code>screen -S name</code>  —&gt; 新建一个名叫name的会话</li>
+<li><code>screen -ls</code>      —&gt; 列出当前所有会话</li>
+<li><code>screen -r name</code>  —&gt; 回到name这个会话，配合-ls命令，name用会话序号代替即可</li>
+<li><code>screen -d name</code>  —&gt; 远程detach某个会话，状态为Attached的会话不能用-r命令进入</li>
+<li><code>C-a + z</code>        —&gt; 把当前会话放到后台执行，用 shell 的 fg 命令则可回去</li>
+<li><code>C-a + c</code>         —&gt; 创建一个新的运行shell的窗口并切换到该窗口</li>
+<li><code>screen -S name -X quit</code> —&gt;关闭某个会话</li>
 </ol>
-<p>Ajax四部曲：</p>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>安装MongoDB在 <code>/usr/local</code>，在MongoDB文件夹内执行 <code>bin/mongod</code> 即可开启MongoDB</p>
+<h2 id="前端部分"><a href="#前端部分" class="headerlink" title="前端部分"></a>前端部分</h2><p>前端项目是用vue框架，用Webpcak打包时遇到了很多问题</p>
+<h3 id="assets"><a href="#assets" class="headerlink" title="assets"></a>assets</h3><p>assets里面的文件会根据url-loader的limit分情况处理，vue-cli的limit为10000b，略小于10k</p>
 <ol>
-<li>创建 XMLHttpRequest 对象</li>
+<li><p>小于url-loader的limit限制的文件会直接变成base64</p>
+<ul>
+<li><code>eg: xxx.png =&gt; data:image/xxx;base64,ixxxxxxx</code></li>
+</ul>
+</li>
+<li><p>大于limit限制的是重新命名一下，不变成base64</p>
+<ul>
+<li><code>eg: xxx.png =&gt; xxx.0974910.png</code></li>
+</ul>
+</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlHttp ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line">    <span class="comment">// IE 7+ 及主流浏览器</span></span><br><span class="line">    xmlHttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">// IE 6</span></span><br><span class="line">    xmlHttp = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>向服务器发送请求</li>
-</ol>
-<p><strong>open(method,url,async):规定请求的类型</strong></p>
-<p>method：请求的类型；GET 或 POST</p>
-<p>url：文件在服务器上的位置</p>
-<p>async：true（异步）或 false（同步）</p>
-<p><strong>send():将请求发送到服务器</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"ajax_info.txt"</span>,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
-<p><strong>GET与POST</strong></p>
-<p>GET：简单也更快</p>
-<p>这些情况下是使用POST：</p>
+<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><p>static里面的文件会原封不动的放在打包后的static文件夹里</p>
+<h2 id="图片资源打包情况分析"><a href="#图片资源打包情况分析" class="headerlink" title="图片资源打包情况分析"></a>图片资源打包情况分析</h2><h3 id="npm-run-dev"><a href="#npm-run-dev" class="headerlink" title="npm run dev"></a>npm run dev</h3><p>在开发模式下，讨论两种引用图片资源的情况：</p>
 <ol>
-<li>无法使用缓存文件（更新服务器上的文件或数据库）</li>
-<li>向服务器发送大量数据（POST 没有数据量限制）</li>
-<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
-</ol>
-<p>解决缓存问题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"ajax_info.txt?t="</span> + <span class="built_in">Math</span>.random(),<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>获得服务器响应</li>
-</ol>
-<p>responseTest属性：返回字符串形式的响应</p>
-<p>responseXML属性：获得 XML 形式的响应数据</p>
-<p>响应服务器的响应</p>
-<p>onreadystatechange 事件</p>
-<p>XMLHttpRequest 对象的三个重要的属性</p>
+<li><p>template中通过img标签的src来引用图片资源</p>
+<ul>
+<li><p>通过<code>&quot;../assets/xxx.png&quot;</code>或者<code>&quot;../../static/xxx.png&quot;</code>这两种都是通过相对路径引用也会有两种情况</p>
 <ol>
-<li><p>onreadystatechange：存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数</p>
+<li>小于limit的图片：仍然是base64</li>
+<li>大于limit的图片：<code>/static/img/xxx.0974910.png</code></li>
+</ol>
 </li>
-<li><p>readyState：    存有 XMLHttpRequest 的状态。从 0 到 4 发生变化</p>
-<p> 0: 请求未初始化<br> 1: 服务器连接已建立<br> 2: 请求已接收<br> 3: 请求处理中<br> 4: 请求已完成，且响应已就绪</p>
+<li><p>通过<code>/static/xxx.png</code>绝对路径的方式引用图片，是可以被loader识别并且不被webpack打包，即可以保持原文件不变，在img的src中为<code>/static/xxx.png</code></p>
+<p><strong>注意：可以用<code>static/xxx.png</code>(即省略开头的’/‘)来达到上述效果，不过在<code>npm run build</code>后会报错，所以还是不推荐</strong></p>
 </li>
-<li><p>status：</p>
-<p> 200：服务器响应正常。<br> 304：该资源在上次请求之后没有任何修改（这通常用于浏览器的缓存机制，使用GET请求时尤其需要注意）。<br> 400：无法找到请求的资源。<br> 401：访问资源的权限不够。<br> 403：没有权限访问资源。<br> 404：需要访问的资源不存在。<br> 405：需要访问的资源被禁止。<br> 407：访问的资源需要代理身份验证。<br> 500：服务器内部错误<br> 502：服务器暂时不可用，有时是为了防止发生系统过载</p>
+</ul>
+</li>
+<li><p>style中通过background-img的url来引用图片资源</p>
+<ul>
+<li><p>通过<code>../../static/xxx.png</code>或者<code>../assets/xxx.png</code>这两种相对路径引用也会有两种情况</p>
+<ol>
+<li>小于limit的图片：仍然是base64</li>
+<li>大于limit的图片：<code>/static/img/xxx.0974910.png</code></li>
+</ol>
+</li>
+<li><p>通过<code>/static/xxx.png</code>绝对路径的方式引用图片，是可以被loader识别并且不被webpack打包，即可以保持原文件不变，在img的src中为<code>/static/xxx.png</code></p>
+</li>
+<li><p><strong>注意：不可以用<code>static/xxx.png</code>(即省略开头的/)来达到上述效果</strong></p>
+<p><strong>总结：在 <code>npm run dev</code> 后，如使用到相对路径引用图片资源，就会被webpack打包到<code>/static/img/</code>下，即被webpack处理；若使用绝对路径引用图片资源，webpack会保持原文件不变，放在<code>/static/</code>下</strong></p>
+</li>
+</ul>
 </li>
 </ol>
-<p>判断是否成功</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AJAx实例：</p>
-<p><a href="http://www.runoob.com/ajax/ajax-examples.html" target="_blank" rel="noopener">http://www.runoob.com/ajax/ajax-examples.html</a></p>
-<p><strong>生如夏花般绚烂，死如秋叶般静美</strong></p>
+<h3 id="npm-run-build"><a href="#npm-run-build" class="headerlink" title="npm run build"></a>npm run build</h3><p>这个模式下，和<code>npm run dev</code>的区别是teplate的img标签的src不能<code>static/xxx.png</code>（即不能省略’/‘)</p>
 
       
     </div>
@@ -376,12 +381,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Ajax/" rel="tag"># Ajax</a>
-          
-        </div>
-      
 
       
       
@@ -391,8 +390,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/19/sixthDay/" rel="next" title="IIFE 箭头函数">
-                <i class="fa fa-chevron-left"></i> IIFE 箭头函数
+              <a href="/2019/07/11/WebPack/" rel="next" title="WebPack">
+                <i class="fa fa-chevron-left"></i> WebPack
               </a>
             
           </div>
@@ -400,10 +399,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/21/eighthDay/" rel="prev" title="jQuery(part1)">
-                jQuery(part1) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -455,8 +450,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -534,6 +538,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#后台部分"><span class="nav-number">1.</span> <span class="nav-text">后台部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Screen"><span class="nav-number">1.1.</span> <span class="nav-text">Screen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB"><span class="nav-number">1.2.</span> <span class="nav-text">MongoDB</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端部分"><span class="nav-number">2.</span> <span class="nav-text">前端部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#assets"><span class="nav-number">2.1.</span> <span class="nav-text">assets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static"><span class="nav-number">2.2.</span> <span class="nav-text">static</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片资源打包情况分析"><span class="nav-number">3.</span> <span class="nav-text">图片资源打包情况分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-run-dev"><span class="nav-number">3.1.</span> <span class="nav-text">npm run dev</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-run-build"><span class="nav-number">3.2.</span> <span class="nav-text">npm run build</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -231,6 +231,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/服务器，webpack打包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/19/服务器，webpack打包/" itemprop="url">服务器，webpack打包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-19T21:27:45+08:00">
+                2019-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>写在前面：</strong></p>
+<p>这算是第一次将完整的项目丢到服务器上去，包括后台服务和前端打包好的文件，下面将记录这次操作遇到的一些情况</p>
+<h2 id="后台部分"><a href="#后台部分" class="headerlink" title="后台部分"></a>后台部分</h2><p>后台项目是用express框架，里面的静态文件在放在public文件夹内，只需把前端代码打包后生成的index.html和static文件夹丢到public文件夹内即可，后台代码放在了<code>/home/wwwroot</code>下</p>
+<h3 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h3><p>用PuTTY命令行工具的时候，会有一个问题，一旦启动了其中一个服务，就无法进行其他操作(比如开启另一个服务)，这样还会导致退出PuTTY的时候，刚开启的服务会自己断开</p>
+<p>为解决这个问题，需要用到Screen工具，一般Linux机都会自带</p>
+<p><strong>这里记录几个常用命令</strong></p>
+<ol>
+<li><code>screen -S name</code>  —&gt; 新建一个名叫name的会话</li>
+<li><code>screen -ls</code>      —&gt; 列出当前所有会话</li>
+<li><code>screen -r name</code>  —&gt; 回到name这个会话，配合-ls命令，name用会话序号代替即可</li>
+<li><code>screen -d name</code>  —&gt; 远程detach某个会话，状态为Attached的会话不能用-r命令进入</li>
+<li><code>C-a + z</code>        —&gt; 把当前会话放到后台执行，用 shell 的 fg 命令则可回去</li>
+<li><code>C-a + c</code>         —&gt; 创建一个新的运行shell的窗口并切换到该窗口</li>
+<li><code>screen -S name -X quit</code> —&gt;关闭某个会话</li>
+</ol>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>安装MongoDB在 <code>/usr/local</code>，在MongoDB文件夹内执行 <code>bin/mongod</code> 即可开启MongoDB</p>
+<h2 id="前端部分"><a href="#前端部分" class="headerlink" title="前端部分"></a>前端部分</h2><p>前端项目是用vue框架，用Webpcak打包时遇到了很多问题</p>
+<h3 id="assets"><a href="#assets" class="headerlink" title="assets"></a>assets</h3><p>assets里面的文件会根据url-loader的limit分情况处理，vue-cli的limit为10000b，略小于10k</p>
+<ol>
+<li><p>小于url-loader的limit限制的文件会直接变成base64</p>
+<ul>
+<li><code>eg: xxx.png =&gt; data:image/xxx;base64,ixxxxxxx</code></li>
+</ul>
+</li>
+<li><p>大于limit限制的是重新命名一下，不变成base64</p>
+<ul>
+<li><code>eg: xxx.png =&gt; xxx.0974910.png</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><p>static里面的文件会原封不动的放在打包后的static文件夹里</p>
+<h2 id="图片资源打包情况分析"><a href="#图片资源打包情况分析" class="headerlink" title="图片资源打包情况分析"></a>图片资源打包情况分析</h2><h3 id="npm-run-dev"><a href="#npm-run-dev" class="headerlink" title="npm run dev"></a>npm run dev</h3><p>在开发模式下，讨论两种引用图片资源的情况：</p>
+<ol>
+<li><p>template中通过img标签的src来引用图片资源</p>
+<ul>
+<li><p>通过<code>&quot;../assets/xxx.png&quot;</code>或者<code>&quot;../../static/xxx.png&quot;</code>这两种都是通过相对路径引用也会有两种情况</p>
+<ol>
+<li>小于limit的图片：仍然是base64</li>
+<li>大于limit的图片：<code>/static/img/xxx.0974910.png</code></li>
+</ol>
+</li>
+<li><p>通过<code>/static/xxx.png</code>绝对路径的方式引用图片，是可以被loader识别并且不被webpack打包，即可以保持原文件不变，在img的src中为<code>/static/xxx.png</code></p>
+<p><strong>注意：可以用<code>static/xxx.png</code>(即省略开头的’/‘)来达到上述效果，不过在<code>npm run build</code>后会报错，所以还是不推荐</strong></p>
+</li>
+</ul>
+</li>
+<li><p>style中通过background-img的url来引用图片资源</p>
+<ul>
+<li><p>通过<code>../../static/xxx.png</code>或者<code>../assets/xxx.png</code>这两种相对路径引用也会有两种情况</p>
+<ol>
+<li>小于limit的图片：仍然是base64</li>
+<li>大于limit的图片：<code>/static/img/xxx.0974910.png</code></li>
+</ol>
+</li>
+<li><p>通过<code>/static/xxx.png</code>绝对路径的方式引用图片，是可以被loader识别并且不被webpack打包，即可以保持原文件不变，在img的src中为<code>/static/xxx.png</code></p>
+</li>
+<li><p><strong>注意：不可以用<code>static/xxx.png</code>(即省略开头的/)来达到上述效果</strong></p>
+<p><strong>总结：在 <code>npm run dev</code> 后，如使用到相对路径引用图片资源，就会被webpack打包到<code>/static/img/</code>下，即被webpack处理；若使用绝对路径引用图片资源，webpack会保持原文件不变，放在<code>/static/</code>下</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="npm-run-build"><a href="#npm-run-build" class="headerlink" title="npm run build"></a>npm run build</h3><p>这个模式下，和<code>npm run dev</code>的区别是teplate的img标签的src不能<code>static/xxx.png</code>（即不能省略’/‘)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/WebPack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1261,17 +1443,17 @@ mode不设置则为默认值，但是会有warn
 <p>jsonp在Ajax不能跨域的时候很火，由于安全性，现在已经不流行了</p>
 <p>jsonp本质上是script标签，其实就是引用别人js文件来执行你在前端写的代码</p>
 <p>假设有个别人服务器上的js文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure></p>
-<p>前端上只需要这样写<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(a+b);</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://a.com"</span>&gt;</span><span class="undefined">cript&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>前端上只需要这样写<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(a,b)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(a+b);</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://a.com"</span>&gt;</span><span class="undefined">cript&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>jsonp的原理配合jQuery可以这样写</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">    url:<span class="string">'https://a.com'</span>,</span></span><br><span class="line"><span class="javascript">    data: <span class="string">''</span>,<span class="comment">//传送过去的数据</span></span></span><br><span class="line"><span class="javascript">    dataType: <span class="string">'jsonp'</span>,</span></span><br><span class="line"><span class="javascript">    jsonp: <span class="string">'add'</span> <span class="comment">//想要触发的回调函数</span></span></span><br><span class="line"><span class="javascript">  &#125;).then(<span class="function">(<span class="params">&#123;s&#125;</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(s);</span></span><br><span class="line"><span class="undefined">  &#125;, res =&gt; &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">'fail'</span>);</span></span><br><span class="line"><span class="undefined">  &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  $.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">    url:<span class="string">'https://a.com'</span>,</span></span><br><span class="line"><span class="actionscript">    data: <span class="string">''</span>,<span class="comment">//传送过去的数据</span></span></span><br><span class="line"><span class="actionscript">    dataType: <span class="string">'jsonp'</span>,</span></span><br><span class="line"><span class="actionscript">    jsonp: <span class="string">'add'</span> <span class="comment">//想要触发的回调函数</span></span></span><br><span class="line"><span class="javascript">  &#125;).then(<span class="function">(<span class="params">&#123;s&#125;</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(s);</span></span><br><span class="line"><span class="undefined">  &#125;, res =&gt; &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">'fail'</span>);</span></span><br><span class="line"><span class="undefined">  &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="3-4">Ajax2.0</h2>
 
 <p>Ajax2.0没有添加很多东西，主要是添加了FormData，它可以把表单数据整个提交</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">action</span>=<span class="string">"http://localhost:8080/"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    用户：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"user"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pass"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    文件：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"f1"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">let</span> oForm=<span class="built_in">document</span>.querySelector(<span class="string">'#form1'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">oForm.onsubmit=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(oForm);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  xhr.open(oForm.method, oForm.action, <span class="literal">true</span>);</span></span><br><span class="line"><span class="undefined">  xhr.send(formdata);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  xhr.onreadystatechange=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span>(xhr.readyState==<span class="number">4</span>)&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span>(ajax.status &gt;= <span class="number">200</span> &amp;&amp; ajax.status &lt; <span class="number">300</span> || ajax.status == <span class="number">304</span>)&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">'success'</span>);</span></span><br><span class="line"><span class="javascript">      &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">'fail'</span>);</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//取消表单默认提交事件</span></span></span><br><span class="line"><span class="undefined">&#125;;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form1"</span> <span class="attr">action</span>=<span class="string">"http://localhost:8080/"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    用户：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"user"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pass"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    文件：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"f1"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">let</span> oForm=<span class="built_in">document</span>.querySelector(<span class="string">'#form1'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">oForm.onsubmit=<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(oForm);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  xhr.open(oForm.method, oForm.action, <span class="literal">true</span>);</span></span><br><span class="line"><span class="undefined">  xhr.send(formdata);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  xhr.onreadystatechange=<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span>(xhr.readyState==<span class="number">4</span>)&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">if</span>(ajax.status &gt;= <span class="number">200</span> &amp;&amp; ajax.status &lt; <span class="number">300</span> || ajax.status == <span class="number">304</span>)&#123;</span></span><br><span class="line"><span class="actionscript">        alert(<span class="string">'success'</span>);</span></span><br><span class="line"><span class="actionscript">      &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">        alert(<span class="string">'fail'</span>);</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//取消表单默认提交事件</span></span></span><br><span class="line"><span class="undefined">&#125;;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>配合jQuery</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#form1'</span>).on(<span class="string">'submit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="keyword">this</span>.action,</span><br><span class="line">      type: <span class="keyword">this</span>.method,</span><br><span class="line">      data: formdata,</span><br><span class="line">      processData: <span class="literal">false</span>, <span class="comment">//不让jq自动解析data</span></span><br><span class="line">      contentType: <span class="literal">false</span>  <span class="comment">//不让jq乱改content-type</span></span><br><span class="line">    &#125;).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">      alert(<span class="string">'success'</span>);</span><br><span class="line">    &#125;, err=&gt;&#123;</span><br><span class="line">      alert(<span class="string">'fail'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//取消表单默认提交事件</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>如果我们想要自己构建表单，也不是不行，只不过需要手动给formData加东西，比较麻烦</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span>&gt;</span></span><br><span class="line">    用户：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"user"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"pass"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    文件：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"f1"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"btn1"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">let</span> oBtn=<span class="built_in">document</span>.querySelector(<span class="string">'#btn1'</span>);</span></span><br><span class="line"><span class="javascript">oBtn.onclick=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData();</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  formdata.append(<span class="string">'username'</span>, <span class="built_in">document</span>.querySelector(<span class="string">'#user'</span>).value);</span></span><br><span class="line"><span class="javascript">  formdata.append(<span class="string">'password'</span>, <span class="built_in">document</span>.querySelector(<span class="string">'#pass'</span>).value);</span></span><br><span class="line"><span class="javascript">  <span class="comment">//添加文件需要加下标，若是多个文件需要加循环</span></span></span><br><span class="line"><span class="javascript">  formdata.append(<span class="string">'f1'</span>, <span class="built_in">document</span>.querySelector(<span class="string">'#f1'</span>).files[<span class="number">0</span>]); </span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">  <span class="comment">//这里不再能用form的属性，需要自己手写</span></span></span><br><span class="line"><span class="javascript">  xhr.open(<span class="string">'post'</span>, <span class="string">'http://localhost:8080/'</span>, <span class="literal">true</span>); </span></span><br><span class="line"><span class="undefined">  xhr.send(formdata);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  xhr.onreadystatechange=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span>(xhr.readyState==<span class="number">4</span>)&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span>(ajax.status &gt;= <span class="number">200</span> &amp;&amp; ajax.status &lt; <span class="number">300</span> || ajax.status == <span class="number">304</span>)&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">'success'</span>);</span></span><br><span class="line"><span class="javascript">      &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">'fail'</span>);</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;;</span></span><br><span class="line"><span class="undefined">&#125;;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span>&gt;</span></span><br><span class="line">    用户：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"user"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"pass"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    文件：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"f1"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"btn1"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">let</span> oBtn=<span class="built_in">document</span>.querySelector(<span class="string">'#btn1'</span>);</span></span><br><span class="line"><span class="actionscript">oBtn.onclick=<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> formdata=<span class="keyword">new</span> FormData();</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">  formdata.append(<span class="string">'username'</span>, <span class="built_in">document</span>.querySelector(<span class="string">'#user'</span>).value);</span></span><br><span class="line"><span class="javascript">  formdata.append(<span class="string">'password'</span>, <span class="built_in">document</span>.querySelector(<span class="string">'#pass'</span>).value);</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//添加文件需要加下标，若是多个文件需要加循环</span></span></span><br><span class="line"><span class="javascript">  formdata.append(<span class="string">'f1'</span>, <span class="built_in">document</span>.querySelector(<span class="string">'#f1'</span>).files[<span class="number">0</span>]); </span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="actionscript">  <span class="comment">//这里不再能用form的属性，需要自己手写</span></span></span><br><span class="line"><span class="actionscript">  xhr.open(<span class="string">'post'</span>, <span class="string">'http://localhost:8080/'</span>, <span class="literal">true</span>); </span></span><br><span class="line"><span class="undefined">  xhr.send(formdata);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  xhr.onreadystatechange=<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">if</span>(xhr.readyState==<span class="number">4</span>)&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">if</span>(ajax.status &gt;= <span class="number">200</span> &amp;&amp; ajax.status &lt; <span class="number">300</span> || ajax.status == <span class="number">304</span>)&#123;</span></span><br><span class="line"><span class="actionscript">        alert(<span class="string">'success'</span>);</span></span><br><span class="line"><span class="actionscript">      &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">        alert(<span class="string">'fail'</span>);</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;;</span></span><br><span class="line"><span class="undefined">&#125;;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
           
         
       
@@ -1623,167 +1805,11 @@ mode不设置则为默认值，但是会有warn
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/10/Event Loop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/10/Event Loop/" itemprop="url">事件循环</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-10T11:30:00+08:00">
-                2018-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  从 JavaScript 诞生以来，JavaScript 就被设计为<strong>单线程</strong>且<strong>永不阻塞</strong>的脚本语言。</p>
-<h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><p>  JavaScript 代码在任何时候都只有一个主线程处理所有的任务。</p>
-<p>  设计为单线程的原因主要是 JavaScript 是与浏览器交互的语言，需要完成一些 DOM 操作。若将 JavaScript 设计为多线程，则可能发生下面这种情况：</p>
-<p>  第一个线程创造了 DOM 结点，并进行了相应的 DOM 操作。<br>  第二个线程删除了该 DOM 结点。<br>  此时就遇到问题了，该 DOM 结点该如何存在？毁灭还是新生？</p>
-<p>  因此 JavaScript 要设计成单线程。</p>
-<p>  可是，单线程注定会限制 JavaScript 的效率，因此开发了 <strong>Web Worker</strong> 技术，该技术号称能将 JavaScript 变为多线程的语言。</p>
-<p>  然而，该技术所开发的多线程有很多限制，例如所有新线程必须在主线程的完全控制下，不能独立执行，对于 I/O 操作，新线程更是没有这个权限进行。严格来说，<strong>Web Worker</strong> 技术并没有改变 JavaScript 是单线程的语言的实质。可以预见，JavaScript 在未来也只能是单线程的。</p>
-<h2 id="永不阻塞"><a href="#永不阻塞" class="headerlink" title="永不阻塞"></a>永不阻塞</h2><p>  当代码中有异步任务(无法立刻返回结果的任务，如 I/O 事件),主线程可以暂时挂起该任务,然后在异步任务返回结果后再执行相应回调函数。</p>
-<hr>
-<h1 id="任务队列-task-queue"><a href="#任务队列-task-queue" class="headerlink" title="任务队列(task queue)"></a>任务队列(task queue)</h1><p>单线程的 JavaScript 意味着任务需要一个个来实现，若前一个任务耗时很长，后面的任务就不得不等待。</p>
-<p>于是乎，JavaScript 的设计者意识到，如果将 I/O 操作等耗时长的任务先挂起，先运行后面的任务，等 I/O 操作等耗时长的任务返回了结果，再回头把挂起的任务完成，岂不美哉？</p>
-<p>因此，所有任务可以分为两种，一是<strong>同步任务</strong>，另一种是<strong>异步任务</strong>。</p>
-<p><strong>同步任务</strong>指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务。</p>
-<p><strong>异步任务</strong>指的是，不进入主线程、而进入<strong>任务队列</strong>的任务，只有任务队列通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
-<p>异步任务必须指定<strong>回调函数</strong>，所谓回调函数，就是会被主线程挂起来的那些代码。所谓执行异步任务。就是执行其对应的回调函数。</p>
-<p>任务队列是个 FIFO 的数据结构，一旦主线程的任务栈中所有同步任务执行完成，任务队列中的第一个任务就会被添加到主线程。</p>
-<hr>
-<h1 id="事件循环-Event-Loop"><a href="#事件循环-Event-Loop" class="headerlink" title="事件循环(Event Loop)"></a>事件循环(Event Loop)</h1><p>主线程从”任务队列”中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为 Event Loop。</p>
-<p>加入到任务队列的异步任务其实分为两种，一是宏任务，二是微任务。</p>
-<h2 id="宏任务-macro-task-amp-微任务-micro-task"><a href="#宏任务-macro-task-amp-微任务-micro-task" class="headerlink" title="宏任务(macro task) &amp; 微任务(micro task)"></a>宏任务(macro task) &amp; 微任务(micro task)</h2><p>异步任务也有优先级，微任务高于宏任务。</p>
-<p>以下事件属于宏任务：</p>
-<ul>
-<li>setTimeout()</li>
-<li>setInterval()</li>
-</ul>
-<p>以下事件属于微任务：</p>
-<ul>
-<li>new Promise()</li>
-</ul>
-<p>当主线程任务栈为空时，主线程会先处理微任务队列，当微任务队列也为空时，主线程再去处理宏任务队列。</p>
-<p>而 setTimeout 第二个延迟参数的意义，是指主线程所有同步任务，以及微任务队列所有异步任务都完成后，再生效的延迟时间。</p>
-<p>最后附上一道题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">6</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  resolve()</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>按照上面的理解，setTimeout 就是作为宏任务来存在的，而 Promise.then 则是具有代表性的微任务，上述代码的执行顺序就是按照序号来输出的。</p>
-<p>就是说 new Promise 在实例化的过程中所执行的代码都是同步进行的，而then中注册的回调才是异步执行的。回调函数，才能进入异步。</p>
-<hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1833,7 +1859,7 @@ mode不设置则为默认值，但是会有warn
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
