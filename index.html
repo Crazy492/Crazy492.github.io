@@ -231,6 +231,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/linux下的mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/05/linux下的mysql/" itemprop="url">linux下的mysql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-05T17:31:00+08:00">
+                2019-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>云服务器上的mysql一开始是用lnmp一键安装的，当时忘记了mysql的密码，于是在网上找到一些方法跳过密码直接进入mysql，再接着修改密码</p>
+<ol>
+<li>首先进到根目录，然后进入 <strong>etc</strong> 文件夹</li>
+<li>找到mysql配置文件 <strong>my.cnf</strong>，拖到本地</li>
+<li>打开my.cnf，找到[mysqld]，在该行下面添加一行 <strong>skip-grant-tables</strong> （跳过登录时的权限表）</li>
+<li>覆盖服务器上的原配置文件，使用 <strong>service mysql restart</strong>  重启mysql</li>
+<li>然后输入 <strong>mysql -uroot -p</strong> ，遇到输入密码直接回车即可进入mysql </li>
+<li>在命令行 输入 <strong>use mysql</strong> 收到 Database changed 的反馈</li>
+<li>输入 <strong>update user set password = password(‘新的密码’) where user = ‘root’;</strong> (注意分号不能漏)</li>
+</ol>
+<p><img src="C:\Users\Lonely patients\AppData\Roaming\Typora\typora-user-images\1567682539516.png" alt="1567682539516"></p>
+<ol start="8">
+<li><p>然后输入 <strong>exit</strong> 退出mysql</p>
+<ol start="9">
+<li>修改本地的 <strong>my.cnf</strong> 文件，把刚刚添加的一行去掉，再覆盖服务器的原配置文件</li>
+<li>再次重启服务器即可</li>
+</ol>
+</li>
+</ol>
+<p>这里再记录几个linux命令</p>
+<ul>
+<li><p>service mysql start  开启mysql</p>
+</li>
+<li><p>service mysql stop   关闭mysql</p>
+</li>
+<li><p>service mysql restart 重启mysql</p>
+</li>
+<li><p>netstat -ntlp   //查看当前所有tcp端口·</p>
+</li>
+<li><p>netstat -an | grep 3306   //查看所有3306端口使用情况</p>
+</li>
+</ul>
+<p><strong>另外在数据库初始化建表的时候遇到了字段长度过长（varchar255）的问题 Specified key was too long; max key length is 767 bytes  百度各种启用innodb_large_prefix 的方法，但没有一个试成功了，只能改字段长度</strong></p>
+<blockquote>
+<p>上面有提到单列索引限制767，起因是256×3-1。这个3是字符最大占用空间（utf8）。但是在5.5以后，开始支持4个字节的uutf8。255×4&gt;767, 于是增加了一个参数叫做 innodb_large_prefix这个参数默认值是OFF。当改为ON时，允许列索引最大达到3072。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/ts+koa项目的搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/20/ts+koa项目的搭建/" itemprop="url">用ts搭建koa项目</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-20T17:31:00+08:00">
+                2019-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><pre><code>这次许愿墙后台是用koa+ts+mysql写的，由于没有自带的koa+ts的项目结构，所以是先建了个koa项目，然后在配置ts文件
+</code></pre><h2 id="tsconfig-json"><a href="#tsconfig-json" class="headerlink" title="tsconfig.json"></a>tsconfig.json</h2><p>这是完整的ts配置文件，注意json文件不支持注释</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">      <span class="string">"module"</span>: <span class="string">"commonjs"</span>, <span class="comment">//模块处理是使用commonjs的方式</span></span><br><span class="line">      <span class="string">"target"</span>: <span class="string">"es2017"</span>,   <span class="comment">//使用es7是为了能使用async await</span></span><br><span class="line">      <span class="string">"noImplicitAny"</span>: <span class="literal">false</span>,   </span><br><span class="line">      <span class="string">"moduleResolution"</span>: <span class="string">"node"</span>,</span><br><span class="line">      <span class="string">"sourceMap"</span>: <span class="literal">false</span>,   <span class="comment">//开了的话会生成xxx.map.js文件</span></span><br><span class="line">      <span class="string">"esModuleInterop"</span>: <span class="literal">true</span>,  </span><br><span class="line">      <span class="string">"rootDirs"</span>: [         <span class="comment">//这是关键，这样声明可以实现多个出口，即不同目录结构</span></span><br><span class="line">        <span class="string">"./utils"</span>,          <span class="comment">//的ts文件可以按原目录文件结构编译，而outDir是单出口</span></span><br><span class="line">        <span class="string">"./routes"</span>,         <span class="comment">//的命令，配合rootDirs可以生成一个编译后保持原目录结</span></span><br><span class="line">        <span class="string">"./app.js"</span>          <span class="comment">//构的js目录</span></span><br><span class="line">      ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"include"</span>: [              <span class="comment">//声明需要被编译的文件夹</span></span><br><span class="line">    <span class="string">"./utils"</span>,</span><br><span class="line">    <span class="string">"./routes"</span>,</span><br><span class="line">    <span class="string">"./app.ts"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"exclude"</span>: [              <span class="comment">//声明不需要被编译的文件夹      </span></span><br><span class="line">    <span class="string">"node_modules"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在package.json配置两条命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&quot;dev&quot;: &quot;nodemon --watch routes --watch utils --watch ./ -e ts --exec ts-node bin/www&quot;</span><br></pre></td></tr></table></figure>
+<p>平时开发用，用了nodemon监控routes，utils和根目录文件后缀为ts的修改，一旦触发，就会执行重新编译的命令，重新编译使用的<code>ts-node</code>可保证在不显式生成js文件的情况下，使得ts文件能够正常运行起来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;build&quot;: &quot;tsc -w --outDir ./dist --project ./tsconfig.json&quot;</span><br></pre></td></tr></table></figure>
+<p>上线打包测试用，-w是监控，<code>--outDir ./dist</code>表示编译后重定向文件到dist文件夹，<code>--project ./tsconfig.json</code>表示ts编译的时候使用tsconfig.json配置文件的规则，默认其实是不用给也会寻找tsconfig.json的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/服务器，webpack打包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1488,323 +1770,6 @@ mode不设置则为默认值，但是会有warn
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/NodeJS-原生篇2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/30/NodeJS-原生篇2/" itemprop="url">NodeJS-原生篇2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-30T12:00:00+08:00">
-                2019-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol style="background: #bdc3c7;
-    border-radius: 5px;
-    color: #2980b9;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration:none;
-    line-height:1;
-    width:80%;
-    margin:0;
-    list-style:none"><br>  <li style="list-decoration:none"><a href="#2-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. fs模块</a></li><br>  <li><a href="#2-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. querystring模块</a></li><br>  <li><a href="#2-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. url模块</a></li><br>  <li><a href="#2-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. multiparty</a></li><br>  <li><a href="#2-5" style="color: #4682BE;text-decoration:none;margin-left:10px">5. 接口应用</a></li><br></ol>
-
-<h2 id="2-1">fs模块</h2>
-
-<p>fs模块可以实现文件的操作，在这里，我们主要了解一下fs的两个方法<br><br><br>1.fs.writeFile(path,data,callback(err))，该方法实现文件内容的写入，其回调函数有个err错误对象参数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">fs.writeFile('</span>./a.txt, <span class="string">'crazy492 is 1bin'</span>, err =&gt; &#123;</span><br><span class="line"> <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'失败'</span>,err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'成功'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>2.fs.readFile(path,callback(err,buffer))，该方法是读取文件，其回调函数不仅有个err错误对象参数，还有个buffer数据(二进制数据)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs);</span></span><br><span class="line"><span class="string">fs.readFile('</span>./a.txt, (err, data) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'失败'</span>,err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'成功'</span>,data);</span><br><span class="line">    <span class="comment">//data打印出来是一堆buffer数据</span></span><br><span class="line">    <span class="comment">//若该文件只是一些简单的字符串，可以data.toString()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>fs和http搭配的一种应用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//req.url 是请求的地址</span></span><br><span class="line">  fs.readFile(req.url, (err, buffer)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">      <span class="comment">//发送状态码给浏览器</span></span><br><span class="line">      res.writeHeader(<span class="number">404</span>);</span><br><span class="line">      res.write(<span class="string">'Not Found'</span>);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      res.writeHeader(<span class="number">200</span>);</span><br><span class="line">      res.write(buffer);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="2-2">querystring模块</h2>
-
-<p>get请求数据在url里面，获取url里面的数据可以用querystring</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring);</span></span><br><span class="line"><span class="string">//假设get请求为 localhost:8080/a?username=1bin&amp;password=123456</span></span><br><span class="line"><span class="string">let [url, query] = req.url.split('</span>?<span class="string">');</span></span><br><span class="line"><span class="string">let get = querystring.parse(query);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">console.log(url, get);</span></span><br><span class="line"><span class="string">//url : /a</span></span><br><span class="line"><span class="string">//get : &#123;uername:'</span><span class="number">1</span>bin<span class="string">',password:'</span><span class="number">123456</span><span class="string">'&#125;</span></span><br></pre></td></tr></table></figure>
-<p>get数据都在url里面，可以一次送达服务器，但对于post请求来说，数据都是分批送达的，此时需要将所有buffer整合为一个整体，post的body部分只有数据，可以用querystring模块解决，另外，利用req自带的两个事件，req.on(‘data’)和req.on(‘end),可以解决buffer分批接收整合的问题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring=<span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr=[];</span><br><span class="line">req.on(<span class="string">'data'</span>, buffer=&gt;&#123;</span><br><span class="line">  arr.push(buffer);</span><br><span class="line">&#125;);</span><br><span class="line">req.on(<span class="string">'end'</span>, ()=&gt;&#123;</span><br><span class="line">  <span class="keyword">let</span> buffer=Buffer.concat(arr);</span><br><span class="line">  <span class="keyword">let</span> post=querystring.parse(buffer.toString());</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(post);</span><br><span class="line">  <span class="comment">//post : &#123;uername:'1bin',password:'123456'&#125;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="2-3">url模块</h2>
-
-<p>url模块比querystring模块更方便解析get数据，只需要url.parse(***,true)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url=<span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;pathname, query&#125;=url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">//url.parse()第二个参数是true是会自动解析url</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">console</span>.log(pathname, query);</span><br><span class="line"><span class="comment">//pathname : /a</span></span><br><span class="line"><span class="comment">//query : &#123;uername:'1bin',password:'123456'&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-4">multiparty模块</h2><br>multiparty可以一同处理post的文件请求和普通请求，如果用原生写post文件请求则特别恶心,multiparty模块不是系统自带，需要下载<br><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> multiparty = <span class="built_in">require</span>(<span class="string">'multiparty'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> form=<span class="keyword">new</span> multiparty.Form(&#123;</span><br><span class="line">  uploadDir: <span class="string">'./upload'</span> <span class="comment">//上传到的地址</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//若上传账号和密码两个字段加一个1.txt文件</span></span><br><span class="line">form.parse(req);<span class="comment">//解析数据</span></span><br><span class="line"><span class="comment">//普通字段</span></span><br><span class="line">form.on(<span class="string">'field'</span>, (name, value)=&gt;&#123; </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'字段：'</span>, name, value);   </span><br><span class="line">  <span class="comment">// 字段： username 1bin</span></span><br><span class="line">  <span class="comment">// 字段： password 123456</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//文件上传</span></span><br><span class="line">form.on(<span class="string">'file'</span>, (name, file)=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'文件：'</span>, name, file);</span><br><span class="line">  <span class="comment">// 文件： f1 &#123; fieldName: 'f1',</span></span><br><span class="line">  <span class="comment">//   originalFilename: '1.txt',</span></span><br><span class="line">  <span class="comment">//   path: 'upload\\T8w1Kiny20fNsWDlVPgaJ9iJ.txt',</span></span><br><span class="line">  <span class="comment">//   headers:</span></span><br><span class="line">  <span class="comment">//    &#123; 'content-disposition': 'form-data; name="f1"; filename="1.txt"',</span></span><br><span class="line">  <span class="comment">//      'content-type': 'text/plain' &#125;,</span></span><br><span class="line">  <span class="comment">//   size: 0 &#125;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//表单解析完成</span></span><br><span class="line">form.on(<span class="string">'close'</span>, ()=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'表单解析完成'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">req.on(<span class="string">'error'</span>, err =&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br><br>假设post上传文件，前端表单enctype需要设置为”multipart/form-data”，<br><br><h2 id="2-5">接口应用</h2>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> path =<span class="string">''</span> , get =&#123;&#125;, post =&#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(req.method == <span class="string">'GET'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> &#123;pathname, query&#125; = url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    path = pathname;</span><br><span class="line">    get = query;</span><br><span class="line">    afterGetData()</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(req.method == <span class="string">'POST'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> arr =[];</span><br><span class="line"></span><br><span class="line">    req.on(<span class="string">'data'</span>, buffer =&gt;&#123;</span><br><span class="line">      arr.push(buffer);</span><br><span class="line">    &#125;);</span><br><span class="line">    req.on(<span class="string">'end'</span>, () =&gt;&#123;</span><br><span class="line">      <span class="keyword">let</span> buffer = Buffer.concat(arr);</span><br><span class="line">      </span><br><span class="line">      post = querystring.parse(buffer.toString());</span><br><span class="line">      path = req.url;</span><br><span class="line">      <span class="comment">//post的url就是地址</span></span><br><span class="line">      afterGetData();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">//设置拿到数据后的回调函数，在这里只区分了两个接口/reg和/login，以及文件请求</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">afterGetData</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(path == <span class="string">'/reg'</span>)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(path == <span class="string">'/login'</span>)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">//www 为默认文件请求文件夹</span></span><br><span class="line">      fs.readFile(<span class="string">`www<span class="subst">$&#123;path&#125;</span>`</span>, (err, buffer) =&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">          res.writeHeader(<span class="number">404</span>);</span><br><span class="line">          res.write(<span class="string">'NOT FOUND'</span>);</span><br><span class="line">          res.end();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          res.write(buffer);</span><br><span class="line">          res.end();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
-<p>以上用NodeJS原生自带的模块实现了get/post请求以及文件操作，此外有个favicon.ico请求经常出现，此为goole浏览器申请网页图标的请求，而对于post上传文件参考上面的multiparty模块</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/NodeJS-原生篇1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/29/NodeJS-原生篇1/" itemprop="url">NodeJS-原生篇1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T20:00:00+08:00">
-                2019-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol style="background: #bdc3c7;
-    border-radius: 5px;
-    color: #2980b9;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration:none;
-    line-height:1;
-    width:80%;
-    margin:0;
-    list-style:none"><br>  <li style="list-decoration:none"><a href="#1-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. assert模块</a></li><br>  <li style="list-decoration:none"><a href="#1-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. path模块</a></li><br>  <li style="list-decoration:none"><a href="#1-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. url模块</a></li><br>  <li style="list-decoration:none"><a href="#1-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. querystring模块</a></li><br>  <li style="list-decoration:none"><a href="#1-5" style="color: #4682BE;text-decoration:none;margin-left:10px">5. net模块</a></li><br>  <li style="list-decoration:none"><a href="#1-6" style="color: #4682BE;text-decoration:none;margin-left:10px">6. http模块</a></li><br></ol>
-
-<p>  学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起</p>
-<hr>
-<h2 id="1-1">assert模块</h2>
-
-<p>断言，在函数调用前使用，可确保参数如预期</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line">assert(<span class="number">1</span>&gt;<span class="number">2</span>,<span class="string">'no!'</span>); <span class="comment">// no！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//assert.deepEqual(变量，预期值，msg);</span></span><br><span class="line"><span class="comment">//相当于 ==</span></span><br><span class="line"><span class="comment">//assert.deepStrictEqual(变量，预期值，msg);</span></span><br><span class="line"><span class="comment">//相当于 ===</span></span><br></pre></td></tr></table></figure>
-<h2 id="1-2">path模块</h2>
-
-<p>路径，帮助我们做路径拼装</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path =<span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'/root/a/b/c/1.html'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(path.dirname(str)); <span class="comment">//  /root/a/b/c</span></span><br><span class="line"><span class="built_in">console</span>.log(path.extname(str)); <span class="comment">//  .html</span></span><br><span class="line"><span class="built_in">console</span>.log(path.basename(str)); <span class="comment">//  1.html</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(path.resolve(__dirname,<span class="string">'1.txt'</span>));</span><br><span class="line"><span class="comment">//path.resolve()是做路径拼接处理的， __dirname是魔术变量，值为当前文件绝对路径</span></span><br></pre></td></tr></table></figure>
-<h2 id="1-3">url模块</h2>
-
-<p>url的解析和拼接<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str=<span class="string">'http://www.1bin.com:8080/a/b/1.html?a=1&amp;a=2&amp;a=3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(url.parse(str));</span><br><span class="line"><span class="comment">// Url &#123;  protocol: 'http:',</span></span><br><span class="line"><span class="comment">// slashes: true,</span></span><br><span class="line"><span class="comment">// auth: null,</span></span><br><span class="line"><span class="comment">// host: 'www.1bin.com:8080',</span></span><br><span class="line"><span class="comment">// port: '8080',</span></span><br><span class="line"><span class="comment">// hostname: 'www.1bin.com',</span></span><br><span class="line"><span class="comment">// hash: null,</span></span><br><span class="line"><span class="comment">// search: '?a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// query: 'a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// pathname: '/a/b/1.html',</span></span><br><span class="line"><span class="comment">// path: '/a/b/1.html?a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// href: 'http://www.bing.com:8080/a/b/1.html?a=1&amp;a=2&amp;a=3' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(url.parse(str, <span class="literal">true</span>));</span><br><span class="line"><span class="comment">//加了true后会自动帮你把query解析成&#123; a: [ '1', '2', '3' ] &#125;</span></span><br><span class="line"><span class="comment">//这里a为数组的原因是url解析会帮你把重复变量整合成一个数组</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="1-4">querystring模块</h2>
-
-<p>数据解析<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//parse stringify 就是数据解析与反向操作</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.parse(<span class="string">"a=1&amp;b=2&amp;c=3"</span>));</span><br><span class="line"><span class="comment">// &#123; a: '1', b: '2', c: '3' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.stringify(&#123;<span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">1</span>&#125;));</span><br><span class="line"><span class="comment">// a=3&amp;b=2&amp;c=1</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="1-5">net模块</h2>
-
-<p>相当于tcp协议node的实现，是http模块的超集，应用于websocket，此处暂且不谈</p>
-<h2 id="1-6">http模块</h2>
-
-<p>  http模块是实现原生NodeJS服务器链接的一个模块，主要使用方式为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'request:'</span>,req);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'response:'</span>,res);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
-<p>  上面的代码，实现了在本机8080端口创立服务器的功能，其中createServer方法有两个参数req，res</p>
-<p>  把这两个参数打印出来，会发现是一个有一大堆属性的对象，在这里，我们看看一些比较重要的属性方法</p>
-<ul>
-<li>res.write()可以把字符串或者buffer(不能发json,可用JSON.stringify())发给服务器</li>
-<li>res.end()是结束此次与服务器的请求，值得一提的是，write后必须要end，否则浏览器不会断开请求链接，你将接受不到服务器的响应，在浏览器界面上显示为左上角刷新圈圈一直在转。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1859,7 +1824,7 @@ mode不设置则为默认值，但是会有warn
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1872,7 +1837,7 @@ mode不设置则为默认值，但是会有warn
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>

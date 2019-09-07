@@ -4,6 +4,46 @@
   
     
     <entry>
+      <title>linux下的mysql</title>
+      <link href="/2019/09/05/linux%E4%B8%8B%E7%9A%84mysql/"/>
+      <url>/2019/09/05/linux%E4%B8%8B%E7%9A%84mysql/</url>
+      
+        <content type="html"><![CDATA[<p>云服务器上的mysql一开始是用lnmp一键安装的，当时忘记了mysql的密码，于是在网上找到一些方法跳过密码直接进入mysql，再接着修改密码</p><ol><li>首先进到根目录，然后进入 <strong>etc</strong> 文件夹</li><li>找到mysql配置文件 <strong>my.cnf</strong>，拖到本地</li><li>打开my.cnf，找到[mysqld]，在该行下面添加一行 <strong>skip-grant-tables</strong> （跳过登录时的权限表）</li><li>覆盖服务器上的原配置文件，使用 <strong>service mysql restart</strong>  重启mysql</li><li>然后输入 <strong>mysql -uroot -p</strong> ，遇到输入密码直接回车即可进入mysql </li><li>在命令行 输入 <strong>use mysql</strong> 收到 Database changed 的反馈</li><li>输入 <strong>update user set password = password(‘新的密码’) where user = ‘root’;</strong> (注意分号不能漏)</li></ol><p><img src="C:\Users\Lonely patients\AppData\Roaming\Typora\typora-user-images\1567682539516.png" alt="1567682539516"></p><ol start="8"><li><p>然后输入 <strong>exit</strong> 退出mysql</p><ol start="9"><li>修改本地的 <strong>my.cnf</strong> 文件，把刚刚添加的一行去掉，再覆盖服务器的原配置文件</li><li>再次重启服务器即可</li></ol></li></ol><p>这里再记录几个linux命令</p><ul><li><p>service mysql start  开启mysql</p></li><li><p>service mysql stop   关闭mysql</p></li><li><p>service mysql restart 重启mysql</p></li><li><p>netstat -ntlp   //查看当前所有tcp端口·</p></li><li><p>netstat -an | grep 3306   //查看所有3306端口使用情况</p></li></ul><p><strong>另外在数据库初始化建表的时候遇到了字段长度过长（varchar255）的问题 Specified key was too long; max key length is 767 bytes  百度各种启用innodb_large_prefix 的方法，但没有一个试成功了，只能改字段长度</strong></p><blockquote><p>上面有提到单列索引限制767，起因是256×3-1。这个3是字符最大占用空间（utf8）。但是在5.5以后，开始支持4个字节的uutf8。255×4&gt;767, 于是增加了一个参数叫做 innodb_large_prefix这个参数默认值是OFF。当改为ON时，允许列索引最大达到3072。</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>用ts搭建koa项目</title>
+      <link href="/2019/07/20/ts+koa%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%90%AD%E5%BB%BA/"/>
+      <url>/2019/07/20/ts+koa%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%90%AD%E5%BB%BA/</url>
+      
+        <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><pre><code>这次许愿墙后台是用koa+ts+mysql写的，由于没有自带的koa+ts的项目结构，所以是先建了个koa项目，然后在配置ts文件</code></pre><h2 id="tsconfig-json"><a href="#tsconfig-json" class="headerlink" title="tsconfig.json"></a>tsconfig.json</h2><p>这是完整的ts配置文件，注意json文件不支持注释</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">      <span class="string">"module"</span>: <span class="string">"commonjs"</span>, <span class="comment">//模块处理是使用commonjs的方式</span></span><br><span class="line">      <span class="string">"target"</span>: <span class="string">"es2017"</span>,   <span class="comment">//使用es7是为了能使用async await</span></span><br><span class="line">      <span class="string">"noImplicitAny"</span>: <span class="literal">false</span>,   </span><br><span class="line">      <span class="string">"moduleResolution"</span>: <span class="string">"node"</span>,</span><br><span class="line">      <span class="string">"sourceMap"</span>: <span class="literal">false</span>,   <span class="comment">//开了的话会生成xxx.map.js文件</span></span><br><span class="line">      <span class="string">"esModuleInterop"</span>: <span class="literal">true</span>,  </span><br><span class="line">      <span class="string">"rootDirs"</span>: [         <span class="comment">//这是关键，这样声明可以实现多个出口，即不同目录结构</span></span><br><span class="line">        <span class="string">"./utils"</span>,          <span class="comment">//的ts文件可以按原目录文件结构编译，而outDir是单出口</span></span><br><span class="line">        <span class="string">"./routes"</span>,         <span class="comment">//的命令，配合rootDirs可以生成一个编译后保持原目录结</span></span><br><span class="line">        <span class="string">"./app.js"</span>          <span class="comment">//构的js目录</span></span><br><span class="line">      ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"include"</span>: [              <span class="comment">//声明需要被编译的文件夹</span></span><br><span class="line">    <span class="string">"./utils"</span>,</span><br><span class="line">    <span class="string">"./routes"</span>,</span><br><span class="line">    <span class="string">"./app.ts"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"exclude"</span>: [              <span class="comment">//声明不需要被编译的文件夹      </span></span><br><span class="line">    <span class="string">"node_modules"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在package.json配置两条命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&quot;dev&quot;: &quot;nodemon --watch routes --watch utils --watch ./ -e ts --exec ts-node bin/www&quot;</span><br></pre></td></tr></table></figure><p>平时开发用，用了nodemon监控routes，utils和根目录文件后缀为ts的修改，一旦触发，就会执行重新编译的命令，重新编译使用的<code>ts-node</code>可保证在不显式生成js文件的情况下，使得ts文件能够正常运行起来</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;build&quot;: &quot;tsc -w --outDir ./dist --project ./tsconfig.json&quot;</span><br></pre></td></tr></table></figure><p>上线打包测试用，-w是监控，<code>--outDir ./dist</code>表示编译后重定向文件到dist文件夹，<code>--project ./tsconfig.json</code>表示ts编译的时候使用tsconfig.json配置文件的规则，默认其实是不用给也会寻找tsconfig.json的</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> typescript </tag>
+            
+            <tag> koa </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>服务器，webpack打包</title>
       <link href="/2019/07/19/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8Cwebpack%E6%89%93%E5%8C%85/"/>
       <url>/2019/07/19/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8Cwebpack%E6%89%93%E5%8C%85/</url>

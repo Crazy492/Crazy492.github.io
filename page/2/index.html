@@ -231,6 +231,323 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/NodeJS-原生篇2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/30/NodeJS-原生篇2/" itemprop="url">NodeJS-原生篇2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-30T12:00:00+08:00">
+                2019-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol style="background: #bdc3c7;
+    border-radius: 5px;
+    color: #2980b9;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration:none;
+    line-height:1;
+    width:80%;
+    margin:0;
+    list-style:none"><br>  <li style="list-decoration:none"><a href="#2-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. fs模块</a></li><br>  <li><a href="#2-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. querystring模块</a></li><br>  <li><a href="#2-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. url模块</a></li><br>  <li><a href="#2-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. multiparty</a></li><br>  <li><a href="#2-5" style="color: #4682BE;text-decoration:none;margin-left:10px">5. 接口应用</a></li><br></ol>
+
+<h2 id="2-1">fs模块</h2>
+
+<p>fs模块可以实现文件的操作，在这里，我们主要了解一下fs的两个方法<br><br><br>1.fs.writeFile(path,data,callback(err))，该方法实现文件内容的写入，其回调函数有个err错误对象参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">fs.writeFile('</span>./a.txt, <span class="string">'crazy492 is 1bin'</span>, err =&gt; &#123;</span><br><span class="line"> <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'失败'</span>,err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'成功'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>2.fs.readFile(path,callback(err,buffer))，该方法是读取文件，其回调函数不仅有个err错误对象参数，还有个buffer数据(二进制数据)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs);</span></span><br><span class="line"><span class="string">fs.readFile('</span>./a.txt, (err, data) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span>(err)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'失败'</span>,err);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'成功'</span>,data);</span><br><span class="line">    <span class="comment">//data打印出来是一堆buffer数据</span></span><br><span class="line">    <span class="comment">//若该文件只是一些简单的字符串，可以data.toString()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>fs和http搭配的一种应用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server=http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//req.url 是请求的地址</span></span><br><span class="line">  fs.readFile(req.url, (err, buffer)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">      <span class="comment">//发送状态码给浏览器</span></span><br><span class="line">      res.writeHeader(<span class="number">404</span>);</span><br><span class="line">      res.write(<span class="string">'Not Found'</span>);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      res.writeHeader(<span class="number">200</span>);</span><br><span class="line">      res.write(buffer);</span><br><span class="line">      res.end();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-2">querystring模块</h2>
+
+<p>get请求数据在url里面，获取url里面的数据可以用querystring</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring);</span></span><br><span class="line"><span class="string">//假设get请求为 localhost:8080/a?username=1bin&amp;password=123456</span></span><br><span class="line"><span class="string">let [url, query] = req.url.split('</span>?<span class="string">');</span></span><br><span class="line"><span class="string">let get = querystring.parse(query);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">console.log(url, get);</span></span><br><span class="line"><span class="string">//url : /a</span></span><br><span class="line"><span class="string">//get : &#123;uername:'</span><span class="number">1</span>bin<span class="string">',password:'</span><span class="number">123456</span><span class="string">'&#125;</span></span><br></pre></td></tr></table></figure>
+<p>get数据都在url里面，可以一次送达服务器，但对于post请求来说，数据都是分批送达的，此时需要将所有buffer整合为一个整体，post的body部分只有数据，可以用querystring模块解决，另外，利用req自带的两个事件，req.on(‘data’)和req.on(‘end),可以解决buffer分批接收整合的问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring=<span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr=[];</span><br><span class="line">req.on(<span class="string">'data'</span>, buffer=&gt;&#123;</span><br><span class="line">  arr.push(buffer);</span><br><span class="line">&#125;);</span><br><span class="line">req.on(<span class="string">'end'</span>, ()=&gt;&#123;</span><br><span class="line">  <span class="keyword">let</span> buffer=Buffer.concat(arr);</span><br><span class="line">  <span class="keyword">let</span> post=querystring.parse(buffer.toString());</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(post);</span><br><span class="line">  <span class="comment">//post : &#123;uername:'1bin',password:'123456'&#125;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="2-3">url模块</h2>
+
+<p>url模块比querystring模块更方便解析get数据，只需要url.parse(***,true)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url=<span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;pathname, query&#125;=url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">//url.parse()第二个参数是true是会自动解析url</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">console</span>.log(pathname, query);</span><br><span class="line"><span class="comment">//pathname : /a</span></span><br><span class="line"><span class="comment">//query : &#123;uername:'1bin',password:'123456'&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-4">multiparty模块</h2><br>multiparty可以一同处理post的文件请求和普通请求，如果用原生写post文件请求则特别恶心,multiparty模块不是系统自带，需要下载<br><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> multiparty = <span class="built_in">require</span>(<span class="string">'multiparty'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> form=<span class="keyword">new</span> multiparty.Form(&#123;</span><br><span class="line">  uploadDir: <span class="string">'./upload'</span> <span class="comment">//上传到的地址</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//若上传账号和密码两个字段加一个1.txt文件</span></span><br><span class="line">form.parse(req);<span class="comment">//解析数据</span></span><br><span class="line"><span class="comment">//普通字段</span></span><br><span class="line">form.on(<span class="string">'field'</span>, (name, value)=&gt;&#123; </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'字段：'</span>, name, value);   </span><br><span class="line">  <span class="comment">// 字段： username 1bin</span></span><br><span class="line">  <span class="comment">// 字段： password 123456</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//文件上传</span></span><br><span class="line">form.on(<span class="string">'file'</span>, (name, file)=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'文件：'</span>, name, file);</span><br><span class="line">  <span class="comment">// 文件： f1 &#123; fieldName: 'f1',</span></span><br><span class="line">  <span class="comment">//   originalFilename: '1.txt',</span></span><br><span class="line">  <span class="comment">//   path: 'upload\\T8w1Kiny20fNsWDlVPgaJ9iJ.txt',</span></span><br><span class="line">  <span class="comment">//   headers:</span></span><br><span class="line">  <span class="comment">//    &#123; 'content-disposition': 'form-data; name="f1"; filename="1.txt"',</span></span><br><span class="line">  <span class="comment">//      'content-type': 'text/plain' &#125;,</span></span><br><span class="line">  <span class="comment">//   size: 0 &#125;</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//表单解析完成</span></span><br><span class="line">form.on(<span class="string">'close'</span>, ()=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'表单解析完成'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">req.on(<span class="string">'error'</span>, err =&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br><br>假设post上传文件，前端表单enctype需要设置为”multipart/form-data”，<br><br><h2 id="2-5">接口应用</h2>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> path =<span class="string">''</span> , get =&#123;&#125;, post =&#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(req.method == <span class="string">'GET'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> &#123;pathname, query&#125; = url.parse(req.url, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    path = pathname;</span><br><span class="line">    get = query;</span><br><span class="line">    afterGetData()</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(req.method == <span class="string">'POST'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> arr =[];</span><br><span class="line"></span><br><span class="line">    req.on(<span class="string">'data'</span>, buffer =&gt;&#123;</span><br><span class="line">      arr.push(buffer);</span><br><span class="line">    &#125;);</span><br><span class="line">    req.on(<span class="string">'end'</span>, () =&gt;&#123;</span><br><span class="line">      <span class="keyword">let</span> buffer = Buffer.concat(arr);</span><br><span class="line">      </span><br><span class="line">      post = querystring.parse(buffer.toString());</span><br><span class="line">      path = req.url;</span><br><span class="line">      <span class="comment">//post的url就是地址</span></span><br><span class="line">      afterGetData();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">//设置拿到数据后的回调函数，在这里只区分了两个接口/reg和/login，以及文件请求</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">afterGetData</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(path == <span class="string">'/reg'</span>)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(path == <span class="string">'/login'</span>)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">//www 为默认文件请求文件夹</span></span><br><span class="line">      fs.readFile(<span class="string">`www<span class="subst">$&#123;path&#125;</span>`</span>, (err, buffer) =&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">          res.writeHeader(<span class="number">404</span>);</span><br><span class="line">          res.write(<span class="string">'NOT FOUND'</span>);</span><br><span class="line">          res.end();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          res.write(buffer);</span><br><span class="line">          res.end();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>以上用NodeJS原生自带的模块实现了get/post请求以及文件操作，此外有个favicon.ico请求经常出现，此为goole浏览器申请网页图标的请求，而对于post上传文件参考上面的multiparty模块</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/NodeJS-原生篇1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crazy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/29/NodeJS-原生篇1/" itemprop="url">NodeJS-原生篇1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-29T20:00:00+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol style="background: #bdc3c7;
+    border-radius: 5px;
+    color: #2980b9;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration:none;
+    line-height:1;
+    width:80%;
+    margin:0;
+    list-style:none"><br>  <li style="list-decoration:none"><a href="#1-1" style="color: #4682BE;text-decoration:none;margin-left:10px">1. assert模块</a></li><br>  <li style="list-decoration:none"><a href="#1-2" style="color: #4682BE;text-decoration:none;margin-left:10px">2. path模块</a></li><br>  <li style="list-decoration:none"><a href="#1-3" style="color: #4682BE;text-decoration:none;margin-left:10px">3. url模块</a></li><br>  <li style="list-decoration:none"><a href="#1-4" style="color: #4682BE;text-decoration:none;margin-left:10px">4. querystring模块</a></li><br>  <li style="list-decoration:none"><a href="#1-5" style="color: #4682BE;text-decoration:none;margin-left:10px">5. net模块</a></li><br>  <li style="list-decoration:none"><a href="#1-6" style="color: #4682BE;text-decoration:none;margin-left:10px">6. http模块</a></li><br></ol>
+
+<p>  学习NodeJS，其实是学习一些服务器，数据库知识，以及一些模块(中间件)调用的方法，本文就先从NodeJS的一些常用系统自带模块讲起</p>
+<hr>
+<h2 id="1-1">assert模块</h2>
+
+<p>断言，在函数调用前使用，可确保参数如预期</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line">assert(<span class="number">1</span>&gt;<span class="number">2</span>,<span class="string">'no!'</span>); <span class="comment">// no！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//assert.deepEqual(变量，预期值，msg);</span></span><br><span class="line"><span class="comment">//相当于 ==</span></span><br><span class="line"><span class="comment">//assert.deepStrictEqual(变量，预期值，msg);</span></span><br><span class="line"><span class="comment">//相当于 ===</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-2">path模块</h2>
+
+<p>路径，帮助我们做路径拼装</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path =<span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'/root/a/b/c/1.html'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(path.dirname(str)); <span class="comment">//  /root/a/b/c</span></span><br><span class="line"><span class="built_in">console</span>.log(path.extname(str)); <span class="comment">//  .html</span></span><br><span class="line"><span class="built_in">console</span>.log(path.basename(str)); <span class="comment">//  1.html</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(path.resolve(__dirname,<span class="string">'1.txt'</span>));</span><br><span class="line"><span class="comment">//path.resolve()是做路径拼接处理的， __dirname是魔术变量，值为当前文件绝对路径</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-3">url模块</h2>
+
+<p>url的解析和拼接<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str=<span class="string">'http://www.1bin.com:8080/a/b/1.html?a=1&amp;a=2&amp;a=3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(url.parse(str));</span><br><span class="line"><span class="comment">// Url &#123;  protocol: 'http:',</span></span><br><span class="line"><span class="comment">// slashes: true,</span></span><br><span class="line"><span class="comment">// auth: null,</span></span><br><span class="line"><span class="comment">// host: 'www.1bin.com:8080',</span></span><br><span class="line"><span class="comment">// port: '8080',</span></span><br><span class="line"><span class="comment">// hostname: 'www.1bin.com',</span></span><br><span class="line"><span class="comment">// hash: null,</span></span><br><span class="line"><span class="comment">// search: '?a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// query: 'a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// pathname: '/a/b/1.html',</span></span><br><span class="line"><span class="comment">// path: '/a/b/1.html?a=1&amp;a=2&amp;a=3',</span></span><br><span class="line"><span class="comment">// href: 'http://www.bing.com:8080/a/b/1.html?a=1&amp;a=2&amp;a=3' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(url.parse(str, <span class="literal">true</span>));</span><br><span class="line"><span class="comment">//加了true后会自动帮你把query解析成&#123; a: [ '1', '2', '3' ] &#125;</span></span><br><span class="line"><span class="comment">//这里a为数组的原因是url解析会帮你把重复变量整合成一个数组</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="1-4">querystring模块</h2>
+
+<p>数据解析<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//parse stringify 就是数据解析与反向操作</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.parse(<span class="string">"a=1&amp;b=2&amp;c=3"</span>));</span><br><span class="line"><span class="comment">// &#123; a: '1', b: '2', c: '3' &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(querystring.stringify(&#123;<span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">1</span>&#125;));</span><br><span class="line"><span class="comment">// a=3&amp;b=2&amp;c=1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="1-5">net模块</h2>
+
+<p>相当于tcp协议node的实现，是http模块的超集，应用于websocket，此处暂且不谈</p>
+<h2 id="1-6">http模块</h2>
+
+<p>  http模块是实现原生NodeJS服务器链接的一个模块，主要使用方式为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'request:'</span>,req);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'response:'</span>,res);</span><br><span class="line">&#125;).listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>  上面的代码，实现了在本机8080端口创立服务器的功能，其中createServer方法有两个参数req，res</p>
+<p>  把这两个参数打印出来，会发现是一个有一大堆属性的对象，在这里，我们看看一些比较重要的属性方法</p>
+<ul>
+<li>res.write()可以把字符串或者buffer(不能发json,可用JSON.stringify())发给服务器</li>
+<li>res.end()是结束此次与服务器的请求，值得一提的是，write后必须要end，否则浏览器不会断开请求链接，你将接受不到服务器的响应，在浏览器界面上显示为左上角刷新圈圈一直在转。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/10/Event Loop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1745,433 +2062,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/tenthDay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/tenthDay/" itemprop="url">jQuery(part3)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T20:21:43+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="jQuery遍历方法"><a href="#jQuery遍历方法" class="headerlink" title="jQuery遍历方法"></a>jQuery遍历方法</h2><h4 id="祖先（向上遍历-DOM-树）"><a href="#祖先（向上遍历-DOM-树）" class="headerlink" title="祖先（向上遍历 DOM 树）"></a>祖先（向上遍历 DOM 树）</h4><ol>
-<li><p>parent() , 返回被选元素的直接父元素</p>
-</li>
-<li><p>parents(可选参数) , 返回被选元素的所有祖先元素，它一路向上直到文档的根元素(html) </p>
-</li>
-<li><p>parentsUntil(参数)</p>
-</li>
-</ol>
-<p>祖先部分html代码:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span> body (曾曾祖父元素)</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>div (曾祖父元素)</span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ul1"</span>&gt;</span>ul (祖父元素)  </span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span>li (父元素)</span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>   </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>parent():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parent()  <span class="comment">//  返回&lt;li&gt;</span></span><br></pre></td></tr></table></figure>
-<p>parents():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parents() ;<span class="comment">// 返回所有是&lt;span&gt;的祖先</span></span><br></pre></td></tr></table></figure>
-<p><strong>可选参数来过滤对祖先元素的搜索</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parents(<span class="string">'div'</span>) ;<span class="comment">// 返回所有是&lt;div&gt;的&lt;spa&gt;n的祖先</span></span><br></pre></td></tr></table></figure>
-<p>parentsUntil():要带参数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span'</span>).parentsUntil(<span class="string">'div'</span>);<span class="comment">// 返回&lt;li&gt; &lt;ul&gt; ,不包括&lt;div&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="后代-向下遍历dom树"><a href="#后代-向下遍历dom树" class="headerlink" title="后代(向下遍历dom树)"></a>后代(向下遍历dom树)</h4><ol>
-<li>children(可选参数) ，返回被选元素的所有直接子元素</li>
-<li>find(参数) ， 被选元素的后代元素，一路向下直到最后一个后代</li>
-</ol>
-<p>后代部分html代码:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ul1"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>children():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).children()  <span class="comment">// 返回所有&lt;div&gt;的所有直接子元素 &lt;ul&gt; &lt;span&gt; &lt;ul&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>可选参数来过滤对子元素的搜索</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).children(<span class="string">'.ul1'</span>)  <span class="comment">// 返回所有类名为 .ul的,&lt;div&gt;的直接子元素</span></span><br></pre></td></tr></table></figure>
-<p>find(): 要带参数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).find(<span class="string">'span'</span>)  <span class="comment">// 返回所有为&lt;span&gt;标签的,&lt;div&gt;的子元素</span></span><br></pre></td></tr></table></figure>
-<p>若要全选div所有子元素</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).find(<span class="string">'*'</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="同胞siblings-DOM-树中水平遍历"><a href="#同胞siblings-DOM-树中水平遍历" class="headerlink" title="同胞siblings(DOM 树中水平遍历)"></a>同胞siblings(DOM 树中水平遍历)</h4><ol>
-<li><p>siblings(可选参数),返回被选元素的所有同胞元素</p>
-</li>
-<li><p>next(),返回被选元素的下一个同胞元素</p>
-</li>
-<li><p>nextAll(),返回被选元素的所有跟随(next)的同胞元素</p>
-</li>
-<li><p>nextUntil(参数),返回介于两个给定参数之间的所有跟随(next)的同胞元素</p>
-</li>
-<li><p>prev()</p>
-</li>
-<li><p>prevAll()</p>
-</li>
-<li><p>prevUntil()</p>
-</li>
-</ol>
-<p><strong>prev(), prevAll() 以及 prevUntil() 方法的工作方式与上面的方法类似，只不过方向相反而已：它们返回的是前面的同胞元素（在 DOM 树中沿着同胞之前元素遍历，而不是之后元素遍历)</strong></p>
-<p>以next（在 DOM 树中沿着同胞之后元素遍历）为例<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div (父元素)</span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>p<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>h3<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>p<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h4</span>&gt;</span>h4<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>siblings():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).siblings();  <span class="comment">//返回 &lt;h2&gt; 的所有同胞元素 &lt;p&gt; &lt;span&gt; &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>可选参数来过滤对同胞元素的搜索</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).siblings(<span class="string">'p'</span>);  <span class="comment">//返回 &lt;h2&gt; 的所有同胞 &lt;p&gt;元素 &lt;p&gt; &lt;p&gt;</span></span><br></pre></td></tr></table></figure>
-<p>next():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"h2"</span>).next(); <span class="comment">//返回 &lt;h3&gt;</span></span><br></pre></td></tr></table></figure>
-<p>nextAll():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).nextAll(); <span class="comment">//返回 &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
-<p>nextUntil():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'h2'</span>).nextUntil(<span class="string">'h4'</span>);<span class="comment">//返回 &lt;h3&gt; &lt;p&gt; &lt;h4&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h4><p>下面这三个最基本的过滤方法允许基于其在一组元素中的位置来选择一个特定的元素</p>
-<ol>
-<li><p>first(),返回被选元素的首个元素</p>
-</li>
-<li><p>last(),返回被选元素的最后一个元素</p>
-</li>
-<li><p>eq()，返回被选元素中带有指定索引号的元素</p>
-</li>
-</ol>
-<p>下面这两个选取匹配或不匹配某项指定标准的元素</p>
-<ol start="4">
-<li><p>filter()，允许规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回</p>
-</li>
-<li><p>not()，返回不匹配标准的所有元素</p>
-</li>
-</ol>
-<p>过滤部分的html代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"pp"</span>&gt;</span>p1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>p2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>p3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>first():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div p'</span>).first() <span class="comment">//返回首个 &lt;div&gt; 元素内部的第一个 &lt;p&gt; 元素  p1</span></span><br></pre></td></tr></table></figure>
-<p>last():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div p"</span>).last() <span class="comment">//返回最后一个 &lt;div&gt; 元素中的最后一个 &lt;p&gt; 元素  p2</span></span><br></pre></td></tr></table></figure>
-<p>eq() : 索引号从 0 开始，因此首个元素的索引号是 0 而不是 1。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'p'</span>).eq(<span class="number">0</span>)  <span class="comment">// 返回 p1</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).eq(<span class="number">2</span>)  <span class="comment">// 返回 p3</span></span><br></pre></td></tr></table></figure>
-<p>filter():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).filter(<span class="string">"pp"</span>)  <span class="comment">//返回所有&lt;p&gt;元素中类名为pp的&lt;p&gt;元素  p1</span></span><br></pre></td></tr></table></figure>
-<p>not() : 与 filter() 相反</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).not(<span class="string">"pp"</span>)  <span class="comment">//返回所有&lt;p&gt;元素中类名不为pp的&lt;p&gt;元素  p2 p3</span></span><br></pre></td></tr></table></figure>
-<p><strong>如果有来生，</strong><br><strong>要做一棵树，</strong><br><strong>站成永恒，</strong><br><strong>没有悲欢的姿势。</strong><br><strong>一半在土里安详，</strong><br><strong>一半在风里飞扬，</strong><br><strong>一半洒落阴凉，</strong><br><strong>一半沐浴阳光，</strong><br><strong>非常沉默非常骄傲，</strong><br><strong>从不依靠，从不寻找</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/ninthDay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/22/ninthDay/" itemprop="url">jQuery(part2)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-22T20:21:43+08:00">
-                2018-07-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="jQuery-HTML-CSS操作"><a href="#jQuery-HTML-CSS操作" class="headerlink" title="jQuery HTML/CSS操作"></a>jQuery HTML/CSS操作</h2><h4 id="获得内容-text-、html-以及-val"><a href="#获得内容-text-、html-以及-val" class="headerlink" title="获得内容 - text()、html() 以及 val()"></a>获得内容 - text()、html() 以及 val()</h4><ol>
-<li><p>text() - 设置或返回所选元素的文本内容（自动解析文本里面的 HTML 标签内容）</p>
-</li>
-<li><p>html() - 设置或返回所选元素的内容（包括 HTML 标签标记）</p>
-</li>
-<li><p><strong>val() - 设置或返回表单字段的值</strong></p>
-</li>
-</ol>
-<h4 id="设置内容-text-、html-以及-val"><a href="#设置内容-text-、html-以及-val" class="headerlink" title="设置内容 - text()、html() 以及 val()"></a>设置内容 - text()、html() 以及 val()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test1"</span>).text(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test2"</span>).html(<span class="string">"&lt;b&gt;Hello world!&lt;/b&gt;"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">"#btn3"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"#test3"</span>).val(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>text()、html() 以及 val()，同样拥有回调函数。回调函数有两个参数：<strong>被选元素列表中当前元素的下标</strong>，以及<strong>原始（旧的）值</strong>。然后以<strong>函数新值返回您希望使用的字符串</strong>。</p>
-<p>jQ代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">".test1"</span>).text(<span class="function"><span class="keyword">function</span>(<span class="params">i,origText</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"旧文本: "</span> + origText + <span class="string">" 新文本: Hello world! (index: "</span> + i + <span class="string">")"</span>; </span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>html代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"test1"</span>&gt;</span>这是一个有 <span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span> 字的段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"test1"</span>&gt;</span>这是另外一个有 <span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span> 字的段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>显示 新/旧 文本<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p>旧文本: 这是一个有 粗体 字的段落。 新文本: Hello world! (index: 0)</p>
-<p>旧文本: 这是另外一个有 粗体 字的段落。 新文本: Hello world! (index: 1)</p>
-<h4 id="获取属性-attr"><a href="#获取属性-attr" class="headerlink" title="获取属性 - attr()"></a>获取属性 - attr()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="设置属性-attr"><a href="#设置属性-attr" class="headerlink" title="设置属性 - attr()"></a>设置属性 - attr()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>,<span class="string">'container'</span>)</span><br></pre></td></tr></table></figure>
-<p>attr() 方法也允许同时设置多个属性。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>.).attr(&#123;</span><br><span class="line">    <span class="string">'class'</span> : <span class="string">'container'</span> ,</span><br><span class="line">    <span class="string">'style'</span> : <span class="string">'background-color:white'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>attr()，提供回调函数。回调函数有两个参数：<strong>被选元素列表中当前元素的下标</strong>，以及<strong>原始（旧的）值</strong>。然后以<strong>函数新值返回您希望使用的字符串</strong>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).attr(<span class="string">'class'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"> i , origValue</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> origValue + <span class="string">'/jQ'</span> ;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h4><ol>
-<li><p>append() - 在被选元素的结尾插入内容</p>
-</li>
-<li><p>prepend() - 在被选元素的开头插入内容</p>
-</li>
-<li><p>after() - 在被选元素之后插入内容</p>
-</li>
-<li><p>before() - 在被选元素之前插入内容</p>
-</li>
-</ol>
-<p>append() 方法在被选元素的结尾插入内容（仍然该元素的内部）。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'p'</span>).append(<span class="string">'追加文本'</span>);</span><br></pre></td></tr></table></figure>
-<p>prepend() 方法在被选元素的开头插入内容</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// $('p').prepend('在开头追加文本');</span></span><br><span class="line">$(<span class="string">'p'</span>).prepend(<span class="string">'&lt;li&gt;开头插入列表项&lt;/li&gt;'</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>列表 3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p>1.列表 1            ===&gt;&gt;&gt;             1.开头插入列表项<br>2.列表 2            ===&gt;&gt;&gt;      2.列表 1<br>3.列表 3            ===&gt;&gt;&gt;             3.列表 2<br>0空空空            ===&gt;&gt;&gt;            4.列表 3</p>
-<p>append()和prepend()可以用来生成文本/html</p>
-<p>三种生成文本的方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt1=<span class="string">"&lt;p&gt;文本。&lt;/p&gt;"</span>;              <span class="comment">// 使用 HTML 标签创建文本</span></span><br><span class="line"><span class="keyword">var</span> txt2=$(<span class="string">"&lt;p&gt;&lt;/p&gt;"</span>).text(<span class="string">"文本。"</span>);  <span class="comment">// 使用 jQuery 创建文本</span></span><br><span class="line"><span class="keyword">var</span> txt3=<span class="built_in">document</span>.createElement(<span class="string">"p"</span>);</span><br><span class="line"></span><br><span class="line">    txt3.innerHTML=<span class="string">"文本。"</span>;               <span class="comment">// 使用 DOM 创建文本 text with DOM</span></span><br><span class="line">    $(<span class="string">"body"</span>).append(txt1,txt2,txt3);        <span class="comment">// 追加新元素</span></span><br></pre></td></tr></table></figure>
-<p>after() 和 before()</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).before(<span class="string">'&lt;b&gt;之前&lt;/b&gt;'</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).after(<span class="string">'&lt;b&gt;之前&lt;/b&gt;'</span>);</span><br></pre></td></tr></table></figure>
-<p>append()/prepend()和after()/before()的区别</p>
-<p>append():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="string">"p"</span>).append(<span class="string">'&lt;span class="s2"&gt;s2&lt;/span&gt;'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>作用后为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span class="s2"&gt;s2&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
-<p>after():</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    $(<span class="string">"p"</span>).after(<span class="string">'&lt;span class="s2"&gt;s2&lt;/span&gt;'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>作用后为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s1"</span>&gt;s1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>p&gt;</span><br><span class="line">&lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"s2"</span>&gt;s2&lt;<span class="regexp">/span&gt;</span></span><br></pre></td></tr></table></figure>
-<p>综上：<br>append/prepend 是在选择元素内部嵌入。<br>after/before 是在元素外面追加。</p>
-<h4 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h4><ol>
-<li><p>remove(可选参数) - 删除被选元素（及其子元素）</p>
-</li>
-<li><p>empty() - 从被选元素中删除子元素</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(); <span class="comment">//整个元素删除</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).empty();  <span class="comment">//删除所有选中元素的子元素</span></span><br></pre></td></tr></table></figure>
-<p>remove() 方法可接受一个参数，允许对被删元素进行过滤</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(<span class="string">'.div1'</span>)  <span class="comment">//删除所有类名为div1的div元素</span></span><br></pre></td></tr></table></figure>
-<p> remove() 的过滤器删除时，不能删除带有过滤器的子元素</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"wwww"</span>&gt;</span>www<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>hhh<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).remove(<span class="string">'.www'</span>); <span class="comment">// 错误，不可删除带过滤器的元素div的子元素p</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).remove(<span class="string">'.www'</span>) <span class="comment">// 删除所有类名为www的p元素</span></span><br></pre></td></tr></table></figure>
-<h4 id="获取并设置-CSS-类"><a href="#获取并设置-CSS-类" class="headerlink" title="获取并设置 CSS 类"></a>获取并设置 CSS 类</h4><ol>
-<li><p>addClass() - 向被选元素添加一个或多个类</p>
-</li>
-<li><p>removeClass() - 从被选元素删除一个或多个类</p>
-</li>
-<li><p>toggleClass() - 对被选元素进行添加/删除类的切换操作</p>
-</li>
-<li><p>css() - 设置或返回被选元素的一个或多个样式属性。</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).addClass(<span class="string">"div1 div2"</span>) <span class="comment">// 添加div1 div2 类给所有div元素</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'div'</span>).removeClass(<span class="string">"div1 div2"</span>) <span class="comment">// 删除div1 div2 类给所有div元素</span></span><br></pre></td></tr></table></figure>
-<p>上面代码等效于</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).toggleClass(<span class="string">"div1 div2"</span>);</span><br></pre></td></tr></table></figure>
-<p>css()语法：</p>
-<p>css(“propertyname”); 只会返回首个匹配元素的css样式属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div"</span>).css(<span class="string">"background-color"</span>);  <span class="comment">//返回首个匹配元素的div的背景颜色</span></span><br></pre></td></tr></table></figure>
-<p>若需要修改css样式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).css(<span class="string">'background-color'</span>,<span class="string">'yellow'</span>); <span class="comment">//单个</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">"div"</span>).css(&#123;   <span class="comment">//修改多个</span></span><br><span class="line">    <span class="string">"background-color"</span>:<span class="string">"yellow"</span>,</span><br><span class="line">    <span class="string">"font-size"</span>:<span class="string">"2em"</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h4><ol>
-<li><p>width():设置或返回元素的宽度（不包括内边距、边框或外边距）</p>
-</li>
-<li><p>height():设置或返回元素的高度（不包括内边距、边框或外边距）</p>
-</li>
-<li><p>innerWidth():返回元素的宽度（包括内边距）</p>
-</li>
-<li><p>innerHeight():返回元素的高度（包括内边距）</p>
-</li>
-<li><p>outerWidth():返回元素的宽度（包括内边距和边框）</p>
-</li>
-<li><p>outerHeight():返回元素的高度（包括内边距和边框）</p>
-</li>
-</ol>
-<p><img src="/../img/9th.gif" alt=""></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).width(<span class="string">'100px'</span>)   <span class="comment">//修改宽度为100px;</span></span><br></pre></td></tr></table></figure>
-<p><strong>我明白你会来，所以我等。</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2226,7 +2116,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2239,7 +2129,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
