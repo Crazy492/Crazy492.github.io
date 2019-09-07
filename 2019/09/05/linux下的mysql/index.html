@@ -91,12 +91,12 @@
 <meta property="og:site_name" content="Crazy">
 <meta property="og:description" content="云服务器上的mysql一开始是用lnmp一键安装的，当时忘记了mysql的密码，于是在网上找到一些方法跳过密码直接进入mysql，再接着修改密码  首先进到根目录，然后进入 etc 文件夹 找到mysql配置文件 my.cnf，拖到本地 打开my.cnf，找到[mysqld]，在该行下面添加一行 skip-grant-tables （跳过登录时的权限表） 覆盖服务器上的原配置文件，使用 servi">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="c:/Users/Lonely%20patients/AppData/Roaming/Typora/typora-user-images/1567682539516.png">
-<meta property="og:updated_time" content="2019-09-07T12:42:03.919Z">
+<meta property="og:image" content="http://yoursite.com/img/20190905.png">
+<meta property="og:updated_time" content="2019-09-07T12:52:01.087Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux下的mysql">
 <meta name="twitter:description" content="云服务器上的mysql一开始是用lnmp一键安装的，当时忘记了mysql的密码，于是在网上找到一些方法跳过密码直接进入mysql，再接着修改密码  首先进到根目录，然后进入 etc 文件夹 找到mysql配置文件 my.cnf，拖到本地 打开my.cnf，找到[mysqld]，在该行下面添加一行 skip-grant-tables （跳过登录时的权限表） 覆盖服务器上的原配置文件，使用 servi">
-<meta name="twitter:image" content="c:/Users/Lonely%20patients/AppData/Roaming/Typora/typora-user-images/1567682539516.png">
+<meta name="twitter:image" content="http://yoursite.com/img/20190905.png">
 
 
 
@@ -316,14 +316,13 @@
 <li>在命令行 输入 <strong>use mysql</strong> 收到 Database changed 的反馈</li>
 <li>输入 <strong>update user set password = password(‘新的密码’) where user = ‘root’;</strong> (注意分号不能漏)</li>
 </ol>
-<p><img src="C:\Users\Lonely patients\AppData\Roaming\Typora\typora-user-images\1567682539516.png" alt="1567682539516"></p>
+<p><img src="/../img/20190905.png" alt=""></p>
 <ol start="8">
 <li><p>然后输入 <strong>exit</strong> 退出mysql</p>
-<ol start="9">
-<li>修改本地的 <strong>my.cnf</strong> 文件，把刚刚添加的一行去掉，再覆盖服务器的原配置文件</li>
-<li>再次重启服务器即可</li>
-</ol>
 </li>
+<li><p>修改本地的 <strong>my.cnf</strong> 文件，把刚刚添加的一行去掉，再覆盖服务器的原配置文件</p>
+</li>
+<li>再次重启服务器即可</li>
 </ol>
 <p>这里再记录几个linux命令</p>
 <ul>
