@@ -73,6 +73,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
 
@@ -89,7 +91,7 @@
 <meta property="og:site_name" content="Crazy">
 <meta property="og:description" content="前端模块化是在web前端界面逻辑越来越复杂后出现的需求。先有AMD，后有CMD，到现在的ES6，这些都是为了解决前端模块化的标准 实现模块化的几个尝试  函数封装：污染全局变量  对象：外部可以随意修改内部成员  IIFE：可以达到不暴露私有成员的目的，这也是模块化的基本写法 具体可见这里   AMD：requireJS12345require.config = &amp;#123;  paths:&amp;#1">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-24T11:13:53.503Z">
+<meta property="og:updated_time" content="2019-09-24T11:35:55.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模块化一（AMD，CMD）">
 <meta name="twitter:description" content="前端模块化是在web前端界面逻辑越来越复杂后出现的需求。先有AMD，后有CMD，到现在的ES6，这些都是为了解决前端模块化的标准 实现模块化的几个尝试  函数封装：污染全局变量  对象：外部可以随意修改内部成员  IIFE：可以达到不暴露私有成员的目的，这也是模块化的基本写法 具体可见这里   AMD：requireJS12345require.config = &amp;#123;  paths:&amp;#1">
@@ -328,9 +330,11 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line">seajs.use(<span class="string">"modA.js"</span>)</span><br><span class="line"><span class="comment">//or 下面需要callback的写法</span></span><br><span class="line">seajs.use(“modA.js”, <span class="function"><span class="keyword">function</span>(<span class="params">modA</span>)</span>&#123;</span><br><span class="line">    modA.fnA();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h4 id="AMD-与-CMD-的异同"><a href="#AMD-与-CMD-的异同" class="headerlink" title="AMD 与 CMD 的异同"></a>AMD 与 CMD 的异同</h4><p>​    最明显的区别在于<strong>模块定义时对依赖模块的处理不同</strong></p>
 <blockquote>
-<pre><code>1. AMD推崇依赖前置，在定义时候就要声明所需要的依赖模块
- 2. CMD推崇就近依赖，在用到依赖模块地方才去require
-</code></pre></blockquote>
+<ol>
+<li>AMD推崇依赖前置，在定义时候就要声明所需要的依赖模块</li>
+<li>CMD推崇就近依赖，在用到依赖模块地方才去require</li>
+</ol>
+</blockquote>
 <p>其实requireJS 和 seaJS 都可以支持对方的写法，但这两者的最大区别不在于语法，而在于<strong>对依赖模块的执行时机处理不同</strong></p>
 <p>两者加载模块的方式都是异步的，只是AMD推崇依赖前置，js可以很快知道需要依赖的模块是什么，并且立即加载；而CMD推崇的就近依赖，需要把模块变成字符串解析一遍才能知道依赖了哪些模块，虽然解析模块的用时很短，不过还是对性能有所牺牲了</p>
 <p>现假设定义某个模块需要依赖modA和modB两个模块，讨论两种规范的异同：</p>
@@ -383,6 +387,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/26/模块化二/" rel="prev" title="模块化二（ES6模块）">
+                模块化二（ES6模块） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -463,7 +471,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -476,7 +484,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
