@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Crazy">
 <meta property="og:description" content="传统的网页没有模块化也问题不大，但在服务器端，没有模块，就无法简单的与操作系统以及其他应用程序交流，所以 NodeJS 的诞生之初，就是参照 CommonJS 规范来实现其模块系统的 CommonJS规范的定义CommonJS 对模块的定义分为三个部分  模块引用 require ，用于引入外部的模块 模块定义 exports ,  用于导出当前模块的方法或者变量，exports 对象是 modu">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-30T12:37:38.806Z">
+<meta property="og:updated_time" content="2019-09-30T12:43:16.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模块化三（CommonJS）">
 <meta name="twitter:description" content="传统的网页没有模块化也问题不大，但在服务器端，没有模块，就无法简单的与操作系统以及其他应用程序交流，所以 NodeJS 的诞生之初，就是参照 CommonJS 规范来实现其模块系统的 CommonJS规范的定义CommonJS 对模块的定义分为三个部分  模块引用 require ，用于引入外部的模块 模块定义 exports ,  用于导出当前模块的方法或者变量，exports 对象是 modu">
@@ -312,10 +312,10 @@
 <li>模块标识 <code>module</code> ,  是一个对象，用来表示模块本身</li>
 </ol>
 <h3 id="NodeJS的模块实现"><a href="#NodeJS的模块实现" class="headerlink" title="NodeJS的模块实现"></a>NodeJS的模块实现</h3><p>在 <code>Node</code> 中引入模块，需要经历如下三个步骤</p>
-<pre><code>1. 路径分析
-  2. 文件定位
-  3. 编译执行
-</code></pre><p>在 <code>Node</code> 中，模块分为两类</p>
+<p>1.路径分析</p>
+<p>2.文件定位</p>
+<p>3.编译执行</p>
+<p>在 <code>Node</code> 中，模块分为两类</p>
 <ol>
 <li><p>由 <code>Node</code> 提供的模块，称为核心模块，该部分在 <code>Node</code> 源代码的编译过程中，就被编译进入了二进制执行文件，在 <code>Node</code>进程启动时，部分核心模块就被直接加载进入内存中，所以这部分核心模块引入时，文件定位和编译执行可以省略，并且在路径分析中优先判断，所以其加载速度也是最快的</p>
 </li>

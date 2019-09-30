@@ -310,10 +310,10 @@
 <li>模块标识 <code>module</code> ,  是一个对象，用来表示模块本身</li>
 </ol>
 <h3 id="NodeJS的模块实现"><a href="#NodeJS的模块实现" class="headerlink" title="NodeJS的模块实现"></a>NodeJS的模块实现</h3><p>在 <code>Node</code> 中引入模块，需要经历如下三个步骤</p>
-<pre><code>1. 路径分析
-  2. 文件定位
-  3. 编译执行
-</code></pre><p>在 <code>Node</code> 中，模块分为两类</p>
+<p>1.路径分析</p>
+<p>2.文件定位</p>
+<p>3.编译执行</p>
+<p>在 <code>Node</code> 中，模块分为两类</p>
 <ol>
 <li><p>由 <code>Node</code> 提供的模块，称为核心模块，该部分在 <code>Node</code> 源代码的编译过程中，就被编译进入了二进制执行文件，在 <code>Node</code>进程启动时，部分核心模块就被直接加载进入内存中，所以这部分核心模块引入时，文件定位和编译执行可以省略，并且在路径分析中优先判断，所以其加载速度也是最快的</p>
 </li>
