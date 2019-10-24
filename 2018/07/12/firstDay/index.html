@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,16 +53,14 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
 
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -74,25 +72,25 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="孤独患者" type="application/atom+xml" />
 
 
 
 
 
 
-<meta name="description" content="git四个区域Workspace：工作区平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）Index / Stage：暂存区.git目录下的index文件（要用 $ git -ls 查">
+<meta name="description" content="git四个区域">
 <meta name="keywords" content="git操作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git操作">
-<meta property="og:url" content="http://yoursite.com/2018/07/12/firstDay/index.html">
-<meta property="og:site_name" content="Crazy">
-<meta property="og:description" content="git四个区域Workspace：工作区平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）Index / Stage：暂存区.git目录下的index文件（要用 $ git -ls 查">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-24T02:05:13.039Z">
+<meta property="og:url" content="http://blog.1bin.top/2018/07/12/firstDay/index.html">
+<meta property="og:site_name" content="孤独患者">
+<meta property="og:description" content="git四个区域">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-24T13:42:10.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git操作">
-<meta name="twitter:description" content="git四个区域Workspace：工作区平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）Index / Stage：暂存区.git目录下的index文件（要用 $ git -ls 查">
+<meta name="twitter:description" content="git四个区域">
 
 
 
@@ -102,13 +100,13 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":0,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/12/firstDay/"/>
+  <link rel="canonical" href="http://blog.1bin.top/2018/07/12/firstDay/"/>
 
 
 
 
 
-  <title>git操作 | Crazy</title>
+  <title>git操作 | 孤独患者</title>
   
 
 
@@ -140,7 +138,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -158,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Crazy</span>
+        <span class="site-title">孤独患者</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -188,7 +186,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -198,7 +206,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -235,16 +243,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/firstDay/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2018/07/12/firstDay/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -262,9 +270,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-12T21:33:43+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T21:33:43+08:00">
                 2018-07-12
               </time>
             
@@ -284,7 +292,10 @@
           
 
           
-
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
           
 
           
@@ -302,7 +313,8 @@
       
 
       
-        <h2 id="git四个区域"><a href="#git四个区域" class="headerlink" title="git四个区域"></a>git四个区域</h2><h4 id="Workspace：工作区"><a href="#Workspace：工作区" class="headerlink" title="Workspace：工作区"></a>Workspace：工作区</h4><h5 id="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）"><a href="#平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）" class="headerlink" title="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）"></a>平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 <code>$ git cd XX</code> 进入XX文件，也可以右键文件夹选择 <code>git bash here</code> ，然后 <code>$ git clone URL(仓库地址)</code> ，之后再 <code>$ git init</code> (初始化)）</h5><h4 id="Index-Stage：暂存区"><a href="#Index-Stage：暂存区" class="headerlink" title="Index / Stage：暂存区"></a>Index / Stage：暂存区</h4><h5 id="git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"><a href="#git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。" class="headerlink" title=".git目录下的index文件（要用 $ git -ls 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"></a>.git目录下的index文件（要用 <code>$ git -ls</code> 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。</h5><h4 id="Repository：仓库区（或本地仓库）"><a href="#Repository：仓库区（或本地仓库）" class="headerlink" title="Repository：仓库区（或本地仓库）"></a>Repository：仓库区（或本地仓库）</h4><p>保存了被提交过的旧版本</p>
+        <h2 id="git四个区域"><a href="#git四个区域" class="headerlink" title="git四个区域"></a>git四个区域</h2><a id="more"></a>
+<h4 id="Workspace：工作区"><a href="#Workspace：工作区" class="headerlink" title="Workspace：工作区"></a>Workspace：工作区</h4><h5 id="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）"><a href="#平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）" class="headerlink" title="平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）"></a>平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 <code>$ git cd XX</code> 进入XX文件，也可以右键文件夹选择 <code>git bash here</code> ，然后 <code>$ git clone URL(仓库地址)</code> ，之后再 <code>$ git init</code> (初始化)）</h5><h4 id="Index-Stage：暂存区"><a href="#Index-Stage：暂存区" class="headerlink" title="Index / Stage：暂存区"></a>Index / Stage：暂存区</h4><h5 id="git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"><a href="#git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。" class="headerlink" title=".git目录下的index文件（要用 $ git -ls 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"></a>.git目录下的index文件（要用 <code>$ git -ls</code> 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。</h5><h4 id="Repository：仓库区（或本地仓库）"><a href="#Repository：仓库区（或本地仓库）" class="headerlink" title="Repository：仓库区（或本地仓库）"></a>Repository：仓库区（或本地仓库）</h4><p>保存了被提交过的旧版本</p>
 <h4 id="Remote：远程仓库"><a href="#Remote：远程仓库" class="headerlink" title="Remote：远程仓库"></a>Remote：远程仓库</h4><p>远程仓库的内容被多个协作关系的本地仓库所修改，所共用，是本地仓库的交集处，是团队合作的地方。</p>
 <h3 id="下面是几个区的联系"><a href="#下面是几个区的联系" class="headerlink" title="下面是几个区的联系"></a>下面是几个区的联系</h3><p><strong>工作区</strong>通过 <code>$ git add</code> 操作将修改提交到,<strong>暂存区</strong> 通过 <code>$ git commit</code> 操作将修改提交到<strong>本地仓库</strong>， <strong>本地仓库</strong>通过 <code>$ git push</code> 将修改同步到<strong>远程仓库</strong> ，而<strong>远程仓库</strong>可以通过 <code>$ git pull</code> 把内容拖到<strong>工作区</strong>，也可以通过 <code>$ git fetch</code> 将<strong>远程仓库</strong>内容拖到<strong>本地仓库</strong>（想得到别人代码的时候常常这样做）</p>
 <h4 id="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"><a href="#下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）" class="headerlink" title="下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"></a>下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）</h4><h5 id="git-clone-仓库地址"><a href="#git-clone-仓库地址" class="headerlink" title="$ git clone 仓库地址"></a><code>$ git clone</code> 仓库地址<url></url></h5><h5 id="git-init-初始化本地仓库"><a href="#git-init-初始化本地仓库" class="headerlink" title="$ git init 初始化本地仓库"></a><code>$ git init</code> 初始化本地仓库</h5><h5 id="git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库"><a href="#git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库" class="headerlink" title="$ git remote -v (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)"></a><code>$ git remote -v</code> (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)</h5><h5 id="git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy"><a href="#git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy" class="headerlink" title="$ git checkout -b Crazy (创建分支Crazy 并且切换到新建分支Crazy)"></a><code>$ git checkout -b Crazy</code> (创建分支Crazy 并且切换到新建分支Crazy)</h5><h5 id="git-branch-（查看所有本地分支，现在的分支为绿色）"><a href="#git-branch-（查看所有本地分支，现在的分支为绿色）" class="headerlink" title="$ git branch （查看所有本地分支，现在的分支为绿色）"></a><code>$ git branch</code> （查看所有本地分支，现在的分支为绿色）</h5><h5 id="git-status-察看暂存区文件是否修改（若修改了为红色）"><a href="#git-status-察看暂存区文件是否修改（若修改了为红色）" class="headerlink" title="$ git status (察看暂存区文件是否修改（若修改了为红色）"></a><code>$ git status</code> (察看暂存区文件是否修改（若修改了为红色）</h5><h5 id="git-add-abc-txt-添加文件-git-add-是指全部添加文件"><a href="#git-add-abc-txt-添加文件-git-add-是指全部添加文件" class="headerlink" title="$ git add abc.txt (添加文件)  ($ git add . 是指全部添加文件)"></a><code>$ git add abc.txt</code> (添加文件)  ($ git add . 是指全部添加文件)</h5><h5 id="git-status-添加成功则变绿色"><a href="#git-status-添加成功则变绿色" class="headerlink" title="$ git status (添加成功则变绿色)"></a><code>$ git status</code> (添加成功则变绿色)</h5><h5 id="git-commit-m-“注释”（提交修改-到自己的本地仓库）"><a href="#git-commit-m-“注释”（提交修改-到自己的本地仓库）" class="headerlink" title="$ git commit -m “注释”（提交修改 到自己的本地仓库）"></a><code>$ git commit -m</code> “注释”（提交修改 到自己的本地仓库）</h5><h5 id="git-push-origin-Crazy-把本地仓库内容提交到Crazy分支"><a href="#git-push-origin-Crazy-把本地仓库内容提交到Crazy分支" class="headerlink" title="$ git push origin Crazy (把本地仓库内容提交到Crazy分支)"></a><code>$ git push origin Crazy</code> (把本地仓库内容提交到Crazy分支)</h5><h5 id="git-checkout-master-切换到分支master"><a href="#git-checkout-master-切换到分支master" class="headerlink" title="$ git checkout master  (切换到分支master)"></a><code>$ git checkout master</code>  (切换到分支master)</h5><h5 id="git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变"><a href="#git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变" class="headerlink" title="$ git merge Crazy (把Crazy分支内容搬到master分支，但Crazy分支内容不变)"></a><code>$ git merge Crazy</code> (把Crazy分支内容搬到master分支，但Crazy分支内容不变)</h5><h5 id="git-pull-origin-master-把master分支内容克隆到本地仓库"><a href="#git-pull-origin-master-把master分支内容克隆到本地仓库" class="headerlink" title="$ git pull origin master (把master分支内容克隆到本地仓库)"></a><code>$ git pull origin master</code> (把master分支内容克隆到本地仓库)</h5><h5 id="git-checkout-Crazy-切换分支"><a href="#git-checkout-Crazy-切换分支" class="headerlink" title="$ git checkout Crazy  (切换分支)"></a><code>$ git checkout Crazy</code>  (切换分支)</h5><h5 id="git-merge-master-把master内容搬到Crazy分支上"><a href="#git-merge-master-把master内容搬到Crazy分支上" class="headerlink" title="$ git merge master (把master内容搬到Crazy分支上)"></a><code>$ git merge master</code> (把master内容搬到Crazy分支上)</h5><p><strong>时间并不会真的帮我们解决什么问题，它只是把原来怎么也想不通的问题，变得不再重要了。</strong></p>
@@ -398,10 +410,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -412,9 +424,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="Mr.bin" />
+                alt="1bin" />
             
-              <p class="site-author-name" itemprop="name">Mr.bin</p>
+              <p class="site-author-name" itemprop="name">1bin</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -426,7 +438,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">38</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -439,7 +451,7 @@
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">42</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 
               </div>
             
@@ -494,7 +506,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git四个区域"><span class="nav-number">1.</span> <span class="nav-text">git四个区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Workspace：工作区"><span class="nav-number">1.0.1.</span> <span class="nav-text">Workspace：工作区</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Index-Stage：暂存区"><span class="nav-number">1.0.2.</span> <span class="nav-text">Index / Stage：暂存区</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">.git目录下的index文件（要用 $ git -ls 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Repository：仓库区（或本地仓库）"><span class="nav-number">1.0.3.</span> <span class="nav-text">Repository：仓库区（或本地仓库）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Remote：远程仓库"><span class="nav-number">1.0.4.</span> <span class="nav-text">Remote：远程仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面是几个区的联系"><span class="nav-number">1.1.</span> <span class="nav-text">下面是几个区的联系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"><span class="nav-number">1.1.1.</span> <span class="nav-text">下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git-clone-仓库地址"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">$ git clone 仓库地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-init-初始化本地仓库"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">$ git init 初始化本地仓库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">$ git remote -v (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">$ git checkout -b Crazy (创建分支Crazy 并且切换到新建分支Crazy)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-branch-（查看所有本地分支，现在的分支为绿色）"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">$ git branch （查看所有本地分支，现在的分支为绿色）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-status-察看暂存区文件是否修改（若修改了为红色）"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">$ git status (察看暂存区文件是否修改（若修改了为红色）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-add-abc-txt-添加文件-git-add-是指全部添加文件"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">$ git add abc.txt (添加文件)  ($ git add . 是指全部添加文件)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-status-添加成功则变绿色"><span class="nav-number">1.1.1.8.</span> <span class="nav-text">$ git status (添加成功则变绿色)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-commit-m-“注释”（提交修改-到自己的本地仓库）"><span class="nav-number">1.1.1.9.</span> <span class="nav-text">$ git commit -m “注释”（提交修改 到自己的本地仓库）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-push-origin-Crazy-把本地仓库内容提交到Crazy分支"><span class="nav-number">1.1.1.10.</span> <span class="nav-text">$ git push origin Crazy (把本地仓库内容提交到Crazy分支)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-master-切换到分支master"><span class="nav-number">1.1.1.11.</span> <span class="nav-text">$ git checkout master  (切换到分支master)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变"><span class="nav-number">1.1.1.12.</span> <span class="nav-text">$ git merge Crazy (把Crazy分支内容搬到master分支，但Crazy分支内容不变)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-pull-origin-master-把master分支内容克隆到本地仓库"><span class="nav-number">1.1.1.13.</span> <span class="nav-text">$ git pull origin master (把master分支内容克隆到本地仓库)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-Crazy-切换分支"><span class="nav-number">1.1.1.14.</span> <span class="nav-text">$ git checkout Crazy  (切换分支)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-merge-master-把master内容搬到Crazy分支上"><span class="nav-number">1.1.1.15.</span> <span class="nav-text">$ git merge master (把master内容搬到Crazy分支上)</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git四个区域"><span class="nav-text">git四个区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Workspace：工作区"><span class="nav-text">Workspace：工作区</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以-git-cd-XX-进入XX文件，也可以右键文件夹选择-git-bash-here-，然后-git-clone-URL-仓库地址-，之后再-git-init-初始化-）"><span class="nav-text">平时我们进行增删除改的地方就是工作区，在我们自己建立的文件夹里面进行操作，（可以 $ git cd XX 进入XX文件，也可以右键文件夹选择 git bash here ，然后 $ git clone URL(仓库地址) ，之后再 $ git init (初始化)）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Index-Stage：暂存区"><span class="nav-text">Index / Stage：暂存区</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git目录下的index文件（要用-git-ls-查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。"><span class="nav-text">.git目录下的index文件（要用 $ git -ls 查看隐藏的暂存区文件）在暂存区的文件表示在git的管理下。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Repository：仓库区（或本地仓库）"><span class="nav-text">Repository：仓库区（或本地仓库）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Remote：远程仓库"><span class="nav-text">Remote：远程仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面是几个区的联系"><span class="nav-text">下面是几个区的联系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）"><span class="nav-text">下面再说说我们工作时候的最基础操作（以Crazy为工作分支为例）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git-clone-仓库地址"><span class="nav-text">$ git clone 仓库地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-init-初始化本地仓库"><span class="nav-text">$ git init 初始化本地仓库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-remote-v-查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库"><span class="nav-text">$ git remote -v (查看远程仓库信息，也可以用来检查本地仓库是否连接上远程仓库)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-b-Crazy-创建分支Crazy-并且切换到新建分支Crazy"><span class="nav-text">$ git checkout -b Crazy (创建分支Crazy 并且切换到新建分支Crazy)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-branch-（查看所有本地分支，现在的分支为绿色）"><span class="nav-text">$ git branch （查看所有本地分支，现在的分支为绿色）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-status-察看暂存区文件是否修改（若修改了为红色）"><span class="nav-text">$ git status (察看暂存区文件是否修改（若修改了为红色）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-add-abc-txt-添加文件-git-add-是指全部添加文件"><span class="nav-text">$ git add abc.txt (添加文件)  ($ git add . 是指全部添加文件)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-status-添加成功则变绿色"><span class="nav-text">$ git status (添加成功则变绿色)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-commit-m-“注释”（提交修改-到自己的本地仓库）"><span class="nav-text">$ git commit -m “注释”（提交修改 到自己的本地仓库）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-push-origin-Crazy-把本地仓库内容提交到Crazy分支"><span class="nav-text">$ git push origin Crazy (把本地仓库内容提交到Crazy分支)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-master-切换到分支master"><span class="nav-text">$ git checkout master  (切换到分支master)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-merge-Crazy-把Crazy分支内容搬到master分支，但Crazy分支内容不变"><span class="nav-text">$ git merge Crazy (把Crazy分支内容搬到master分支，但Crazy分支内容不变)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-pull-origin-master-把master分支内容克隆到本地仓库"><span class="nav-text">$ git pull origin master (把master分支内容克隆到本地仓库)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-checkout-Crazy-切换分支"><span class="nav-text">$ git checkout Crazy  (切换分支)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#git-merge-master-把master内容搬到Crazy分支上"><span class="nav-text">$ git merge master (把master内容搬到Crazy分支上)</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -502,6 +514,11 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
       
 
     </div>
@@ -518,13 +535,23 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Mr.bin</span>
+  <span class="author" itemprop="copyrightHolder">1bin</span>
 
   
 </div>
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -532,7 +559,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -549,11 +576,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     

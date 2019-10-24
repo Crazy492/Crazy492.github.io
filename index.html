@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,16 +53,14 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
 
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -74,7 +72,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="孤独患者" type="application/atom+xml" />
 
 
 
@@ -82,12 +80,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Crazy">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Crazy">
-<meta property="og:locale" content="en">
+<meta property="og:title" content="孤独患者">
+<meta property="og:url" content="http://blog.1bin.top/index.html">
+<meta property="og:site_name" content="孤独患者">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Crazy">
+<meta name="twitter:title" content="孤独患者">
 
 
 
@@ -97,13 +95,13 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":0,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -117,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://blog.1bin.top/"/>
 
 
 
 
 
-  <title>Crazy</title>
+  <title>孤独患者</title>
   
 
 
@@ -135,7 +133,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -154,7 +152,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Crazy</span>
+        <span class="site-title">孤独患者</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -184,7 +182,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -194,7 +202,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -231,16 +239,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/Promise及其api的原生实现/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/10/23/Promise及其api的原生实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -260,9 +268,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-23T19:11:55+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-23T19:11:55+08:00">
                 2019-10-23
               </time>
             
@@ -282,7 +290,7 @@
           
 
           
-
+          
           
 
           
@@ -301,65 +309,14 @@
 
       
         
-          
-            <p>最近在深入学习JS的异步编程，为了更了解JS异步编程的解决方案 <code>Promise</code> ，实现了满足 <code>A+</code> 规范的 <code>Promise</code> 及其<code>API</code> </p>
-<p>注意：本文不具体说明 <code>Promise</code> 的原生实现方式，要想知道每一步的由来，可点击 <a href="https://juejin.im/post/5b2f02cd5188252b937548ab" target="_blank" rel="noopener">这里</a></p>
-<h1 id="Promise-初定义"><a href="#Promise-初定义" class="headerlink" title="Promise 初定义"></a>Promise 初定义</h1><p>ES6版本实现的 <code>Promise</code> 是一个类</p>
-<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><p><code>Promise</code> 的 <code>constructor</code> 接收一个 执行者函数 <strong>executor(resolve, reject)</strong> </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// new 一个 Promise 时候是这样写的</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(<span class="string">'1bin'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 其实就是给构造函数传了一个执行者函数</span></span><br><span class="line">executor = <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(<span class="string">'1bin'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 其中 executor 参数中的 resolve, reject 方法都应该由 Promise 类提供</span></span><br></pre></td></tr></table></figure>
-<p>下面是 <code>Promise</code> 的 <code>constructor</code>  原生实现</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Promise 三种状态</span></span><br><span class="line"><span class="built_in">Promise</span>.PENDING = <span class="string">'pending'</span></span><br><span class="line"><span class="built_in">Promise</span>.FULFILLED = <span class="string">'fulfilled'</span></span><br><span class="line"><span class="built_in">Promise</span>.REJECTED = <span class="string">'rejected'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">constructor</span>(executor) &#123;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> executor != <span class="string">'function'</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'executor is not a function'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.status = <span class="built_in">Promise</span>.PENDING	<span class="comment">// Promise 初始状态</span></span><br><span class="line">  <span class="keyword">this</span>.value = <span class="literal">undefined</span>		<span class="comment">// resolve 的返回值</span></span><br><span class="line">  <span class="keyword">this</span>.reason = <span class="literal">undefined</span>		<span class="comment">// reject 的返回值</span></span><br><span class="line">  <span class="comment">// 为解决异步操作而设立的数组，如果resolve或reject被异步挂起，</span></span><br><span class="line">  <span class="comment">// 其后then方法的所有回调都应该按顺序push到这个数组中，</span></span><br><span class="line">  <span class="comment">// 在resolve或reject被正式调用时再遍历数组执行所有回调方法</span></span><br><span class="line">  <span class="keyword">this</span>.resolvedCallbacks = []	<span class="comment">// 成功回调数组</span></span><br><span class="line">  <span class="keyword">this</span>.rejectedCallbacks = []	<span class="comment">// 失败回调数组</span></span><br><span class="line">  <span class="comment">// eg: P.then(res=&gt;res) </span></span><br><span class="line">  <span class="comment">//	 P.then(res=&gt;res)  这样resolvedCallbacks就会有两个成员</span></span><br><span class="line">    </span><br><span class="line">  <span class="keyword">let</span> resolve = <span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.status === <span class="built_in">Promise</span>.PENDING) &#123;</span><br><span class="line">      <span class="keyword">this</span>.status = <span class="built_in">Promise</span>.FULFILLED</span><br><span class="line">      <span class="keyword">this</span>.value = value</span><br><span class="line">      <span class="keyword">this</span>.resolvedCallbacks.forEach(<span class="function"><span class="params">fn</span> =&gt;</span> fn())</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> reject = <span class="function"><span class="params">reason</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.status === <span class="built_in">Promise</span>.PENDING) &#123;</span><br><span class="line">      <span class="keyword">this</span>.status = <span class="built_in">Promise</span>.REJECTED</span><br><span class="line">      <span class="keyword">this</span>.reason = reason</span><br><span class="line">      <span class="keyword">this</span>.rejectedCallbacks.forEach(<span class="function"><span class="params">fn</span> =&gt;</span> fn())</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    executor(resolve, reject)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    reject(e)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-prototype-then"><a href="#Promise-prototype-then" class="headerlink" title="Promise.prototype.then()"></a>Promise.prototype.then()</h2><p><strong>then(onFulfilled, onRejected)</strong> 方法返回一个 <code>Promise</code> ，参数为 <code>Promise</code> 的成功和失败情况的回调函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// p为 Promise 实例，调用 then 方法时</span></span><br><span class="line">p.then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value)</span><br><span class="line">&#125;, err =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 其实就是给 then 方法传了两个回调函数</span></span><br><span class="line">onFulfilled = <span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value)</span><br><span class="line">&#125;                     <span class="comment">//成功时</span></span><br><span class="line">onRejected = <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;                     <span class="comment">//失败时</span></span><br></pre></td></tr></table></figure>
-<p>下面是 <code>then</code> 方法的原生实现</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.then = <span class="function"><span class="keyword">function</span>(<span class="params">onFulfilled, onRejected</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// A+ 规范规定 onFulfilled如果不是函数，就忽略onFulfilled，直接返回value</span></span><br><span class="line">  onFulfilled = <span class="keyword">typeof</span> onFulfilled === <span class="string">'function'</span> ? onFulfilled : <span class="function"><span class="params">value</span> =&gt;</span> value </span><br><span class="line">  <span class="comment">// onRejected如果不是函数，就忽略onRejected，直接扔出错误</span></span><br><span class="line">  onRejected = <span class="keyword">typeof</span> onRejected === <span class="string">'function'</span> ? onRejected : <span class="function"><span class="params">err</span> =&gt;</span> &#123;<span class="keyword">throw</span> err&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// promise2 是 then 方法返回的 Promise 对象，为了实现链式调用</span></span><br><span class="line">  <span class="keyword">let</span> promise2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">switch</span>(<span class="keyword">this</span>.status) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="built_in">Promise</span>.FULFILLED:&#123;</span><br><span class="line">  <span class="comment">//ReferenceError: Cannot access 'promise2' before initialization</span></span><br><span class="line">  <span class="comment">//setTimeout 是为了模拟异步并且解决上面的报错</span></span><br><span class="line">          setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="keyword">let</span> x = onFulfilled(<span class="keyword">this</span>.value)</span><br><span class="line">  <span class="comment">//_resolvePromise 方法在下面有详细说明，这里暂且认为是为了解析 Promise 的返回值</span></span><br><span class="line">              <span class="keyword">this</span>._resolvePromise(promise2, x, resolve, reject)</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">              reject(e)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;, <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">case</span> <span class="built_in">Promise</span>.REJECTED:&#123;</span><br><span class="line">          setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="keyword">let</span> x = onRejected(<span class="keyword">this</span>.reason)</span><br><span class="line">              <span class="keyword">this</span>._resolvePromise(promise2, x, resolve, reject)</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">              reject(e)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;, <span class="number">0</span>)</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">case</span> <span class="built_in">Promise</span>.PENDING:&#123;</span><br><span class="line">          <span class="keyword">this</span>.resolvedCallbacks.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> x = onFulfilled(<span class="keyword">this</span>.value)</span><br><span class="line">                <span class="keyword">this</span>._resolvePromise(promise2, x, resolve, reject)</span><br><span class="line">              &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">                reject(e)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;, <span class="number">0</span>)</span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="keyword">this</span>.rejectedCallbacks.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> x = onRejected(<span class="keyword">this</span>.reason)</span><br><span class="line">                <span class="keyword">this</span>._resolvePromise(promise2, x, resolve, reject)</span><br><span class="line">              &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">                reject(e)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;, <span class="number">0</span>)</span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> promise2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="resolvePromise"><a href="#resolvePromise" class="headerlink" title="_resolvePromise()"></a>_resolvePromise()</h2><p><strong>_resolvePromise (promise2, x, resolve, reject)  </strong>方法用于解析 <code>Promise</code> 的返回值，<code>x</code> 为需要解析的值（ <code>return</code>返回值），x 的状态决定 <code>promise2</code> 的状态, 所以参数的 <code>resolve</code> , <code>reject</code>  是 <code>promise2</code> 的，为了在解析 <code>x</code> 后修改 <code>promise2</code> 的状态</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 有时候我们会这样写</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  resolve(<span class="string">'1bin'</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line"><span class="comment">//下面这个Promise无法直接获取到值，必须解析</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(res)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>下面是_resolvePromise 方法的原生实现</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">_resolvePromise(promis2, x, resolve, reject) &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span>( x === promis2) &#123;</span><br><span class="line">     <span class="keyword">return</span> reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'循环引用'</span>))</span><br><span class="line">   &#125;</span><br><span class="line"> 	<span class="comment">// 防止多次调用，只保留第一次改变的状态，之后的调用都会忽略</span></span><br><span class="line">   <span class="keyword">let</span> called = <span class="literal">false</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">if</span>(x != <span class="literal">null</span> &amp;&amp; (<span class="keyword">typeof</span> x === <span class="string">'function'</span> || <span class="keyword">typeof</span> x === <span class="string">'object'</span>)) &#123;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">   <span class="comment">// A+ 规定，声明 then = x 的 then 方法</span></span><br><span class="line">       <span class="keyword">let</span> then = x.then</span><br><span class="line">   <span class="comment">// 如果 then 是函数，就默认是 Promise 了</span></span><br><span class="line">       <span class="keyword">if</span>(<span class="keyword">typeof</span> then === <span class="string">'function'</span>) &#123;</span><br><span class="line">         then.call(x, y =&gt; &#123;</span><br><span class="line">           <span class="keyword">if</span>(called) <span class="keyword">return</span> ;</span><br><span class="line">           called = <span class="literal">true</span></span><br><span class="line">    <span class="comment">// resolve 的结果依旧是 Promise 那就继续递归解析</span></span><br><span class="line">           <span class="keyword">this</span>._resolvePromise(promis2, y, resolve, reject)</span><br><span class="line">         &#125;, err =&gt; &#123;</span><br><span class="line">           <span class="keyword">if</span>(called) <span class="keyword">return</span> ;</span><br><span class="line">           called = <span class="literal">true</span></span><br><span class="line">           reject(err)</span><br><span class="line">         &#125;)</span><br><span class="line">       &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">if</span>(called) <span class="keyword">return</span> ;</span><br><span class="line">         called = <span class="literal">true</span></span><br><span class="line">         resolve(x)</span><br><span class="line">       &#125;</span><br><span class="line">     &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">       <span class="keyword">if</span>(called) <span class="keyword">return</span> ;</span><br><span class="line">       called = <span class="literal">true</span></span><br><span class="line">       reject(e)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     resolve(x)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Promise-API"><a href="#Promise-API" class="headerlink" title="Promise API"></a>Promise API</h1><h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h2><blockquote>
-<p><strong>Promise.all(iterable)</strong> 方法返回一个 <code>Promise</code> 实例，此实例在 <code>iterable</code> 参数内所有的 <code>promise</code> 都完成（resolved）或参数中不包含 <code>Promise</code> 时回调完成（resolve）；如果参数中  <code>Promise</code> 有一个失败（rejected），此实例回调失败（reject），失败原因的是第一个失败的 <code>Promise</code> 的结果</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all = <span class="function"><span class="keyword">function</span>(<span class="params">arrPromise</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> LENGTH = arrPromise.length</span><br><span class="line">    <span class="keyword">let</span> conut = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> results = [] <span class="comment">//结果数组</span></span><br><span class="line">    <span class="built_in">Array</span>.from(arrPromise).forEach(<span class="function">(<span class="params">promise, idx</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(promise != <span class="literal">null</span> &amp;&amp; (<span class="keyword">typeof</span> promise === <span class="string">'function'</span> || <span class="keyword">typeof</span> promise === <span class="string">'object'</span>)) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          promise.then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">            results[idx] = result</span><br><span class="line">            <span class="keyword">if</span>(++conut == LENGTH) resolve(results)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        results[idx]  = promise</span><br><span class="line">        <span class="keyword">if</span>(++conut == LENGTH) resolve(results)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-prototype-allSettled"><a href="#Promise-prototype-allSettled" class="headerlink" title="Promise.prototype.allSettled()"></a>Promise.prototype.allSettled()</h2><blockquote>
-<p><strong>Promise.allSettled(iterable) </strong>方法返回一个 <code>Promise</code>，该 <code>Promise</code> 在所有给定的 <code>Promise</code> 已被解析或被拒绝后解析，并且每个对象都描述每个 <code>Promise</code> 的结果。</p>
-</blockquote>
-<p><code>allSettled()</code> 已经加入 <code>ES2020</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.allSettled = <span class="function"><span class="keyword">function</span>(<span class="params">arrPromise</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> LENGTH = arrPromise.length</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> results = []</span><br><span class="line">    <span class="built_in">Array</span>.from(arrPromise).forEach(<span class="function">(<span class="params">promise, idx</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(promise != <span class="literal">null</span> &amp;&amp; (<span class="keyword">typeof</span> promise === <span class="string">'function'</span> || <span class="keyword">typeof</span> promise === <span class="string">'object'</span>)) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          promise.then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">            results[idx] = &#123; <span class="attr">status</span>: <span class="string">"fulfiled"</span>, value &#125;</span><br><span class="line">            count++</span><br><span class="line">          &#125;, reason =&gt; &#123;</span><br><span class="line">            results[idx] = &#123; <span class="attr">status</span>: <span class="string">"rejected"</span>, reason &#125;</span><br><span class="line">            count++</span><br><span class="line">          &#125;).finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(count === LENGTH) resolve(results)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-prototype-catch"><a href="#Promise-prototype-catch" class="headerlink" title="Promise.prototype.catch()"></a>Promise.prototype.catch()</h2><blockquote>
-<p><strong>catch()</strong> 方法返回一个 <code>Promise</code> ，并且处理拒绝的情况。它的行为与调用<strong>Promise.prototype.then(undefined, onRejected)</strong> 相同。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.catch = <span class="function"><span class="keyword">function</span>(<span class="params">onRejected</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.then(<span class="literal">null</span>, onRejected)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-prototype-finally"><a href="#Promise-prototype-finally" class="headerlink" title="Promise.prototype.finally()"></a>Promise.prototype.finally()</h2><blockquote>
-<p><strong>finally()</strong> 方法返回一个 <code>Promise</code>  。在  <code>Promise</code> 结束时，无论结果是 <code>fulfilled</code> 或者是 <code>rejected</code> ，都会执行指定的回调函数。这为在 <code>Promise</code> 是否成功完成后都需要执行的代码提供了一种方式。</p>
-<p>这避免了同样的语句需要在<code>then()</code>和<code>catch()</code>中各写一次的情况。</p>
-</blockquote>
-<p><code>finally()</code> 已经加入 <code>ES8</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span>(<span class="params">onFinally</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.then(</span><br><span class="line">    result =&gt; <span class="built_in">Promise</span>.resolve(onFinally()).then(<span class="function"><span class="params">()</span> =&gt;</span> result),</span><br><span class="line">    err =&gt; <span class="built_in">Promise</span>.resolve(onFinally()).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;<span class="keyword">throw</span> err&#125;)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a>Promise.race()</h2><blockquote>
-<p><strong>Promise.race(iterable)</strong> 方法返回一个 <code>Promise</code> ，一旦迭代器中的某个 <code>Promise</code> 解决或拒绝，返回的  <code>Promise</code> 就会解决或拒绝。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.race = <span class="function"><span class="keyword">function</span>(<span class="params">arrPromise</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Array</span>.from(arrPromise).forEach(<span class="function"><span class="params">promise</span> =&gt;</span> &#123;</span><br><span class="line">      promise.then(resolve, reject)</span><br><span class="line">    &#125;)</span><br><span class="line">  </span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-reject"><a href="#Promise-reject" class="headerlink" title="Promise.reject()"></a>Promise.reject()</h2><blockquote>
-<p><strong>Promise.reject(reason) </strong>方法返回一个带有拒绝原因 <code>reason</code> 参数的 <code>Promise</code> 对象。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.reject = <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    reject(reason)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-resolve"><a href="#Promise-resolve" class="headerlink" title="Promise.resolve()"></a>Promise.resolve()</h2><blockquote>
-<p><strong>Promise.resolve(value) </strong>方法返回一个以给定值解析后的 <code>Promise</code>  对象。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(value)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-any"><a href="#Promise-any" class="headerlink" title="Promise.any()"></a>Promise.any()</h2><blockquote>
-<p><strong>Promise.any() </strong>方法接受一组 <code>Promise</code> 实例作为参数，包装成一个新的 <code>Promise</code> 实例。只要参数实例有一个变成 <code>fulfilled</code> 状态，包装实例就会变成 <code>fulfilled</code> 状态；如果所有参数实例都变成 <code>rejected</code> 状态，包装实例就会变成 <code>rejected</code> 状态。</p>
-</blockquote>
-<p><code>any()</code> 方法目前是一个第三阶段的<code>提案</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.any = <span class="function"><span class="keyword">function</span>(<span class="params">arrPromise</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> LENGTH = arrPromise.length</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> arrError = [];</span><br><span class="line">    <span class="built_in">Array</span>.from(arrPromise).forEach(<span class="function">(<span class="params">promise, idx</span>) =&gt;</span> &#123;</span><br><span class="line">      promise.then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(result)</span><br><span class="line">      &#125;, reason =&gt; &#123;</span><br><span class="line">        arrError.push(reason)</span><br><span class="line">        count++</span><br><span class="line">        <span class="keyword">if</span>(count === LENGTH) reject(arrError)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Promise-try"><a href="#Promise-try" class="headerlink" title="Promise.try()"></a>Promise.try()</h2><blockquote>
-<p>实际开发中，经常遇到一种情况：不知道或者不想区分，函数<code>f</code>是同步函数还是异步操作，但是想用  <code>Promise</code> 来处理它。因为这样就可以不管 <code>f</code> 是否包含异步操作，都用 <code>then</code> 方法指定下一步流程，用 <code>catch</code>方法处理 <code>f</code> 抛出的错误。</p>
-</blockquote>
-<p><code>try()</code> 方法还是一个<code>提案</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.try = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  (</span><br><span class="line">    () =&gt; <span class="keyword">new</span> <span class="built_in">Promise</span>(</span><br><span class="line">      resolve =&gt; resolve(fn())</span><br><span class="line">    )</span><br><span class="line">  )()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <p>最近在深入学习JS的异步编程，为了更了解JS异步编程的解决方案 <code>Promise</code> ，实现了满足 <code>A+</code> 规范的 <code>Promise</code> 及其<code>API</code> </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/23/Promise及其api的原生实现/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -406,16 +363,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/30/模块化三/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/09/30/模块化三/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -435,9 +392,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-30T20:28:55+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-30T20:28:55+08:00">
                 2019-09-30
               </time>
             
@@ -457,7 +414,7 @@
           
 
           
-
+          
           
 
           
@@ -476,124 +433,14 @@
 
       
         
-          
-            <p>传统的网页没有模块化也问题不大，但在服务器端，没有模块，就无法简单的与操作系统以及其他应用程序交流，所以 <code>NodeJS</code> 的诞生之初，就是参照 <code>CommonJS</code> 规范来实现其模块系统的</p>
-<h4 id="CommonJS规范的定义"><a href="#CommonJS规范的定义" class="headerlink" title="CommonJS规范的定义"></a>CommonJS规范的定义</h4><p><code>CommonJS</code> 对模块的定义分为三个部分</p>
-<ol>
-<li>模块引用 <code>require</code> ，用于引入外部的模块</li>
-<li>模块定义 <code>exports</code> ,  用于导出当前模块的方法或者变量，<code>exports</code> 对象是 <code>module</code> 的一个属性</li>
-<li>模块标识 <code>module</code> ,  是一个对象，用来表示模块本身</li>
-</ol>
-<h4 id="NodeJS的模块实现"><a href="#NodeJS的模块实现" class="headerlink" title="NodeJS的模块实现"></a>NodeJS的模块实现</h4><p>在 <code>Node</code> 中引入模块，需要经历如下三个步骤</p>
-<p>1.路径分析</p>
-<p>2.文件定位</p>
-<p>3.编译执行</p>
-<p>在 <code>Node</code> 中，模块分为两类</p>
-<ol>
-<li><p>由 <code>Node</code> 提供的模块，称为核心模块，该部分在 <code>Node</code> 源代码的编译过程中，就被编译进入了二进制执行文件，在 <code>Node</code>进程启动时，部分核心模块就被直接加载进入内存中，所以这部分核心模块引入时，文件定位和编译执行可以省略，并且在路径分析中优先判断，所以其加载速度也是最快的</p>
-</li>
-<li><p>由用户编写的模块，称为文件模块，该部分在运行时动态加载，需要完整的经历上述的三个步骤，因此，其速度比核心模块慢</p>
-</li>
-</ol>
-<h4 id="模块缓存"><a href="#模块缓存" class="headerlink" title="模块缓存"></a>模块缓存</h4><p><code>Node</code> 对引入模块，缓存的是模块编译和执行之后的对象，而浏览器仅仅缓存文件，<strong><code>require()</code> 方法对相同模块的二次加载都会采取缓存优先的方式</strong>，而核心模块的缓存检查会优先于文件模块的缓存检查</p>
-<h4 id="路径分析"><a href="#路径分析" class="headerlink" title="路径分析"></a>路径分析</h4><p><code>require()</code> 方法接受一个<strong>标识符</strong>作为参数，路径分析的优先级是这样的</p>
-<ol>
-<li><p>缓存加载</p>
-</li>
-<li><p>核心模块加载</p>
-</li>
-<li><p>相对或绝对路径的形式加载（<strong>这种方式引入的模块都会被当做文件模块处理</strong>）</p>
-</li>
-<li><p>非路径形式的文件模块（自定义模块，一般引入别人的模块时会用到，可能是一个文件或者一个包，这种引入方式也是最慢的）</p>
-</li>
-</ol>
-<p><strong>遍历模块路径数组</strong>是 <code>Node</code> 在定位文件模块的具体文件时制定的查找方式</p>
-<p>在 <code>.js</code> 文件中打印出 <code>module.paths</code> ，可得类似这样的数组</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="string">'D:\\前端\\demo\\模块化demo\\CommonJS\\node_modules'</span>,</span><br><span class="line">  <span class="string">'D:\\前端\\demo\\模块化demo\\node_modules'</span>,</span><br><span class="line">  <span class="string">'D:\\前端\\demo\\node_modules'</span>,</span><br><span class="line">  <span class="string">'D:\\前端\\node_modules'</span>,</span><br><span class="line">  <span class="string">'D:\\node_modules'</span> ]</span><br></pre></td></tr></table></figure>
-<p>模块路径的生成规则是如下所示</p>
-<ol>
-<li>当前文件目录下的 <code>node_module</code> 目录</li>
-<li>父目录下的 <code>node_module</code> 目录</li>
-<li>父目录的父目录下的 <code>node_module</code> 目录</li>
-<li>沿路径向上逐级递归，直到跟目录下的 <code>node_module</code> 目录</li>
-</ol>
-<p>在加载过程中， <code>Node</code> 会逐个尝试模块路径数组中的路径，直到找到目标文件为止，所以当文件的路径越深，其模块路径查找耗时会越多，这也是自定义模块的加载速度是最慢的原因</p>
-<h4 id="文件定位"><a href="#文件定位" class="headerlink" title="文件定位"></a>文件定位</h4><p>文件定位的过程中，主要是以下两个事情的处理</p>
-<ol>
-<li>文件扩展名分析</li>
-</ol>
-<p><code>CommonJS</code> 规范允许标识符中不含文件扩展名，这种情况下，<code>Node</code> 会按<code>.js</code>,  <code>.json</code> , <code>.node</code> 的次序补全扩展名，依次尝试，在尝试过程中，需要调用 <code>fs</code> 模块同步阻塞式的判断文件是否存在</p>
-<ol start="2">
-<li>目录分析和包</li>
-</ol>
-<p>在分析标识符过程中，<code>require()</code> 没有通过分析文件扩展名找到对应的文件，但却得到一个目录，这时候 <code>Node</code>会将这个目录当做一个包来处理</p>
-<p>而在这个过程中，<code>Node</code> 对 <code>CommonJS</code> 包规范进行了一定程度的支持，处理包的过程如下</p>
-<ol>
-<li><p>Node在当前目录下查找 <code>package.json</code> （ <code>CommonJS</code> 包规范定义的包描述文件），然后通过 <code>JSON.parse()</code> 解析出包描述对象，取其 <code>main</code> 属性指定的文件名进行定位，如果缺少扩展名再进入扩展名分析的步骤</p>
-</li>
-<li><p>如果没有 <code>package.json</code> ，或者 <code>main</code> 属性指定的文件名出错，<code>Node</code> 会将 <code>index</code> 默认为文件名，并以此查找 <code>index.js</code>,  <code>index.json</code>,  <code>index.node</code></p>
-</li>
-<li><p>如果在目录分析的过程中没有成功定位到任何文件，则自定义模块会进入下一个模块路径进行查找，倘若模块路径数组被遍历完仍未查找到目标文件，则会抛出查找失败的异常</p>
-</li>
-</ol>
-<h4 id="模块编译"><a href="#模块编译" class="headerlink" title="模块编译"></a>模块编译</h4><p>在Node中，每个文件模块都是一个对象，定位到具体的文件后，Node会新建一个模块对象，然后根据路径载入并编译，对于不同的文件扩展名，其载入方式也不一样</p>
-<ol>
-<li><p><code>.js</code> 文件，先 <code>fs</code> 模块同步读取后编译执行，后面会详细介绍</p>
-</li>
-<li><p><code>.json</code> 文件，先 <code>fs</code> 模块同步读取，然后再用 <code>JSON.parse()</code> 解析返回结果</p>
-</li>
-<li><p><code>.node</code> 文件，这是 <code>C/C++</code> 编写的扩展文件，通过 <code>dlopen()</code> 方法加载，最后编译生成文件</p>
-</li>
-<li><p>其余扩展名文件，当做 <code>.js</code> 文件载入</p>
-</li>
-</ol>
-<p><strong>JavaScript模块的编译</strong></p>
-<p>每个模块文件存在着 <code>require</code> ，<code>exports</code> ， <code>module</code> 这三个变量，以及<code>__dirname</code> ,<code>__filename</code>魔术变量</p>
-<p>在我们没有定义这几个变量的情况下，为什么会出现这几个变量呢</p>
-<p>原来，一个正常的 <code>.js</code> 文件会被 <code>Node</code> 包装成下面的样子</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>)) </span>&#123;</span><br><span class="line"> <span class="keyword">let</span> fs = <span class="built_in">require</span>(fs);</span><br><span class="line"> exports.name = <span class="string">"1bin"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>在头部添加</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>)) </span>&#123;\n</span><br></pre></td></tr></table></figure>
-<p>在尾部添加</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\n&#125;);</span><br></pre></td></tr></table></figure>
-<p>就这样，每个模块文件之间都进行了作用域的隔离，<strong>包装之后的代码会通过 <code>vm</code> 原生模块的<code>runInThisContext()</code> 方法执行</strong>，在模块代码内部只能访问到 <code>global</code> 对象，模块外部的代码也只能访问到<code>exports</code> 属性导出的值和模块内部定义的 <code>global</code> 对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//modA.js</span></span><br><span class="line"><span class="keyword">const</span> vm = <span class="built_in">require</span>(<span class="string">'vm'</span>)</span><br><span class="line"><span class="keyword">const</span> filename = <span class="built_in">require</span>(<span class="string">'./resolveFileName.js'</span>) <span class="comment">//文件定位中得到的完整文件路径</span></span><br><span class="line"><span class="keyword">const</span> dirname = <span class="built_in">require</span>(<span class="string">'./resolveDirName.js'</span>)<span class="comment">//文件定位中得到的文件目录</span></span><br><span class="line"><span class="keyword">let</span> cb = vm.runInThisContext(<span class="string">`(function (require,exports,module,__filename, __dirname)&#123;</span></span><br><span class="line"><span class="string">	exports.name = "1bin"</span></span><br><span class="line"><span class="string">	let age = require('./a.js').age</span></span><br><span class="line"><span class="string">	module.exports.age = age</span></span><br><span class="line"><span class="string">&#125;);`</span>)</span><br><span class="line">cb.call(<span class="built_in">module</span>, <span class="built_in">require</span>, <span class="built_in">module</span>.exports, <span class="built_in">module</span>, filename, dirname)<span class="comment">//参数顺序要对应好</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">let</span> modA = <span class="built_in">require</span>(<span class="string">'./modA.js'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(modA) <span class="comment">// &#123; name: '1bin', age: 18 &#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="一点点小疑问"><a href="#一点点小疑问" class="headerlink" title="一点点小疑问"></a>一点点小疑问</h4><p>也许有人会有疑问，为什么在有 <code>exports</code> 的情况下，还存在 <code>module.exports</code> </p>
-<p>简单来说，<code>exports</code> 是 <code>Node</code> 提供给我们的语法糖，实际上在模块的开始阶段都会加上这句话</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> exports = <span class="built_in">module</span>.exports = &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>也就是说，<code>exports</code> 只是 <code>module.exports</code> 的一个引用，下面两种写法是等效的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exports.name = <span class="string">"1bin"</span></span><br><span class="line"><span class="built_in">module</span>.exports.name = <span class="string">"1bin"</span></span><br></pre></td></tr></table></figure>
-<p>只不过我们推荐这种写法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports.name = <span class="string">"1bin"</span></span><br><span class="line"><span class="comment">//如果想一次性全部导出的话</span></span><br><span class="line"><span class="built_in">module</span>.expotrs = &#123; age, id&#125; <span class="comment">//这种写法会覆盖掉 exports 的导出，使得 exports 的导出 name 无效</span></span><br></pre></td></tr></table></figure>
-<p>此外，<code>exports</code> 不能导出一个函数或类，即</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//error</span></span><br><span class="line">exports = [<span class="function"><span class="keyword">function</span>]</span></span><br><span class="line"><span class="function">//<span class="title">error</span></span></span><br><span class="line">exports = [class]</span><br></pre></td></tr></table></figure>
-<p>因为函数或类也是个对象，如果将 <code>exports</code> 赋值给一个新的对象，会导致引用修改，即此时 <code>exports</code> 和原引用 <code>module.exports</code> 再无关系，由于 <code>Node</code> 的默认是将 <code>module.exports</code> 给导出，这将导致 <code>exports</code> 导出失败，这种情况下，只能使用</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = [<span class="function"><span class="keyword">function</span>]</span></span><br><span class="line"><span class="function">//<span class="title">or</span></span></span><br><span class="line">module.exports = [class]</span><br></pre></td></tr></table></figure>
-<h4 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h4><p><code>ES6</code> 模块和 <code>CommonJS</code> 模块完全不同</p>
-<blockquote>
-<p>它们有两个重大差异</p>
-<ol>
-<li><p><code>CommonJS</code> 模块输出的是一个值的拷贝(其 <code>this</code> 为 <code>全局对象</code>)，而 <code>ES6</code> 模块输出的是值的引用(所以其 <code>this</code> 为 <code>undefined</code> )</p>
-</li>
-<li><p><code>CommonJS</code> 模块是运行时加载，而 <code>ES6</code> 模块是编译时输出接口</p>
-</li>
-</ol>
-</blockquote>
-<p><strong>第一个差异的原因</strong></p>
-<p>​    <code>CommonJS</code> 模块的值一旦输出，模块内部的变化就影响不到这个值，不像 <code>ES6</code> 模块有动态绑定</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//modB.js</span></span><br><span class="line"><span class="keyword">let</span> age = <span class="number">18</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addAge</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  age++</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  age,</span><br><span class="line">  addAge</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">let</span> modB = <span class="built_in">require</span>(<span class="string">'./modB'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(modB.age); <span class="comment">//18</span></span><br><span class="line">modB.addAge()</span><br><span class="line"><span class="built_in">console</span>.log(modB.age); <span class="comment">//18</span></span><br></pre></td></tr></table></figure>
-<p><code>modB</code> 加载后，其 <code>modB.age</code> 值是个原始类型的值，会被缓存，所以看不到其值的改变</p>
-<p>但如果将其值写成一个函数，便能得到其内部变化后的值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//modB.js</span></span><br><span class="line"><span class="keyword">let</span> age = <span class="number">18</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addAge</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  age++</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  get age()&#123; <span class="comment">//取值器函数</span></span><br><span class="line">    <span class="keyword">return</span> age</span><br><span class="line">  &#125;,</span><br><span class="line">  addAge</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">let</span> modB = <span class="built_in">require</span>(<span class="string">'./modB'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(modB.age); <span class="comment">//18</span></span><br><span class="line">modB.addAge()</span><br><span class="line"><span class="built_in">console</span>.log(modB.age); <span class="comment">//19</span></span><br></pre></td></tr></table></figure>
-<p><strong>第二个差异的原因</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommonJS模块</span></span><br><span class="line"><span class="keyword">let</span> &#123; age, name &#125; = <span class="built_in">require</span>(<span class="string">'./modB.js'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">let</span> _modB = <span class="built_in">require</span>(<span class="string">'./modB.js'</span>)</span><br><span class="line"><span class="keyword">let</span> age = _modB.age</span><br><span class="line"><span class="keyword">let</span> name = _modB.name</span><br></pre></td></tr></table></figure>
-<p>上面代码的实质是加载 <code>modB</code> 模块的所有方法，生成一个对象<code>_modB</code>  然后再从这个对象解构读取所需值或方法，这种叫做<strong>运行时加载</strong>，因为<strong>只有运行时才能得到这个对象，导致完全没办法在编译时做静态优化</strong></p>
-<p>而 <code>ES6</code> 模块不是对象，而是通过 <code>export</code> 命令显式指定输出的代码，再通过 <code>import</code>命令输入。这个特性使得<code>ES6</code> 可以在编译时就完成模块加载，效率要比 <code>CommonJS</code> 模块的加载方式高</p>
-
-          
+          <p>传统的网页没有模块化也问题不大，但在服务器端，没有模块，就无法简单的与操作系统以及其他应用程序交流，所以 <code>NodeJS</code> 的诞生之初，就是参照 <code>CommonJS</code> 规范来实现其模块系统的</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/30/模块化三/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -640,16 +487,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/模块化二/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/09/26/模块化二/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -669,9 +516,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-26T20:40:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-26T20:40:45+08:00">
                 2019-09-26
               </time>
             
@@ -691,7 +538,7 @@
           
 
           
-
+          
           
 
           
@@ -710,55 +557,15 @@
 
       
         
-          
-            <p><code>AMD</code>, <code>CMD</code> 两种前端模块化标准都需要引入相应的 <code>.js</code>文件，而 <code>ES6模块</code> 算是官方模块化的一种标准，可以直接使用</p>
-<p>内联引用 <code>script</code> 标签时引入模块，只需要给内联 <code>script</code> 标签设置 <strong><code>type=“module”</code></strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"./main.js"</span> type=<span class="string">"module"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>浏览器对于带有<code>type=&quot;module&quot;</code>的<code>&lt;script&gt;</code>，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，再执行模块脚本，<strong>等同于打开了<code>&lt;script&gt;</code>标签的<code>defer</code>属性</strong></p>
-</blockquote>
-<h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><p>ES6的模块是编译时加载的，通过 <code>export</code> 命令指定输出，再通过 <code>import</code> 命令指定输入</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//modA.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">saySomething</span>(<span class="params">myName</span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;myName&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> name = <span class="string">"1bin"</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; name, saySomething &#125;  <span class="keyword">from</span> <span class="string">'./modA.js'</span></span><br><span class="line">saySomething(name)</span><br></pre></td></tr></table></figure>
-<p>值得注意的是，<strong><code>import</code> 模块的 <code>.js</code> 后缀名不能省，只能使用绝对或者相对路径</strong>，否则浏览器无法解析到模块导致报错</p>
-<h4 id="export-命令"><a href="#export-命令" class="headerlink" title="export 命令"></a>export 命令</h4><p> <code>export</code> 命令规定的是对外的接口，<strong>该接口必须得和模块内部的变量建立起一对一的关系</strong></p>
-<p>下面的写法就是典型的错误</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">"1bin"</span></span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">let</span> name = <span class="string">"1bin"</span></span><br><span class="line"><span class="keyword">export</span> name</span><br></pre></td></tr></table></figure>
-<p>正确写法应该为</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> name = <span class="string">"1bin"</span></span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">let</span> name = <span class="string">"1bin"</span></span><br><span class="line"><span class="keyword">export</span> &#123;name&#125; <span class="comment">//其他脚本可以通过这个接口，取到值 1bin</span></span><br><span class="line"><span class="comment">//or 使用as关键词取别名</span></span><br><span class="line"><span class="keyword">let</span> year = <span class="number">9102</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;year <span class="keyword">as</span> number&#125;</span><br></pre></td></tr></table></figure>
-<p>函数和类也是一样得遵循这个写法来达到对外提供接口的效果，因为这样才能保证 <code>export</code> 输出的接口，与其对应的值是动态绑定关系</p>
-<h4 id="import-命令"><a href="#import-命令" class="headerlink" title="import 命令"></a>import 命令</h4><p><code>import</code> 命令用于加载其他模块的对外接口，得到的变量都是只读的，也就是说，不允许在加载模块的脚本里面，改写接口（<strong><code>import</code> A模块的一个对象后，给该对象添加属性，其他模块引用A模块的该对象时也会受到影响，但这是极其不推荐的写法</strong>）</p>
-<p><code>import</code> 命令会执行所加载的模块，所以可以有如下写法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./modA.js'</span></span><br></pre></td></tr></table></figure>
-<p><strong>多次加载一个模块只会执行一次，<code>import</code> 命令是在编译阶段执行，所以它是一个模块之中最早执行的，也就是具有所谓的提升效果</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正确</span></span><br><span class="line">saySomething();</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; saySomething &#125; <span class="keyword">from</span> <span class="string">'./modA.js'</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="export-default"><a href="#export-default" class="headerlink" title="export default"></a>export default</h4><p><code>export default</code> 命令实质是将后面的值，赋给 <code>default</code> 变量，并将 <code>default</code>变量输出</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">"1bin"</span></span><br><span class="line"><span class="comment">//错误</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">let</span> name = <span class="string">"1bin"</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认函数输出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">saySomething</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"I'm 1bin"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输入</span></span><br><span class="line"><span class="keyword">import</span> saySomething <span class="keyword">from</span> <span class="string">'./modA.js'</span>; </span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="keyword">default</span> <span class="keyword">as</span> saySomething&#125; <span class="keyword">from</span> <span class="string">'./modA.js'</span></span><br><span class="line"><span class="comment">//同时引用默认接口和其他接口</span></span><br><span class="line"><span class="keyword">import</span> saySomething,&#123; name, age &#125; <span class="keyword">from</span> <span class="string">'./modA.js'</span></span><br></pre></td></tr></table></figure>
-<h4 id="ES6模块思想"><a href="#ES6模块思想" class="headerlink" title="ES6模块思想"></a>ES6模块思想</h4><p>ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量，而 <code>AMD</code> ，<code>CMD</code> ，<code>CommonJS</code>都只能在运行时确定这些东西</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; saySomething &#125; <span class="keyword">from</span> <span class="string">'./modA.js'</span></span><br></pre></td></tr></table></figure>
-<p>像这样的加载叫做编译时加载（或称静态加载），只会从  <code>modA</code> 模块加载一个 <code>saySomething</code> 方法，其他属性或方法不加载，这样的加载效率自然比传统的模块化快，而这样也导致了不存在ES6模块本身，它压根不是个对象，因此其<strong>模块顶层的 <code>this</code> 为undefined</strong></p>
-<p>正是由于这个编译时加载的特性，使得静态分析成为可能，有了它，就能进一步拓宽 JavaScript 的语法，比如引入宏和类型检验这些只能靠静态分析实现的功能</p>
-<p>这也是为什么 <code>export</code>，<code>import</code> 命令只能放在模块顶层，如果这些命令放在条件代码块里面，就无法做静态优化，这违背了ES6模块的设计初衷</p>
-<p>也正是如此，<code>import</code> 命令不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//error</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="string">'na'</span>+ <span class="string">'me'</span>&#125; <span class="keyword">from</span> <span class="string">'./modA.js'</span></span><br><span class="line"><span class="comment">//error</span></span><br><span class="line"><span class="keyword">let</span> myMod = <span class="string">'./modA.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> myMod</span><br><span class="line"><span class="comment">//error</span></span><br><span class="line"><span class="keyword">if</span> (flag) &#123;</span><br><span class="line">  <span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">'./modA.js'</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">import</span> &#123; age &#125; <span class="keyword">from</span> <span class="string">'./modB.js'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="ES6模块运行机制"><a href="#ES6模块运行机制" class="headerlink" title="ES6模块运行机制"></a>ES6模块运行机制</h4><blockquote>
-<p>JS 引擎对脚本静态分析的时候，遇到模块加载命令<code>import</code>，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，模块的原始值变了，<code>import</code>加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//modA.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> name = <span class="string">"1bin"</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> name = <span class="string">"ebin"</span> , <span class="number">1000</span>)</span><br><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">'./modA.js'</span></span><br><span class="line"><span class="built_in">console</span>.log(name,<span class="string">'&lt;&lt;==old name is here'</span>)  <span class="comment">//1bin</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(name, <span class="string">'&lt;&lt;==new name is here'</span>), <span class="number">1000</span>)  <span class="comment">//ebin</span></span><br></pre></td></tr></table></figure>
-<h4 id="Import"><a href="#Import" class="headerlink" title="Import()"></a>Import()</h4><p>JS 引擎处理ES6模块的 <code>import</code>命令是在编译阶段，这就导致了无法在运行时选择加载模块，Node 的 <code>require()</code>方法就是运行时加载模块，也就是说 <code>require()</code> 到底加载哪个模块，只有运行的时候才知道，<code>import</code>命令无法做到这一点，所以，<code>Import()</code>诞生了，用来完成动态加载</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(<span class="string">'./modA.js'</span>).then(<span class="function"><span class="params">module</span>=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">module</span>.name)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><code>import()</code>返回一个 <code>Promise</code>对象，加载模块成功后，这个模块会作为一个对象，当作 <code>then</code>的参数</p>
-<p>想要同时加载多个模块，可以这样</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([</span><br><span class="line">    <span class="keyword">import</span>(<span class="string">'./modA.js'</span>),</span><br><span class="line">    <span class="keyword">import</span>(<span class="string">'./modB.js'</span>)</span><br><span class="line">])</span><br><span class="line">.then(<span class="function">(<span class="params">[modA, modB]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//doSomething</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>按条件加载模块也成了可能</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (flag) &#123;</span><br><span class="line">  <span class="keyword">import</span>(<span class="string">'./modA.js'</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">import</span>(<span class="string">'./modB.js'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后</p>
-<blockquote>
-<p><code>import()</code>函数可以用在任何地方，不仅仅是模块，非模块的脚本也可以使用。它是运行时执行，也就是说，什么时候运行到这一句，就会加载指定的模块。另外，<strong><code>import()</code>函数与所加载的模块没有静态连接关系</strong>，这点也是与<code>import</code>语句不相同。<strong><code>import()</code>类似于 Node 的<code>require</code>方法，区别主要是前者是异步加载，后者是同步加载。</strong></p>
-</blockquote>
-
-          
+          <p><code>AMD</code>, <code>CMD</code> 两种前端模块化标准都需要引入相应的 <code>.js</code>文件，而 <code>ES6模块</code> 算是官方模块化的一种标准，可以直接使用</p>
+<p>内联引用 <code>script</code> 标签时引入模块，只需要给内联 <code>script</code> 标签设置 <code>type=&quot;module&quot;</code></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/26/模块化二/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -805,16 +612,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/模块化/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/09/24/模块化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -834,9 +641,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-24T18:40:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-24T18:40:45+08:00">
                 2019-09-24
               </time>
             
@@ -856,7 +663,7 @@
           
 
           
-
+          
           
 
           
@@ -875,51 +682,14 @@
 
       
         
-          
-            <p>前端模块化是在web前端界面逻辑越来越复杂后出现的需求。先有AMD，后有CMD，到现在的ES6，这些都是为了解决前端模块化的标准</p>
-<p>实现模块化的几个尝试</p>
-<ul>
-<li><p>函数封装：污染全局变量</p>
-</li>
-<li><p>对象：外部可以随意修改内部成员</p>
-</li>
-<li><p>IIFE：可以达到不暴露私有成员的目的，这也是模块化的基本写法</p>
-<p><a href="https://www.cnblogs.com/dolphinX/p/4381855.html" target="_blank" rel="noopener">具体可见这里</a></p>
-</li>
-</ul>
-<h4 id="AMD：requireJS"><a href="#AMD：requireJS" class="headerlink" title="AMD：requireJS"></a>AMD：requireJS</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>.config = &#123;</span><br><span class="line">  paths:&#123;</span><br><span class="line">	<span class="comment">//键值对，用于改写路径</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//依赖的顺序和回调函数的顺序一致</span></span><br><span class="line"><span class="built_in">require</span>([<span class="string">"modA"</span>, <span class="string">"modB"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">modA, modB</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//doSomething</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件名即模块名</span></span><br><span class="line">define([<span class="string">"modA"</span>, <span class="string">"modB"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">modA, modB</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//doSomething</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">     fnC: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">`I'm modC`</span>)</span><br><span class="line">     &#125;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果没有使用依赖，还可以这样define</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>([],<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line">    exports.fnC = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="CMD：-seaJS"><a href="#CMD：-seaJS" class="headerlink" title="CMD： seaJS"></a>CMD： seaJS</h4><p>感觉和node的CommonJS规范很像</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">  alias: &#123;</span><br><span class="line">	<span class="comment">//键值对，用于改写路径</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//modA.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">    exports.fnA = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    <span class="comment">//or</span></span><br><span class="line">    <span class="built_in">module</span>.exports = &#123; <span class="attr">fnA</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>1.推崇文件名即为模块名</p>
-<p>2.不推崇依赖提前（define写依赖），推崇依赖就近（factory里写依赖）</p>
-<p>3.factory里的用法和node用法很像</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//modB.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> fnA = <span class="built_in">require</span>(<span class="string">"modA"</span>).fnA</span><br><span class="line">    fnA()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>在非factory里面是没有require的，如果要加载模块，可以这样</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line">seajs.use(<span class="string">"modA.js"</span>)</span><br><span class="line"><span class="comment">//or 下面需要callback的写法</span></span><br><span class="line">seajs.use(“modA.js”, <span class="function"><span class="keyword">function</span>(<span class="params">modA</span>)</span>&#123;</span><br><span class="line">    modA.fnA();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="AMD-与-CMD-的异同"><a href="#AMD-与-CMD-的异同" class="headerlink" title="AMD 与 CMD 的异同"></a>AMD 与 CMD 的异同</h4><p>​    最明显的区别在于<strong>模块定义时对依赖模块的处理不同</strong></p>
-<blockquote>
-<ol>
-<li>AMD推崇依赖前置，在定义时候就要声明所需要的依赖模块</li>
-<li>CMD推崇就近依赖，在用到依赖模块地方才去require</li>
-</ol>
-</blockquote>
-<p>其实requireJS 和 seaJS 都可以支持对方的写法，但这两者的最大区别不在于语法，而在于<strong>对依赖模块的执行时机处理不同</strong></p>
-<p>两者加载模块的方式都是异步的，只是AMD推崇依赖前置，js可以很快知道需要依赖的模块是什么，并且立即加载；而CMD推崇的就近依赖，需要把模块变成字符串解析一遍才能知道依赖了哪些模块，虽然解析模块的用时很短，不过还是对性能有所牺牲了</p>
-<p>现假设定义某个模块需要依赖modA和modB两个模块，讨论两种规范的异同：</p>
-<ul>
-<li><p>同：两者都是异步加载依赖模块，等到所有模块都加载完（下载完），再去执行主逻辑回调函数</p>
-</li>
-<li><p>异：</p>
-<p>AMD: 哪个模块先加载完，就先执行哪个模块，这样导致的问题便是依赖的执行顺序和程序员书写的顺序不一致，但是模块整体延迟就降低了</p>
-<p>CMD: 依赖模块只有在需要用到它的时候（require的时候），才会执行模块，保证了模块的执行顺序和书写顺序是完全一致的</p>
-</li>
-</ul>
-
-          
+          <p>前端模块化是在web前端界面逻辑越来越复杂后出现的需求。先有<code>AMD</code>，后有<code>CMD</code>，到现在的<code>ES6</code>，这些都是为了解决前端模块化的标准</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/24/模块化/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -966,16 +736,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/跨域/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/09/20/跨域/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -995,9 +765,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-20T22:21:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-20T22:21:00+08:00">
                 2019-09-20
               </time>
             
@@ -1017,7 +787,7 @@
           
 
           
-
+          
           
 
           
@@ -1036,124 +806,14 @@
 
       
         
-          
-            <h3 id="跨域是什么"><a href="#跨域是什么" class="headerlink" title="-  跨域是什么"></a>-  跨域是什么</h3><p>​    <strong>协议，域名，端口，有一个不同即为跨域，跨域是浏览器的一种保护机制</strong></p>
-<h3 id="跨域会如何"><a href="#跨域会如何" class="headerlink" title="-  跨域会如何"></a>-  跨域会如何</h3><p>​        跨域会受到以下三点非同源限制                </p>
-<blockquote>
-<ol>
-<li>无法获取网页的 Cookie, Local Storage, Indexed DB</li>
-<li>无法获取网页的 DOM 元素</li>
-<li>无法向非同源地址发送 AJAX 请求</li>
-</ol>
-</blockquote>
-<h3 id="网页与网页间的跨域交流"><a href="#网页与网页间的跨域交流" class="headerlink" title="-  网页与网页间的跨域交流"></a>-  网页与网页间的跨域交流</h3><ol>
-<li><p>为了让两个跨域页面可以共享Cookie（此方案仅限主域相同，子域不同的跨域应用场景）</p>
-<p>将 document.domain 设置成相同的父域名</p>
-<p>eg: 两个网页</p>
-<ol>
-<li><p>cba.testCors.com:8080  </p>
-</li>
-<li><p>abc.testCors.com:8080  </p>
-</li>
-</ol>
-<p>两边都设置 document.domain = testCors.com</p>
-<p>ps:  这个浏览器还是会检测的，不是你想改成什么域名就变成什么的</p>
-</li>
-</ol>
-<ol start="2">
-<li>跨文档通信 API：window.postMessage()</li>
-</ol>
-<h3 id="网页和服务器间的跨域交流"><a href="#网页和服务器间的跨域交流" class="headerlink" title="-  网页和服务器间的跨域交流"></a>-  网页和服务器间的跨域交流</h3><p>​            对下文的几点说明</p>
-<blockquote>
-<ol>
-<li>前端为vue-cli搭建，端口号为8080</li>
-<li>后台为koa2搭建，端口号为9099</li>
-<li>在 C:\Windows\System32\drivers\etc 目录下，修改hosts文件，在文件底部增加  <code>127.0.0.1 testCors.com</code> 将 127.0.0.1 别名为 testCors.com </li>
-</ol>
-</blockquote>
-<h4 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1.JSONP"></a>1.JSONP</h4><p>​    JSONP 兼容 IE , 只支持 GET 不支持 POST, 原理在于 script 标签的 src 属性不受跨域限制</p>
-<p>​    网页:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">saySomething</span><span class="params">(str)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(str)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://testCors.com:9099/testGet?cb=saySomething"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>​    后台:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/testGet'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> &#123; cb &#125; = ctx.request.query;</span><br><span class="line">    ctx.body = <span class="string">`<span class="subst">$&#123;cb&#125;</span>('now you see me')`</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>​    技巧在于请求参数 cb 的值 saySomething 要在网页中定义好，后台只是把 saySomething(‘now you see me’) 发送到网页并执行</p>
-<h4 id="2-CORS"><a href="#2-CORS" class="headerlink" title="2. CORS"></a>2. CORS</h4><p>​    CORS有两种请求，一是简单请求，二是非简单请求</p>
-<h3 id="何为简单请求"><a href="#何为简单请求" class="headerlink" title="- 何为简单请求"></a>- 何为简单请求</h3><p>​    只要同时满足以下两大条件，就属于简单请求</p>
-<ol>
-<li><p>请求方式属于以下几种</p>
-<ul>
-<li>GET</li>
-<li>POST </li>
-<li>HEAD</li>
-</ul>
-</li>
-<li><p>HTTP 请求头信息不超出以下几种字段 </p>
-<ul>
-<li><p>Accept </p>
-</li>
-<li><p>Accept-Language</p>
-</li>
-<li><p>Content-Language</p>
-</li>
-<li><p>Last-Event-ID</p>
-</li>
-<li><p>Content-Type: 只限于 </p>
-<p>application/x-www-form-urlencoded</p>
-<p>multipart/form-data</p>
-<p>text/plain </p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="简单请求"><a href="#简单请求" class="headerlink" title="- 简单请求"></a>- 简单请求</h3><p>​    只需要后台设置 Access-Control-Allow-Origin (以下简称 ACAO )</p>
-<p>​    需要允许某个域名的时候 ，注意 协议 域名 端口 缺一不可，而且域名要全小写，有大写的时候不匹配</p>
-<p>​    我前端域名是 testCors.com 后台也这样设置的话还是会报跨域，域名需要</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/testGet'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    ctx.set(<span class="string">'Acess-Control-Allow-Origin'</span>, <span class="string">'http://testcors.com:8080'</span>);</span><br><span class="line">    ctx.body=<span class="string">"now you see me"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="前后端-cookie-通信"><a href="#前后端-cookie-通信" class="headerlink" title="- 前后端 cookie 通信"></a>- 前后端 cookie 通信</h3><p>​    若想前后端用 cookie 通信, 并将 cookie 保存在前端,值得注意的是,后台若将ACAO改为* ，这时f etch 需要将 credentials 选项去掉，并且此时对 cookie 的设置无效</p>
-<p>​    所以为了能正常 cookie 通信，需要后台设置准确的地址，并且前后端都要开启 cookie 认证</p>
-<p>​    前端:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">fetch(`http:<span class="comment">//testCors.com:9099/testGet`, &#123;</span></span></span><br><span class="line"><span class="actionscript">    credentials: <span class="string">'include'</span></span></span><br><span class="line"><span class="undefined">&#125;)</span></span><br><span class="line"><span class="javascript">.then( <span class="keyword">async</span> res =&gt; &#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="keyword">await</span> res.test())</span></span><br><span class="line"><span class="undefined">&#125;)    </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>​    后台:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/testGet'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    ctx.set(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'http://testcors.com:8080'</span>)</span><br><span class="line">    ctx.set(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="literal">true</span>)</span><br><span class="line">    ctx.cookies.set(<span class="string">'tokenId'</span>,<span class="string">'111'</span>,&#123;<span class="attr">httpOnly</span>:<span class="literal">false</span>&#125;)</span><br><span class="line">    ctx.body = <span class="string">"now you see me"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>​    前端可以通过 <code>document.cookie</code> 来获取到 httpOnly 不为true的cookie，所以上述代码设置 cookie 时添加了 <code>httpOnly:false</code> 选项</p>
-<p>​    当然 cookie 存在前端十分不安全, 只要在浏览器将 cookie 修改, 后台用<code>ctx.cookie.get(&#39;token&#39;)</code>的时候也会修改</p>
-<h3 id="非简单类型请求"><a href="#非简单类型请求" class="headerlink" title="- 非简单类型请求"></a>- 非简单类型请求</h3><p>若添加headers来触发非简单请求的条件二（多加了HTTP头信息）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;	</span><br><span class="line">fetch(<span class="string">`http://testCors.com:9099/testGet`</span>, &#123;</span><br><span class="line">    credentials: <span class="string">'include'</span>,</span><br><span class="line">    headers: <span class="keyword">new</span> Headers(&#123;<span class="string">'Content-Type'</span>: <span class="string">'application/jsons'</span>&#125;)</span><br><span class="line">&#125;)</span><br><span class="line">.then( <span class="keyword">async</span> res =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">await</span> res.test())</span><br><span class="line">&#125;)    </span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>控制台会毫不留情的报错<br><img src="/../img\Snipaste_2019-09-20_22-17-56.png" alt=""></p>
-<p><img src="/../img\Snipaste_2019-09-20_21-04-38.png" alt=""></p>
-<p>并且请求方式貌似变成了 OPTIONS 这是因为</p>
-<blockquote>
-<p>在跨域并且尝试添加一些特殊头及自定义头的情况下，由于浏览器的安全机制，会加多一次OPTIONS预请求（询问请求），与跨域服务器协商可以设置的头部信息，可以允许的HTTP协议等等信息</p>
-</blockquote>
-<p>这时按照控制台的提示，在前端加上 <code>mode : &quot;no-cors&quot;</code> (不跨域)</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">fetch(<span class="string">`http://testcors.com:9099/testGet?msg=Helllooo`</span>,&#123;</span><br><span class="line">    credentials: <span class="string">'include'</span>,</span><br><span class="line">    headers:<span class="keyword">new</span> Headers(&#123;</span><br><span class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">    &#125;),</span><br><span class="line">    mode: <span class="string">'no-cors'</span></span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="keyword">async</span> res =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">await</span> res.text())</span><br><span class="line">&#125;)</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>后台变成</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/testGet'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">  ctx.set(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'*'</span>)</span><br><span class="line">  ctx.set(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="literal">true</span>)</span><br><span class="line">  ctx.cookies.set(<span class="string">'token'</span>,<span class="string">'222'</span>,&#123;</span><br><span class="line">    httpOnly:<span class="literal">false</span></span><br><span class="line">  &#125;)</span><br><span class="line">   <span class="comment">//以下为新增</span></span><br><span class="line">  ctx.set(<span class="string">'Access-Control-Request-Method'</span>, <span class="string">'PUT,POST,GET,DELETE,OPTIONS'</span>)</span><br><span class="line">  ctx.set(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Origin, X-Requested-With, Content-Type, Accept'</span>);</span><br><span class="line">  ctx.body = <span class="string">"now you see me"</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>此时，即使 ACAO 为 * ，也能正常进行 cookie 交流</p>
-<p>上述方式多少有点奇怪， 比如为什么mode设置为 no-cors 还能跨域呢？</p>
-<p>想不明白，我们来用终极方案吧</p>
-<h3 id="koa-cors"><a href="#koa-cors" class="headerlink" title="koa-cors"></a><strong>koa-cors</strong></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa-cors'</span>);</span><br><span class="line">app.use(cors(&#123;</span><br><span class="line">    credentials:<span class="literal">true</span></span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-<p>前端 credentials 设置为 include （默认情况下前端不开启 cookie）</p>
-<p>这样就什么问题都没了，对了如果前端设置了新的 headers 字段，会先发送个 OPTIONS请求核对 headers等信息，所以在控制台会先收到 OPTION 204， 再收到 GET 200</p>
-<p><img src="/../img\Snipaste_2019-09-20_21-52-37.png" alt=""></p>
-<p>再说说 credentials 的几个选项的含义</p>
-<blockquote>
-<ol>
-<li><p>same-origin 只想请求URL与调用的脚本处于同一起源处</p>
-</li>
-<li><p>include 为了让浏览器发送包含凭据的请求（即使是跨域源）</p>
-</li>
-<li><p>omit 为了让浏览器发送包含凭据的请求（即使是跨域源）不允许会报 OPTIONS 的错误</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="前端代理"><a href="#前端代理" class="headerlink" title="-  前端代理"></a>-  前端代理</h3><p>proxyTable(开发时候用)</p>
-<p>​     在 vue-cli 搭建的config&gt;index.js 下的 dev 选项</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line">  <span class="string">'/'</span>: &#123;</span><br><span class="line">    target: <span class="string">'http://testCors.com:9099/'</span>,</span><br><span class="line">    changOrigin: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">fetch(<span class="string">`/testGet?msg=Helllooo`</span>)</span><br><span class="line">.then( <span class="keyword">async</span> res =&gt; &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">await</span> res.text())</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>神奇的事情发生了，后台即使不使用 koa-cors ，也完全不会有跨域的问题，proxyTable的原理，应该是开了个和网页同域的服务器，网页请求跨域服务器时，这个同域的服务器会拦截请求，并且代理发送请求到目标服务器，利用的是服务器之间不存在跨域的原理</p>
-
-          
+          <h4 id="跨域是什么"><a href="#跨域是什么" class="headerlink" title="-  跨域是什么"></a>-  跨域是什么</h4><p>​    <strong>协议，域名，端口，有一个不同即为跨域，跨域是浏览器的一种保护机制</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/20/跨域/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1200,16 +860,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/05/linux下的mysql/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/09/05/linux下的mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -1229,9 +889,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-05T17:31:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-05T17:31:00+08:00">
                 2019-09-05
               </time>
             
@@ -1251,7 +911,7 @@
           
 
           
-
+          
           
 
           
@@ -1270,44 +930,14 @@
 
       
         
-          
-            <p>云服务器上的mysql一开始是用lnmp一键安装的，当时忘记了mysql的密码，于是在网上找到一些方法跳过密码直接进入mysql，再接着修改密码</p>
-<ol>
-<li>首先进到根目录，然后进入 <strong>etc</strong> 文件夹</li>
-<li>找到mysql配置文件 <strong>my.cnf</strong>，拖到本地</li>
-<li>打开my.cnf，找到[mysqld]，在该行下面添加一行 <strong>skip-grant-tables</strong> （跳过登录时的权限表）</li>
-<li>覆盖服务器上的原配置文件，使用 <strong>service mysql restart</strong>  重启mysql</li>
-<li>然后输入 <strong>mysql -uroot -p</strong> ，遇到输入密码直接回车即可进入mysql </li>
-<li>在命令行 输入 <strong>use mysql</strong> 收到 Database changed 的反馈</li>
-<li>输入 <strong>update user set password = password(‘新的密码’) where user = ‘root’;</strong> (注意分号不能漏)</li>
-</ol>
-<p><img src="/../img/20190905.png" alt=""></p>
-<ol start="8">
-<li><p>然后输入 <strong>exit</strong> 退出mysql</p>
-</li>
-<li><p>修改本地的 <strong>my.cnf</strong> 文件，把刚刚添加的一行去掉，再覆盖服务器的原配置文件</p>
-</li>
-<li>再次重启服务器即可</li>
-</ol>
-<p>这里再记录几个linux命令</p>
-<ul>
-<li><p>service mysql start  开启mysql</p>
-</li>
-<li><p>service mysql stop   关闭mysql</p>
-</li>
-<li><p>service mysql restart 重启mysql</p>
-</li>
-<li><p>netstat -ntlp   //查看当前所有tcp端口·</p>
-</li>
-<li><p>netstat -an | grep 3306   //查看所有3306端口使用情况</p>
-</li>
-</ul>
-<p><strong>另外在数据库初始化建表的时候遇到了字段长度过长（varchar255）的问题 Specified key was too long; max key length is 767 bytes  百度各种启用innodb_large_prefix 的方法，但没有一个试成功了，只能改字段长度</strong></p>
-<blockquote>
-<p>上面有提到单列索引限制767，起因是256×3-1。这个3是字符最大占用空间（utf8）。但是在5.5以后，开始支持4个字节的uutf8。255×4&gt;767, 于是增加了一个参数叫做 innodb_large_prefix这个参数默认值是OFF。当改为ON时，允许列索引最大达到3072。</p>
-</blockquote>
-
-          
+          <p>云服务器上的mysql一开始是用lnmp一键安装的，当时忘记了mysql的密码，于是在网上找到一些方法跳过密码直接进入mysql，再接着修改密码</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/05/linux下的mysql/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1354,16 +984,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/ts+koa项目的搭建/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/07/20/ts+koa项目的搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -1383,9 +1013,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-20T17:31:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-20T17:31:00+08:00">
                 2019-07-20
               </time>
             
@@ -1405,7 +1035,7 @@
           
 
           
-
+          
           
 
           
@@ -1424,17 +1054,14 @@
 
       
         
-          
-            <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><pre><code>这次许愿墙后台是用koa+ts+mysql写的，由于没有自带的koa+ts的项目结构，所以是先建了个koa项目，然后在配置ts文件
-</code></pre><h2 id="tsconfig-json"><a href="#tsconfig-json" class="headerlink" title="tsconfig.json"></a>tsconfig.json</h2><p>这是完整的ts配置文件，注意json文件不支持注释</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">      <span class="string">"module"</span>: <span class="string">"commonjs"</span>, <span class="comment">//模块处理是使用commonjs的方式</span></span><br><span class="line">      <span class="string">"target"</span>: <span class="string">"es2017"</span>,   <span class="comment">//使用es7是为了能使用async await</span></span><br><span class="line">      <span class="string">"noImplicitAny"</span>: <span class="literal">false</span>,   </span><br><span class="line">      <span class="string">"moduleResolution"</span>: <span class="string">"node"</span>,</span><br><span class="line">      <span class="string">"sourceMap"</span>: <span class="literal">false</span>,   <span class="comment">//开了的话会生成xxx.map.js文件</span></span><br><span class="line">      <span class="string">"esModuleInterop"</span>: <span class="literal">true</span>,  </span><br><span class="line">      <span class="string">"rootDirs"</span>: [         <span class="comment">//这是关键，这样声明可以实现多个出口，即不同目录结构</span></span><br><span class="line">        <span class="string">"./utils"</span>,          <span class="comment">//的ts文件可以按原目录文件结构编译，而outDir是单出口</span></span><br><span class="line">        <span class="string">"./routes"</span>,         <span class="comment">//的命令，配合rootDirs可以生成一个编译后保持原目录结</span></span><br><span class="line">        <span class="string">"./app.js"</span>          <span class="comment">//构的js目录</span></span><br><span class="line">      ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"include"</span>: [              <span class="comment">//声明需要被编译的文件夹</span></span><br><span class="line">    <span class="string">"./utils"</span>,</span><br><span class="line">    <span class="string">"./routes"</span>,</span><br><span class="line">    <span class="string">"./app.ts"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"exclude"</span>: [              <span class="comment">//声明不需要被编译的文件夹      </span></span><br><span class="line">    <span class="string">"node_modules"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在package.json配置两条命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&quot;dev&quot;: &quot;nodemon --watch routes --watch utils --watch ./ -e ts --exec ts-node bin/www&quot;</span><br></pre></td></tr></table></figure>
-<p>平时开发用，用了nodemon监控routes，utils和根目录文件后缀为ts的修改，一旦触发，就会执行重新编译的命令，重新编译使用的<code>ts-node</code>可保证在不显式生成js文件的情况下，使得ts文件能够正常运行起来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;build&quot;: &quot;tsc -w --outDir ./dist --project ./tsconfig.json&quot;</span><br></pre></td></tr></table></figure>
-<p>上线打包测试用，-w是监控，<code>--outDir ./dist</code>表示编译后重定向文件到dist文件夹，<code>--project ./tsconfig.json</code>表示ts编译的时候使用tsconfig.json配置文件的规则，默认其实是不用给也会寻找tsconfig.json的</p>
-
-          
+          <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>  这次许愿墙后台是用koa+ts+mysql写的，由于没有自带的koa+ts的项目结构，所以是先建了个koa项目，然后在配置ts文件</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/20/ts+koa项目的搭建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1481,16 +1108,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/服务器，webpack打包/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/07/19/服务器，webpack打包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -1510,9 +1137,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-19T21:27:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T21:27:45+08:00">
                 2019-07-19
               </time>
             
@@ -1532,7 +1159,7 @@
           
 
           
-
+          
           
 
           
@@ -1551,72 +1178,15 @@
 
       
         
-          
-            <p><strong>写在前面：</strong></p>
+          <p><strong>写在前面：</strong></p>
 <p>这算是第一次将完整的项目丢到服务器上去，包括后台服务和前端打包好的文件，下面将记录这次操作遇到的一些情况</p>
-<h2 id="后台部分"><a href="#后台部分" class="headerlink" title="后台部分"></a>后台部分</h2><p>后台项目是用express框架，里面的静态文件在放在public文件夹内，只需把前端代码打包后生成的index.html和static文件夹丢到public文件夹内即可，后台代码放在了<code>/home/wwwroot</code>下</p>
-<h3 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h3><p>用PuTTY命令行工具的时候，会有一个问题，一旦启动了其中一个服务，就无法进行其他操作(比如开启另一个服务)，这样还会导致退出PuTTY的时候，刚开启的服务会自己断开</p>
-<p>为解决这个问题，需要用到Screen工具，一般Linux机都会自带</p>
-<p><strong>这里记录几个常用命令</strong></p>
-<ol>
-<li><code>screen -S name</code>  —&gt; 新建一个名叫name的会话</li>
-<li><code>screen -ls</code>      —&gt; 列出当前所有会话</li>
-<li><code>screen -r name</code>  —&gt; 回到name这个会话，配合-ls命令，name用会话序号代替即可</li>
-<li><code>screen -d name</code>  —&gt; 远程detach某个会话，状态为Attached的会话不能用-r命令进入</li>
-<li><code>C-a + z</code>        —&gt; 把当前会话放到后台执行，用 shell 的 fg 命令则可回去</li>
-<li><code>C-a + c</code>         —&gt; 创建一个新的运行shell的窗口并切换到该窗口</li>
-<li><code>screen -S name -X quit</code> —&gt;关闭某个会话</li>
-</ol>
-<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>安装MongoDB在 <code>/usr/local</code>，在MongoDB文件夹内执行 <code>bin/mongod</code> 即可开启MongoDB</p>
-<h2 id="前端部分"><a href="#前端部分" class="headerlink" title="前端部分"></a>前端部分</h2><p>前端项目是用vue框架，用Webpcak打包时遇到了很多问题</p>
-<h3 id="assets"><a href="#assets" class="headerlink" title="assets"></a>assets</h3><p>assets里面的文件会根据url-loader的limit分情况处理，vue-cli的limit为10000b，略小于10k</p>
-<ol>
-<li><p>小于url-loader的limit限制的文件会直接变成base64</p>
-<ul>
-<li><code>eg: xxx.png =&gt; data:image/xxx;base64,ixxxxxxx</code></li>
-</ul>
-</li>
-<li><p>大于limit限制的是重新命名一下，不变成base64</p>
-<ul>
-<li><code>eg: xxx.png =&gt; xxx.0974910.png</code></li>
-</ul>
-</li>
-</ol>
-<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><p>static里面的文件会原封不动的放在打包后的static文件夹里</p>
-<h2 id="图片资源打包情况分析"><a href="#图片资源打包情况分析" class="headerlink" title="图片资源打包情况分析"></a>图片资源打包情况分析</h2><h3 id="npm-run-dev"><a href="#npm-run-dev" class="headerlink" title="npm run dev"></a>npm run dev</h3><p>在开发模式下，讨论两种引用图片资源的情况：</p>
-<ol>
-<li><p>template中通过img标签的src来引用图片资源</p>
-<ul>
-<li><p>通过<code>&quot;../assets/xxx.png&quot;</code>或者<code>&quot;../../static/xxx.png&quot;</code>这两种都是通过相对路径引用也会有两种情况</p>
-<ol>
-<li>小于limit的图片：仍然是base64</li>
-<li>大于limit的图片：<code>/static/img/xxx.0974910.png</code></li>
-</ol>
-</li>
-<li><p>通过<code>/static/xxx.png</code>绝对路径的方式引用图片，是可以被loader识别并且不被webpack打包，即可以保持原文件不变，在img的src中为<code>/static/xxx.png</code></p>
-<p><strong>注意：可以用<code>static/xxx.png</code>(即省略开头的’/‘)来达到上述效果，不过在<code>npm run build</code>后会报错，所以还是不推荐</strong></p>
-</li>
-</ul>
-</li>
-<li><p>style中通过background-img的url来引用图片资源</p>
-<ul>
-<li><p>通过<code>../../static/xxx.png</code>或者<code>../assets/xxx.png</code>这两种相对路径引用也会有两种情况</p>
-<ol>
-<li>小于limit的图片：仍然是base64</li>
-<li>大于limit的图片：<code>/static/img/xxx.0974910.png</code></li>
-</ol>
-</li>
-<li><p>通过<code>/static/xxx.png</code>绝对路径的方式引用图片，是可以被loader识别并且不被webpack打包，即可以保持原文件不变，在img的src中为<code>/static/xxx.png</code></p>
-</li>
-<li><p><strong>注意：不可以用<code>static/xxx.png</code>(即省略开头的/)来达到上述效果</strong></p>
-<p><strong>总结：在 <code>npm run dev</code> 后，如使用到相对路径引用图片资源，就会被webpack打包到<code>/static/img/</code>下，即被webpack处理；若使用绝对路径引用图片资源，webpack会保持原文件不变，放在<code>/static/</code>下</strong></p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="npm-run-build"><a href="#npm-run-build" class="headerlink" title="npm run build"></a>npm run build</h3><p>这个模式下，和<code>npm run dev</code>的区别是teplate的img标签的src不能<code>static/xxx.png</code>（即不能省略’/‘)</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/19/服务器，webpack打包/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1663,16 +1233,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/WebPack/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/07/11/WebPack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -1692,9 +1262,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-11T13:11:47+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-11T13:11:47+08:00">
                 2019-07-11
               </time>
             
@@ -1714,7 +1284,7 @@
           
 
           
-
+          
           
 
           
@@ -1733,67 +1303,14 @@
 
       
         
-          
-            <p>最近学了点webpack，算是入门了，对于webpack的进阶知识没有太多涉猎，对HMR热更新有一点点了解，但没有深入其实现原理，或许未来会去专门深入学习HMR热更新原理</p>
-<p>开始的学习是根据<a href="https://segmentfault.com/a/1190000006178770#articleHeader9" target="_blank" rel="noopener">这篇博客</a>进行搭建的,这篇博客用的webpack版本是3.x，虽然webpack思想没改变，但与现在的webpack4.x版本还是有点区别，自己搭建的时候还是遇到了一些意外的情况</p>
-<ol>
-<li><p>全局安装webpack的时候npm报错</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="symbol">\前</span>端<span class="symbol">\w</span>ebpack<span class="symbol">\d</span>emo&gt;npm install -g webpack</span><br><span class="line">npm ERR! Maximum call stack size exceeded</span><br></pre></td></tr></table></figure>
-<p>原因是自己的npm版本过低(5.x)，升级npm后再装webpack，问题解决</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="symbol">\前</span>端<span class="symbol">\w</span>ebpack<span class="symbol">\d</span>emo&gt;npm i npm -g</span><br><span class="line">D:<span class="symbol">\前</span>端<span class="symbol">\w</span>ebpack<span class="symbol">\d</span>emo&gt;npm -v</span><br><span class="line">6.10.0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>webpack命令行现在需要使用webpack-cli，而且webpack-cli需要全局安装</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">D</span>:\前端\webpack\demo&gt;webpack</span><br><span class="line"><span class="keyword">One</span> <span class="keyword">CLI</span> <span class="keyword">for</span> webpack must be installed. These are recommended choices, delivered <span class="keyword">as</span> <span class="keyword">separate</span> packages:</span><br><span class="line">- webpack-<span class="keyword">cli</span> (https:<span class="comment">//github.com/webpack/webpack-cli)</span></span><br><span class="line">  The original webpack full-featured <span class="keyword">CLI</span>.</span><br><span class="line">We will <span class="keyword">use</span> <span class="string">"npm"</span> to install the <span class="keyword">CLI</span> via <span class="string">"npm install -D"</span>.</span><br><span class="line"><span class="keyword">Do</span> you want to install 'webpack-<span class="keyword">cli</span>' (yes/<span class="keyword">no</span>): <span class="built_in">y</span></span><br><span class="line">Installing 'webpack-<span class="keyword">cli</span>' (running 'npm install -<span class="keyword">D</span> webpack-<span class="keyword">cli</span>')...</span><br></pre></td></tr></table></figure>
-<p>这里下载的webpack-cli不是全局安装，还是会报错，所以需要使用webpack命令行命令前全局安装webpack-cli，至此，意外的情况解决</p>
-</li>
-</ol>
-<h2 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h2><p>下面是webpack配制文件的一些基础又重要的选项，在这里只说明这些选项是干什么的，不是api</p>
-<h4 id="devtool"><a href="#devtool" class="headerlink" title="devtool"></a>devtool</h4><p>  <code>devtool: &#39;eval-source-map&#39;</code></p>
-<ol>
-<li>规定打包时候生成的文件的格式，不同值打包速度不同，完整性不同</li>
-<li>在source-map模式，使用babel后，原文件的es6被转成es5在浏览器运行，若不使用devtool，在浏览器看到的js是es5，和自己源码的es6不一样，导致修改麻烦（suorce-map的作用就是在浏览器控制台可以看到原文件出错的地方，而不是经过转译后其他格式的文件）</li>
-<li>在eval模式，在webpack打包生成的文件里面搜索eval，可以看到每个模块的地址</li>
-</ol>
-<h4 id="entry-amp-output"><a href="#entry-amp-output" class="headerlink" title="entry &amp; output"></a>entry &amp; output</h4><ul>
-<li><p>单入口</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">entry:</span> __dirname + <span class="string">"/app/main.js"</span>,</span><br><span class="line"><span class="symbol">output:</span> &#123;</span><br><span class="line"><span class="symbol">  path:</span> __dirname + <span class="string">"/build"</span>,</span><br><span class="line"><span class="symbol">  filename:</span> <span class="string">"bundle.js"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>此时设置的entry为全文唯一入口，output设置打包后的文件名以及存放的地址</p>
-</li>
-<li><p>多入口</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">entry</span>: &#123;</span><br><span class="line">  <span class="attribute">index</span>: __dirname + <span class="string">"/app/index.js"</span>,</span><br><span class="line">  admin: __dirname + <span class="string">"/app/admin.js"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">output</span>: &#123;</span><br><span class="line">  <span class="attribute">path</span>: __dirname + <span class="string">"/build"</span>,</span><br><span class="line">  filename: <span class="string">"[name].min.js"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>多入口需要配置一个JSON对象，这样会编译出两个打包后的文件 index.min.js 和 admin.min.js</p>
-</li>
-</ul>
-<h4 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h4>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mode: <span class="string">'none'</span>, <span class="string">'production'</span>,<span class="string">'development'</span></span><br></pre></td></tr></table></figure>
-<pre><code>none:只打包不压缩
-production:压缩到极限（默认值）
-development:保留必要信息，方便调试
-
-mode不设置则为默认值，但是会有warn
-</code></pre><h4 id="devServer"><a href="#devServer" class="headerlink" title="devServer"></a>devServer</h4><p>  下载 webpack-dev-server之后，浏览器监听你的代码的修改，并自动刷新显示修改后的结果, This should be used for development only.</p>
-  <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">devServer:</span> &#123;</span><br><span class="line"><span class="symbol">  contentBase:</span> <span class="string">"./public"</span>,<span class="comment">//本地服务器所加载的页面所在的目录</span></span><br><span class="line"><span class="symbol">  historyApiFallback:</span> true,<span class="comment">//如果设置为true，所有的跳转将指向index.html</span></span><br><span class="line"><span class="symbol">  port:</span> <span class="number">4000</span>,</span><br><span class="line"><span class="symbol">  hot:</span> true<span class="comment">//这个是热替换</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>热替换HMR和自动刷新（live-reload）的区别</strong></p>
-<p>  热替换可以只替换某个组件，自动刷新就是所有组件一起重置，热替换可以保存组件原来的状态信息，不去重新渲染没有修改的组件</p>
-<h4 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h4><p>  webpack只认识js，只能打包js，所以需要各种loader来把不同的文件变成字符串等webpack可以认识的东西，从而实现把各种各样的文件打包到一起的效果，可以说，没有loader，webpack什么都不是</p>
-<p>  下面介绍接种常见的loader</p>
-<ul>
-<li>css-loader<br>  把css文化变成字符串，让webpack能接受并打包</li>
-<li>style-loader<br>  把打包后的css样式，在head标签内生成style标签</li>
-<li><p>postcss-loader<br>  依赖于autoprefixer，给样式加前缀</p>
-<p>三个loader配合使用写法如下，use的执行顺序为有后向前，这个三个loader的执行顺序不能乱</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">module</span>: &#123;</span><br><span class="line">  <span class="attribute">rules</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.css$/,</span><br><span class="line">      use: [</span><br><span class="line">        &#123;</span><br><span class="line">          loader: <span class="string">"style-loader"</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          <span class="attribute">loader</span>: <span class="string">"css-loader"</span>,</span><br><span class="line">          options: &#123;</span><br><span class="line">            modules: true, // 指定启用css modules</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">          <span class="attribute">loader</span>: <span class="string">"postcss-loader"</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>file-loader<br>输出成文件，只是改个名（md5规范）</p>
-</li>
-<li><p>url-loader<br>读取并输出成base64 </p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">loader</span>: 'url-loader,</span><br><span class="line">    <span class="attribute">options</span>: &#123;</span><br><span class="line">      <span class="attribute">outputPath </span>: <span class="string">'images/'</span>,</span><br><span class="line">      <span class="attribute">limit</span>: <span class="number">8</span>*<span class="number">1024</span> <span class="comment">//小于这个的打包成base64,大于这个的变成文件</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>bable-loader<br>把es6转成es5，避免某些浏览器不能识别es6，其配置信息可以另外写在 .bablerc 文件里，webpack会自动调用.babelrc里的babel配置选项</p>
-</li>
-</ul>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>  以上便是这几天入门webpack学到的一些皮毛，虽然学的很浅，不过自己对于工程化的理解加深了不少，对模块化的理解更深了一点，webpack更深层次的东西，希望以后能够有时间有能力去探秘</p>
-
-          
+          <p>最近学了点webpack，算是入门了，对于webpack的进阶知识没有太多涉猎，对HMR热更新有一点点了解，但没有深入其实现原理，或许未来会去专门深入学习HMR热更新原理</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/11/WebPack/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1840,16 +1357,16 @@ mode不设置则为默认值，但是会有warn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/小程序杂记/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2019/05/31/小程序杂记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -1869,9 +1386,9 @@ mode不设置则为默认值，但是会有warn
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-31T17:31:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-31T17:31:00+08:00">
                 2019-05-31
               </time>
             
@@ -1891,7 +1408,7 @@ mode不设置则为默认值，但是会有warn
           
 
           
-
+          
           
 
           
@@ -1910,31 +1427,14 @@ mode不设置则为默认值，但是会有warn
 
       
         
-          
-            <p>下面是个人做破碎时间微信小程序时碰到的琐碎的坑点(其实是自己太菜)</p>
-<ol>
-<li><p>wx:for<br>当需要两重循环的时候，需要绑定不同的 item 值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;block wx:<span class="keyword">for</span>=<span class="string">"&#123;&#123; days &#125;&#125;"</span> wx:<span class="keyword">for</span>-item=<span class="string">"cardList"</span> wx:key=<span class="string">"key1"</span>&gt;</span><br><span class="line">   &lt;view wx:<span class="keyword">for</span>=<span class="string">"&#123;&#123; cardList &#125;&#125;"</span> wx:<span class="keyword">for</span>-item=<span class="string">"card"</span> wx:key=<span class="string">"key2"</span>&gt;</span><br><span class="line">   &lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>block&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>picker 时间选择,不给默认初值,就强行当前时间开始选择(安卓机(小米)是如此,ios 却是从 00:00 开始)</p>
-</li>
-<li><p>textarear 的 placeholder 若想为空,修改其值为 ‘’ 是无效的,要改为 ‘ ‘</p>
-</li>
-<li><p>textarea 的 placeholder 样式穿透问题，placeholder永远在最上面一层显示,只能强行让其消失(改值为空)，貌似所有原生组件都会有在其他引用组件上方的z-index无效的问题( vue 的好像相反？当初用 vant 做日历选择的时候被遮盖)</p>
-</li>
-<li><p>传事件的参数是个对象，不是一个个传，和 vue 的不同</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.triggerEvent(<span class="string">'myevent'</span>,&#123;<span class="attr">confirm</span>:<span class="literal">false</span>,<span class="attr">isTapX</span>:<span class="literal">false</span>&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>图片要放 CDN 上,不然预览不了  </p>
-</li>
-<li><p>真机调试发现用到全局对象时候更新渲染很慢，以后能用缓存的就要用缓存才行,少用慎用 setData ,用缓存</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set/getStrogeSync(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>text-area 的焦点事件响应会很慢,如果不进行延迟,会导致出问题(莫名得到不对的值或者得不到值)</p>
-</li>
-</ol>
-
-          
+          <p>下面是个人做破碎时间微信小程序时碰到的琐碎的坑点(其实是自己太菜)</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/31/小程序杂记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2009,9 +1509,9 @@ mode不设置则为默认值，但是会有warn
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="Mr.bin" />
+                alt="1bin" />
             
-              <p class="site-author-name" itemprop="name">Mr.bin</p>
+              <p class="site-author-name" itemprop="name">1bin</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -2023,7 +1523,7 @@ mode不设置则为默认值，但是会有warn
                 <a href="/archives/">
               
                   <span class="site-state-item-count">38</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -2036,7 +1536,7 @@ mode不设置则为默认值，但是会有warn
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">42</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 
               </div>
             
@@ -2084,6 +1584,11 @@ mode不设置则为默认值，但是会有warn
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -2099,13 +1604,23 @@ mode不设置则为默认值，但是会有warn
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Mr.bin</span>
+  <span class="author" itemprop="copyrightHolder">1bin</span>
 
   
 </div>
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -2113,7 +1628,7 @@ mode不设置则为默认值，但是会有warn
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -2130,11 +1645,6 @@ mode不设置则为默认值，但是会有warn
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     

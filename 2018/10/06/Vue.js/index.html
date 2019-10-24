@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,16 +53,14 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
 
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -74,25 +72,25 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Crazy" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="孤独患者" type="application/atom+xml" />
 
 
 
 
 
 
-<meta name="description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。  1. Vue对象     Vue.js是javaScript的框架  1.1 Vue(根)对象中的选项实例化V">
+<meta name="description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。">
 <meta name="keywords" content="Vue.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.js">
-<meta property="og:url" content="http://yoursite.com/2018/10/06/Vue.js/index.html">
-<meta property="og:site_name" content="Crazy">
-<meta property="og:description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。  1. Vue对象     Vue.js是javaScript的框架  1.1 Vue(根)对象中的选项实例化V">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-28T12:45:00.439Z">
+<meta property="og:url" content="http://blog.1bin.top/2018/10/06/Vue.js/index.html">
+<meta property="og:site_name" content="孤独患者">
+<meta property="og:description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-24T13:43:38.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js">
-<meta name="twitter:description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。  1. Vue对象     Vue.js是javaScript的框架  1.1 Vue(根)对象中的选项实例化V">
+<meta name="twitter:description" content="前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。">
 
 
 
@@ -102,13 +100,13 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":0,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/06/Vue.js/"/>
+  <link rel="canonical" href="http://blog.1bin.top/2018/10/06/Vue.js/"/>
 
 
 
 
 
-  <title>Vue.js | Crazy</title>
+  <title>Vue.js | 孤独患者</title>
   
 
 
@@ -140,7 +138,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -158,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Crazy</span>
+        <span class="site-title">孤独患者</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -188,7 +186,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -198,7 +206,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -235,16 +243,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/06/Vue.js/">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2018/10/06/Vue.js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mr.bin">
+      <meta itemprop="name" content="1bin">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crazy">
+      <meta itemprop="name" content="孤独患者">
     </span>
 
     
@@ -262,9 +270,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-06T21:56:43+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-06T21:56:43+08:00">
                 2018-10-06
               </time>
             
@@ -284,7 +292,10 @@
           
 
           
-
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
           
 
           
@@ -304,6 +315,7 @@
       
         <hr>
 <p>前言：几天前尤雨溪介绍了即将发表的 Vue 3.0 版本，3.0版本的概要是除了渲染函数 API 和作用域插槽语法之外的所有内容都将保持不变，或者通过兼容性构建让其与 2.x 保持兼容。此文章是基于 Vue 2.x 版本写的初入门文章,主要针对Vue基础语法，模板，组件等所作的笔记。</p>
+<a id="more"></a>
 <hr>
 <h1>1. Vue对象</h1>  
 
@@ -520,10 +532,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -534,9 +546,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.png"
-                alt="Mr.bin" />
+                alt="1bin" />
             
-              <p class="site-author-name" itemprop="name">Mr.bin</p>
+              <p class="site-author-name" itemprop="name">1bin</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -548,7 +560,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">38</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -561,7 +573,7 @@
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">42</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 
               </div>
             
@@ -616,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1. Vue对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Vue-根-对象中的选项"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Vue(根)对象中的选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.1.</span> <span class="nav-text">el</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.2.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.3.</span> <span class="nav-text">methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.4.</span> <span class="nav-text">computed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.5.</span> <span class="nav-text">watch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Vue生命周期-钩子函数"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Vue生命周期(钩子函数)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2. Vue模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-插值"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 插值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-指令"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.1.</span> <span class="nav-text">属性绑定指令 v-bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.2.</span> <span class="nav-text">事件绑定指令 v-on</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.3.</span> <span class="nav-text">条件渲染指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.4.</span> <span class="nav-text">列表渲染指令 v-for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.5.</span> <span class="nav-text">表单输入绑定指令 v-model</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3. Vue组件初级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-子组件基本示例"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 子组件基本示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-子组件选项"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 子组件选项</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">1. Vue对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Vue-根-对象中的选项"><span class="nav-text">1.1 Vue(根)对象中的选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">el</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">computed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">watch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Vue生命周期-钩子函数"><span class="nav-text">1.2 Vue生命周期(钩子函数)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">2. Vue模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-插值"><span class="nav-text">2.1 插值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-指令"><span class="nav-text">2.2 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">属性绑定指令 v-bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">事件绑定指令 v-on</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">条件渲染指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">列表渲染指令 v-for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">表单输入绑定指令 v-model</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">3. Vue组件初级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-子组件基本示例"><span class="nav-text">3.1 子组件基本示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-子组件选项"><span class="nav-text">3.2 子组件选项</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -624,6 +636,11 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
       
 
     </div>
@@ -640,13 +657,23 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Mr.bin</span>
+  <span class="author" itemprop="copyrightHolder">1bin</span>
 
   
 </div>
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -654,7 +681,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -671,11 +698,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
