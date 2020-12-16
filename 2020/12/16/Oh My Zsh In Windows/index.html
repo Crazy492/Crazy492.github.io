@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Oh My Zsh,WSL," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="孤独患者" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="引言在实习使用 Mac 开发期间，是使用了 Oh My Zsh 配合上 iTerm2, 当时没有选择使用插件，以为装了用便是，没有完全体验到 zsh 的强大之处。实习回来想着以后还是得用 Oh My Zsh , 便了解了下如何在 Windows 上使用，包括一些实用插件，如何配合 VSCode, Cmder 等 ##  最终效果目标是打开 Cmder 可直接使用 zsh ！（样式什么的能看就行 :">
+<meta name="keywords" content="Oh My Zsh,WSL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oh My Zsh In Windows">
+<meta property="og:url" content="http://blog.1bin.top/2020/12/16/Oh My Zsh In Windows/index.html">
+<meta property="og:site_name" content="孤独患者">
+<meta property="og:description" content="引言在实习使用 Mac 开发期间，是使用了 Oh My Zsh 配合上 iTerm2, 当时没有选择使用插件，以为装了用便是，没有完全体验到 zsh 的强大之处。实习回来想着以后还是得用 Oh My Zsh , 便了解了下如何在 Windows 上使用，包括一些实用插件，如何配合 VSCode, Cmder 等 ##  最终效果目标是打开 Cmder 可直接使用 zsh ！（样式什么的能看就行 :">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://blog.1bin.top/2020/12/16/img/1608120430809.png">
+<meta property="og:image" content="http://blog.1bin.top/2020/12/16/img/1608121070626.png">
+<meta property="og:image" content="http://blog.1bin.top/2020/12/16/img/1608122620955.png">
+<meta property="og:image" content="http://blog.1bin.top/2020/12/16/img/1608123043661.png">
+<meta property="og:image" content="http://blog.1bin.top/2020/12/16/img/1608123171999.png">
+<meta property="og:image" content="http://blog.1bin.top/2020/12/16/img/1608124409065.png">
+<meta property="og:image" content="http://blog.1bin.top/2020/12/16/img/1608123908107.png">
+<meta property="og:image" content="http://blog.1bin.top/2020/12/16/img/1608126091649.png">
+<meta property="og:updated_time" content="2020-12-16T14:08:06.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oh My Zsh In Windows">
+<meta name="twitter:description" content="引言在实习使用 Mac 开发期间，是使用了 Oh My Zsh 配合上 iTerm2, 当时没有选择使用插件，以为装了用便是，没有完全体验到 zsh 的强大之处。实习回来想着以后还是得用 Oh My Zsh , 便了解了下如何在 Windows 上使用，包括一些实用插件，如何配合 VSCode, Cmder 等 ##  最终效果目标是打开 Cmder 可直接使用 zsh ！（样式什么的能看就行 :">
+<meta name="twitter:image" content="http://blog.1bin.top/2020/12/16/img/1608120430809.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":0,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.1bin.top/2020/12/16/Oh My Zsh In Windows/"/>
+
+
+
+
+
+  <title>Oh My Zsh In Windows | 孤独患者</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">孤独患者</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.1bin.top/2020/12/16/Oh My Zsh In Windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="1bin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="孤独患者">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Oh My Zsh In Windows</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-16T00:00:00+08:00">
+                2020-12-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>在实习使用 Mac 开发期间，是使用了 Oh My Zsh 配合上 iTerm2, 当时没有选择使用插件，以为装了用便是，没有完全体验到 zsh 的强大之处。实习回来想着以后还是得用 Oh My Zsh , 便了解了下如何在 Windows 上使用，包括一些实用插件，如何配合 VSCode, Cmder 等</p>
+<p>## </p>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p>目标是打开 Cmder 可直接使用 zsh ！（样式什么的能看就行 :p</p>
+<p><img src="..\img\1608120430809.png" alt="1608120430809"></p>
+<h3 id="安装-WSL"><a href="#安装-WSL" class="headerlink" title="安装 WSL"></a>安装 WSL</h3><p>众所周知 Windows 是不能直接使用 zsh 的，但可以借用 Windows 的 WSL 的能力来完成目标</p>
+<p>首先在 Microsoft Store 中搜索 Linux 安装一个子系统，这里我选择的是 Ubuntu</p>
+<p>其次搜索 Windows Terminal 并下载好打开，点击下拉按钮选择 Ubuntu 即可其中使用 Linux 了</p>
+<p><img src="..\img\1608121070626.png" alt="1608121070626"></p>
+<h3 id="安装-Oh-My-Zsh"><a href="#安装-Oh-My-Zsh" class="headerlink" title="安装 Oh My Zsh"></a>安装 Oh My Zsh</h3><p>下面命令都是在 Ubuntu 的 shell 中跑的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 简单安装一下 zsh</span></span><br><span class="line">sudo apt-get install zsh -y</span><br><span class="line"><span class="comment"># 简单看下支持哪些 shell</span></span><br><span class="line">cat /etc/shells</span><br><span class="line"><span class="comment"># 简单看下 zsh 版本</span></span><br><span class="line">zsh --version</span><br><span class="line"><span class="comment"># 简单切换 shell 为 zsh</span></span><br><span class="line">chsh -s $(<span class="built_in">which</span> zsh)</span><br></pre></td></tr></table></figure>
+<p>zsh 的安装就已经完成了，不过据说原生的 zsh 配置比较麻烦，于是有大牛写了个 Oh My Zsh 方便配置 zsh，还等啥，直接安装 Oh My Zsh </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git 命令已经存在</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh</span><br><span class="line"><span class="comment"># 将 Oh My Zsh 的配置模板覆盖到本机zsh 配置</span></span><br><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br><span class="line"><span class="comment"># 更改 shell 为 zsh</span></span><br><span class="line">chsh -s $(<span class="built_in">which</span> zsh)</span><br><span class="line"><span class="comment"># 重新打开终端即可应用</span></span><br></pre></td></tr></table></figure>
+<p>除了直接 git clone 的方式，还可以尝试使用 curl 或者 wget 来下载 Oh My Zsh (这两种方式我没有成功，会报 Unable to establish SSL connection 这种错误，谷歌了蛮多解决方案没成功，放弃了，dbq我太菜了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># curl</span></span><br><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span></span><br><span class="line"><span class="comment"># wegt</span></span><br><span class="line">sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装-zsh-插件"><a href="#安装-zsh-插件" class="headerlink" title="安装 zsh 插件"></a>安装 zsh 插件</h3><p>Oh My Zsh 着实方便了我们使用 zsh, 但还是需要配合一些插件才能真正体验到使用 zsh 的方便之处</p>
+<p>这里推荐几个插件， 修改 .zshrc 文件这一行配置 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(git z zsh-autosuggestions zsh-syntax-highlighting sudo)</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener">zsh-autosuggestions</a>: 记录历史命令，自动匹配你可能输入的命令，然后按 →补全</p>
+<p><img src="..\img\1608122620955.png" alt="1608122620955"></p>
+<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting" target="_blank" rel="noopener">zsh-syntax-highlighting</a>：输入完命令才知道输错了于是重新输入？不不不，这个插件可以在输入过程提醒你当前命令是否正确（红色为错误）</p>
+<p><img src="..\img\1608123043661.png" alt="1608123043661">      z(无需下载)：可查看历史访问记录，输入关键词即可直接跳转</p>
+<p><img src="..\img\1608123171999.png" alt="1608123171999"></p>
+<p>sudo(无需下载)：快速在命令开头添加 sudo</p>
+<h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h3><p>在 Ubuntu 的 shell 中跑以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v14.15.1/node-v14.15.1-linux-x64.tar.xz <span class="comment"># 对应版本可自己选择</span></span><br><span class="line">tar xvf node-v10.15.1-linux-x64.tar.xz <span class="comment"># 解压</span></span><br><span class="line">vim ~/.zshrc <span class="comment"># 修改配置</span></span><br><span class="line"><span class="comment"># 添加以下环境变量</span></span><br><span class="line"><span class="built_in">export</span> NODE_HOME=/home/ebin/node-v14.15.1-linux-x64</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$NODE_HOME</span>/bin</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$NODE_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="comment"># 新配置生效</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc </span><br><span class="line">node --version</span><br><span class="line">v14.15.1</span><br></pre></td></tr></table></figure>
+<h3 id="VSCode-中使用-zsh"><a href="#VSCode-中使用-zsh" class="headerlink" title="VSCode 中使用 zsh"></a>VSCode 中使用 zsh</h3><p>首先安装一个 VSCode 插件 Remote - WSL，启用后修改 VSCode 默认 shell</p>
+<p><img src="..\img\1608124409065.png" alt="1608124409065"></p>
+<p>在 Ubuntu 的 shell 中使用 VSCode 打开随便一个文件 <code>code .</code></p>
+<p><img src="..\img\1608123908107.png" alt="1608123908107"></p>
+<p>简简单单，此后通过这个 VSCode 窗口再新开的窗口都可使用 zsh</p>
+<h3 id="Cmder-中使用-zsh"><a href="#Cmder-中使用-zsh" class="headerlink" title="Cmder 中使用 zsh"></a>Cmder 中使用 zsh</h3><p>在 Cmder 简简单单输入 wsl 即可使用 zsh，但如果想要一打开就能使用 zsh 还需要一些操作</p>
+<p>打开 Cmder 的配置界面，填写的具体路径即为图中所示的 ubuntu.exe 文件，打开 WindowsApps 可能会遇到一些问题，可参考<a href="http://www.pc0359.cn/article/win10/69765.html" target="_blank" rel="noopener">这里</a>解决</p>
+<p><img src="..\img\1608126091649.png" alt="1608126091649"></p>
+<p>重新打开 Cmder 就可以使用 zsh 啦 ~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Oh-My-Zsh/" rel="tag"># Oh My Zsh</a>
+          
+            <a href="/tags/WSL/" rel="tag"># WSL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/23/Promise及其api的原生实现/" rel="next" title="JS异步编程解决方案之Promise的原生实现">
+                <i class="fa fa-chevron-left"></i> JS异步编程解决方案之Promise的原生实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="1bin" />
+            
+              <p class="site-author-name" itemprop="name">1bin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Crazy492" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:abcqweewq@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终效果"><span class="nav-text">最终效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-WSL"><span class="nav-text">安装 WSL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Oh-My-Zsh"><span class="nav-text">安装 Oh My Zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-zsh-插件"><span class="nav-text">安装 zsh 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Node-js"><span class="nav-text">安装 Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VSCode-中使用-zsh"><span class="nav-text">VSCode 中使用 zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cmder-中使用-zsh"><span class="nav-text">Cmder 中使用 zsh</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">1bin</span>
+
+  
+</div>
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
